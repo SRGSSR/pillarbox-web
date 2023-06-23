@@ -16,6 +16,7 @@
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
     "husky": "^8.0.3",
+    "parcel": "^2.9.2",
     "semantic-release": "^21.0.5"
   }
 }
