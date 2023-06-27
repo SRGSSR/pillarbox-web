@@ -8,16 +8,20 @@
   },
   "scripts": {
     "start": "parcel -p 6969 demo/*.html",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
     "@parcel/transformer-sass": "^2.9.2",
+    "babel-jest": "^29.5.0",
     "husky": "^8.0.3",
+    "jest": "^29.5.0",
     "parcel": "^2.9.2",
     "semantic-release": "^21.0.5"
   }
