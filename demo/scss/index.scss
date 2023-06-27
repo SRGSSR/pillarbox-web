@@ -1,0 +1,33 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--gray-12);
+
+  display: grid;
+  place-content: center;
+
+  min-height: 100vh;
+
+  margin: 0;
+
+  color: var(--gray-0);
+  font-family: var(--font-sans);
+  font-size: var(--size-5);
+}
+
+h1 {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: center;
+
+  margin: 0;
+}
+
+.version {
+  font-weight: bold;
+}
