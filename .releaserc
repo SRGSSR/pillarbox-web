@@ -1,11 +1,115 @@
 {
   "branches": [
     {
-      "name": "latest",
+      "name": "github-ci",
       "channel": "latest"
     },
     {
       "name": "main"
     }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "preset": "conventionalcommits",
+        "header": "Pillarbox Web changes",
+        "parserOpts": {
+          "noteKeywords": [
+            "BREAKING CHANGE",
+            "BREAKING CHANGES",
+            "BREAKING"
+          ]
+        },
+        "presetConfig": {
+          "types": [
+            {
+              "type": "breaking",
+              "section": "Breaking Changes ❗",
+              "hidden": false
+            },
+            {
+              "type": "feat",
+              "section": "New Features 🚀",
+              "hidden": false
+            },
+            {
+              "type": "fix",
+              "section": "Enhancements and Bug Fixes 🐛",
+              "hidden": false
+            },
+            {
+              "type": "docs",
+              "section": "Docs 📖",
+              "hidden": false
+            },
+            {
+              "type": "style",
+              "section": "Styles 🎨",
+              "hidden": false
+            },
+            {
+              "type": "refactor",
+              "section": "Refactor 🔩",
+              "hidden": false
+            },
+            {
+              "type": "perf",
+              "section": "Performances ⚡️",
+              "hidden": false
+            },
+            {
+              "type": "test",
+              "section": "Tests ✅",
+              "hidden": false
+            },
+            {
+              "type": "ci",
+              "section": "CI 🔁",
+              "hidden": false
+            },
+            {
+              "type": "chore",
+              "section": "Chore 🧹",
+              "hidden": false
+            }
+          ]
+        },
+        "writerOpts": {
+          "groupBy": "type",
+          "commitGroupsSort": [
+            "breaking",
+            "feat",
+            "fix",
+            "docs",
+            "style",
+            "refactor",
+            "perf",
+            "test",
+            "ci",
+            "chore"
+          ]
+        }
+      }
+    ],
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "docs/CHANGELOG.md"
+      }
+    ],
+    "@semantic-release/npm",
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "package.json",
+          "docs/CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    "@semantic-release/github"
   ]
 }
