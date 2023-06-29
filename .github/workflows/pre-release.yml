@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  publich-dist-tag:
+  publish-dist-tag:
     runs-on: ubuntu-latest
 
     steps:
