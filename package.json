@@ -34,6 +34,7 @@
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
     "@parcel/transformer-sass": "^2.9.2",
+    "@semantic-release/changelog": "^6.0.3",
     "babel-jest": "^29.5.0",
     "eslint": "^8.43.0",
     "eslint-plugin-jest": "^27.2.2",
