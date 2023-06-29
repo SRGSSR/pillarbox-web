@@ -2,11 +2,13 @@
   "name": "@srgssr/pillarbox-web",
   "description": "Pillarbox is the modern SRG SSR player",
   "version": "0.0.1",
-  "main": "index.js",
+  "source": "src/pillarbox.js",
+  "main": "dist/pillarbox.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
+    "build": "parcel build",
     "eslint": "eslint --ext .js src",
     "start": "parcel -p 6969 demo/*.html",
     "test": "jest"
@@ -14,6 +16,13 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SRGSSR/pillarbox-web/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SRGSSR/pillarbox-web.git"
+  },
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
