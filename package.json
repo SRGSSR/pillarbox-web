@@ -23,6 +23,10 @@
     "type": "git",
     "url": "git+https://github.com/SRGSSR/pillarbox-web.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "access": "public"
+  },
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",

@@ -1,0 +1,25 @@
+name: Release NPM Package
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          always-auth: true
+          registry-url: https://npm.pkg.github.com/
+          scope: '@srgssr'
+      - run: |
+          npm dist-tag ls @srgssr/pillarbox-web
+          npm dist-tag add @srgssr/pillarbox-web@$(npm view @srgssr/pillarbox-web dist-tags.main) latest
+          exit 0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
