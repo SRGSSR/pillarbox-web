@@ -10,6 +10,7 @@
   "scripts": {
     "build": "parcel build",
     "eslint": "eslint --ext .js src",
+    "release:ci": "semantic-release",
     "start": "parcel -p 6969 demo/*.html",
     "test": "jest"
   },
