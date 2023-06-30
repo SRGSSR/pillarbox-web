@@ -2,14 +2,27 @@
   "name": "@srgssr/pillarbox-web",
   "description": "Pillarbox is the modern SRG SSR player",
   "version": "0.0.1",
-  "source": "src/pillarbox.js",
   "main": "dist/pillarbox.js",
+  "targets": {
+    "github-page": {
+      "publicUrl": "./",
+      "source": [
+        "demo/index.html"
+      ],
+      "isLibrary": false,
+      "outputFormat": "esmodule"
+    },
+    "main": {
+      "source": "src/pillarbox.js"
+    }
+  },
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "build": "parcel build",
+    "build": "parcel build --target main",
     "eslint": "eslint --ext .js src",
+    "github:page": "parcel build --target github-page",
     "release:ci": "semantic-release",
     "start": "parcel -p 6969 demo/*.html",
     "test": "jest"
