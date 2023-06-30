@@ -1,0 +1,34 @@
+name: Quality
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        env :
+          CI: true
+        run: |
+          npm pkg delete scripts.prepare
+          npm ci
+
+      - name: Run eslint
+        run: |
+          npm run eslint
+
+      - name: Run unit tests
+        run: |
+          npm test
