@@ -25,9 +25,9 @@ jobs:
           npm pkg delete scripts.prepare
           npm ci
 
-      - name: Run eslint
+      - name: Run JS and CSS linters
         run: |
-          npm run eslint
+          npm run eslint && npm run stylelint
 
       - name: Run unit tests
         run: |
