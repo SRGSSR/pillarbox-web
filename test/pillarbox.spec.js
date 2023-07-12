@@ -12,7 +12,6 @@ describe('Pillarbox', () => {
 
     const pillarbox = new Pillarbox('player');
 
-
     expect(pillarbox).toBeInstanceOf(Pillarbox.getComponent('Player'));
     expect(pillarbox.id()).toEqual('player');
   });
