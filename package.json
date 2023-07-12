@@ -64,5 +64,8 @@
     "stylelint": "^15.10.1",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-order": "^6.0.3"
+  },
+  "dependencies": {
+    "video.js": "^8.5.0"
   }
 }
