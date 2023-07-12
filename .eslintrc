@@ -1,185 +1,185 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "jest/globals": true
-    },
-    "plugins": [
-        "jest"
-    ],
-    "extends": [
-        "eslint:recommended",
-        "plugin:jest/recommended"
-    ],
-    "overrides": [
-        {
-            "files": [
-                "test/**"
-            ],
-            "rules": {
-                "max-lines-per-function": "off",
-                "max-statements": "off"
-            }
-        }
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "rules": {
-        "jest/prefer-to-have-length": "warn",
-        // https://eslint.org/docs/latest/rules/array-bracket-spacing
-        "array-bracket-spacing": [
-            "error",
-            "never"
-        ],
-        "comma-dangle": [
-            "error",
-            {
-                "objects": "only-multiline"
-            }
-        ],
-        // https://eslint.org/docs/latest/rules/comma-spacing
-        "comma-spacing": [
-            "error",
-            {
-                "before": false,
-                "after": true
-            }
-        ],
-        // https://eslint.org/docs/latest/rules/comma-style
-        "comma-style": [
-            "error",
-            "last"
-        ],
-        // https://eslint.org/docs/latest/rules/complexity
-        "complexity": [
-            "error",
-            {
-                "max": 2
-            }
-        ],
-        // https://eslint.org/docs/latest/rules/function-paren-newline
-        "function-paren-newline": [
-            "error",
-            "multiline-arguments"
-        ],
-        "indent": [
-            "error",
-            2
-        ],
-        // https://eslint.org/docs/latest/rules/keyword-spacing
-        "keyword-spacing": [
-            "error",
-            {
-                "after": true,
-                "before": true
-            }
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        // https://eslint.org/docs/latest/rules/max-depth
-        "max-depth": [
-            "error",
-            2
-        ],
-        // https://eslint.org/docs/latest/rules/max-len
-        "max-len": [
-            "error",
-            {
-                "code": 80,
-                "ignoreComments": true,
-                "ignoreStrings": true,
-                "ignoreTemplateLiterals": true,
-                "ignoreTrailingComments": true,
-                "ignoreUrls": true
-            }
-        ],
-        // https://eslint.org/docs/latest/rules/max-lines-per-function
-        "max-lines-per-function": [
-            "error",
-            20
-        ],
-        // https://eslint.org/docs/latest/rules/max-nested-callbacks
-        "max-nested-callbacks": [
-            "error",
-            3
-        ],
-        // https://eslint.org/docs/latest/rules/max-statements
-        "max-statements": [
-            "error",
-            5
-        ],
-        // https://eslint.org/docs/latest/rules/newline-after-var
-        "newline-after-var": [
-            "error",
-            "always"
-        ],
-        // https://eslint.org/docs/latest/rules/no-bitwise
-        "no-bitwise": [
-            "error",
-            {
-                "int32Hint": true
-            }
-        ],
-        // https://eslint.org/docs/latest/rules/no-cond-assign
-        "no-cond-assign": [
-            "error",
-            "always"
-        ],
-        // https://eslint.org/docs/latest/rules/no-console
-        "no-console": [
-            "error",
-            {
-                "allow": [
-                    "warn",
-                    "error"
-                ]
-            }
-        ],
-        // https://eslint.org/docs/latest/rules/no-plusplus
-        "no-plusplus": [
-            "error",
-            {
-                "allowForLoopAfterthoughts": true
-            }
-        ],
-        // https://eslint.org/docs/latest/rules/object-curly-spacing
-        "object-curly-spacing": [
-            "error",
-            "always",
-            {
-                "objectsInObjects": false
-            }
-        ],
-        // https://eslint.org/docs/latest/rules/padding-line-between-statements
-        "padding-line-between-statements": [
-            "error",
-            {
-                "blankLine": "always",
-                "prev": "*",
-                "next": "return"
-            }
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
-        // https://eslint.org/docs/latest/rules/space-in-parens
-        "space-in-parens": [
-            "error",
-            "never"
-        ],
-        // https://eslint.org/docs/latest/rules/spaced-comment
-        "spaced-comment": [
-            "error",
-            "always"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ]
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest/globals": true
+  },
+  "plugins": [
+    "jest"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:jest/recommended"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "test/**"
+      ],
+      "rules": {
+        "max-lines-per-function": "off",
+        "max-statements": "off"
+      }
     }
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "jest/prefer-to-have-length": "warn",
+    // https://eslint.org/docs/latest/rules/array-bracket-spacing
+    "array-bracket-spacing": [
+      "error",
+      "never"
+    ],
+    "comma-dangle": [
+      "error",
+      {
+        "objects": "only-multiline"
+      }
+    ],
+    // https://eslint.org/docs/latest/rules/comma-spacing
+    "comma-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    // https://eslint.org/docs/latest/rules/comma-style
+    "comma-style": [
+      "error",
+      "last"
+    ],
+    // https://eslint.org/docs/latest/rules/complexity
+    "complexity": [
+      "error",
+      {
+        "max": 2
+      }
+    ],
+    // https://eslint.org/docs/latest/rules/function-paren-newline
+    "function-paren-newline": [
+      "error",
+      "multiline-arguments"
+    ],
+    "indent": [
+      "error",
+      2
+    ],
+    // https://eslint.org/docs/latest/rules/keyword-spacing
+    "keyword-spacing": [
+      "error",
+      {
+        "after": true,
+        "before": true
+      }
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    // https://eslint.org/docs/latest/rules/max-depth
+    "max-depth": [
+      "error",
+      2
+    ],
+    // https://eslint.org/docs/latest/rules/max-len
+    "max-len": [
+      "error",
+      {
+        "code": 80,
+        "ignoreComments": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true
+      }
+    ],
+    // https://eslint.org/docs/latest/rules/max-lines-per-function
+    "max-lines-per-function": [
+      "error",
+      20
+    ],
+    // https://eslint.org/docs/latest/rules/max-nested-callbacks
+    "max-nested-callbacks": [
+      "error",
+      3
+    ],
+    // https://eslint.org/docs/latest/rules/max-statements
+    "max-statements": [
+      "error",
+      5
+    ],
+    // https://eslint.org/docs/latest/rules/newline-after-var
+    "newline-after-var": [
+      "error",
+      "always"
+    ],
+    // https://eslint.org/docs/latest/rules/no-bitwise
+    "no-bitwise": [
+      "error",
+      {
+        "int32Hint": true
+      }
+    ],
+    // https://eslint.org/docs/latest/rules/no-cond-assign
+    "no-cond-assign": [
+      "error",
+      "always"
+    ],
+    // https://eslint.org/docs/latest/rules/no-console
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    // https://eslint.org/docs/latest/rules/no-plusplus
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    // https://eslint.org/docs/latest/rules/object-curly-spacing
+    "object-curly-spacing": [
+      "error",
+      "always",
+      {
+        "objectsInObjects": false
+      }
+    ],
+    // https://eslint.org/docs/latest/rules/padding-line-between-statements
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      }
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    // https://eslint.org/docs/latest/rules/space-in-parens
+    "space-in-parens": [
+      "error",
+      "never"
+    ],
+    // https://eslint.org/docs/latest/rules/spaced-comment
+    "spaced-comment": [
+      "error",
+      "always"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ]
+  }
 }

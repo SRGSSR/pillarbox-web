@@ -148,8 +148,9 @@ const config = {
   testEnvironment: 'jsdom',
 
   // Options that will be passed to the testEnvironment
-  testEnvironmentOptions:  {
-    userAgent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/11.12.0',
+  testEnvironmentOptions: {
+    userAgent:
+      'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/11.12.0',
   },
 
   // Adds a location field to test results
