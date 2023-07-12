@@ -53,6 +53,7 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^9.0.3",
     "@semantic-release/npm": "^10.0.4",
+    "@types/jest": "^29.5.3",
     "babel-jest": "^29.5.0",
     "buffer": "^6.0.3",
     "eslint": "^8.43.0",

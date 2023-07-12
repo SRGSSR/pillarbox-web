@@ -1,18 +1,33 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest/globals": true
     },
+    "plugins": [
+        "jest"
+    ],
     "extends": [
         "eslint:recommended",
         "plugin:jest/recommended"
     ],
-    "overrides": [],
+    "overrides": [
+        {
+            "files": [
+                "test/**"
+            ],
+            "rules": {
+                "max-lines-per-function": "off",
+                "max-statements": "off"
+            }
+        }
+    ],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "rules": {
+        "jest/prefer-to-have-length": "warn",
         // https://eslint.org/docs/latest/rules/array-bracket-spacing
         "array-bracket-spacing": [
             "error",
