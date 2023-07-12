@@ -21,10 +21,17 @@ h1 {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-
-  margin: 0;
 }
 
 .version {
   font-weight: bold;
+}
+
+.container {
+  width: 640px;
+  height: 360px;
+}
+
+.pbw-demo {
+  font-size: 15px;
 }

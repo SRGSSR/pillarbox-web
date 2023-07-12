@@ -6,18 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pillarbox - Demo Page</title>
     <link rel="stylesheet" href="https://unpkg.com/open-props" />
+    <link rel="stylesheet" href="npm:video.js/dist/video-js.css" />
     <link rel="stylesheet" href="scss/index.scss" />
   </head>
 
   <body>
     <h1>Pillarbox@<span class="version"></span></h1>
 
-    <script type="module">
-      import Pillarbox from '../src/pillarbox.js';
+    <div class="container">
+      <video-js
+        id="player"
+        class="pbw-demo"
+        controls
+        crossorigin="anonymous"
+      ></video-js>
+    </div>
 
-      window.Pillarbox = Pillarbox;
-
-      document.querySelector('.version').textContent = Pillarbox.VERSION;
-    </script>
+    <script type="module" src="src/index.js"></script>
   </body>
 </html>
