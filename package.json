@@ -27,7 +27,8 @@
     "start": "parcel -p 6969 demo/*.html",
     "stylelint": "stylelint **/*.scss --custom-syntax",
     "stylelint:fix": "stylelint **/*.scss --fix",
-    "test": "jest"
+    "test": "jest --verbose",
+    "test:watch": "jest --watch --verbose"
   },
   "keywords": [],
   "author": "",
