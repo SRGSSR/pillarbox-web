@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "jest/globals": true
+    "jest/globals": true,
+    "node": true
   },
   "plugins": [
     "jest"
@@ -18,7 +19,10 @@
       ],
       "rules": {
         "max-lines-per-function": "off",
-        "max-statements": "off"
+        "max-statements": "off",
+        "max-nested-callbacks": "off",
+        "max-len": "off",
+        "no-conditional-expect": "off"
       }
     }
   ],
@@ -27,7 +31,13 @@
     "sourceType": "module"
   },
   "rules": {
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
+    "jest/no-mocks-import": "off",
+    "jest/no-conditional-expect": "off",
     // https://eslint.org/docs/latest/rules/array-bracket-spacing
     "array-bracket-spacing": [
       "error",
@@ -56,7 +66,7 @@
     "complexity": [
       "error",
       {
-        "max": 2
+        "max": 5
       }
     ],
     // https://eslint.org/docs/latest/rules/function-paren-newline
@@ -100,7 +110,10 @@
     // https://eslint.org/docs/latest/rules/max-lines-per-function
     "max-lines-per-function": [
       "error",
-      20
+      {
+        "max": 35,
+        "skipComments": true
+      }
     ],
     // https://eslint.org/docs/latest/rules/max-nested-callbacks
     "max-nested-callbacks": [
@@ -110,7 +123,7 @@
     // https://eslint.org/docs/latest/rules/max-statements
     "max-statements": [
       "error",
-      5
+      10
     ],
     // https://eslint.org/docs/latest/rules/newline-after-var
     "newline-after-var": [
