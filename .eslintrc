@@ -159,6 +159,13 @@
         "allowForLoopAfterthoughts": true
       }
     ],
+    // https://eslint.org/docs/latest/rules/no-unused-vars
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
     // https://eslint.org/docs/latest/rules/object-curly-spacing
     "object-curly-spacing": [
       "error",
