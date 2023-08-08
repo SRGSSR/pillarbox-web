@@ -1,0 +1,305 @@
+{
+  "chapterUrn": "urn:srf:video:41f4b510-4d18-413f-aed2-c1e3909ed43b",
+  "episode": {
+    "id": "df9f1d89-13ee-4126-8237-d1bf397d2062",
+    "title": "Wer wohnt wo?",
+    "lead": "Auch in diesem Jahr öffnen bei «Wer wohnt wo?» wieder fünf Mitspieler die Türen zu ihren Wohnungen und Häusern. Zusammen mit Moderator Sven Epiney ziehen sie von Haus zu Haus und versuchen durch geschicktes Befragen, Beobachten und Kombinieren herauszufinden, welches Zuhause zu wem gehört.",
+    "description": "Wohnen ist etwas Individuelles und sehr Persönliches. Wahrscheinlich gerade deshalb interessiert es, wie andere ihr Zuhause eingerichtet haben und wie sie leben. Und, passt die Einrichtung auch tatsächlich zu der Person, die dort wohnt? Nicht immer entspricht das Offensichtliche der Realität.\r\n\r\nBei «Wer wohnt wo?» macht das Publikum zusammen mit Moderator Sven Epiney und fünf Mitspielerinnen und Mitspielern eine Reise durch wahrgewordene Schweizer Wohnträume. Beim Besuch ihrer Häuser und Wohnungen versuchen die fünf herauszufinden, wer wo wohnt. Gleichzeitig wollen sie sich in ihrem eigenen Zuhause natürlich nicht verraten oder die Gegenspielerinnen und Gegenspieler sogar auf eine falsche Fährte locken. Wer durch geschicktes Beobachten und Kombinieren am Ende der Sendung am meisten richtige Zuordnungen macht, gewinnt.\r\n\r\nIn der fünften Sendung reisen Sven Epiney und die fünf Mitspielerinnen und Mitspieler nach Ziegelbrücke GL, Zürich ZH, Eschenz TG, Flims GR und Egg ZH. In jeder Ortschaft ist eine oder einer der Kandidatinnen oder Kandidaten zu Hause.\r\n\r\nSo unterschiedlich die Charaktere und Einrichtungen auch sind, eines haben alle gemeinsam: die Leidenschaft für schönes Wohnen. Ob die Altbauwohnung in der Stadt oder das ehemalige Bauernhaus auf dem Land – alle Wohnräume, die während der Sendung besucht werden, sind wahre Hingucker.",
+    "publishedDate": "2020-01-11T20:10:00+01:00",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/c39ce04f-7332-4d91-b42b-176670d42c9e/WEBVISUAL/1543302527.jpg"
+  },
+  "show": {
+    "id": "a3b76d0d-1f4b-4fab-a62b-10f5cf708258",
+    "vendor": "SRF",
+    "transmission": "TV",
+    "urn": "urn:srf:show:tv:a3b76d0d-1f4b-4fab-a62b-10f5cf708258",
+    "title": "Wer wohnt wo?",
+    "lead": "«Wer wohnt wo?» ist eine unterhaltsame Entdeckungstour durch wahrgewordene Schweizer Wohnträume.",
+    "description": "Fünf Protagonisten mit fünf komplett unterschiedlichen Häusern – in «Wer wohnt wo?» ziehen fünf Mitspieler mit Moderator Sven Epiney von Haus zu Haus und versuchen durch geschicktes Befragen, Beobachten und Kombinieren herauszufinden, welches Zuhause zu welcher Person gehört.",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/c39ce04f-7332-4d91-b42b-176670d42c9e/WEBVISUAL/1543302527.jpg",
+    "bannerImageUrl": "https://ws.srf.ch/asset/image/audio/c39ce04f-7332-4d91-b42b-176670d42c9e/HEADER_SRF_PLAYER/1543302506.jpg",
+    "homepageUrl": "https://www.srf.ch/play/tv/sendung/wer-wohnt-wo?id=a3b76d0d-1f4b-4fab-a62b-10f5cf708258",
+    "timeTableUrl": "https://www.srf.ch/programm/tv/mediagroup/werwohntwo",
+    "links": [
+      {
+        "title": "Dabei sein",
+        "link": "https://www.srf.ch/sendungen/unterhaltungssendungen/wer-wohnt-wo-wir-suchen-sie-und-ihr-zuhause"
+      }
+    ],
+    "primaryChannelId": "23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "primaryChannelUrn": "urn:srf:channel:tv:23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "numberOfEpisodes": 5,
+    "topicList": [
+      {
+        "id": "641223fa-f112-4d98-8aec-cb22262a1182",
+        "vendor": "SRF",
+        "transmission": "TV",
+        "urn": "urn:srf:topic:tv:641223fa-f112-4d98-8aec-cb22262a1182",
+        "title": "Unterhaltung"
+      }
+    ],
+    "allowIndexing": true
+  },
+  "channel": {
+    "id": "23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "vendor": "SRF",
+    "urn": "urn:srf:channel:tv:23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "title": "SRF 1",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/7ec11b90-b120-4d77-915c-0cd4cef1c5fe/LOGO_RESPONSIVE/1436176214.png",
+    "imageTitle": "Logo",
+    "transmission": "TV"
+  },
+  "chapterList": [
+    {
+      "id": "41f4b510-4d18-413f-aed2-c1e3909ed43b",
+      "mediaType": "VIDEO",
+      "vendor": "SRF",
+      "urn": "urn:srf:video:41f4b510-4d18-413f-aed2-c1e3909ed43b",
+      "title": "Wer wohnt wo?",
+      "lead": "Auch in diesem Jahr öffnen bei «Wer wohnt wo?» wieder fünf Mitspieler die Türen zu ihren Wohnungen und Häusern. Zusammen mit Moderator Sven Epiney ziehen sie von Haus zu Haus und versuchen durch geschicktes Befragen, Beobachten und Kombinieren herauszufinden, welches Zuhause zu wem gehört.",
+      "description": "Wohnen ist etwas Individuelles und sehr Persönliches. Wahrscheinlich gerade deshalb interessiert es, wie andere ihr Zuhause eingerichtet haben und wie sie leben. Und, passt die Einrichtung auch tatsächlich zu der Person, die dort wohnt? Nicht immer entspricht das Offensichtliche der Realität.\r\n\r\nBei «Wer wohnt wo?» macht das Publikum zusammen mit Moderator Sven Epiney und fünf Mitspielerinnen und Mitspielern eine Reise durch wahrgewordene Schweizer Wohnträume. Beim Besuch ihrer Häuser und Wohnungen versuchen die fünf herauszufinden, wer wo wohnt. Gleichzeitig wollen sie sich in ihrem eigenen Zuhause natürlich nicht verraten oder die Gegenspielerinnen und Gegenspieler sogar auf eine falsche Fährte locken. Wer durch geschicktes Beobachten und Kombinieren am Ende der Sendung am meisten richtige Zuordnungen macht, gewinnt.\r\n\r\nIn der fünften Sendung reisen Sven Epiney und die fünf Mitspielerinnen und Mitspieler nach Ziegelbrücke GL, Zürich ZH, Eschenz TG, Flims GR und Egg ZH. In jeder Ortschaft ist eine oder einer der Kandidatinnen oder Kandidaten zu Hause.\r\n\r\nSo unterschiedlich die Charaktere und Einrichtungen auch sind, eines haben alle gemeinsam: die Leidenschaft für schönes Wohnen. Ob die Altbauwohnung in der Stadt oder das ehemalige Bauernhaus auf dem Land – alle Wohnräume, die während der Sendung besucht werden, sind wahre Hingucker.",
+      "imageUrl": "https://ws.srf.ch/asset/image/audio/0cb3aee7-ea73-4c48-a340-75bd815a7ee9/EPISODE_IMAGE/1578778389.jpg",
+      "imageTitle": "Wer wohnt wo?",
+      "imageCopyright": "SRF/Mirco Rederlechner",
+      "type": "EPISODE",
+      "date": "2020-01-11T20:10:00+01:00",
+      "duration": 6618840,
+      "validFrom": "2020-01-11T22:04:26+01:00",
+      "validTo": "2025-01-11T23:59:59+01:00",
+      "playableAbroad": false,
+      "socialCountList": [
+        {
+          "key": "srgView",
+          "value": 17604
+        },
+        {
+          "key": "srgLike",
+          "value": 10
+        },
+        {
+          "key": "fbShare",
+          "value": 1
+        },
+        {
+          "key": "twitterShare",
+          "value": 1
+        },
+        {
+          "key": "googleShare",
+          "value": 0
+        },
+        {
+          "key": "whatsAppShare",
+          "value": 32
+        }
+      ],
+      "displayable": true,
+      "position": 0,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Wer wohnt wo?",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "41f4b510-4d18-413f-aed2-c1e3909ed43b",
+        "ns_st_el": "6618840",
+        "ns_st_cl": "6618840",
+        "ns_st_sl": "6618840",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc12",
+        "ns_st_pn": "1"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Wer wohnt wo?",
+        "media_type": "Video",
+        "media_segment_id": "41f4b510-4d18-413f-aed2-c1e3909ed43b",
+        "media_episode_length": "6619",
+        "media_segment_length": "6619",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "long",
+        "media_is_geoblocked": "true",
+        "media_urn": "urn:srf:video:41f4b510-4d18-413f-aed2-c1e3909ed43b",
+        "media_assigned_tags": "won"
+      },
+      "eventData": "$d63a0dada61b8515$c60a4fd1874d3e8b7f8c39f419a76bf2ec83c249e92ada4856a05e4928b371838bcb9768994b39cd336aea61bc8838996ab042560d6f63298ee44898a57382fdb90f9da35567b0d63ed20e3bf68a5274656dbdbef2e65d10d2733c97338c4f23e638e7be9aa0f05857e11d2986637319688f325116e1dfbd798f42c142d2b7be483a135f47a229bb48b09b4607279a78d9ace4e29702fa7f3b5174b209a4413bb073c45a1606af24fd0481ca763ac613892d8bfa2e61be5be0504024287debe9227f3647198feee62a59e2a2777dd7f99e6fc2adde35440c49b51686dc2c4e53c489cd09172fba5708f87e33f10a69a81582459cf0c0f2cec39e80ac40a1114a77633c6b22ecb8c7141f4d2b486163a397df736a76836e4fb774ec9d7b772f38475c78a20d3c002bbd295d17c5ca22155ef7aa3291a5dd493778fb05d036fabe8af7e231da8d12220380fa87b3dc32ab4cc46b7a400456c95ce574cacaccbebf1456bfd0a149e938cb8bfa88744bf92c06f2b5fd24a05dd784af364e94628003100f68987d57022977597e450265a12faa0abf784eb5df541106973d7d8cfa6c5366570253307e0e41b5de497bd4aef1824d511e1a415d0b48f80f155149aca319639f8a4ea13ba80415b13ec25ffbe7",
+      "aspectRatio": "16:9",
+      "resourceList": [
+        {
+          "url": "http://srfvodhd-vh.akamaihd.net/z/vod/werwohntwo/2020/01/werwohntwo_20200111_201003_19080973_v_webcast_h264_,q40,q10,q20,q30,q50,q60,.mp4.csmil/manifest.f4m?start=0.0&end=6618.84",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://srfvodhd-vh.akamaihd.net/z/vod/werwohntwo/2020/01/werwohntwo_20200111_201003_19080973_v_webcast_h264_,q40,q10,q20,q30,q50,q60,.mp4.csmil/manifest.f4m?start=0.0&end=6618.84"
+          }
+        },
+        {
+          "url": "http://srfvodhd-vh.akamaihd.net/z/vod/werwohntwo/2020/01/werwohntwo_20200111_201003_19080973_v_webcast_h264_,q40,q10,q20,q30,q50,.mp4.csmil/manifest.f4m?start=0.0&end=6618.84",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://srfvodhd-vh.akamaihd.net/z/vod/werwohntwo/2020/01/werwohntwo_20200111_201003_19080973_v_webcast_h264_,q40,q10,q20,q30,q50,.mp4.csmil/manifest.f4m?start=0.0&end=6618.84"
+          }
+        },
+        {
+          "url": "https://srfvodhd-vh.akamaihd.net/i/vod/werwohntwo/2020/01/werwohntwo_20200111_201003_19080973_v_webcast_h264_,q40,q10,q20,q30,q50,.mp4.csmil/master.m3u8?start=0.0&end=6618.84&caption=srf/df9f1d89-13ee-4126-8237-d1bf397d2062/episode/de/vod/vod.m3u8:de:Deutsch:sdh&webvttbaseurl=www.srf.ch/subtitles",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "subtitleInformationList": [
+            {
+              "locale": "de",
+              "language": "Deutsch",
+              "source": "HLS",
+              "type": "SDH"
+            }
+          ],
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://srfvodhd-vh.akamaihd.net/i/vod/werwohntwo/2020/01/werwohntwo_20200111_201003_19080973_v_webcast_h264_,q40,q10,q20,q30,q50,.mp4.csmil/master.m3u8?start=0.0&end=6618.84&caption=srf/df9f1d89-13ee-4126-8237-d1bf397d2062/episode/de/vod/vod.m3u8:de:Deutsch:sdh&webvttbaseurl=www.srf.ch/subtitles"
+          }
+        },
+        {
+          "url": "https://srfvodhd-vh.akamaihd.net/i/vod/werwohntwo/2020/01/werwohntwo_20200111_201003_19080973_v_webcast_h264_,q40,q10,q20,q30,q50,q60,.mp4.csmil/master.m3u8?start=0.0&end=6618.84&caption=srf/df9f1d89-13ee-4126-8237-d1bf397d2062/episode/de/vod/vod.m3u8:de:Deutsch:sdh&webvttbaseurl=www.srf.ch/subtitles",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "subtitleInformationList": [
+            {
+              "locale": "de",
+              "language": "Deutsch",
+              "source": "HLS",
+              "type": "SDH"
+            }
+          ],
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://srfvodhd-vh.akamaihd.net/i/vod/werwohntwo/2020/01/werwohntwo_20200111_201003_19080973_v_webcast_h264_,q40,q10,q20,q30,q50,q60,.mp4.csmil/master.m3u8?start=0.0&end=6618.84&caption=srf/df9f1d89-13ee-4126-8237-d1bf397d2062/episode/de/vod/vod.m3u8:de:Deutsch:sdh&webvttbaseurl=www.srf.ch/subtitles"
+          }
+        }
+      ]
+    }
+  ],
+  "topicList": [
+    {
+      "id": "641223fa-f112-4d98-8aec-cb22262a1182",
+      "vendor": "SRF",
+      "transmission": "TV",
+      "urn": "urn:srf:topic:tv:641223fa-f112-4d98-8aec-cb22262a1182",
+      "title": "Unterhaltung"
+    }
+  ],
+  "analyticsData": {
+    "srg_pr_id": "df9f1d89-13ee-4126-8237-d1bf397d2062",
+    "srg_plid": "a3b76d0d-1f4b-4fab-a62b-10f5cf708258",
+    "ns_st_pl": "Wer wohnt wo?",
+    "ns_st_pr": "Wer wohnt wo? vom 11.01.2020",
+    "ns_st_dt": "2020-01-11",
+    "ns_st_ddt": "2020-01-11",
+    "ns_st_tdt": "2020-01-11",
+    "ns_st_tm": "20:10:02",
+    "ns_st_tep": "442988289527",
+    "ns_st_li": "0",
+    "ns_st_stc": "8001",
+    "ns_st_st": "SRF 1",
+    "ns_st_tpr": "a3b76d0d-1f4b-4fab-a62b-10f5cf708258",
+    "ns_st_en": "*null",
+    "ns_st_ge": "*null",
+    "ns_st_ia": "*null",
+    "ns_st_ce": "1",
+    "ns_st_cdm": "to",
+    "ns_st_cmt": "fc",
+    "srg_unit": "SRF",
+    "srg_c1": "Unterhaltung",
+    "srg_c2": "full",
+    "srg_wo": "0",
+    "srg_tv_id": "346129640812",
+    "srg_fullLength": "full"
+  },
+  "analyticsMetadata": {
+    "media_episode_id": "df9f1d89-13ee-4126-8237-d1bf397d2062",
+    "media_show_id": "a3b76d0d-1f4b-4fab-a62b-10f5cf708258",
+    "media_show": "Wer wohnt wo?",
+    "media_episode": "Wer wohnt wo? vom 11.01.2020",
+    "media_is_livestream": "false",
+    "media_full_length": "full",
+    "media_enterprise_units": "SRF",
+    "media_joker1": "Unterhaltung",
+    "media_is_web_only": "false",
+    "media_production_source": "produced.for.broadcasting",
+    "media_tv_id": "442988289527",
+    "media_thumbnail": "https://ws.srf.ch/asset/image/audio/0cb3aee7-ea73-4c48-a340-75bd815a7ee9/EPISODE_IMAGE/1578778389.jpg/scale/width/344",
+    "media_publication_date": "2020-01-11",
+    "media_publication_time": "22:04:26",
+    "media_publication_datetime": "2020-01-11T22:04:26+01:00",
+    "media_tv_date": "2020-01-11",
+    "media_tv_time": "20:10:02",
+    "media_tv_datetime": "2020-01-11T20:10:02+01:00",
+    "media_content_group": "Unterhaltung",
+    "media_channel_id": "23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "media_channel_cs": "8001",
+    "media_channel_name": "SRF 1",
+    "media_since_publication_d": "7",
+    "media_since_publication_h": "187"
+  }
+}

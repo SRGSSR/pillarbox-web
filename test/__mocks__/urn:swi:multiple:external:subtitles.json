@@ -1,0 +1,326 @@
+{
+  "chapterUrn": "urn:swi:video:44927366",
+  "episode": {
+    "id": "44927366",
+    "title": "Rodents sniff out landmines",
+    "publishedDate": "2019-04-29T11:47:00+02:00",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/0d60a170-ed52-46a4-8764-f9c01500e211/NOT_SPECIFIED.jpg"
+  },
+  "show": {
+    "id": "5",
+    "vendor": "SWI",
+    "transmission": "TV",
+    "urn": "urn:swi:show:tv:5",
+    "title": "Sci & Tech",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/0d60a170-ed52-46a4-8764-f9c01500e211/NOT_SPECIFIED.jpg",
+    "homepageUrl": "http://www.swissinfo.ch/eng/sci-tech",
+    "allowIndexing": true
+  },
+  "chapterList": [
+    {
+      "id": "44927366",
+      "mediaType": "VIDEO",
+      "vendor": "SWI",
+      "urn": "urn:swi:video:44927366",
+      "title": "Rodents sniff out landmines",
+      "lead": "(SRF/swissinfo.ch) ",
+      "mediaDescription": "Report on rats used for demining in Cambodia.",
+      "imageUrl": "https://www.swissinfo.ch/srgscalableimage/44928376",
+      "imageTitle": "Sci & Tech",
+      "type": "EPISODE",
+      "date": "2019-04-29T11:47:00+02:00",
+      "duration": 176000,
+      "podcastSdUrl": "https://media.swissinfo.ch/videos/2019/04/29/190429_Ratdeminer2-44927366-360k.mp4?force-download",
+      "podcastHdUrl": "https://media.swissinfo.ch/videos/2019/04/29/190429_Ratdeminer2-44927366-720k.mp4?force-download",
+      "playableAbroad": true,
+      "socialCountList": [
+        {
+          "key": "srgView",
+          "value": 1174
+        },
+        {
+          "key": "srgLike",
+          "value": 0
+        },
+        {
+          "key": "fbShare",
+          "value": 1
+        },
+        {
+          "key": "twitterShare",
+          "value": 3
+        },
+        {
+          "key": "googleShare",
+          "value": 0
+        },
+        {
+          "key": "whatsAppShare",
+          "value": 1
+        }
+      ],
+      "displayable": true,
+      "position": 0,
+      "noEmbed": false,
+      "subtitleList": [
+        {
+          "locale": "ar",
+          "language": "عربي",
+          "source": "EXTERNAL",
+          "type": "SDH",
+          "url": "https://media.swissinfo.ch/videos/2019/05/06/190429_Ratdeminer_EN_3_44927366_9.ar-44943968.vtt",
+          "format": "VTT"
+        },
+        {
+          "locale": "en",
+          "language": "English",
+          "source": "EXTERNAL",
+          "type": "SDH",
+          "url": "https://media.swissinfo.ch/videos/2019/04/29/190429_Ratdeminer_EN_3-44927366.vtt",
+          "format": "VTT"
+        },
+        {
+          "locale": "ja",
+          "language": "日本語",
+          "source": "EXTERNAL",
+          "type": "SDH",
+          "url": "https://media.swissinfo.ch/videos/2019/05/07/landmine_mouse_video-44946738.vtt",
+          "format": "VTT"
+        },
+        {
+          "locale": "ru",
+          "language": "Pусский",
+          "source": "EXTERNAL",
+          "type": "SDH",
+          "url": "https://media.swissinfo.ch/videos/2019/05/02/190429_Ratdeminer2_44927366_5_44936048_1-44936048.vtt",
+          "format": "VTT"
+        }
+      ],
+      "analyticsData": {
+        "ns_st_ep": "Rodents sniff out landmines",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "44927366",
+        "ns_st_el": "176000",
+        "ns_st_cl": "176000",
+        "ns_st_sl": "176000",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "eo",
+        "ns_st_cmt": "ec",
+        "srg_c1": "eng",
+        "srg_c2": "swissinfo.ch"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Rodents sniff out landmines",
+        "media_type": "Video",
+        "media_segment_id": "44927366",
+        "media_episode_length": "176",
+        "media_segment_length": "176",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_joker1": "eng",
+        "media_joker2": "swissinfo.ch",
+        "media_is_web_only": "true",
+        "media_production_source": "produced.for.web",
+        "media_urn": "urn:swi:video:44927366",
+        "media_content_group": "scitech",
+        "media_language": "eng"
+      },
+      "eventData": "$b33c14d8dd94b4b7$1b4ab4619dd187bfc3d591a72ae9a0eef336c7b459e9d7191473bdef6635d5ef5df78b22d5995797c2c4f9d4a6526f8dd492347ada192a34539e93b07890c2a0699ed3d656cb972c5da59ba1beaa9fda8f8901db29258004483003d32dc129416658afff2e93ec9ffa3c96de926a5b57882f48f0a94c4436567d25c2ad40d453105dd597b1d626af4243006f1edc17f01c97015fd05f4193441c9997f7bc2f79ebb681b2f506fe6132a3d0462a1907b9c93a77e8a102af77e4a0e79c80e5834fabb0de5fb975b4e6bbf81a5c33545e813f9e5768286c6d85bb5bbc9d7cb8debe53a49f059ca51509543b959c76c3371d12de6661fba8b87dba583d65e859aade",
+      "resourceList": [
+        {
+          "url": "http://media.swissinfo.ch/videos/2019/04/29/190429_Ratdeminer2-44927366-360k.mp4",
+          "quality": "SD",
+          "protocol": "HTTP",
+          "encoding": "H264",
+          "mimeType": "video/mp4",
+          "presentation": "DEFAULT",
+          "streaming": "PROGRESSIVE",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://media.swissinfo.ch/videos/2019/04/29/190429_Ratdeminer2-44927366-360k.mp4"
+          }
+        },
+        {
+          "url": "http://media.swissinfo.ch/videos/2019/04/29/190429_Ratdeminer2-44927366-720k.mp4",
+          "quality": "HD",
+          "protocol": "HTTP",
+          "encoding": "H264",
+          "mimeType": "video/mp4",
+          "presentation": "DEFAULT",
+          "streaming": "PROGRESSIVE",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://media.swissinfo.ch/videos/2019/04/29/190429_Ratdeminer2-44927366-720k.mp4"
+          }
+        },
+        {
+          "url": "https://srgplayerswivod-vh.akamaihd.net/i/44927366/,video,.mp4.csmil/master.m3u8?start=0.0&end=176.0",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://srgplayerswivod-vh.akamaihd.net/i/44927366/,video,.mp4.csmil/master.m3u8?start=0.0&end=176.0"
+          }
+        },
+        {
+          "url": "https://srgplayerswivod-vh.akamaihd.net/i/44927366/,video,.mp4.csmil/master.m3u8?start=0.0&end=176.0",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://srgplayerswivod-vh.akamaihd.net/i/44927366/,video,.mp4.csmil/master.m3u8?start=0.0&end=176.0"
+          }
+        },
+        {
+          "url": "https://media.swissinfo.ch/videos/2019/04/29/190429_Ratdeminer2-44927366-360k.mp4",
+          "quality": "SD",
+          "protocol": "HTTPS",
+          "encoding": "H264",
+          "mimeType": "video/mp4",
+          "presentation": "DEFAULT",
+          "streaming": "PROGRESSIVE",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://media.swissinfo.ch/videos/2019/04/29/190429_Ratdeminer2-44927366-360k.mp4"
+          }
+        },
+        {
+          "url": "https://media.swissinfo.ch/videos/2019/04/29/190429_Ratdeminer2-44927366-720k.mp4",
+          "quality": "HD",
+          "protocol": "HTTPS",
+          "encoding": "H264",
+          "mimeType": "video/mp4",
+          "presentation": "DEFAULT",
+          "streaming": "PROGRESSIVE",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://media.swissinfo.ch/videos/2019/04/29/190429_Ratdeminer2-44927366-720k.mp4"
+          }
+        }
+      ]
+    }
+  ],
+  "topicList": [
+    {
+      "id": "5",
+      "vendor": "SWI",
+      "transmission": "TV",
+      "urn": "urn:swi:topic:tv:5",
+      "title": "Sci & Tech"
+    }
+  ],
+  "analyticsData": {
+    "srg_pr_id": "44927366",
+    "srg_plid": "5",
+    "ns_st_pl": "Sci & Tech",
+    "ns_st_pr": "Sci & Tech on 29.04.2019",
+    "ns_st_dt": "2019-04-29",
+    "ns_st_ddt": "2019-04-29",
+    "ns_st_tdt": "*null",
+    "ns_st_tm": "*null",
+    "ns_st_tep": "*null",
+    "ns_st_li": "0",
+    "ns_st_stc": "*null",
+    "ns_st_tpr": "5",
+    "ns_st_en": "*null",
+    "ns_st_ge": "*null",
+    "ns_st_ia": "*null",
+    "ns_st_ce": "1",
+    "srg_unit": "SWI"
+  },
+  "analyticsMetadata": {
+    "media_episode_id": "44927366",
+    "media_show_id": "5",
+    "media_show": "Sci & Tech",
+    "media_episode": "Sci & Tech on 29.04.2019",
+    "media_is_livestream": "false",
+    "media_full_length": "full",
+    "media_enterprise_units": "SWI",
+    "media_thumbnail": "https://www.swissinfo.ch/srgscalableimage/44928376/scale/width/344",
+    "media_publication_date": "2019-04-29",
+    "media_publication_time": "11:47:00",
+    "media_publication_datetime": "2019-04-29T11:47:00+02:00",
+    "media_since_publication_d": "265",
+    "media_since_publication_h": "6365"
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "chapterList": [
+    {
+      "id": "10272382",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272382",
+      "title": "19h30",
+      "imageTitle": "19h30 [RTS]",
+      "type": "EPISODE",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 1829440,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "blockReason": "GEOBLOCK",
+      "socialCountList": [
+        {
+          "key": "srgView",
+          "value": 7300
+        },
+        {
+          "key": "srgLike",
+          "value": 0
+        },
+        {
+          "key": "fbShare",
+          "value": 4
+        },
+        {
+          "key": "twitterShare",
+          "value": 3
+        },
+        {
+          "key": "googleShare",
+          "value": 1
+        },
+        {
+          "key": "whatsAppShare",
+          "value": 20
+        }
+      ],
+      "displayable": true,
+      "position": 0,
+      "noEmbed": false,
+      "subtitleList": [
+        {
+          "language": "Français",
+          "locale": "fr",
+          "url": "https://www.rts.ch/x/sub/journ-19h30/2019/journ-19h30_20190307_full_500048746.vtt",
+          "format": "VTT"
+        }
+      ],
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais"
+          }
+        }
+      ]
+    }
+  ]
+}

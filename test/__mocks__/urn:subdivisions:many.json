@@ -1,0 +1,80 @@
+{
+  "chapterUrn": "A",
+  "analyticsData": {
+    "mediaCompositionLevel": "mediaCompositionLevel"
+  },
+  "chapterList": [
+    {
+      "urn": "A",
+      "duration": 100,
+      "segmentList": [
+        {
+          "urn": "A:1",
+          "markIn": 10,
+          "markOut": 20,
+          "displayable": true
+        },
+        {
+          "urn": "A:2",
+          "markIn": 20,
+          "markOut": 30,
+          "displayable": true
+        },
+        {
+          "urn": "A:3",
+          "markIn": 30,
+          "markOut": 40,
+          "displayable": true
+        },
+        {
+          "urn": "A:4",
+          "markIn": 40,
+          "markOut": 50,
+          "displayable": true
+        }
+      ]
+    },
+    {
+      "urn": "B",
+      "duration": 100,
+      "segmentList": [
+        {
+          "urn": "B:1",
+          "markIn": 10,
+          "markOut": 20,
+          "displayable": true
+        },
+        {
+          "urn": "B:2",
+          "markIn": 30,
+          "markOut": 40,
+          "displayable": true
+        },
+        {
+          "urn": "B:3",
+          "markIn": 50,
+          "markOut": 60,
+          "displayable": true
+        },
+        {
+          "urn": "B:4",
+          "markIn": 70,
+          "markOut": 80,
+          "displayable": true
+        }
+      ]
+    },
+    {
+      "urn": "C",
+      "duration": 10
+    },
+    {
+      "urn": "D",
+      "duration": 1
+    },
+    {
+      "urn": "E",
+      "duration": 1
+    }
+  ]
+}

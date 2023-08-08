@@ -1,0 +1,766 @@
+{
+  "chapterUrn": "urn:rts:video:10373456",
+  "episode": {
+    "id": "10263694",
+    "title": "Passe-moi les jumelles",
+    "lead": "Mon alpage pour un fromage\nCosta Rica grandeur nature",
+    "publishedDate": "2019-04-19T20:11:25+02:00",
+    "imageUrl": "https://www.rts.ch/2019/04/19/21/19/10325011.image/16x9",
+    "imageTitle": "Mon alpage pour un fromage, Costa Rica grandeur nature [RTS]"
+  },
+  "show": {
+    "id": "394095",
+    "vendor": "RTS",
+    "transmission": "TV",
+    "urn": "urn:rts:show:tv:394095",
+    "title": "Passe-moi les jumelles",
+    "lead": "\"Passe-moi les jumelles\" est une émission d'évasion qui permet, le temps de deux reportages, de toucher à l’essentiel en privilégiant la rencontre, en renouant avec les délices de la lenteur, accordant ainsi aux silences et aux émotions la place d’exister.",
+    "description": "\"Passe-moi les jumelles\" est une émission d'évasion qui permet, le temps de deux reportages, de toucher à l’essentiel en privilégiant la rencontre, en renouant avec les délices de la lenteur, accordant ainsi aux silences et aux émotions la place d’exister.",
+    "imageUrl": "https://www.rts.ch/2019/02/27/11/01/10251463.image/16x9",
+    "imageTitle": "Banner sitePAJU2019 2600x1463",
+    "bannerImageUrl": "https://www.rts.ch/2019/02/27/11/01/10251463.image/3x1",
+    "homepageUrl": "https://pages.rts.ch/emissions/passe-moi-les-jumelles",
+    "podcastSubscriptionUrl": "https://www.rts.ch/emissions/passe-moi-les-jumelles/podcasts/",
+    "primaryChannelId": "143932a79bb5a123a646b68b1d1188d7ae493e5b",
+    "topicList": [
+      {
+        "id": "2340",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:2340",
+        "title": "Passe-moi les jumelles"
+      },
+      {
+        "id": "2026",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:2026",
+        "title": "Émissions"
+      },
+      {
+        "id": "622",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:622",
+        "title": "rts.ch"
+      }
+    ]
+  },
+  "channel": {
+    "id": "143932a79bb5a123a646b68b1d1188d7ae493e5b",
+    "title": "RTS Un",
+    "imageUrl": "https://www.rts.ch/2019/02/27/11/01/10251463.image/3x1",
+    "imageTitle": "Banner sitePAJU2019 2600x1463",
+    "transmission": "TV"
+  },
+  "chapterList": [
+    {
+      "id": "10373456",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10373456",
+      "title": "Mon alpage pour un fromage, Costa Rica grandeur nature",
+      "description": "Cette semaine l’équipe de Passe-moi les jumelles vous emmène en Suisse allemande, au Titlis dans le canton d’Obwald. Vous découvrirez ce massif impressionnant par sa verticalité. Deux reportages au programme, un premier sur l’alpage de Mille, dans le Val de Bagne, où la famille Michellod travaille à l’ancienne, et un second, outre-Atlantique au Costa Rica, cette \"Suisse d’Amérique centrale\", à la biodiversité impressionnante.",
+      "imageUrl": "https://www.rts.ch/2019/04/19/21/19/10325011.image/16x9",
+      "imageTitle": "Mon alpage pour un fromage, Costa Rica grandeur nature [RTS]",
+      "type": "EPISODE",
+      "date": "2019-04-19T20:11:25+02:00",
+      "duration": 3646800,
+      "podcastHdUrl": "https://rtsww-d.rts.ch/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-6001k.mp4?mediaId=10373456",
+      "validFrom": "2019-04-19T21:18:05+02:00",
+      "validTo": "2100-01-01T00:00:00+01:00",
+      "playableAbroad": true,
+      "socialCountList": [
+        {
+          "key": "srgView",
+          "value": 3573
+        },
+        {
+          "key": "srgLike",
+          "value": 0
+        },
+        {
+          "key": "fbShare",
+          "value": 9
+        },
+        {
+          "key": "twitterShare",
+          "value": 0
+        },
+        {
+          "key": "googleShare",
+          "value": 0
+        },
+        {
+          "key": "whatsAppShare",
+          "value": 12
+        }
+      ],
+      "displayable": true,
+      "position": 0,
+      "noEmbed": false,
+      "subtitleList": [
+        {
+          "language": "Français",
+          "locale": "fr",
+          "url": "https://www.rts.ch/x/sub/pasju/2019/pasju_20190419_full_500065771.vtt",
+          "format": "VTT"
+        }
+      ],
+      "analyticsData": {
+        "ns_st_ep": "Mon alpage pour un fromage, Costa Rica grandeur nature",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10373456",
+        "ns_st_el": "3646800",
+        "ns_st_cl": "3646800",
+        "ns_st_sl": "3646800",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc12",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Mon alpage pour un fromage, Costa Rica grandeur nature",
+        "media_type": "Video",
+        "media_segment_id": "10373456",
+        "media_episode_length": "3647",
+        "media_segment_length": "3647",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "long",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10373456"
+      },
+      "eventData": "$af545e2d6d974e27$1d6af800d2ba76e2365f58512738eda13fcb6369a8372bf23caf82d1709d3f1704e1eb28353ee722512fbb9c6a5a3b6d3c1e975893d709909b8dea2bd8930ee039be6e185a40e721bb1af469e4c66d6ce4398db20202a9dfad6ca747e95cd4d351e6f803adcb193b1ac5e69d923cf5aabc19786ebf769902709d5bded0c17a09807ab95585cf66f38536fbaba94c85b80c20a722a9e2a015dd46eeddddcac512053acb193b7af32eafdc3c8a81e8a8871e6664608d706ef238c77a35d47a2afdc4ed96f985dfcfa090cca4094322b2a4367506127be36c1fb5e83771139f54c4c6de79f2c29a310b3c483ee26c59d1b346e2848e998b9254e4eeb47dae295c7f86d68ec836f62851b92e6656be568f52b54972272b88f570cd02babbd8c3b9e1ccc5c9a211640cb064f5d049624447eed6b1465381ccce31fcb3f379c45d0f5c",
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10373451",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10373451",
+      "title": "Mon alpage pour un fromage",
+      "description": "L’alpage de Mille se situe sur les hauts des Mayens de Bruson dans le Val de Bagne à 2200 m d’altitude. A l’été 2018, comme chaque année depuis 6 ans, Pierre-Alain Michellod avec l’aide de sa femme, de ses enfants et de ses employés y est resté durant 110 jours pour gardienner 250 vaches et fabriquer avec passion et dans la plus pure tradition un authentique fromage à raclette d’alpage.",
+      "imageUrl": "https://www.rts.ch/2019/04/19/21/19/10373442.image/16x9",
+      "imageTitle": "Mon alpage pour un fromage [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-19T20:11:25+02:00",
+      "duration": 1486920,
+      "validFrom": "2019-04-19T21:18:05+02:00",
+      "validTo": "2100-01-01T00:00:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10373456",
+      "position": 1,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Mon alpage pour un fromage",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10373451",
+        "ns_st_el": "1486920",
+        "ns_st_cl": "1486920",
+        "ns_st_sl": "1486920",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc12",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Mon alpage pour un fromage",
+        "media_type": "Video",
+        "media_segment_id": "10373451",
+        "media_episode_length": "1487",
+        "media_segment_length": "1487",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "long",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10373451"
+      },
+      "eventData": "$81de07b31dd39165$211faba054a7483e19075d94d70f3a296e8893e40f7675784a70a6e09a66b0bf04827d93c0671baa45b3e5fab698cea0e52438019f85b020b17e53e3813daf5c3439cfe52af3d5a95fb314991c4038abdd62ff8de85633638a86dae535c307d018418df5d7946d6c48d91b549d5a1be1aae9b749c37b2150282a056d90650e106e915171001a99ec500e47c49c56352a4b54c3d90964f215dfd778712bc79a16052c27966024e968d9b6e03c5144e379ba3d522ce9dab95a0f86a03322627d74c08decf356fda126b0ca75c15a5f2bca52e39b88f61e3fe9a75d44116f739dc882badf1f50833df61c7aba1df3a0e1e1f1f5e404977fe56996fb676e2d2bf7fb6da027a7ef030353c01606d33ccd4f7c8266002751343ee67a05bb5715739220c21feda0fc1bf70413934b98c498ad3d4c186bbff4dda303782e4882faa14359",
+      "fullLengthMarkIn": 163680,
+      "fullLengthMarkOut": 1650600,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=163.68&end=1650.6",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=163.68&end=1650.6"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=163.68&end=1650.6",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=163.68&end=1650.6"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=163.68&end=1650.6",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=163.68&end=1650.6"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=163.68&end=1650.6",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=163.68&end=1650.6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10373454",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10373454",
+      "title": "Costa Rica grandeur nature",
+      "description": "En 1948 – bien avant la Suisse, le Costa Rica donne le droit de vote aux femmes, supprime son armée et fait de la protection de la nature son cheval de bataille. De quoi titiller notre curiosité, non ? Voici donc l’histoire de Lito, un citoyen du monde qui a vécu toute son enfance à Genève.",
+      "imageUrl": "https://www.rts.ch/2019/04/19/21/19/10373453.image/16x9",
+      "imageTitle": "Costa Rica grandeur nature [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-19T20:11:25+02:00",
+      "duration": 1769240,
+      "validFrom": "2019-04-19T21:18:05+02:00",
+      "validTo": "2100-01-01T00:00:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10373456",
+      "position": 2,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Costa Rica grandeur nature",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10373454",
+        "ns_st_el": "1769240",
+        "ns_st_cl": "1769240",
+        "ns_st_sl": "1769240",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc12",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Costa Rica grandeur nature",
+        "media_type": "Video",
+        "media_segment_id": "10373454",
+        "media_episode_length": "1769",
+        "media_segment_length": "1769",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "long",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10373454"
+      },
+      "eventData": "$f83d20c5f3225284$2b050184fe1eb31cb1474c147b8ec9f6ee6ea218bf92683466fe17851c0a962acd2d29df5b1d012982de5d88dbc70947bbd37bc4d15bbbfd71f50d23b90734158fa462b08f2d2edf72561c67a264ed9ccdfea294bf6e0ea8227882d2c1ba21ac8cc3f43e4521e992db576adadea5271c61ffb7c4feddde5168af1b0a87f61c58930046ce3614c454d9fe9ff078bf691383f19ae7a0dae8400534b79fd3a6322c835fc7344b7ce613e7e16c82ca5ecb155d471748ca1b3f511334a9f08f6ad2c63fa382fff0a83b581e24c2d0cb6af4bc3f89d834b7516ffb1957b7fc8f98558e54ce0cb83c0172a173d2074e87603aa7eaa23e2b060a008148670a45bdb746e73e5bf471fbe007fb2982610592c55d568f534b5610fda1b09c7d9bbace6a1fbee3889a0b0dc69cffb58aa6e3bdfa08667f9de764767a9cf2f5f1293955afbdf3",
+      "fullLengthMarkIn": 1876120,
+      "fullLengthMarkOut": 3645360,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=1876.12&end=3645.36",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=1876.12&end=3645.36"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=1876.12&end=3645.36",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=1876.12&end=3645.36"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=1876.12&end=3645.36",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=1876.12&end=3645.36"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=1876.12&end=3645.36",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_full_55c0b118-77c5-472e-9204-671031c7ea0e-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=pasju/2019/pasju_20190419_full_500065771.m3u8:fra:Fran%C3%A7ais&start=1876.12&end=3645.36"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10386906",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10386906",
+      "title": "Petite histoire du refuge Am Grassen",
+      "description": "Perché sur la Tierbergli, la montagne aux animaux, le refuge Am Grassen a fêté ses 49 ans d'existence. Il a été construit quelques années après la première voie d’escalade ouverte dans la face du Titlis, sommet mythique d’Obwald. Et fait particulier, il possède une petite cave à vins pour les courageux qui se lancent dans cette ascension.",
+      "imageUrl": "https://www.rts.ch/2019/04/25/15/54/10195481.image/16x9",
+      "imageTitle": "Passe-moi les jumelles [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-19T20:11:25+02:00",
+      "duration": 217360,
+      "validFrom": "2019-04-24T05:55:00+02:00",
+      "validTo": "2100-01-01T00:00:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10373456",
+      "position": 3,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Petite histoire du refuge Am Grassen",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10386906",
+        "ns_st_el": "217360",
+        "ns_st_cl": "217360",
+        "ns_st_sl": "217360",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Petite histoire du refuge Am Grassen",
+        "media_type": "Video",
+        "media_segment_id": "10386906",
+        "media_episode_length": "217",
+        "media_segment_length": "217",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10386906"
+      },
+      "eventData": "$16dbb6832992a120$e0515819ad0a56b2b1756bf6c2c49cb0aca62b64a586694c30a260432542fef3b23d86a5cb556d8b83a4039806ca4bfd4679c38c0e69cb57b4255b0716da1baefe81e8a9a5ed335be131edc791035d94be70f5e82ab1b7cd8426a138c4c6da58876b85dbd24ede81461c149c60e8b73d69b9e3fcb9d69194d829ce3f1d63c76ae6871af2f21148033c1b1baeeb6ec026ecabfe5cda9322785fd2ffa5b3497643c409ccc54e7e473b96090a1b8b2f0dc37b6b542f5ac004d6f39ff88937e92f50da38ceeb2200e712116383fe6102ab4d9b4beb945779ac4210d529fab9c0aededccb97733d2699dec61dab0b4dddc66ee72e247f06fd9dd6841758b737b39751c204c2b3dcbe81851d1a18cec4de4c333b4ccd2caf9ff65abcfe5cb08ca2fabec222429709d1a719aae0b40104d3283e0ec1981f89cf401c3a5eb447916af206",
+      "fullLengthMarkIn": 0,
+      "fullLengthMarkOut": 217360,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_bonus_dddcc2dd-e7f5-4777-abae-8a34dc06afd1-,301k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_bonus_dddcc2dd-e7f5-4777-abae-8a34dc06afd1-,301k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_bonus_dddcc2dd-e7f5-4777-abae-8a34dc06afd1-,301k,701k,.mp4.csmil/master.m3u8",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/pasju/2019/pasju_20190419_bonus_dddcc2dd-e7f5-4777-abae-8a34dc06afd1-,301k,701k,.mp4.csmil/master.m3u8"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_bonus_dddcc2dd-e7f5-4777-abae-8a34dc06afd1-,301k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_bonus_dddcc2dd-e7f5-4777-abae-8a34dc06afd1-,301k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_bonus_dddcc2dd-e7f5-4777-abae-8a34dc06afd1-,301k,701k,.mp4.csmil/manifest.f4m",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/pasju/2019/pasju_20190419_bonus_dddcc2dd-e7f5-4777-abae-8a34dc06afd1-,301k,701k,.mp4.csmil/manifest.f4m"
+          }
+        }
+      ]
+    }
+  ],
+  "topicList": [
+    {
+      "id": "2340",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:2340",
+      "title": "Passe-moi les jumelles"
+    },
+    {
+      "id": "2026",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:2026",
+      "title": "Émissions"
+    },
+    {
+      "id": "622",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:622",
+      "title": "rts.ch"
+    }
+  ],
+  "analyticsData": {
+    "srg_pr_id": "10263694",
+    "srg_plid": "394095",
+    "ns_st_pl": "Passe-moi les jumelles",
+    "ns_st_pr": "Passe-moi les jumelles du 19.04.2019",
+    "ns_st_dt": "2019-04-19",
+    "ns_st_ddt": "2019-04-19",
+    "ns_st_tdt": "2019-04-19",
+    "ns_st_tm": "20:11:25",
+    "ns_st_tep": "500065771",
+    "ns_st_li": "0",
+    "ns_st_stc": "8002",
+    "ns_st_st": "RTS Un",
+    "ns_st_tpr": "394095",
+    "ns_st_en": "*null",
+    "ns_st_ge": "*null",
+    "ns_st_ia": "*null",
+    "ns_st_ce": "1",
+    "ns_st_cdm": "to",
+    "ns_st_cmt": "fc",
+    "srg_unit": "RTS",
+    "srg_c1": "full",
+    "srg_c2": "video_emissions_passe-moi-les-jumelles",
+    "srg_c3": "RTS Un",
+    "srg_tv_id": "500065771"
+  },
+  "analyticsMetadata": {
+    "media_episode_id": "10263694",
+    "media_show_id": "394095",
+    "media_show": "Passe-moi les jumelles",
+    "media_episode": "Passe-moi les jumelles du 19.04.2019",
+    "media_is_livestream": "false",
+    "media_full_length": "full",
+    "media_enterprise_units": "RTS",
+    "media_joker1": "full",
+    "media_joker2": "video_emissions_passe-moi-les-jumelles",
+    "media_joker3": "RTS Un",
+    "media_is_web_only": "false",
+    "media_production_source": "produced.for.broadcasting",
+    "media_tv_id": "500065771",
+    "media_thumbnail": "https://www.rts.ch/2019/04/19/21/19/10325011.image/16x9/scale/width/344",
+    "media_publication_date": "2019-04-19",
+    "media_publication_time": "21:18:05",
+    "media_publication_datetime": "2019-04-19T21:18:05+02:00",
+    "media_tv_date": "2019-04-19",
+    "media_tv_time": "20:11:25",
+    "media_tv_datetime": "2019-04-19T20:11:25+02:00",
+    "media_content_group": "Passe-moi les jumelles,Émissions,rts.ch",
+    "media_channel_id": "143932a79bb5a123a646b68b1d1188d7ae493e5b",
+    "media_channel_name": "RTS Un",
+    "media_since_publication_d": "5",
+    "media_since_publication_h": "139"
+  }
+}

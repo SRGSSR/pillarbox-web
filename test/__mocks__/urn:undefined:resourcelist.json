@@ -1,0 +1,196 @@
+{
+  "chapterUrn": "urn:srf:video:6f1a0035-dc8c-4f71-8e79-1bd99f47ea12",
+  "episode": {
+    "id": "38c5e52b-dca5-4eef-ac8d-54f1a2fb780c",
+    "title": "Machtlosigkeit (Staffel 19, Folge 10)",
+    "publishedDate": "2023-06-26T20:10:00+02:00",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/b7c1b91f-f974-49ba-a370-aac1e8f46548/WEBVISUAL/1677837013.jpg",
+    "seasonNumber": 19,
+    "number": 10
+  },
+  "show": {
+    "id": "c5868822-10a0-0001-65ab-1de2bb901997",
+    "vendor": "SRF",
+    "transmission": "TV",
+    "urn": "urn:srf:show:tv:c5868822-10a0-0001-65ab-1de2bb901997",
+    "title": "Grey's Anatomy",
+    "lead": "Eine neue Gruppe von Ärzten und Ärztinnen beginnt die Ausbildung am Grey Sloan Memorial Krankenhaus.",
+    "description": "Eine neue Gruppe junger Ärzte und Ärztinnen beginnt ihre Ausbildung am Grey Sloan Memorial Krankenhaus, wo einst Meredith Grey ihre ersten Schritte als Chirurgin wagte. Meredith – jetzt Chefärztin – hofft auf ein Wiedersehen mit ihrer großen Liebe Nick. ",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/b7c1b91f-f974-49ba-a370-aac1e8f46548/WEBVISUAL/1677837013.jpg",
+    "imageTitle": "Grey's Anatomy",
+    "posterImageUrl": "https://ws.srf.ch/asset/image/audio/b7c1b91f-f974-49ba-a370-aac1e8f46548/POSTER/1677837028.jpg",
+    "posterImageIsFallbackUrl": false,
+    "timeTableUrl": "https://www.srf.ch/programm/tv/mediagroup/greysanatomy",
+    "primaryChannelId": "E4D5AD08-C1E8-46A3-BB58-4875051D60D2",
+    "primaryChannelUrn": "urn:srf:channel:tv:E4D5AD08-C1E8-46A3-BB58-4875051D60D2",
+    "numberOfEpisodes": 0,
+    "topicList": [
+      {
+        "id": "fa793c13-bebc-41b9-9710-bf8a34192c15",
+        "vendor": "SRF",
+        "transmission": "TV",
+        "urn": "urn:srf:topic:tv:fa793c13-bebc-41b9-9710-bf8a34192c15",
+        "title": "Serien",
+        "lead": "Von der täglichen Telenovela über Top US-Serien und Krimi-Serien bis zu exklusiven Eigenproduktionen - hier finden User alle Serien, die SRF online zur Verfügung stellt.",
+        "description": "Zu einen werden Top-Serien wie «Grey's Anatomy» oder «Chicago Fire» geboten. Zum anderen stehen die Geschichten der «Wege zum Glück»-Telenovelas zur Verfügung, oder spannende Krimiserien aus dem Norden sowie Eigenproduktion sorgen für Nervenkitzel."
+      }
+    ],
+    "allowIndexing": true
+  },
+  "channel": {
+    "id": "E4D5AD08-C1E8-46A3-BB58-4875051D60D2",
+    "vendor": "SRF",
+    "urn": "urn:srf:channel:tv:E4D5AD08-C1E8-46A3-BB58-4875051D60D2",
+    "title": "SRF zwei",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/c5231053-8da9-4b5e-8e21-6b3c54029cad/EPISODE_IMAGE",
+    "imageUrlRaw": "https://il.srgssr.ch/image-service/dynamic/0bd3a6.svg",
+    "imageTitle": "Logo",
+    "transmission": "TV"
+  },
+  "chapterList": [
+    {
+      "id": "6f1a0035-dc8c-4f71-8e79-1bd99f47ea12",
+      "mediaType": "VIDEO",
+      "vendor": "SRF",
+      "urn": "urn:srf:video:6f1a0035-dc8c-4f71-8e79-1bd99f47ea12",
+      "title": "Machtlosigkeit (Staffel 19, Folge 10)",
+      "imageUrl": "https://ws.srf.ch/asset/image/audio/e9eebc93-7d76-4762-bf5a-b00b3a6cf62c/EPISODE_IMAGE/1687471978",
+      "imageTitle": "Machtlosigkeit (Staffel 19, Folge 10)",
+      "imageCopyright": "SRF/ABC Studios",
+      "type": "EPISODE",
+      "date": "2023-06-26T20:10:00+02:00",
+      "duration": 2451880,
+      "validFrom": "2023-06-26T20:59:57+02:00",
+      "validTo": "2023-07-03T23:59:59+02:00",
+      "playableAbroad": false,
+      "socialCountList": [
+        {
+          "key": "srgView",
+          "value": 0
+        },
+        {
+          "key": "srgLike",
+          "value": 0
+        },
+        {
+          "key": "fbShare",
+          "value": 0
+        },
+        {
+          "key": "twitterShare",
+          "value": 0
+        },
+        {
+          "key": "googleShare",
+          "value": 0
+        },
+        {
+          "key": "whatsAppShare",
+          "value": 0
+        }
+      ],
+      "displayable": false,
+      "position": 0,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "Machtlosigkeit (Staffel 19, Folge 10)",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "6f1a0035-dc8c-4f71-8e79-1bd99f47ea12",
+        "ns_st_el": "2451880",
+        "ns_st_cl": "2451880",
+        "ns_st_sl": "2451880",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc12",
+        "ns_st_pn": "1"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Machtlosigkeit (Staffel 19, Folge 10)",
+        "media_type": "Video",
+        "media_segment_id": "6f1a0035-dc8c-4f71-8e79-1bd99f47ea12",
+        "media_episode_length": "2452",
+        "media_segment_length": "2452",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "long",
+        "media_is_geoblocked": "true",
+        "media_urn": "urn:srf:video:6f1a0035-dc8c-4f71-8e79-1bd99f47ea12"
+      },
+      "eventData": "$7f7271ec36076f75$3a1e9076b6b1cc272ec9b1faef324781586536ee6c578654345296bde5481d80c39ec8c9a4ef339e0b1de9a1de9898f7690ebe4bc0a9d2f4ab63342c0cc046e00d64eb29dc73fd47ac57d3124bd9bf1fc347a853471937575c84c059837de83c135524847c44ec98a05cbc4fe4eb03c98c873892b36b244f3c89a4c8f1c457c32c50e6341cd93c66d39a815432aaef0e6dab608554d3863572386f7d724810c4a4050c0f84539ed4810c031ad6d0664f7a5ef31610778acb6949d6312c06f5bc1a849cb380977dcecdfd1623c68dc8dd0e9662afccc48408d692fe6bc64368c6437f0c0f6b878763cddce18205882e6be259a9d4698de424396bfc0fa3c3455c4f0e4cbdbd30e55a0517ad0c0395923a1c736c49690a82b59bb278631f73daa3a090e12d5559445178ce17ff9820f5b3a50da63f47f644714b387bada091cf269f36f0786b1aac47dab92ae0134040d8960cd347341834b222b6f73a654e30f87dcb45a4a9df1dde89d5432c440bdb24eae7b0cdbe2d0a9aaa05f019c0c309d4c6755ca4fdb9acfcc990ca2c281795202baebff6b587e11e2e0bb83a365dad8c1249b535662382bd47b924cd286323f693b83056fe8211dd7b36ce599445bc59150a8544c73a391f1e61d154d38a2cebbdf72248214d4c5251dea4f8f18c6f1cb37c9db31fdfe444278283f957563c1d",
+
+      "aspectRatio": "16:9",
+      "timeIntervalList": [
+        {
+          "type": "CLOSING_CREDITS",
+          "markIn": 2401880,
+          "markOut": 2451920
+        }
+      ]
+    }
+  ],
+  "topicList": [
+    {
+      "id": "fa793c13-bebc-41b9-9710-bf8a34192c15",
+      "vendor": "SRF",
+      "transmission": "TV",
+      "urn": "urn:srf:topic:tv:fa793c13-bebc-41b9-9710-bf8a34192c15",
+      "title": "Serien",
+      "lead": "Von der täglichen Telenovela über Top US-Serien und Krimi-Serien bis zu exklusiven Eigenproduktionen - hier finden User alle Serien, die SRF online zur Verfügung stellt.",
+      "description": "Zu einen werden Top-Serien wie «Grey's Anatomy» oder «Chicago Fire» geboten. Zum anderen stehen die Geschichten der «Wege zum Glück»-Telenovelas zur Verfügung, oder spannende Krimiserien aus dem Norden sowie Eigenproduktion sorgen für Nervenkitzel."
+    }
+  ],
+  "analyticsData": {
+    "srg_pr_id": "38c5e52b-dca5-4eef-ac8d-54f1a2fb780c",
+    "srg_plid": "c5868822-10a0-0001-65ab-1de2bb901997",
+    "ns_st_pl": "Grey's Anatomy",
+    "ns_st_pr": "Grey's Anatomy vom 26.06.2023",
+    "ns_st_dt": "2023-06-26",
+    "ns_st_ddt": "2023-06-26",
+    "ns_st_tdt": "2023-06-26",
+    "ns_st_tm": "20:13:20",
+    "ns_st_tep": "2029202766527",
+    "ns_st_li": "0",
+    "ns_st_stc": "0866",
+    "ns_st_st": "SRF Online",
+    "ns_st_tpr": "c5868822-10a0-0001-65ab-1de2bb901997",
+    "ns_st_en": "*null",
+    "ns_st_ge": "*null",
+    "ns_st_ia": "*null",
+    "ns_st_ce": "1",
+    "ns_st_cdm": "to",
+    "ns_st_cmt": "fc",
+    "srg_unit": "SRF",
+    "srg_c1": "Serien",
+    "srg_c2": "full",
+    "srg_wo": "0",
+    "srg_tv_id": "1985540015812",
+    "srg_fullLength": "full"
+  },
+  "analyticsMetadata": {
+    "media_episode_id": "38c5e52b-dca5-4eef-ac8d-54f1a2fb780c",
+    "media_show_id": "c5868822-10a0-0001-65ab-1de2bb901997",
+    "media_show": "Grey's Anatomy",
+    "media_episode": "Grey's Anatomy vom 26.06.2023",
+    "media_is_livestream": "false",
+    "media_full_length": "full",
+    "media_enterprise_units": "SRF",
+    "media_joker1": "Serien",
+    "media_is_web_only": "false",
+    "media_production_source": "produced.for.broadcasting",
+    "media_tv_id": "2029202766527",
+    "media_thumbnail": "https://ws.srf.ch/asset/image/audio/e9eebc93-7d76-4762-bf5a-b00b3a6cf62c/EPISODE_IMAGE/1687471978/scale/width/344",
+    "media_publication_date": "2023-06-26",
+    "media_publication_time": "20:59:57",
+    "media_publication_datetime": "2023-06-26T20:59:57+02:00",
+    "media_tv_date": "2023-06-26",
+    "media_tv_time": "20:13:20",
+    "media_tv_datetime": "2023-06-26T20:13:20+02:00",
+    "media_content_group": "Serien",
+    "media_channel_id": "E4D5AD08-C1E8-46A3-BB58-4875051D60D2",
+    "media_channel_cs": "0866",
+    "media_channel_name": "SRF zwei",
+    "media_since_publication_d": "0",
+    "media_since_publication_h": "14"
+  }
+}
