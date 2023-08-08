@@ -1,0 +1,35 @@
+{
+  "chapterUrn": "urn:rts:video:10272382",
+  "chapterList": [
+    {
+      "urn": "urn:rts:video:10272382",
+      "segmentList": [
+        {
+          "urn": "0",
+          "markIn": 1,
+          "markOut": 2
+        },
+        {
+          "urn": "1",
+          "markIn": 3,
+          "markOut": 5
+        },
+        {
+          "urn": "2",
+          "markIn": 3,
+          "markOut": 4
+        },
+        {
+          "urn": "3",
+          "markIn": 4,
+          "markOut": 5
+        },
+        {
+          "urn": "4",
+          "markIn": 2,
+          "markOut": 3
+        }
+      ]
+    }
+  ]
+}

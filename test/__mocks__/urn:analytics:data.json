@@ -1,0 +1,17 @@
+{
+  "analyticsData": {
+    "mediaCompositionLevel": "mediaCompositionLevel"
+  },
+  "chapterList": [
+    {
+      "analyticsData": {
+        "chapterLevel": "chapterLevel"
+      },
+      "resourceList": [
+        { "analyticsData": "resource1" },
+        { "analyticsData": "resource2" },
+        { "analyticsData": "resource3" }
+      ]
+    }
+  ]
+}

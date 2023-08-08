@@ -1,0 +1,266 @@
+{
+  "chapterUrn": "urn:rts:video:8414077",
+  "episode": {
+    "id": "9041459",
+    "title": "RTS en vidéo",
+    "publishedDate": "2017-11-02T11:00:00+01:00",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/8b32fd87-459e-40f1-9519-ba0cbb01f34e/NOT_SPECIFIED.jpg"
+  },
+  "show": {
+    "id": "6570942",
+    "vendor": "RTS",
+    "transmission": "TV",
+    "urn": "urn:rts:show:tv:6570942",
+    "title": "RTS en vidéo",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/8b32fd87-459e-40f1-9519-ba0cbb01f34e/NOT_SPECIFIED.jpg",
+    "topicList": [
+      {
+        "id": "653",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:653",
+        "title": "Play"
+      },
+      {
+        "id": "622",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:622",
+        "title": "rts.ch"
+      }
+    ]
+  },
+  "chapterList": [
+    {
+      "id": "8414077",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:8414077",
+      "title": "Le Gothard en 360°",
+      "imageUrl": "https://www.rts.ch/2017/02/24/11/43/8414076.image/16x9",
+      "imageTitle": "360 vidéo [RTS]",
+      "type": "EPISODE",
+      "date": "2017-11-02T11:00:00+01:00",
+      "duration": 297000,
+      "playableAbroad": true,
+      "socialCountList": [
+        {
+          "key": "srgView",
+          "value": 822
+        },
+        {
+          "key": "srgLike",
+          "value": 0
+        },
+        {
+          "key": "fbShare",
+          "value": 2
+        },
+        {
+          "key": "twitterShare",
+          "value": 1
+        },
+        {
+          "key": "googleShare",
+          "value": 0
+        },
+        {
+          "key": "whatsAppShare",
+          "value": 0
+        }
+      ],
+      "displayable": true,
+      "position": 0,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Le Gothard en 360°",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "8414077",
+        "ns_st_el": "297000",
+        "ns_st_cl": "297000",
+        "ns_st_sl": "297000",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "eo",
+        "ns_st_cmt": "ec"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Le Gothard en 360°",
+        "media_type": "Video",
+        "media_segment_id": "8414077",
+        "media_episode_length": "297",
+        "media_segment_length": "297",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "true",
+        "media_production_source": "produced.for.web",
+        "media_urn": "urn:rts:video:8414077"
+      },
+      "eventData": "$7798f3bdf3f74cbb$9ca74e430dec03375fff450bfa8586d0e399d50b2932e2c858526d3ce25160135d8174e3c67e861e7577f5e96a66a8f3c94e2b2e95e80a268e2e00828edbf6d5a25f6da5e9de22dbc3fb765ba409a2735152e48627f42ac38d6a45453c03719ee29ba2fbcc56d75a51386911f6a772ef78ae1a2bfe2bb8b1ec3ac6cb845e790e10970e1b4db587e67fcd2462b5f09f0f60355e264dd07dbaab6fd2c2508395791102a05297486a3e05df9bc0d8174a9b4246fb73d85754de854acaf4b60ba08347cb7c0c7993d074f5148f3d236a986289b5c96cdec60f4eb6ebc3e16a6ac862b419c6b194e3d5fffc75e38a6290fe34",
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/360/2017/2_Gothard_360_full_f_8414077-,301k,701k,1201k,2001k,.mp4.csmil/master.m3u8",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "VIDEO_360",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "VIDEO_360"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "VIDEO_360",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/360/2017/2_Gothard_360_full_f_8414077-,301k,701k,1201k,2001k,.mp4.csmil/master.m3u8"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/360/2017/2_Gothard_360_full_f_8414077-,301k,701k,.mp4.csmil/master.m3u8",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "VIDEO_360",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "VIDEO_360"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "VIDEO_360",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/360/2017/2_Gothard_360_full_f_8414077-,301k,701k,.mp4.csmil/master.m3u8"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/360/2017/2_Gothard_360_full_f_8414077-,301k,701k,1201k,2001k,.mp4.csmil/manifest.f4m",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "VIDEO_360",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "VIDEO_360"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "VIDEO_360",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/360/2017/2_Gothard_360_full_f_8414077-,301k,701k,1201k,2001k,.mp4.csmil/manifest.f4m"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/360/2017/2_Gothard_360_full_f_8414077-,301k,701k,.mp4.csmil/manifest.f4m",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "VIDEO_360",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "VIDEO_360"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "VIDEO_360",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/360/2017/2_Gothard_360_full_f_8414077-,301k,701k,.mp4.csmil/manifest.f4m"
+          }
+        }
+      ]
+    }
+  ],
+  "topicList": [
+    {
+      "id": "653",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:653",
+      "title": "Play"
+    },
+    {
+      "id": "622",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:622",
+      "title": "rts.ch"
+    }
+  ],
+  "analyticsData": {
+    "srg_pr_id": "9041459",
+    "srg_plid": "6570942",
+    "ns_st_pl": "RTS en vidéo",
+    "ns_st_pr": "RTS en vidéo du 02.11.2017",
+    "ns_st_dt": "2017-11-02",
+    "ns_st_ddt": "2017-11-02",
+    "ns_st_tep": "742486af-31ed-47c1-ad1c-9caf11d3a810",
+    "ns_st_li": "0",
+    "ns_st_stc": "*null",
+    "ns_st_tpr": "6570942",
+    "ns_st_en": "*null",
+    "ns_st_ge": "*null",
+    "ns_st_ia": "*null",
+    "ns_st_ce": "1",
+    "ns_st_cdm": "eo",
+    "ns_st_cmt": "ec",
+    "srg_unit": "RTS",
+    "srg_c1": "full",
+    "srg_c2": "video",
+    "srg_c3": "RTS.ch",
+    "srg_tv_id": "742486af-31ed-47c1-ad1c-9caf11d3a810"
+  },
+  "analyticsMetadata": {
+    "media_episode_id": "9041459",
+    "media_show_id": "6570942",
+    "media_show": "RTS en vidéo",
+    "media_episode": "RTS en vidéo du 02.11.2017",
+    "media_is_livestream": "false",
+    "media_full_length": "full",
+    "media_enterprise_units": "RTS",
+    "media_joker1": "full",
+    "media_joker2": "video",
+    "media_joker3": "RTS.ch",
+    "media_is_web_only": "true",
+    "media_production_source": "produced.for.web",
+    "media_tv_id": "742486af-31ed-47c1-ad1c-9caf11d3a810",
+    "media_thumbnail": "https://www.rts.ch/2017/02/24/11/43/8414076.image/16x9/scale/width/344",
+    "media_publication_date": "2017-11-02",
+    "media_publication_time": "11:00:00",
+    "media_publication_datetime": "2017-11-02T11:00:00+01:00",
+    "media_content_group": "Play,rts.ch",
+    "media_since_publication_d": "553",
+    "media_since_publication_h": "13271"
+  }
+}

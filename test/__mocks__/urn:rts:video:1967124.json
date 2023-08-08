@@ -1,0 +1,296 @@
+{
+  "chapterUrn": "urn:rts:video:1967124",
+  "episode": {
+    "id": "3915287",
+    "title": "RTS Info",
+    "lead": "La chaîne d'info en continu",
+    "publishedDate": "2015-02-06T10:00:00+01:00",
+    "imageUrl": "https://www.rts.ch/2017/09/20/12/11/6940557.image/16x9"
+  },
+  "show": {
+    "id": "3815067",
+    "vendor": "RTS",
+    "transmission": "TV",
+    "urn": "urn:rts:show:tv:3815067",
+    "title": "RTS Info",
+    "imageUrl": "https://www.rts.ch/2017/09/20/12/11/6940557.image/16x9",
+    "imageTitle": "srg_responsive-rts-info",
+    "bannerImageUrl": "https://www.rts.ch/2017/09/20/12/11/6940557.image/3x1",
+    "primaryChannelId": "5d332a26e06d08eec8ad385d566187df72955623",
+    "topicList": [
+      {
+        "id": "28883",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:28883",
+        "title": "RTSIN - RTSinfo"
+      },
+      {
+        "id": "1364",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:1364",
+        "title": "RTS"
+      },
+      {
+        "id": "1334",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:1334",
+        "title": "Programmes"
+      },
+      {
+        "id": "622",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:622",
+        "title": "rts.ch"
+      }
+    ]
+  },
+  "channel": {
+    "id": "5d332a26e06d08eec8ad385d566187df72955623",
+    "title": "RTS Info",
+    "imageUrl": "https://www.rts.ch/2017/09/20/12/11/6940557.image/3x1",
+    "imageTitle": "srg_responsive-rts-info",
+    "transmission": "TV"
+  },
+  "chapterList": [
+    {
+      "id": "1967124",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:1967124",
+      "title": "La chaîne d'info en continu",
+      "description": "RTS Info",
+      "imageUrl": "https://www.rts.ch/2019/01/04/12/02/8872025.image/16x9",
+      "imageTitle": "Teaser La chaîne d'info en continu [RTS]",
+      "type": "LIVESTREAM",
+      "date": "2015-02-06T10:00:00+01:00",
+      "duration": 0,
+      "playableAbroad": false,
+      "displayable": true,
+      "position": 0,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "Livestream",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "1967124",
+        "ns_st_el": "0",
+        "ns_st_cl": "0",
+        "ns_st_sl": "0",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc13",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Livestream",
+        "media_type": "Video",
+        "media_segment_id": "1967124",
+        "media_episode_length": "0",
+        "media_segment_length": "0",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "infinit.livestream",
+        "media_is_geoblocked": "true",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:1967124"
+      },
+      "eventData": "$8537145ab21cbd0c$578f0bdf3ab362d6bb15da6dee17c98707016a97c248fa0dbf6f1213df574530a5e9db6837a09cdf8027e2d31756c008bc19300c84af2b1b676b38d4e63bfd82bc4f1a02f784a1649d711eae23b0a9330faa9c37bff2f34fa175aa0921f1e8d9c1a58599311b3d273a6fbee0aaff3129c01b16555d6c6acdf1f67b5096a4ce995c3477252b000048831c73f113905db8e2c55e89be7333476548c35dfca98de2270e9eaf9eca2c93be6d635b3aefa8871b7a18373fa66d2cacdb8f666d081dda18dbbfd0dcb2c7d5230155cfbae3795231776099ab729c97714f4d1de07766af5274e4521ff73c4c5218768a3af76ea4265360e5cb90ceabe32c09145ac4206e1a7be6a609dd7d1e8bdc510808913e728a17ae0d29321ac4c45c2d1997fc8aeb432cbfce497db2bd42bebcbbdf9d0e8de56b240b06bfbd3430568b0d037aaa25",
+      "fullLengthMarkIn": 0,
+      "fullLengthMarkOut": 0,
+      "resourceList": [
+        {
+          "url": "https://srgssruni11ch-lh.akamaihd.net/i/enc11uni_ch@191455/master.m3u8?dw=0",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": true,
+          "mediaContainer": "UNKNOWN",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT",
+            "srg_enc": "11"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_livestream_encoder": "11",
+            "media_url": "https://srgssruni11ch-lh.akamaihd.net/i/enc11uni_ch@191455/master.m3u8?dw=0"
+          }
+        },
+        {
+          "url": "https://srgssruni11ch-lh.akamaihd.net/i/enc11uni_ch@191455/master.m3u8",
+          "quality": "HD",
+          "protocol": "HLS-DVR",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": true,
+          "live": true,
+          "mediaContainer": "UNKNOWN",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT",
+            "srg_enc": "11"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_livestream_encoder": "11",
+            "media_url": "https://srgssruni11ch-lh.akamaihd.net/i/enc11uni_ch@191455/master.m3u8"
+          }
+        },
+        {
+          "url": "http://srgssruni11ch-lh.akamaihd.net/z/enc11uni_ch@191455/manifest.f4m?dw=0",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": true,
+          "mediaContainer": "UNKNOWN",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT",
+            "srg_enc": "11"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_livestream_encoder": "11",
+            "media_url": "http://srgssruni11ch-lh.akamaihd.net/z/enc11uni_ch@191455/manifest.f4m?dw=0"
+          }
+        },
+        {
+          "url": "http://srgssruni11ch-lh.akamaihd.net/z/enc11uni_ch@191455/manifest.f4m",
+          "quality": "HD",
+          "protocol": "HDS-DVR",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": true,
+          "live": true,
+          "mediaContainer": "UNKNOWN",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT",
+            "srg_enc": "11"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_livestream_encoder": "11",
+            "media_url": "http://srgssruni11ch-lh.akamaihd.net/z/enc11uni_ch@191455/manifest.f4m"
+          }
+        }
+      ]
+    }
+  ],
+  "topicList": [
+    {
+      "id": "28883",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:28883",
+      "title": "RTSIN - RTSinfo"
+    },
+    {
+      "id": "1364",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:1364",
+      "title": "RTS"
+    },
+    {
+      "id": "1334",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:1334",
+      "title": "Programmes"
+    },
+    {
+      "id": "622",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:622",
+      "title": "rts.ch"
+    }
+  ],
+  "analyticsData": {
+    "srg_pr_id": "3915287",
+    "srg_plid": "3815067",
+    "ns_st_pl": "Livestream",
+    "ns_st_pr": "RTS Info",
+    "ns_st_dt": "2015-02-06",
+    "ns_st_ddt": "2015-02-06",
+    "ns_st_tdt": "2015-02-06",
+    "ns_st_tm": "10:00:00",
+    "ns_st_li": "1",
+    "ns_st_stc": "*null",
+    "ns_st_st": "RTS Info",
+    "ns_st_tpr": "3815067",
+    "ns_st_en": "*null",
+    "ns_st_ge": "*null",
+    "ns_st_ia": "*null",
+    "ns_st_ce": "1",
+    "ns_st_cdm": "to",
+    "ns_st_cmt": "fc",
+    "srg_unit": "RTS",
+    "srg_c1": "live",
+    "srg_c2": "tsr.ch_video_info_journal-continu",
+    "srg_c3": "RTS.ch"
+  },
+  "analyticsMetadata": {
+    "media_episode_id": "3915287",
+    "media_show_id": "3815067",
+    "media_show": "Livestream",
+    "media_episode": "RTS Info",
+    "media_is_livestream": "true",
+    "media_full_length": "full",
+    "media_enterprise_units": "RTS",
+    "media_joker1": "live",
+    "media_joker2": "tsr.ch_video_info_journal-continu",
+    "media_joker3": "RTS.ch",
+    "media_is_web_only": "false",
+    "media_production_source": "produced.for.broadcasting",
+    "media_thumbnail": "https://www.rts.ch/2019/01/04/12/02/8872025.image/16x9/scale/width/344",
+    "media_publication_date": "2015-02-06",
+    "media_publication_time": "10:00:00",
+    "media_publication_datetime": "2015-02-06T10:00:00+01:00",
+    "media_tv_date": "2015-02-06",
+    "media_tv_time": "10:00:00",
+    "media_tv_datetime": "2015-02-06T10:00:00+01:00",
+    "media_content_group": "RTSIN - RTSinfo,RTS,Programmes,rts.ch",
+    "media_channel_id": "5d332a26e06d08eec8ad385d566187df72955623",
+    "media_channel_cs": "*null",
+    "media_channel_name": "RTS Info",
+    "media_since_publication_d": "1561",
+    "media_since_publication_h": "37469"
+  }
+}

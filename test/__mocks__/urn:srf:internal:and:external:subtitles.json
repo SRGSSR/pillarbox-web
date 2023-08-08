@@ -1,0 +1,538 @@
+{
+  "chapterUrn": "urn:srf:video:205617f8-2009-4183-8605-672ffe71b56c",
+  "episode": {
+    "id": "0d7aa22f-52c5-42c4-ae23-51a490ae1329",
+    "title": "Tagesschau vom 01.11.2019: Hauptausgabe",
+    "lead": "4'800 Stellen vermittelt\r\nExpertise statt Religion\r\nKampf gegen Kinderpornographie\r\nWelt-Veganer-Tag",
+    "publishedDate": "2019-11-01T19:30:00+01:00",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/7e18e733-622b-4bd5-9323-971239e49844/WEBVISUAL/1453477895.jpg"
+  },
+  "show": {
+    "id": "ff969c14-c5a7-44ab-ab72-14d4c9e427a9",
+    "vendor": "SRF",
+    "transmission": "TV",
+    "urn": "urn:srf:show:tv:ff969c14-c5a7-44ab-ab72-14d4c9e427a9",
+    "title": "Tagesschau",
+    "lead": "Die «Tagesschau» berichtet über Themen aus Politik, Wirtschaft, Kultur, Sport, Gesellschaft und Wissenschaft aus dem In- und Ausland.",
+    "description": "Die «Tagesschau» berichtet über Themen aus Politik, Wirtschaft, Kultur, Sport, Gesellschaft und Wissenschaft aus dem In- und Ausland. ",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/7e18e733-622b-4bd5-9323-971239e49844/WEBVISUAL/1453477895.jpg",
+    "imageTitle": "Tagesschau",
+    "bannerImageUrl": "https://ws.srf.ch/asset/image/audio/7e18e733-622b-4bd5-9323-971239e49844/HEADER_SRF_PLAYER/1453477895.jpg",
+    "homepageUrl": "https://www.srf.ch/play/tv/sendung/tagesschau?id=ff969c14-c5a7-44ab-ab72-14d4c9e427a9",
+    "podcastSubscriptionUrl": "https://www.srf.ch/podcasts",
+    "timeTableUrl": "https://www.srf.ch/programm/tv/mediagroup/ts20",
+    "links": [
+      {
+        "title": "In Gebärdensprache",
+        "link": "https://www.srf.ch/play/tv/sendung/tagesschau-in-gebaerdensprache?id=c40bed81-b150-0001-2b5a-1e90e100c1c0"
+      },
+      {
+        "title": "Tagesschau Spezial",
+        "link": "https://www.srf.ch/play/tv/sendung/tagesschau-spezial?id=c4b213cd-9790-0001-3063-e4001037ebe0"
+      },
+      {
+        "title": "SRF Augenzeuge",
+        "link": "https://www.srf.ch/allgemeines/srf-augenzeuge-5"
+      }
+    ],
+    "primaryChannelId": "23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "primaryChannelUrn": "urn:srf:channel:tv:23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "numberOfEpisodes": 14710,
+    "topicList": [
+      {
+        "id": "a709c610-b275-4c0c-a496-cba304c36712",
+        "vendor": "SRF",
+        "transmission": "TV",
+        "urn": "urn:srf:topic:tv:a709c610-b275-4c0c-a496-cba304c36712",
+        "title": "News"
+      }
+    ],
+    "allowIndexing": true
+  },
+  "channel": {
+    "id": "23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "vendor": "SRF",
+    "urn": "urn:srf:channel:tv:23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "title": "SRF 1",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/7ec11b90-b120-4d77-915c-0cd4cef1c5fe/LOGO_RESPONSIVE/1436176214.png",
+    "imageTitle": "Logo",
+    "transmission": "TV"
+  },
+  "chapterList": [
+    {
+      "id": "205617f8-2009-4183-8605-672ffe71b56c",
+      "mediaType": "VIDEO",
+      "vendor": "SRF",
+      "urn": "urn:srf:video:205617f8-2009-4183-8605-672ffe71b56c",
+      "title": "Tagesschau vom 01.11.2019: Hauptausgabe",
+      "imageUrl": "https://ws.srf.ch/asset/image/audio/26e83636-811a-436a-8433-0786783cada2/EPISODE_IMAGE/1572635867.png",
+      "imageTitle": "Tagesschau vom 01.11.2019: Hauptausgabe",
+      "type": "EPISODE",
+      "date": "2019-11-01T19:30:00+01:00",
+      "duration": 1500840,
+      "validFrom": "2019-11-01T19:58:00+01:00",
+      "playableAbroad": true,
+      "socialCountList": [
+        {
+          "key": "srgView",
+          "value": 9008
+        },
+        {
+          "key": "srgLike",
+          "value": 0
+        },
+        {
+          "key": "fbShare",
+          "value": 1
+        },
+        {
+          "key": "twitterShare",
+          "value": 0
+        },
+        {
+          "key": "googleShare",
+          "value": 0
+        },
+        {
+          "key": "whatsAppShare",
+          "value": 13
+        }
+      ],
+      "displayable": true,
+      "position": 0,
+      "noEmbed": false,
+      "subtitleList": [
+        {
+          "locale": "de",
+          "language": "Deutsch",
+          "source": "EXTERNAL",
+          "type": "SDH",
+          "url": "https://ws.srf.ch/subtitles/urn:srf:ais:video:205617f8-2009-4183-8605-672ffe71b56c/subtitle.vtt",
+          "format": "VTT"
+        },
+        {
+          "locale": "de",
+          "language": "Deutsch",
+          "source": "EXTERNAL",
+          "type": "SDH",
+          "url": "https://ws.srf.ch/subtitles/urn:srf:ais:video:205617f8-2009-4183-8605-672ffe71b56c/subtitle.ttml",
+          "format": "TTML"
+        }
+      ],
+      "analyticsData": {
+        "ns_st_ep": "Tagesschau vom 01.11.2019: Hauptausgabe",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "205617f8-2009-4183-8605-672ffe71b56c",
+        "ns_st_el": "1500840",
+        "ns_st_cl": "1500840",
+        "ns_st_sl": "1500840",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "4",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc12",
+        "ns_st_pn": "1"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Tagesschau vom 01.11.2019: Hauptausgabe",
+        "media_type": "Video",
+        "media_segment_id": "205617f8-2009-4183-8605-672ffe71b56c",
+        "media_episode_length": "1501",
+        "media_segment_length": "1501",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "4",
+        "media_duration_category": "long",
+        "media_is_geoblocked": "false",
+        "media_urn": "urn:srf:video:205617f8-2009-4183-8605-672ffe71b56c",
+        "media_assigned_tags": "won"
+      },
+      "eventData": "$0d172fcb5e06d70c$0e89c7f2f57706c78ed9724cfa0598be2a010f34497ce02ced2769cf253efebaeebc5223938e9a3bf26c3c94c8fe48180ce3b2d672a4ae1ad8e04fd1dab858f18e97a72398386e41ada02492100439d0363cb2db1cb255a4c9709af085933e1dab51e8ca8eb4b809ee55c1f6f46b37ec26cd934d0a0873d3a352d0379133c346bcd9f4afb59f8d4d796ff1a9037c41ec47afe83c82854f5eb0c918ffe0444b79de9ce7255d4ac08fdeaebfecb3fdc0bbaef6092aa4fce53a2dfffb5bfc5611d397d1b3165ab13ed0b35e3202a428ede4e1ed80021c5f75051e5aa13468125179a9be5f65e75a867797710c7266119bb5d4d22f48ac3036d6f52858a46e611c611a69d82f210c9e9d08b76530e8cd05715fa49da05895ec13b47546c570b408fbaa91eea6b777b4f4b94b37e5ae964c7d61e4233e96da36b37c958b4e94022ce716ca15cc1e57e31502d2b5c0798a66c73d5070a8ea63abeabbb5f8f90ba1cebcec43939ec776958227bdae270d4d8d89e9e6c93712576612a4a1156d52e9c7cc30b7af6c51ff04caeb49d4a77e82b4e76de29162f9ed2c5326f0d9e2aaab20cd297cbafec17319ec24a814f3ed033ad2a4ef1d3b27b60dab709f9768f7b0615785d6401b5c80b0e2314fb658afbcef82",
+      "aspectRatio": "16:9",
+      "resourceList": [
+        {
+          "url": "http://hdvodsrforigin-f.akamaihd.net/z/vod/ts20/2019/11/ts20_20191101_193000_18158983_v_webcast_h264_,q40,q10,q20,q30,q50,q60,.mp4.csmil/manifest.f4m?start=0.0&end=1500.84",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://hdvodsrforigin-f.akamaihd.net/z/vod/ts20/2019/11/ts20_20191101_193000_18158983_v_webcast_h264_,q40,q10,q20,q30,q50,q60,.mp4.csmil/manifest.f4m?start=0.0&end=1500.84"
+          }
+        },
+        {
+          "url": "http://hdvodsrforigin-f.akamaihd.net/z/vod/ts20/2019/11/ts20_20191101_193000_18158983_v_webcast_h264_,q40,q10,q20,q30,q50,.mp4.csmil/manifest.f4m?start=0.0&end=1500.84",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://hdvodsrforigin-f.akamaihd.net/z/vod/ts20/2019/11/ts20_20191101_193000_18158983_v_webcast_h264_,q40,q10,q20,q30,q50,.mp4.csmil/manifest.f4m?start=0.0&end=1500.84"
+          }
+        },
+        {
+          "url": "https://hdvodsrforigin-f.akamaihd.net/i/vod/ts20/2019/11/ts20_20191101_193000_18158983_v_webcast_h264_,q40,q10,q20,q30,q50,q60,.mp4.csmil/master.m3u8?start=0.0&end=1500.84&caption=srf/0d7aa22f-52c5-42c4-ae23-51a490ae1329/episode/de/vod/vod.m3u8:de:Deutsch:sdh&webvttbaseurl=www.srf.ch/subtitles",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "subtitleInformationList": [
+            {
+              "locale": "de",
+              "language": "Deutsch",
+              "source": "HLS",
+              "type": "SDH"
+            }
+          ],
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://hdvodsrforigin-f.akamaihd.net/i/vod/ts20/2019/11/ts20_20191101_193000_18158983_v_webcast_h264_,q40,q10,q20,q30,q50,q60,.mp4.csmil/master.m3u8?start=0.0&end=1500.84&caption=srf/0d7aa22f-52c5-42c4-ae23-51a490ae1329/episode/de/vod/vod.m3u8:de:Deutsch:sdh&webvttbaseurl=www.srf.ch/subtitles"
+          }
+        },
+        {
+          "url": "https://hdvodsrforigin-f.akamaihd.net/i/vod/ts20/2019/11/ts20_20191101_193000_18158983_v_webcast_h264_,q40,q10,q20,q30,q50,.mp4.csmil/master.m3u8?start=0.0&end=1500.84&caption=srf/0d7aa22f-52c5-42c4-ae23-51a490ae1329/episode/de/vod/vod.m3u8:de:Deutsch:sdh&webvttbaseurl=www.srf.ch/subtitles",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "UNKNOWN",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "subtitleInformationList": [
+            {
+              "locale": "de",
+              "language": "Deutsch",
+              "source": "HLS",
+              "type": "SDH"
+            }
+          ],
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://hdvodsrforigin-f.akamaihd.net/i/vod/ts20/2019/11/ts20_20191101_193000_18158983_v_webcast_h264_,q40,q10,q20,q30,q50,.mp4.csmil/master.m3u8?start=0.0&end=1500.84&caption=srf/0d7aa22f-52c5-42c4-ae23-51a490ae1329/episode/de/vod/vod.m3u8:de:Deutsch:sdh&webvttbaseurl=www.srf.ch/subtitles"
+          }
+        }
+      ],
+      "segmentList": [
+        {
+          "id": "654c41ec-62c1-4c0b-9a37-70830fc0fbee",
+          "mediaType": "VIDEO",
+          "vendor": "SRF",
+          "urn": "urn:srf:video:654c41ec-62c1-4c0b-9a37-70830fc0fbee",
+          "title": "Stellenmeldepflicht – Seco zieht positive Bilanz",
+          "description": "Das Staatssekretariat für Wirtschaft konnte 4'800 Personen eine Stelle vermitteln. Wie gut das System aber tatsächlich funktioniert, wird eine vertiefte Analyse zeigen. Mit Rektionen aus der Politik.",
+          "imageUrl": "https://ws.srf.ch/asset/image/audio/0234d0c6-9cca-4dd5-8f4a-a45ddfc11cab/EPISODE_IMAGE/1572636079.png",
+          "imageTitle": "Stellenmeldepflicht – Seco zieht positive Bilanz",
+          "type": "EPISODE",
+          "date": "2019-11-01T19:30:00+01:00",
+          "duration": 271160,
+          "validFrom": "2019-11-01T19:58:00+01:00",
+          "playableAbroad": true,
+          "displayable": true,
+          "fullLengthUrn": "urn:srf:video:205617f8-2009-4183-8605-672ffe71b56c",
+          "position": 1,
+          "noEmbed": false,
+          "subtitleList": [
+            {
+              "locale": "de",
+              "language": "Deutsch",
+              "source": "EXTERNAL",
+              "type": "SDH",
+              "url": "https://ws.srf.ch/subtitles/urn:srf:ais:video:654c41ec-62c1-4c0b-9a37-70830fc0fbee/subtitle.vtt",
+              "format": "VTT"
+            },
+            {
+              "locale": "de",
+              "language": "Deutsch",
+              "source": "EXTERNAL",
+              "type": "SDH",
+              "url": "https://ws.srf.ch/subtitles/urn:srf:ais:video:654c41ec-62c1-4c0b-9a37-70830fc0fbee/subtitle.ttml",
+              "format": "TTML"
+            }
+          ],
+          "analyticsMetadata": {
+            "media_segment": "Stellenmeldepflicht – Seco zieht positive Bilanz",
+            "media_type": "Video",
+            "media_segment_id": "654c41ec-62c1-4c0b-9a37-70830fc0fbee",
+            "media_episode_length": "1501",
+            "media_segment_length": "271",
+            "media_number_of_segment_selected": "1",
+            "media_number_of_segments_total": "4",
+            "media_duration_category": "short",
+            "media_is_geoblocked": "false",
+            "media_urn": "urn:srf:video:654c41ec-62c1-4c0b-9a37-70830fc0fbee"
+          },
+          "eventData": "$ba3a3311b14bd3ae$e44e9596026d3e1a8b2954ae35167e36ffe473c63c8466de7210475789d272366846ec75fca5942d12c297555829ac9efee4fde8711f5187d8298db622f664b13ca8bf626a4a7b2ccca508e94fcbaecaaccc5a86d2117e62d13f54467c24fea7083836b672b704444dbc6102d16973becb23f210e7d4c19cbdac396eafc79c745c5aa22c6fbf1146c716cfb8e2ed01736c81c5cc60ff14a622fe3b1468450acb9c7607bf347fbfb3408fb6b0dfa9c5b981441d643ad39167d1e962471e0687cd5b68923cad1b4249a4167555bf1943ff813b6ef7906e6fcac91c5fc98aecd0adf28d4ee65f1aff2e950128bdf1513827dd0dfe3317cad1387ff4c49f01d419d1f26e013ce2af75f6f19aea7b7c1ca0ceb2cffaa7f5295b5896885526821e6761e3a2a55aa07334adda5addcf4ce2ce4e9b6b56294a3155afdc6f31e3a82b11a038b3bcc2224893f766f55a28da310816ed61145b125b415f4c99f0845ccb593123b063b2649b92e67ae278f5d98fceab314c8183801c4d0a06b749a5edf96f94cf9381667a8cc95d87d5ecaf4a3168ebe6fe89e6c7d3c60d05d21d3f796da4630fa05bae77b121b5a6dc66ebcc1f7c64a636d4c77c453c172e52df5bfa331a829354d8341d70facb2bc77208d872f080",
+          "markIn": 49040,
+          "markOut": 320200
+        },
+        {
+          "id": "322cc32d-62d3-406b-b5b3-f8fde61af281",
+          "mediaType": "VIDEO",
+          "vendor": "SRF",
+          "urn": "urn:srf:video:322cc32d-62d3-406b-b5b3-f8fde61af281",
+          "title": "Systemwechsel in der libanesischen Regierungsbildung",
+          "description": "Politische oder religiöse Zugehörigkeit soll für die Regierungsbildung keine Rolle mehr spielen, Minister werden neu nach ihren Kompetenzen gewählt – so der Vorschlag des libanesischen Präsidenten Michel Aoun. Mit Einschätzungen von SRF-Korrespondent Pascal Weber aus Beirut.",
+          "imageUrl": "https://ws.srf.ch/asset/image/audio/816ade4a-e5c0-4c8c-a99e-a63cc91b7199/EPISODE_IMAGE/1572636209.png",
+          "imageTitle": "Systemwechsel in der libanesischen Regierungsbildung",
+          "type": "EPISODE",
+          "date": "2019-11-01T19:30:00+01:00",
+          "duration": 478960,
+          "validFrom": "2019-11-01T19:58:00+01:00",
+          "playableAbroad": true,
+          "displayable": true,
+          "fullLengthUrn": "urn:srf:video:205617f8-2009-4183-8605-672ffe71b56c",
+          "position": 2,
+          "noEmbed": false,
+          "subtitleList": [
+            {
+              "locale": "de",
+              "language": "Deutsch",
+              "source": "EXTERNAL",
+              "type": "SDH",
+              "url": "https://ws.srf.ch/subtitles/urn:srf:ais:video:322cc32d-62d3-406b-b5b3-f8fde61af281/subtitle.vtt",
+              "format": "VTT"
+            },
+            {
+              "locale": "de",
+              "language": "Deutsch",
+              "source": "EXTERNAL",
+              "type": "SDH",
+              "url": "https://ws.srf.ch/subtitles/urn:srf:ais:video:322cc32d-62d3-406b-b5b3-f8fde61af281/subtitle.ttml",
+              "format": "TTML"
+            }
+          ],
+          "analyticsMetadata": {
+            "media_segment": "Systemwechsel in der libanesischen Regierungsbildung",
+            "media_type": "Video",
+            "media_segment_id": "322cc32d-62d3-406b-b5b3-f8fde61af281",
+            "media_episode_length": "1501",
+            "media_segment_length": "479",
+            "media_number_of_segment_selected": "2",
+            "media_number_of_segments_total": "4",
+            "media_duration_category": "short",
+            "media_is_geoblocked": "false",
+            "media_urn": "urn:srf:video:322cc32d-62d3-406b-b5b3-f8fde61af281"
+          },
+          "eventData": "$e86e94178a7f6bd4$c3fff1c71cb3071a5dd70dc94bac6e32b0aabbcd99408b46635554d3b9c35a695719dc63def216bac6ec65a30411eb65a7bc6389028e8680f7042dde634dff871f1eeb4be8a9c581f889affaa72bdcfe3fca28ad828f03b27619061b7a74963dfb273afc9af12f149daec042a996ca02c1541a7a612d31a1068c802dd32894d1a73c92aaddaf1ccee23433bc79cbbd11851b7a918e47849e3294556501b322cd9117533bb16f6eddc447b6aa94b4e31ebb7f355373f2fc0995d47b32c3995514a456de0addf8407e2a58908127f3c793b6a04d2a31a1fd0466dda72dad6ce832a9dc3e46bd2251efbf2bd5f5a2d1bf3458e7b59b772939cb3b0a37d523dd260b48761f04ce71ff17058fae3e79049d3e5c4a5947a9bbe4377bed75172932048f5815929b40adf87cfae52c1517a7e2ac3507d57c296dec8180aa845512a596add11477fff88caae9795b7fa444b58002cdc78bc823e32c53792bdea030730c18b8914b850c8007dd191476a9c498bd178efa8c4558f07f2b9e03dd8ad067b8e224ff55934c2a542b59290de5103023390b590085859b8a66dc648cf871c4f64f532001cc2293e383016c2544f2b1ee02c1deeb6b7ba9fe92fed6a406a01d90c2a9b40488d9de2619bba4e263ed70a034",
+          "markIn": 320640,
+          "markOut": 799600
+        },
+        {
+          "id": "8f3136b3-152c-432b-aeb1-1639593debbd",
+          "mediaType": "VIDEO",
+          "vendor": "SRF",
+          "urn": "urn:srf:video:8f3136b3-152c-432b-aeb1-1639593debbd",
+          "title": "Neues Cyberkompetenzzentrum in Genf",
+          "description": "Mehrere Westschweizer Kantone bündeln ihre Ressourcen. Denn Justiz und Polizei müssen ständig auf dem neusten Stand bleiben, wenn sie Cyberkriminellen nicht hinterherhinken wollen.",
+          "imageUrl": "https://ws.srf.ch/asset/image/audio/35f6ed5b-3689-4d74-aca8-7edb446e1e23/EPISODE_IMAGE/1572636301.png",
+          "imageTitle": "Neues Cyberkompetenzzentrum in Genf",
+          "type": "EPISODE",
+          "date": "2019-11-01T19:30:00+01:00",
+          "duration": 260840,
+          "validFrom": "2019-11-01T19:58:00+01:00",
+          "playableAbroad": true,
+          "displayable": true,
+          "fullLengthUrn": "urn:srf:video:205617f8-2009-4183-8605-672ffe71b56c",
+          "position": 3,
+          "noEmbed": false,
+          "subtitleList": [
+            {
+              "locale": "de",
+              "language": "Deutsch",
+              "source": "EXTERNAL",
+              "type": "SDH",
+              "url": "https://ws.srf.ch/subtitles/urn:srf:ais:video:8f3136b3-152c-432b-aeb1-1639593debbd/subtitle.vtt",
+              "format": "VTT"
+            },
+            {
+              "locale": "de",
+              "language": "Deutsch",
+              "source": "EXTERNAL",
+              "type": "SDH",
+              "url": "https://ws.srf.ch/subtitles/urn:srf:ais:video:8f3136b3-152c-432b-aeb1-1639593debbd/subtitle.ttml",
+              "format": "TTML"
+            }
+          ],
+          "analyticsMetadata": {
+            "media_segment": "Neues Cyberkompetenzzentrum in Genf",
+            "media_type": "Video",
+            "media_segment_id": "8f3136b3-152c-432b-aeb1-1639593debbd",
+            "media_episode_length": "1501",
+            "media_segment_length": "261",
+            "media_number_of_segment_selected": "3",
+            "media_number_of_segments_total": "4",
+            "media_duration_category": "short",
+            "media_is_geoblocked": "false",
+            "media_urn": "urn:srf:video:8f3136b3-152c-432b-aeb1-1639593debbd"
+          },
+          "eventData": "$898ef3fb3252aa0b$26dad53bb4efcb93d7a77c2abc97e1994592e2662c243cc54449cef1ddd12fa5a97616468955b5fdde095214acc67aff13abb5ab2c9afb3a115db3da493ca133d61bfc0ce687a9db724832b6c09e1eb27507952767fff7056f42e5628f1b5c5a69863d12487980c8ac2b5f890f3b10fe66d6e1f946d12d2f0332b98f099acc74e571f4d0313b8f2822f6ef81af3415f43676569c13c6ec8fb59481956a209b4cc232763a6719a1294bea4b21c53c2e5daa206390893e5d0dba8c2b169f88e1ce4a39c5e517c2ed64fad8d81ccef462939412440714b27af8648cdbae6c975625c78318ac0801ab062854962cfeaf45051f0f6f26bb14321faa62a3aab1417ade0c801549969313f8a3675efb5cae811b7cab2a4421def20b7ca632df4a87a5f11e68399e14fcc2788cf15521a2b3d676ee99b8ad7fd36f768f9c7402a1edc44f33f50295a9b4889e7870d273ae5ffb57aa30f33aad29760adfa1360ffe7b3d86281edda6b5645594bbf44c672ec8472be9ebb2c6b2cd4e130a29902f6e82dd2c859bba6ec094fef61216265b05ffe8749a416cf984ed9529629ed43faf3717ab311825b5e79fa17cfc8609f30d5fbd51311535d2ce75fd2de663d7350c89e5f90b819d39206d8d928bdc451836d263cc",
+          "markIn": 842000,
+          "markOut": 1102840
+        },
+        {
+          "id": "51a16b4b-7bae-4a2f-a99f-972862c0dcf9",
+          "mediaType": "VIDEO",
+          "vendor": "SRF",
+          "urn": "urn:srf:video:51a16b4b-7bae-4a2f-a99f-972862c0dcf9",
+          "title": "Weltvegantag – «Vegan Society» feiert 75 Jahre",
+          "description": "Einst vor allem mit Negativschlagzeilen in den Medien sind Veganer jetzt im Trend. Im Schweizer Markt fristen vegane Produkte trotzdem ein Nischendasein.",
+          "imageUrl": "https://ws.srf.ch/asset/image/audio/5404d9fc-2c7a-49ac-924d-fd7ac08bdb17/EPISODE_IMAGE/1572636416.png",
+          "imageTitle": "Weltvegantag – «Vegan Society» feiert 75 Jahre",
+          "type": "EPISODE",
+          "date": "2019-11-01T19:30:00+01:00",
+          "duration": 314520,
+          "validFrom": "2019-11-01T19:58:00+01:00",
+          "playableAbroad": true,
+          "displayable": true,
+          "fullLengthUrn": "urn:srf:video:205617f8-2009-4183-8605-672ffe71b56c",
+          "position": 4,
+          "noEmbed": false,
+          "subtitleList": [
+            {
+              "locale": "de",
+              "language": "Deutsch",
+              "source": "EXTERNAL",
+              "type": "SDH",
+              "url": "https://ws.srf.ch/subtitles/urn:srf:ais:video:51a16b4b-7bae-4a2f-a99f-972862c0dcf9/subtitle.vtt",
+              "format": "VTT"
+            },
+            {
+              "locale": "de",
+              "language": "Deutsch",
+              "source": "EXTERNAL",
+              "type": "SDH",
+              "url": "https://ws.srf.ch/subtitles/urn:srf:ais:video:51a16b4b-7bae-4a2f-a99f-972862c0dcf9/subtitle.ttml",
+              "format": "TTML"
+            }
+          ],
+          "analyticsMetadata": {
+            "media_segment": "Weltvegantag – «Vegan Society» feiert 75 Jahre",
+            "media_type": "Video",
+            "media_segment_id": "51a16b4b-7bae-4a2f-a99f-972862c0dcf9",
+            "media_episode_length": "1501",
+            "media_segment_length": "315",
+            "media_number_of_segment_selected": "4",
+            "media_number_of_segments_total": "4",
+            "media_duration_category": "short",
+            "media_is_geoblocked": "false",
+            "media_urn": "urn:srf:video:51a16b4b-7bae-4a2f-a99f-972862c0dcf9"
+          },
+          "eventData": "$b8d55497ba4656c9$59823a294852197344382db4e577237fa9fde0bbf6fdc971000e226dfd86d5bdca43d12a90f02554ba096b466d2ca82d53d2805bfc25ac97160a53130a913b59f3a70a19991dd0135cb369fc21f36f8424d5714a82861f36b54f6e34418af73a8e17c9caa9a18b1c656ec36d1f7d726fdd9a58f6e141f6bf7e0be561e65ce3732be8873625a76d7c472812205e2b6bba3dab0a4231cbcaca05068256a0a67b594ed1aa4dc78879b7391c3366d9edaa58fa28504dc7ef1a530b3df7e46f279b18f5f5d21ff3f7f9dd04fe867a020e2b4e0f101080e40630ad772c7e50a321d235b01478e20d96b0e8d4265ca72265c0c1ea985967a75577467cc005f5f25c0338ad53376a6f7dae85c3fee6b0d9741ca423c37935713b5c05f93ad086004cc45df3b7c041f5e8fdc59dd9f3b71354aeb98eac233dcb55778354b6f15c291dc1b619d1afc95517eaa3471c9f1711140fb98c476c35d7a28d1a9e5c06ee8ae72f0417259f5e7da81d113642c2433b81dca84582a55e817dbf7da2241ea65e87ebf8ee436538f00168f64749d1a00202ea70f706d96748553777df5b55ff9644c53593e5bb6831b9b33ed5967a3e8ae143529f54a29a5323d4c17c2d0509d0dba3fa78ac3a793979535c632502411953a007",
+          "markIn": 1103280,
+          "markOut": 1417800
+        }
+      ]
+    }
+  ],
+  "topicList": [
+    {
+      "id": "a709c610-b275-4c0c-a496-cba304c36712",
+      "vendor": "SRF",
+      "transmission": "TV",
+      "urn": "urn:srf:topic:tv:a709c610-b275-4c0c-a496-cba304c36712",
+      "title": "News"
+    }
+  ],
+  "analyticsData": {
+    "srg_pr_id": "0d7aa22f-52c5-42c4-ae23-51a490ae1329",
+    "srg_plid": "ff969c14-c5a7-44ab-ab72-14d4c9e427a9",
+    "ns_st_pl": "Tagesschau",
+    "ns_st_pr": "Tagesschau vom 01.11.2019",
+    "ns_st_dt": "2019-11-01",
+    "ns_st_ddt": "2019-11-01",
+    "ns_st_tdt": "2019-11-01",
+    "ns_st_tm": "19:30:00",
+    "ns_st_tep": "23683528527",
+    "ns_st_li": "0",
+    "ns_st_stc": "8001",
+    "ns_st_st": "SRF 1",
+    "ns_st_tpr": "ff969c14-c5a7-44ab-ab72-14d4c9e427a9",
+    "ns_st_en": "*null",
+    "ns_st_ge": "*null",
+    "ns_st_ia": "*null",
+    "ns_st_ce": "1",
+    "ns_st_cdm": "to",
+    "ns_st_cmt": "fc",
+    "srg_unit": "SRF",
+    "srg_c1": "News",
+    "srg_c2": "full",
+    "srg_wo": "0",
+    "srg_tv_id": "23550192812",
+    "srg_fullLength": "full"
+  },
+  "analyticsMetadata": {
+    "media_episode_id": "0d7aa22f-52c5-42c4-ae23-51a490ae1329",
+    "media_show_id": "ff969c14-c5a7-44ab-ab72-14d4c9e427a9",
+    "media_show": "Tagesschau",
+    "media_episode": "Tagesschau vom 01.11.2019",
+    "media_is_livestream": "false",
+    "media_full_length": "full",
+    "media_enterprise_units": "SRF",
+    "media_joker1": "News",
+    "media_is_web_only": "false",
+    "media_production_source": "produced.for.broadcasting",
+    "media_tv_id": "23683528527",
+    "media_thumbnail": "https://ws.srf.ch/asset/image/audio/26e83636-811a-436a-8433-0786783cada2/EPISODE_IMAGE/1572635867.png/scale/width/344",
+    "media_publication_date": "2019-11-01",
+    "media_publication_time": "19:58:00",
+    "media_publication_datetime": "2019-11-01T19:58:00+01:00",
+    "media_tv_date": "2019-11-01",
+    "media_tv_time": "19:30:00",
+    "media_tv_datetime": "2019-11-01T19:30:00+01:00",
+    "media_content_group": "News",
+    "media_channel_id": "23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "media_channel_cs": "8001",
+    "media_channel_name": "SRF 1",
+    "media_since_publication_d": "78",
+    "media_since_publication_h": "1892"
+  }
+}

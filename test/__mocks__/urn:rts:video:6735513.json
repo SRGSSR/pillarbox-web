@@ -1,0 +1,752 @@
+{
+  "chapterUrn": "urn:rts:video:6735513",
+  "episode": {
+    "id": "6627132",
+    "title": "Passe-moi les jumelles",
+    "lead": "Une île et des reines",
+    "publishedDate": "2015-05-01T20:14:00+02:00",
+    "imageUrl": "https://www.rts.ch/2015/04/30/16/01/6723905.image/16x9",
+    "imageTitle": "Deux reines aux prises. [RTS]"
+  },
+  "show": {
+    "id": "394095",
+    "vendor": "RTS",
+    "transmission": "TV",
+    "urn": "urn:rts:show:tv:394095",
+    "title": "Passe-moi les jumelles",
+    "lead": "\"Passe-moi les jumelles\" est une émission d'évasion qui permet, le temps de deux reportages, de toucher à l’essentiel en privilégiant la rencontre, en renouant avec les délices de la lenteur, accordant ainsi aux silences et aux émotions la place d’exister.",
+    "description": "\"Passe-moi les jumelles\" est une émission d'évasion qui permet, le temps de deux reportages, de toucher à l’essentiel en privilégiant la rencontre, en renouant avec les délices de la lenteur, accordant ainsi aux silences et aux émotions la place d’exister.",
+    "imageUrl": "https://www.rts.ch/2019/02/27/11/01/10251463.image/16x9",
+    "imageTitle": "Banner sitePAJU2019 2600x1463",
+    "bannerImageUrl": "https://www.rts.ch/2019/02/27/11/01/10251463.image/3x1",
+    "homepageUrl": "https://pages.rts.ch/emissions/passe-moi-les-jumelles",
+    "podcastSubscriptionUrl": "https://www.rts.ch/emissions/passe-moi-les-jumelles/podcasts/",
+    "primaryChannelId": "143932a79bb5a123a646b68b1d1188d7ae493e5b",
+    "topicList": [
+      {
+        "id": "2340",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:2340",
+        "title": "Passe-moi les jumelles"
+      },
+      {
+        "id": "2026",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:2026",
+        "title": "Émissions"
+      },
+      {
+        "id": "622",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:622",
+        "title": "rts.ch"
+      }
+    ]
+  },
+  "channel": {
+    "id": "143932a79bb5a123a646b68b1d1188d7ae493e5b",
+    "title": "RTS Un",
+    "imageUrl": "https://www.rts.ch/2019/02/27/11/01/10251463.image/3x1",
+    "imageTitle": "Banner sitePAJU2019 2600x1463",
+    "transmission": "TV"
+  },
+  "chapterList": [
+    {
+      "id": "6735513",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:6735513",
+      "title": "Prendre le large - Reines des 3 pays (1/2)",
+      "description": "Direction l'archipel de Molène, dans le Finistère, à la rencontre d'une famille qui a tout lâché pour redonner vie à une île longtemps abandonnée. Puis, cap sur le Valais où s'est déroulée en 2012 la première rencontre des combats de reines de l'Espace Mont-Blanc : trois régions pour une même passion de la vache d'Hérens. Et enfin, toujours en chemin sur la ViaJacobi, Virginie Brawand nous conduit de Brienz à Thoune.",
+      "imageUrl": "https://www.rts.ch/2015/04/27/18/01/6735512.image/16x9",
+      "imageTitle": "Prendre le large - Reines des 3 pays (1-2) [RTS]",
+      "type": "EPISODE",
+      "date": "2015-05-01T20:14:00+02:00",
+      "duration": 3637080,
+      "podcastHdUrl": "https://rtsww-d.rts.ch/paju/2015/paju_20150501_full_f_855527-2201k.mp4?mediaId=6735513",
+      "validFrom": "2015-05-01T21:14:00+02:00",
+      "playableAbroad": true,
+      "socialCountList": [
+        {
+          "key": "srgView",
+          "value": 10024
+        },
+        {
+          "key": "srgLike",
+          "value": 0
+        },
+        {
+          "key": "fbShare",
+          "value": 82
+        },
+        {
+          "key": "twitterShare",
+          "value": 41
+        },
+        {
+          "key": "googleShare",
+          "value": 13
+        },
+        {
+          "key": "whatsAppShare",
+          "value": 1
+        }
+      ],
+      "displayable": true,
+      "position": 0,
+      "noEmbed": false,
+      "subtitleList": [
+        {
+          "language": "Français",
+          "locale": "fr",
+          "url": "https://www.rts.ch/x/sub/paju/2015/paju_20150501_full_f_855527.xml",
+          "format": "TTML"
+        }
+      ],
+      "analyticsData": {
+        "ns_st_ep": "Prendre le large - Reines des 3 pays (1/2)",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "6735513",
+        "ns_st_el": "3637080",
+        "ns_st_cl": "3637080",
+        "ns_st_sl": "3637080",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc12",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Prendre le large - Reines des 3 pays (1/2)",
+        "media_type": "Video",
+        "media_segment_id": "6735513",
+        "media_episode_length": "3637",
+        "media_segment_length": "3637",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "long",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:6735513"
+      },
+      "eventData": "$cff1154a501ea65d$ada47af1e411156ae507a00fb2b8c4867e825f55abf5efe32263b2fbe738d432e9c93e538e9955e6e9102639ff6153aea5a44d540009736ba80d60b4302f71e1e96fbd2089f0373438f32944e52fe5f3271721564a6f697193896cf50942c47533d7f0ad14f2329b8dbda81078a6c582d4b9d34a98c2fcbcb8d9de97edfd5b8cbe975b734724d2b273805b0db0cc4413471ac8ac5eecd33dc524d00aa89f5fca3942a9cb040fd7d4bb5ae3de7f606616f658d8784382248a060486af6ab39a8c906c0eda575cd22b60db34c59c4ce45c284a79e968b01071ac23cb8a0662a274eb71a3d3df4ad263ed7afcca8118b6a939444ed6c835b6c58eb2c213e75c6d285cd76b2ac5e47455b559e9d6f801661192656983fedbea3a6bd3b3dff5fa7c799a50f1e89c3c1aa88f03662e4b01b156",
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/master.m3u8",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/master.m3u8"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/master.m3u8",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/master.m3u8"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/manifest.f4m",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/manifest.f4m"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/manifest.f4m",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/manifest.f4m"
+          }
+        }
+      ]
+    },
+    {
+      "id": "6735503",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:6735503",
+      "title": "Prendre le large",
+      "description": "Une petite île perdue au milieu des eaux turquoise du Finistère: des patates, des moutons, un cochon nommé Gaston... et quatre habitants! Bienvenue à Quéménès, joyau de la mer d'Iroise, à la rencontre d'une famille pas comme les autres qui est allée au bout de son rêve en redonnant vie à une ferme ancienne et à un bout de nature pendant longtemps en friche.",
+      "imageUrl": "https://www.rts.ch/2015/04/27/18/01/6735496.image/16x9",
+      "imageTitle": "Prendre le large [RTS]",
+      "type": "CLIP",
+      "date": "2015-05-01T20:14:00+02:00",
+      "duration": 1599800,
+      "validFrom": "2015-05-01T21:14:00+02:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:6735513",
+      "position": 1,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Prendre le large",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "6735503",
+        "ns_st_el": "1599800",
+        "ns_st_cl": "1599800",
+        "ns_st_sl": "1599800",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc12",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Prendre le large",
+        "media_type": "Video",
+        "media_segment_id": "6735503",
+        "media_episode_length": "1600",
+        "media_segment_length": "1600",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "long",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:6735503"
+      },
+      "eventData": "$9d1fe34f6d37bf55$a4d6b7d335649dcb42bff3f6c27726f3155bda4846201e4de2a3bffa1b7ffedad810f6fef7d3a035163735861549890c2d000c979e260e06a6b5eeaf62b32625582cb8f4c17b2f717e51337420f4651a9b6f1f099c8e9a2f86eced284d3346a1f842ed071ac084e0835caf73ec74737eaf9daa6036baf6eccd0eac5d9c1597bd6317eefb1cc1c93e101311d2eb7446b837072f98ad4d62924d08baa91d125a4b917fa3a9726e4f3d1bfea1b019d5f3da079abeba8585a55fb2e188f1b96725ff6057a989d7e3482831d08493a3177eec4a1a8856e160e4173b85a7f2f30f6eb84eba9ad4e100641a8037f9f23a597076ae58520926c9a45648f781027c4f3f40ac264814ffae8b86788e456df3076dfd05a68966e060b442a67c89db8bce230e07f3ae625a85ac291af0ea6130c9770a",
+      "fullLengthMarkIn": 206840,
+      "fullLengthMarkOut": 1806640,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/master.m3u8?start=206.84&end=1806.64",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/master.m3u8?start=206.84&end=1806.64"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/master.m3u8?start=206.84&end=1806.64",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/master.m3u8?start=206.84&end=1806.64"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/manifest.f4m?start=206.84&end=1806.64",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/manifest.f4m?start=206.84&end=1806.64"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/manifest.f4m?start=206.84&end=1806.64",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/manifest.f4m?start=206.84&end=1806.64"
+          }
+        }
+      ]
+    },
+    {
+      "id": "6735521",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:6735521",
+      "title": "ViaJacobi : de Brienz à Thoune",
+      "imageUrl": "https://www.rts.ch/2015/04/27/18/01/6735514.image/16x9",
+      "imageTitle": "ViaJacobi : de Brienz à Thoune [RTS]",
+      "type": "CLIP",
+      "date": "2015-05-01T20:14:00+02:00",
+      "duration": 100160,
+      "validFrom": "2015-05-01T21:14:00+02:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:6735513",
+      "position": 2,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "ViaJacobi : de Brienz à Thoune",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "6735521",
+        "ns_st_el": "100160",
+        "ns_st_cl": "100160",
+        "ns_st_sl": "100160",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "ViaJacobi : de Brienz à Thoune",
+        "media_type": "Video",
+        "media_segment_id": "6735521",
+        "media_episode_length": "100",
+        "media_segment_length": "100",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:6735521"
+      },
+      "eventData": "$e7131f69b726e4c9$537ee3b838d2b0e57b538549ff22d198628de9b2f4f36a41e28e555ab58cb69ffc4fc898acfedd77067d21d40e46ef5b617f6de6267839974709e65f9c5c2e7219449a4fd3b0c3bf2f5fd07cb288579b5a0e8c4835391de47d246b0ab5c26edd0c545aefa582cade4d96527e5c07fe8918268f84a27111711bba8e3a014ddc884c85b327bf1b4f2e676934db83a7f0bb53635a0c8e0509600021ebf3172f5eb68b08d3660cf857bf6000435a5ae53ec538f7867ad14bfcb40dbfc229f9e8938609097e72042b627fbd24e6974a90c20e45cd8aace4cd7d4f75321a68d1fdfe103cfe1978bcd37ae30081656157dcc6e414d132c855735c22ab5801b1f2c7596be8d911ba311bed56ef48c1e6618c6fcf298d6c2ef06bf17fe8dd6fabcbff76adf2f7186f0f3a4e8a014ecfe9cae0dc2c",
+      "fullLengthMarkIn": 1827840,
+      "fullLengthMarkOut": 1928000,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/master.m3u8?start=1827.84&end=1928.0",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/master.m3u8?start=1827.84&end=1928.0"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/master.m3u8?start=1827.84&end=1928.0",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/master.m3u8?start=1827.84&end=1928.0"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/manifest.f4m?start=1827.84&end=1928.0",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/manifest.f4m?start=1827.84&end=1928.0"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/manifest.f4m?start=1827.84&end=1928.0",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/manifest.f4m?start=1827.84&end=1928.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "6735511",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:6735511",
+      "title": "Reines des 3 pays",
+      "description": "Jamais encore, il n'y a avait eu de combats de reines entre ces trois régions : le Valais, le Val d'Aoste et la Haute-Savoie qui autrefois pourtant formaient le même pays et qui aujourd'hui encore partagent un même dialecte et des traditions communes, à commencer par leur attachement à la vache d'Hérens.",
+      "imageUrl": "https://www.rts.ch/2015/04/27/18/01/6735504.image/16x9",
+      "imageTitle": "Reines des 3 pays [RTS]",
+      "type": "CLIP",
+      "date": "2015-05-01T20:14:00+02:00",
+      "duration": 1565880,
+      "validFrom": "2015-05-01T21:14:00+02:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:6735513",
+      "position": 3,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Reines des 3 pays",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "6735511",
+        "ns_st_el": "1565880",
+        "ns_st_cl": "1565880",
+        "ns_st_sl": "1565880",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc12",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Reines des 3 pays",
+        "media_type": "Video",
+        "media_segment_id": "6735511",
+        "media_episode_length": "1566",
+        "media_segment_length": "1566",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "long",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:6735511"
+      },
+      "eventData": "$2f8d05cbc8a64049$8d663c890ddd3b6187370ae3d7fec2dc7794b63c1159c47b9d2cd7841e2e1c23be7154f9f4ffa7e8911ff23e0e5bec4c9e9497190f4ed930fef99cab4b8897e7f764ceb6f5b1490760dc77e7e44975a00cd0c96545c74a34d35ebe5e2c799597434ba8ca044bcf30a19b8ac52d223fdaf4d7d7a049b0d8b4e9aa077073da5ceaa811b0a12529081d38d2f230647c114912edcfcdce8bed919ce29a64694daba996cd9e88b04f09b75f7f10c393b0db1ff49f173f038bf3014dff154e3b38ba9b9a0adb9b3da1a0927ea0b2c7c0522c42e1d7c26bf8bbb26cc8cd7677450419ca23a083ddbaa019f9d57025126763bedb74196865793c1e86f1c14da666c0d67b62fb273964bbf514ab9c687a62f7be9f8910ac3c93b76f1fe9519e4df1f1f0bc1aa711c592dad44dfed2ab01146c0815",
+      "fullLengthMarkIn": 1927240,
+      "fullLengthMarkOut": 3493120,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/master.m3u8?start=1927.24&end=3493.12",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/master.m3u8?start=1927.24&end=3493.12"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/master.m3u8?start=1927.24&end=3493.12",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/master.m3u8?start=1927.24&end=3493.12"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/manifest.f4m?start=1927.24&end=3493.12",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,1201k,2201k,.mp4.csmil/manifest.f4m?start=1927.24&end=3493.12"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/manifest.f4m?start=1927.24&end=3493.12",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/paju/2015/paju_20150501_full_f_855527-,101k,701k,.mp4.csmil/manifest.f4m?start=1927.24&end=3493.12"
+          }
+        }
+      ]
+    }
+  ],
+  "topicList": [
+    {
+      "id": "2340",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:2340",
+      "title": "Passe-moi les jumelles"
+    },
+    {
+      "id": "2026",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:2026",
+      "title": "Émissions"
+    },
+    {
+      "id": "622",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:622",
+      "title": "rts.ch"
+    }
+  ],
+  "analyticsData": {
+    "srg_pr_id": "6627132",
+    "srg_plid": "394095",
+    "ns_st_pl": "Passe-moi les jumelles",
+    "ns_st_pr": "Passe-moi les jumelles du 01.05.2015",
+    "ns_st_dt": "2015-05-01",
+    "ns_st_li": "0",
+    "ns_st_stc": "8002",
+    "ns_st_st": "RTS Un",
+    "ns_st_tpr": "855527",
+    "ns_st_en": "6627132",
+    "ns_st_ce": "1",
+    "ns_st_cdm": "to",
+    "ns_st_cmt": "fc",
+    "srg_unit": "RTS",
+    "srg_c1": "full",
+    "srg_c2": "video_emissions_passe-moi-les-jumelles",
+    "srg_c3": "RTS Un",
+    "srg_tv_id": "855527"
+  },
+  "analyticsMetadata": {
+    "media_episode_id": "6627132",
+    "media_show_id": "394095",
+    "media_show": "Passe-moi les jumelles",
+    "media_episode": "Passe-moi les jumelles du 01.05.2015",
+    "media_is_livestream": "false",
+    "media_full_length": "full",
+    "media_enterprise_units": "RTS",
+    "media_joker1": "full",
+    "media_joker2": "video_emissions_passe-moi-les-jumelles",
+    "media_joker3": "RTS Un",
+    "media_is_web_only": "false",
+    "media_production_source": "produced.for.broadcasting",
+    "media_tv_id": "855527",
+    "media_thumbnail": "https://www.rts.ch/2015/04/27/18/01/6735512.image/16x9/scale/width/344",
+    "media_publication_date": "2015-05-01",
+    "media_publication_time": "20:14:00",
+    "media_publication_datetime": "2015-05-01T20:14:00+02:00",
+    "media_content_group": "Passe-moi les jumelles,Émissions,rts.ch",
+    "media_channel_id": "143932a79bb5a123a646b68b1d1188d7ae493e5b",
+    "media_channel_name": "RTS Un",
+    "media_since_publication_d": "1411",
+    "media_since_publication_h": "33885"
+  }
+}

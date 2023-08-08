@@ -1,0 +1,2237 @@
+{
+  "chapterUrn": "urn:rts:video:10272382",
+  "episode": {
+    "id": "10156816",
+    "title": "19h30",
+    "publishedDate": "2019-03-07T19:30:00+01:00",
+    "imageUrl": "https://www.rts.ch/2014/12/10/06/47/6154208.image/16x9"
+  },
+  "show": {
+    "id": "105932",
+    "vendor": "RTS",
+    "transmission": "TV",
+    "urn": "urn:rts:show:tv:105932",
+    "title": "19h30",
+    "lead": "le journal",
+    "imageUrl": "https://www.rts.ch/2014/12/10/06/47/6154208.image/16x9",
+    "imageTitle": "19h30 16x9 - vignette Play RTS",
+    "bannerImageUrl": "https://www.rts.ch/2014/12/10/06/47/6154208.image/3x1",
+    "primaryChannelId": "143932a79bb5a123a646b68b1d1188d7ae493e5b",
+    "topicList": [
+      {
+        "id": "908",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:908",
+        "title": "19h30"
+      },
+      {
+        "id": "904",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:904",
+        "title": "Vidéos"
+      },
+      {
+        "id": "665",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:665",
+        "title": "Info"
+      },
+      {
+        "id": "622",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:622",
+        "title": "rts.ch"
+      }
+    ]
+  },
+  "channel": {
+    "id": "143932a79bb5a123a646b68b1d1188d7ae493e5b",
+    "title": "RTS Un",
+    "imageUrl": "https://www.rts.ch/2014/12/10/06/47/6154208.image/3x1",
+    "imageTitle": "19h30 16x9 - vignette Play RTS",
+    "transmission": "TV"
+  },
+  "chapterList": [
+    {
+      "id": "10272382",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272382",
+      "title": "19h30",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272381.image/16x9",
+      "imageTitle": "19h30 [RTS]",
+      "type": "EPISODE",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 1829440,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "socialCountList": [
+        {
+          "key": "srgView",
+          "value": 7300
+        },
+        {
+          "key": "srgLike",
+          "value": 0
+        },
+        {
+          "key": "fbShare",
+          "value": 4
+        },
+        {
+          "key": "twitterShare",
+          "value": 3
+        },
+        {
+          "key": "googleShare",
+          "value": 1
+        },
+        {
+          "key": "whatsAppShare",
+          "value": 20
+        }
+      ],
+      "displayable": true,
+      "position": 0,
+      "noEmbed": false,
+      "subtitleList": [
+        {
+          "language": "Français",
+          "locale": "fr",
+          "url": "https://www.rts.ch/x/sub/journ-19h30/2019/journ-19h30_20190307_full_500048746.vtt",
+          "format": "VTT"
+        }
+      ],
+      "analyticsData": {
+        "ns_st_ep": "19h30",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272382",
+        "ns_st_el": "1829440",
+        "ns_st_cl": "1829440",
+        "ns_st_sl": "1829440",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc12",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "19h30",
+        "media_type": "Video",
+        "media_segment_id": "10272382",
+        "media_episode_length": "1829",
+        "media_segment_length": "1829",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "long",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272382"
+      },
+      "eventData": "$42b5b681d6812586$78eaf1accada5e8c01ab35a26c4981fad8ef8f8d386fe53a8add42cd31d53aecb3d479714ba7152f02f8e3f395350d87455b7fb8337da96fa7a732cc6607b4d9349f8006bb15ec70abeef0468c022176b5cb31cd3f5caf245bcfcbf1a32e7d8c615c11e2ddb9849b40517a60c18901e6ef14ed0dfba8e88d5f4fc168d341f196d62c5226ffaf85f5a5fd4d90dd2341adf4531f86b2c046e653067d5fbb7524ca1d6fb5f5a1d0d299667ec5c5249e7cd47b1fd35ea1d3b022482c83c73f858e07f2d82186bf5b384271b3ee732c306a81208a23818334287e0378d31d62b245ddd4515de3f11c6b1947f34fdd3e15826d65900b32c3efe11b8d6ff8ca30b35b73e12e2d2c24ae3df7a07e39fba6c5e558df5673a0a1b9f1cfe0afdae6e753945ce33a551b878b4268063823bf9085889a9daa67775a9d2d6ac87b27023ab333c7",
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10272360",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272360",
+      "title": "Le Conseil national a décidé de baisser les rentes des enfants de bénéficiaires de l'AI. Consternation de certaines associations.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272348.image/16x9",
+      "imageTitle": "Le Conseil national a décidé de baisser les rentes des enfants de bénéficiaires de l'AI. Consternation de certaines associations. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 124800,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 1,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Le Conseil national a décidé de baisser les rentes des enfants de bénéficiaires de l'AI. Consternation de certaines associations.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272360",
+        "ns_st_el": "124800",
+        "ns_st_cl": "124800",
+        "ns_st_sl": "124800",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Le Conseil national a décidé de baisser les rentes des enfants de bénéficiaires de l'AI. Consternation de certaines associations.",
+        "media_type": "Video",
+        "media_segment_id": "10272360",
+        "media_episode_length": "125",
+        "media_segment_length": "125",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272360"
+      },
+      "eventData": "$daa8a1e1d56e7b0f$5f15faf57cb0bcd595ce61d32cb9defc4b3fbc4b7faf4c4adbe3c0c4e53c1d24c13d2633841181275f0dfd39d57d97be25fdb763ac65aed6af0b476c01482cee4b4e89b7a2a80b74bb9ab96f9b2f66fe964b7f8875cb506a94d1850aa3a03f18d381ca2dfb17a64b7cec88cb2b012814adafa85bb1a7424bc0b8add7df277cb669a86bea049d91574eed72c27869b221ad6dc113002e3320fd9ce976ad81b6576b05e2afd8747cc46bbd23ba62e2a7d322ee13d395da05d3ba9b4d4daef903c54fd811a0d0b1530aee24f395b58314cc2a7e9eb39689a7f720d7d9dac41f1b53be46a4ef3fc1469ce6fed09051795f44a1eb4c3bdfdacadc962d0b5ccf9792689a413770d406122a35ee7d6af31dcd6eef3237ea5e7d58b173a2658c7dbd331aaa731283a3dbc0b0b338d42a425ceb5d5773e7e0d5cefd2f6f1629daaa30a9c3",
+      "fullLengthMarkIn": 227560,
+      "fullLengthMarkOut": 352360,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=227.56&end=352.36",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=227.56&end=352.36"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=227.56&end=352.36",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=227.56&end=352.36"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=227.56&end=352.36",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=227.56&end=352.36"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=227.56&end=352.36",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=227.56&end=352.36"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10272362",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272362",
+      "title": "Le cardinal Barbarin a été condamné à 6 mois de prison avec sursis. Il a annoncé sa démission. Ses avocats feront appel.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272361.image/16x9",
+      "imageTitle": "Le cardinal Barbarin a été condamné à 6 mois de prison avec sursis. Il a annoncé sa démission. Ses avocats feront appel. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 136640,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 2,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Le cardinal Barbarin a été condamné à 6 mois de prison avec sursis. Il a annoncé sa démission. Ses avocats feront appel.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272362",
+        "ns_st_el": "136640",
+        "ns_st_cl": "136640",
+        "ns_st_sl": "136640",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Le cardinal Barbarin a été condamné à 6 mois de prison avec sursis. Il a annoncé sa démission. Ses avocats feront appel.",
+        "media_type": "Video",
+        "media_segment_id": "10272362",
+        "media_episode_length": "137",
+        "media_segment_length": "137",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272362"
+      },
+      "eventData": "$f05ed1d3e9206a98$c2c73e6995ed5885fcd36b61398aaa5b7a1dde1c2e1c9023d22c5fbbfde52ab7c27658b9f1863cd3ae3356a58cac4e216d174f2c93db4500e342c77f64a6bf10c0a713a69dc73c0c0f3d68e3d4dc313779fdcf2f1f6900b96bbae7b71f6a976776042e29340699bfedba30ca0924f5c160816a98305902667ba32a09fa15de61f1e7c555b8a32940ecc71e34c9c18edb4828a162f5e74c3ccdc83f58ee009940d1f0bdbc4e3c62793fad1e782d55ffa90725cb67e17cb9ef0e6b4b6d0dd7667adae99b1409d23523c4bcf7539adc9c3a70688e46f6cd5d78811bc395f1b03ca18057f4c42922fe533732142e8bbfa1658e12e1e91dcbb71a805f3cc57989409d977a5f37919af6b979b272fb9806fbc9cde63b363ca9425338e9b8b44c8b875d5e7f7f62bbd60f4448d38a60dfb771e98338f304530be482de7d0e02f5a59c7e",
+      "fullLengthMarkIn": 352360,
+      "fullLengthMarkOut": 489000,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=352.36&end=489.0",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=352.36&end=489.0"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=352.36&end=489.0",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=352.36&end=489.0"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=352.36&end=489.0",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=352.36&end=489.0"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=352.36&end=489.0",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=352.36&end=489.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10272364",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272364",
+      "title": "La condamnation et la démission du cardinal Barbarin pourraient marquer la fin du silence de l'Église. Analyse d'Anne Fournier.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272363.image/16x9",
+      "imageTitle": "La condamnation et la démission du cardinal Barbarin pourraient marquer la fin du silence de l'Église. Analyse d'Anne Fournier. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 87200,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 3,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "La condamnation et la démission du cardinal Barbarin pourraient marquer la fin du silence de l'Église. Analyse d'Anne Fournier.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272364",
+        "ns_st_el": "87200",
+        "ns_st_cl": "87200",
+        "ns_st_sl": "87200",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "La condamnation et la démission du cardinal Barbarin pourraient marquer la fin du silence de l'Église. Analyse d'Anne Fournier.",
+        "media_type": "Video",
+        "media_segment_id": "10272364",
+        "media_episode_length": "87",
+        "media_segment_length": "87",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272364"
+      },
+      "eventData": "$3c918bb36bd915b9$22f0ed2a2a1141555a9f9ae8691e5697ccf43198c77ee816a98ceba91d3ebbbdcbd40cae998e9f1d9028d06363258255b10aa4f5282990e8ae5c8cc3011c0776bb01f80767349556ec0cb02b3052c7ef295260ef0866f73015dc8765cec1fcca8d99ba497b70ba5fce97a0ee1253e775710ac7fea80d98206c03fd362d701da994400f12ff72d6bff20c8e30134c74b368fb2152e7b3c4750272a0c3543df6e2813b96614a1f86e7ac412823f0a9803f90108b42aa90ed8cf1aa3006c09981797a707badf39a5211dfb39be7c6d081e312191bfca6403883bb879658cae2efd3d5359321c26e3ce5e1281d9053c45ba9f5b259279ebca8243a27a92ded20f75f742abbc4e9b3b7f0b35e679a2b9d6a80af50ea11a6ddf2fac8b4b08862dc02193e5dec502675ee6b9a78a3e0087bc63a65c29d352ac65f4e029c7c47463531ca",
+      "fullLengthMarkIn": 489000,
+      "fullLengthMarkOut": 576200,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=489.0&end=576.2",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=489.0&end=576.2"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=489.0&end=576.2",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=489.0&end=576.2"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=489.0&end=576.2",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=489.0&end=576.2"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=489.0&end=576.2",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=489.0&end=576.2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10274122",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10274122",
+      "title": "Procès Barbarin: le verdict crée une onde de choc au Vatican. Les précisions de Valérie Dupont à Rome.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10274121.image/16x9",
+      "imageTitle": "Procès Barbarin: le verdict crée une onde de choc au Vatican. Les précisions de Valérie Dupont à Rome. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 82920,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 4,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Procès Barbarin: le verdict crée une onde de choc au Vatican. Les précisions de Valérie Dupont à Rome.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10274122",
+        "ns_st_el": "82920",
+        "ns_st_cl": "82920",
+        "ns_st_sl": "82920",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Procès Barbarin: le verdict crée une onde de choc au Vatican. Les précisions de Valérie Dupont à Rome.",
+        "media_type": "Video",
+        "media_segment_id": "10274122",
+        "media_episode_length": "83",
+        "media_segment_length": "83",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10274122"
+      },
+      "eventData": "$ec112de7fbf8477c$4ead5cd7a8b64d31b8cfb6fcc8d3d555acb323275fc535bc5391a5b07fa0c07c5035f56a6b6d40e4ef9dd82e6f3496df0f40dec08aeaa61af9569ce58bd914f6fb575d1298aa81cb141f2a5a8a8a7e18432aa890d60ecee24c11a7a1a7eaffc66db4da7ac87b1ee95f99ee627c66099117ef81141f4df4ebe66bd1c451ccf0b83220840e4e8ba10cd6c0bb3bc6019ee537d2063268637f0c3c4335caf1d89a422d8a85a901c35abdaa76f39526d51cbafb7fec5a5e7dc58bb60af3ea34218dd7b71a256fd73b2b0c87c4a46ff031f762c715f80db14f03db2694158dd0cd807b36071b20e4970c75b46994a7819edb839d90d9a4034e7f8e97106e09a7aa7371b921a6ce191526411013f5323c7ce327ad4bd814cecd375a8b4d9b091e4dac2239d118f7dc301561b31114c0b1a22411ad19496fddecb2de5c58a0ff6d94067c",
+      "fullLengthMarkIn": 576200,
+      "fullLengthMarkOut": 659120,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=576.2&end=659.12",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=576.2&end=659.12"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=576.2&end=659.12",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=576.2&end=659.12"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=576.2&end=659.12",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=576.2&end=659.12"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=576.2&end=659.12",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=576.2&end=659.12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10272366",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272366",
+      "title": "Acquittement du policier valaisan ayant roulé à 110 km/h sur un tronçon limité à 50. À Genève, les tribunaux sont plus punitifs.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272365.image/16x9",
+      "imageTitle": "Acquittement du policier valaisan ayant roulé à 110 km-h sur un tronçon limité à 50. À Genève, les tribunaux sont plus punitifs. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 162440,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 5,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Acquittement du policier valaisan ayant roulé à 110 km/h sur un tronçon limité à 50. À Genève, les tribunaux sont plus punitifs.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272366",
+        "ns_st_el": "162440",
+        "ns_st_cl": "162440",
+        "ns_st_sl": "162440",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Acquittement du policier valaisan ayant roulé à 110 km/h sur un tronçon limité à 50. À Genève, les tribunaux sont plus punitifs.",
+        "media_type": "Video",
+        "media_segment_id": "10272366",
+        "media_episode_length": "162",
+        "media_segment_length": "162",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272366"
+      },
+      "eventData": "$0f8c7d52f9c2f88b$b94cf82afc94497f81ab318db08176ab3cbc3b2c68fd7f4528f0ccf64c12c034d195b01b79e95d2bbfa3577ef6abe161f5f8b564df23c447c3d83834a6a475da455162388869c5166281bc0d4f864eff795a5c957befc245fdf2e1d43a624154f126d810bda9247535ca9acf7c0c4082c88cf1846ed9009f4a051031530443024ccaf918ea6ba6ae34307a65c0f49613784d0404a95b842a48a852decca50969a28a99fe70db73a286348a7f4f9c6616f206be2303fed0c5b5a4d79141909f6d84f3506a095b48177376fd32299fafed43fc16f70babc65bb7a9df2dd6b10b5b3198a671ca0d3b720f6464515a87fe865dd09d32b2843e1a41bea657d7c40e4b09434c12df0c6572fa0b8bb2f34a277fef9a74ce52998e33cab80919cba30411f22b5b7e99df6cb80aad3b689d5e47d27cae4c860b494fb12be52179c2283f57",
+      "fullLengthMarkIn": 659120,
+      "fullLengthMarkOut": 821560,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=659.12&end=821.56",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=659.12&end=821.56"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=659.12&end=821.56",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=659.12&end=821.56"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=659.12&end=821.56",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=659.12&end=821.56"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=659.12&end=821.56",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=659.12&end=821.56"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10272368",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272368",
+      "title": "Le Conseil des États a accepté d'augmenter l'enveloppe du rail. Le projet de ligne entre Neuchâtel et La Chaux-de-Fonds a été retenu.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272367.image/16x9",
+      "imageTitle": "Le Conseil des États a accepté d'augmenter l'enveloppe du rail. Le projet de ligne entre Neuchâtel et La Chaux-de-Fonds a été retenu. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 137480,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 6,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Le Conseil des États a accepté d'augmenter l'enveloppe du rail. Le projet de ligne entre Neuchâtel et La Chaux-de-Fonds a été retenu.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272368",
+        "ns_st_el": "137480",
+        "ns_st_cl": "137480",
+        "ns_st_sl": "137480",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Le Conseil des États a accepté d'augmenter l'enveloppe du rail. Le projet de ligne entre Neuchâtel et La Chaux-de-Fonds a été retenu.",
+        "media_type": "Video",
+        "media_segment_id": "10272368",
+        "media_episode_length": "137",
+        "media_segment_length": "137",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272368"
+      },
+      "eventData": "$cf17ea0c99168538$ff3398ab604f04e07a315d6656b48e77a097a4a2fc3c7a30e496dbd2b288e09272ff67146705b770b097c9156f5097be571d7f00f4b3b9d8abab0c6b57b428da8f5b17e351d091fd41dc62e648309d6d8691f3d268ed185f51692745cce3c1dc70277ab006c78219562cd16077ae8a513583b1510c12c4bec7590ba7ae455b0e425e0de64a95848c4b7d9d4a8816a7de3d47235ba87761580c5f600b2ae6255d9ee9f0fb683d4cfc04d2aead3a1af1c4a1d7c4e42edc9c41954ede5bd8001168240e85cd68691540143ce7ea776a2534b5e052b6d889e1a359558517e79a8a2c0bfece5809a84bd4f840ee8e59928f3a14f55dfc28e68e2098e010cfda3745a2ff94b5afef35a7581a72557593f4b6e51da10bbc4077826dc6fe8bf122fd61972ff1acea4cdeea6acf441eeeae0e1966a932f6db7192175125658d2572d3d3c6",
+      "fullLengthMarkIn": 821560,
+      "fullLengthMarkOut": 959040,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=821.56&end=959.04",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=821.56&end=959.04"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=821.56&end=959.04",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=821.56&end=959.04"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=821.56&end=959.04",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=821.56&end=959.04"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=821.56&end=959.04",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=821.56&end=959.04"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10272370",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272370",
+      "title": "Par conviction féministe, le président du Conseil d'État genevois a demandé à la chancelière d'assumer le discours d'ouverture du Salon de l'auto.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272369.image/16x9",
+      "imageTitle": "Par conviction féministe, le président du Conseil d'État genevois a demandé à la chancelière d'assumer le discours d'ouverture du Salon de l'auto. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 126400,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 7,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Par conviction féministe, le président du Conseil d'État genevois a demandé à la chancelière d'assumer le discours d'ouverture du Salon de l'auto.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272370",
+        "ns_st_el": "126400",
+        "ns_st_cl": "126400",
+        "ns_st_sl": "126400",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Par conviction féministe, le président du Conseil d'État genevois a demandé à la chancelière d'assumer le discours d'ouverture du Salon de l'auto.",
+        "media_type": "Video",
+        "media_segment_id": "10272370",
+        "media_episode_length": "126",
+        "media_segment_length": "126",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272370"
+      },
+      "eventData": "$d5e428013b716e58$a59d8aca44565dff6e2741f4397be998cc254a70cda062bdb0ce51f7fe2b90b4c763a992b105c5322b77e5b2e1a21ee0738d8f21191f71852619610aff1ded9d227c8105c0fabfb9abb8b7ca1daac3657f611a868e510a7004ce9011a24b6dd1a963c0dbafb4e1d6a5207527268a0c84e2ea63773ac77352d81b0ebcc37dc7ab1b8398c3402cbecb59f2f8f09c8e818ff4a85c02c6b5ce214a7b485b019e862c117b4f0fe3be9c4a63e4392b1beb8c3268b41ccaab9ee17530f4ff8939c4e74b06cddd2f209c3689ad630b9426a5e4a5aba7ffeb54bfb51639d1cd3cba3128f9c42d5c73a9842034048cd3773fb29ea8cca8b0acf6818dd3c0056d680091ada19b25fc8554f4d304bc8cff3c540f62214b5af48674d95da54cb7ddcd2d5847fd1a99e1aa7c25808dc8099c8f40ac16522cd1774cbd86d3d7e255b43c39508672",
+      "fullLengthMarkIn": 959040,
+      "fullLengthMarkOut": 1085440,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=959.04&end=1085.44",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=959.04&end=1085.44"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=959.04&end=1085.44",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=959.04&end=1085.44"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=959.04&end=1085.44",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=959.04&end=1085.44"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=959.04&end=1085.44",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=959.04&end=1085.44"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10272372",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272372",
+      "title": "En Suisse, l'utilisation des impôts varie fortement d'une commune à l'autre. Les explications de Julien Chiffelle.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272371.image/16x9",
+      "imageTitle": "En Suisse, l'utilisation des impôts varie fortement d'une commune à l'autre. Les explications de Julien Chiffelle. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 105120,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 8,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "En Suisse, l'utilisation des impôts varie fortement d'une commune à l'autre. Les explications de Julien Chiffelle.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272372",
+        "ns_st_el": "105120",
+        "ns_st_cl": "105120",
+        "ns_st_sl": "105120",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "En Suisse, l'utilisation des impôts varie fortement d'une commune à l'autre. Les explications de Julien Chiffelle.",
+        "media_type": "Video",
+        "media_segment_id": "10272372",
+        "media_episode_length": "105",
+        "media_segment_length": "105",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272372"
+      },
+      "eventData": "$9f0799a4ebc5620d$bb62c9de4077d151ec6e9ea960ad4f7c340c5313aea592b2a276a15a2eed5b93c63ea1cf47ffee23c67eccfb34a989d14ec281c36267bcbf8b3d9454587a4802c4c02dca4f1e49423ea4edfd17eb4fd5f6dcd56a4ac0059a769970454774f4d63501d7677c70e43e12186b59efb616f11a9eedcacaa5e73d46ee4c0dd2481397edfc25697084a9258da676b6cf9c5d61c636f88c61f22c3638e048144aaa552890b8e29e672d492a38151c4328e57b2fb0b4f6435efd393fc68213390f138e6fae2b55a65030754c9745268caefa62e2e0418d27f8faf2fd79d19aa0e52009b35c2bb0dd2fe63132e9046cd2003a7076fba5b92ed7fc5511d60fbebc36fa0c6d0cdc26ccad6f219fd5e8b8f568e6b7310be6a9bb2281eb69affe938d52de99c0334c44f97e7ba949e3c12788715687fa31e4da2aa9255c80f6cc1202f4c1923f",
+      "fullLengthMarkIn": 1085440,
+      "fullLengthMarkOut": 1190560,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1085.44&end=1190.56",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1085.44&end=1190.56"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1085.44&end=1190.56",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1085.44&end=1190.56"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1085.44&end=1190.56",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1085.44&end=1190.56"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1085.44&end=1190.56",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1085.44&end=1190.56"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10272374",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272374",
+      "title": "L'utilisation des impôts pour le sport et les loisirs varie selon les communes. Exemples à Sion, Neuchâtel et Fribourg.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272373.image/16x9",
+      "imageTitle": "L'utilisation des impôts pour le sport et les loisirs varie selon les communes. Exemples à Sion, Neuchâtel et Fribourg. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 172760,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 9,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "L'utilisation des impôts pour le sport et les loisirs varie selon les communes. Exemples à Sion, Neuchâtel et Fribourg.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272374",
+        "ns_st_el": "172760",
+        "ns_st_cl": "172760",
+        "ns_st_sl": "172760",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "L'utilisation des impôts pour le sport et les loisirs varie selon les communes. Exemples à Sion, Neuchâtel et Fribourg.",
+        "media_type": "Video",
+        "media_segment_id": "10272374",
+        "media_episode_length": "173",
+        "media_segment_length": "173",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272374"
+      },
+      "eventData": "$2cb358630407917a$3519f0f7ab4bdc937cbe1409201f6494a840fd71333a4c4171aa48bb3a3cd5554055ab6b12d07bd1fe26f94027d296a7f66812012c293c3fb6c47de2c09b03f549f76dd15e03f4cff195c6803157cd62128e848b5e403295b86954903694ebb1cc55be146c9e9f4595724cdaa4998e53b2ac797d1e22867134deb32a1a46bf1eca12ad4d051acb30d0d72b64223d02e06f6d4e06c0716626599c250f75de025707e08dee86c0277ea2b9ec6f935aa1a8268958c755f9a82416fdcd1da1109ad9a4e643406bd08cac147f7e24dd4175cf62fab626d066327f28d29533145192736a981bb9f530300e9e119c7afa7e11921f7d5a44fbe264ce82eeb5a6df4981d9d525ae6d707a62dbf3a2a83891cb20b98c7eb57b950b4b1b90ce924b7a9536381134407130a690d6b0b4ccc3ea29bbe3e670acdc7d7253608d6e04055d0c9a78",
+      "fullLengthMarkIn": 1190560,
+      "fullLengthMarkOut": 1363320,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1190.56&end=1363.32",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1190.56&end=1363.32"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1190.56&end=1363.32",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1190.56&end=1363.32"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1190.56&end=1363.32",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1190.56&end=1363.32"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1190.56&end=1363.32",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1190.56&end=1363.32"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10272376",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272376",
+      "title": "Anne-Catherine Ruchonnet est la première experte viticole de la Confrérie des vignerons.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272375.image/16x9",
+      "imageTitle": "Anne-Catherine Ruchonnet est la première experte viticole de la Confrérie des vignerons. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 135440,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 10,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Anne-Catherine Ruchonnet est la première experte viticole de la Confrérie des vignerons.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272376",
+        "ns_st_el": "135440",
+        "ns_st_cl": "135440",
+        "ns_st_sl": "135440",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Anne-Catherine Ruchonnet est la première experte viticole de la Confrérie des vignerons.",
+        "media_type": "Video",
+        "media_segment_id": "10272376",
+        "media_episode_length": "135",
+        "media_segment_length": "135",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272376"
+      },
+      "eventData": "$4e5a835978cf42bf$48c7e6c0d1a90b47eaee6f25f815098e6218d1d2dda34a6254d59af340284a980640b8abc7f721f7fe4909098ebb058e27805c273f905a11e4dfb5c19fd7878c931e1ca879c8a6b38be8300e47835df36ddd88fec27ca1accca7f5450980bc0e51da1482771c2c99c4b0906d7d2ac71c82e03c5dbd1e23b2493a318556a186c621da225aecf74f01b1a6185ae3526888052639a7197a633a8157ab3830836da70286dcba329317177f44b28825f012c45f045332d6b9ae2429dba0b33bc014e3a95b61513005daca84da09447965875bba0d7e574a574f50d629ebd06e4272fcf38cd3153f6d5156789daa9c6497803c8c997a260c82acb8d4750eff409a9ad4b73c276e7c024eb9caa5ea1d28cfe45ba2f7cadd7246c1d87d37bfb9ea4e75c25ee11c0141fc61a52cc8cc267643dd0e73482bddff619bdaa2952fc6744457fd",
+      "fullLengthMarkIn": 1363320,
+      "fullLengthMarkOut": 1498760,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1363.32&end=1498.76",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1363.32&end=1498.76"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1363.32&end=1498.76",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1363.32&end=1498.76"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1363.32&end=1498.76",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1363.32&end=1498.76"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1363.32&end=1498.76",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1363.32&end=1498.76"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10272378",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272378",
+      "title": "En Espagne, de plus en plus d'hommes se revendiquent féministes. Une remise en cause de la masculinité traditionnelle.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272377.image/16x9",
+      "imageTitle": "En Espagne, de plus en plus d'hommes se revendiquent féministes. Une remise en cause de la masculinité traditionnelle. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 139280,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 11,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "En Espagne, de plus en plus d'hommes se revendiquent féministes. Une remise en cause de la masculinité traditionnelle.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272378",
+        "ns_st_el": "139280",
+        "ns_st_cl": "139280",
+        "ns_st_sl": "139280",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "En Espagne, de plus en plus d'hommes se revendiquent féministes. Une remise en cause de la masculinité traditionnelle.",
+        "media_type": "Video",
+        "media_segment_id": "10272378",
+        "media_episode_length": "139",
+        "media_segment_length": "139",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272378"
+      },
+      "eventData": "$cbe30b75159e775b$05920805b66d821cc92c9fab538d16693ddaf069088294a855846703cc9d0c0ae1429783a7f293cd13560fea8f299761f061ddd118ccd2e5ea77225e585cc15de78d710f2c66ea4f58cb067a7b5a11162819c2912b2cee75423350f3ba4fdfdbb7d5c299d47e34e0751d178fb7fd771ce4c876f0a72ffa7beffbb0e2202d44346752f919097f2136c383a58592b83e152af25bf0e15fc81c2bf424f4daa84b4023030e022d7b90eb01d7b814405f8b8d117f51ef2cd667776297e7153efb0846bec77ac4b1c318b5a21b28d511c0700abb494850e052928bb8c7421efff9b318a9634f3db2158372db119b9890402e2a56d4092bd29d6063b958b874c4fe52177e204feac89e4540bd9752437a7f87db7f9c23abb0a5e52b9d84bdddd68f116e1e20c8d04a52e976cad00d76af897531035e1629f24cf85bec5be805e7badae7",
+      "fullLengthMarkIn": 1543000,
+      "fullLengthMarkOut": 1682280,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1543.0&end=1682.28",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1543.0&end=1682.28"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1543.0&end=1682.28",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1543.0&end=1682.28"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1543.0&end=1682.28",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1543.0&end=1682.28"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1543.0&end=1682.28",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1543.0&end=1682.28"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10272380",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272380",
+      "title": "La défaite du PSG en Ligue des Champions va peser lourd sur les comptes du club.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272379.image/16x9",
+      "imageTitle": "La défaite du PSG en Ligue des Champions va peser lourd sur les comptes du club. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 124800,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": false,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 12,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "La défaite du PSG en Ligue des Champions va peser lourd sur les comptes du club.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272380",
+        "ns_st_el": "124800",
+        "ns_st_cl": "124800",
+        "ns_st_sl": "124800",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "La défaite du PSG en Ligue des Champions va peser lourd sur les comptes du club.",
+        "media_type": "Video",
+        "media_segment_id": "10272380",
+        "media_episode_length": "125",
+        "media_segment_length": "125",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "true",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272380"
+      },
+      "eventData": "$306f85e5f706b8fc$7560dd278a8ade1f912824c1c83de423e52bd0059c15aecffaa31a09498b0279c5430a73538de47919015bacf2f003117e1ba3c94b2f20fc218896a7ba9027ef0bdb38bab7134ea938334e6432f6a0ce231dd7ead16f2f098c8892b8419a1d703cf38b91b3694e60f0995580cfa5a9dafc33157cd8f25118027f40ce814c41702fa05ec101dc71d3e736eaf1f232b03f5707f2750d7e45a1ce0d042be3491adf1867b2798c4d426230091fe082eb1d446c30caa54bc08912bc074eb6f1e6cd4e6308b9a37dadda8df85b53458c34458eddf8b3d75dbcc92a1590c93ab95eec78e802f41c5898ab32600793a90902297a9b44aa6d426b16f3f7c23e506b49519b0844665a0524c31667e386b56a08c715fbe0fb1228b4fe409d3931ecb8e8e63d6db985f0ac09a1c97f7c9bf1b32b525a325e41cbbb874c1f41136f8fb1e4ca72",
+      "fullLengthMarkIn": 1682280,
+      "fullLengthMarkOut": 1807080,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1682.28&end=1807.08",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1682.28&end=1807.08"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1682.28&end=1807.08",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1682.28&end=1807.08"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1682.28&end=1807.08",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1682.28&end=1807.08"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1682.28&end=1807.08",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=1682.28&end=1807.08"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10272421",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10272421",
+      "title": "Les jeunes et les personnes malades psychiquement devront être mieux intégrés au marché du travail, selon la réforme de l'AI.",
+      "imageUrl": "https://www.rts.ch/2019/03/08/12/59/10272420.image/16x9",
+      "imageTitle": "Les jeunes et les personnes malades psychiquement devront être mieux intégrés au marché du travail, selon la réforme de l'AI. [RTS]",
+      "type": "CLIP",
+      "date": "2019-03-07T19:30:00+01:00",
+      "duration": 141720,
+      "validFrom": "2019-03-07T20:09:00+01:00",
+      "playableAbroad": true,
+      "displayable": true,
+      "fullLengthUrn": "urn:rts:video:10272382",
+      "position": 13,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Les jeunes et les personnes malades psychiquement devront être mieux intégrés au marché du travail, selon la réforme de l'AI.",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10272421",
+        "ns_st_el": "141720",
+        "ns_st_cl": "141720",
+        "ns_st_sl": "141720",
+        "srg_mgeobl": "false",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "to",
+        "ns_st_cmt": "fc"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Les jeunes et les personnes malades psychiquement devront être mieux intégrés au marché du travail, selon la réforme de l'AI.",
+        "media_type": "Video",
+        "media_segment_id": "10272421",
+        "media_episode_length": "142",
+        "media_segment_length": "142",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "false",
+        "media_is_web_only": "false",
+        "media_production_source": "produced.for.broadcasting",
+        "media_urn": "urn:rts:video:10272421"
+      },
+      "eventData": "$c989e1d08ec416e1$6a77483201011ca381688a3dfea316efefcbfd3fafcff508f9a24c95131cc9560039d03d2cca0e18708eb8bc9f4ed8d43ae8e4e055a56dc9005cd5db3ae1873770f73548a83abdc526eaffc5d4201993a737bdb83044117400ee005ec9f26cb2064f4f0675aeae263c0f6e7bf680e6b4375e3a9adfd1f3d5e906905533e2ddf09dbeae1f11ceb172b6dfecfa12a321248a7802f7abaefa347fa2ce45a54fd200102e7949d3d6ddf8427c07d8d02bdeaeba6f578a19e6ea20d2f339f1deb3004b8f7ccbd101cd6186dd7c58e1658ef52b7aa73beddd0cdb659fa235887a035bf7843718320532358874158b96f1d79cfba21d7395db74ba2f6f59be67a0b7e9ac14bbe14d0f4bfe0123d41e7ce3d36e97459b99ca61c76dbfd2510d9e98f355ad0b9deb0545d53bab29b8c1ed2ed941129f26dcea91282b9b5e18f207c38e334c",
+      "fullLengthMarkIn": 85840,
+      "fullLengthMarkOut": 227560,
+      "resourceList": [
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=85.84&end=227.56",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=85.84&end=227.56"
+          }
+        },
+        {
+          "url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=85.84&end=227.56",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodww-vh.akamaihd.net/i/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/master.m3u8?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=85.84&end=227.56"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=85.84&end=227.56",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=85.84&end=227.56"
+          }
+        },
+        {
+          "url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=85.84&end=227.56",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "NONE",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodww-vh.akamaihd.net/z/journ-19h30/2019/journ-19h30_20190307_full_06bc5b91-6448-46dc-af2b-e62c4b8a00e3-,301k,101k,701k,.mp4.csmil/manifest.f4m?caption=journ-19h30/2019/journ-19h30_20190307_full_500048746.m3u8:fra:Fran%C3%A7ais&start=85.84&end=227.56"
+          }
+        }
+      ]
+    }
+  ],
+  "topicList": [
+    {
+      "id": "908",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:908",
+      "title": "19h30"
+    },
+    {
+      "id": "904",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:904",
+      "title": "Vidéos"
+    },
+    {
+      "id": "665",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:665",
+      "title": "Info"
+    },
+    {
+      "id": "622",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:622",
+      "title": "rts.ch"
+    }
+  ],
+  "analyticsData": {
+    "srg_pr_id": "10156816",
+    "srg_plid": "105932",
+    "ns_st_pl": "19h30",
+    "ns_st_pr": "19h30 du 07.03.2019",
+    "ns_st_dt": "2019-03-07",
+    "ns_st_li": "0",
+    "ns_st_stc": "8002",
+    "ns_st_st": "RTS Un",
+    "ns_st_tpr": "258649937812",
+    "ns_st_en": "10156816",
+    "ns_st_ce": "1",
+    "ns_st_cdm": "to",
+    "ns_st_cmt": "fc",
+    "srg_unit": "RTS",
+    "srg_c1": "full",
+    "srg_c2": "video_info_journal-19h30",
+    "srg_c3": "RTS Un",
+    "srg_tv_id": "258649937812"
+  },
+  "analyticsMetadata": {
+    "media_episode_id": "10156816",
+    "media_show_id": "105932",
+    "media_show": "19h30",
+    "media_episode": "19h30 du 07.03.2019",
+    "media_is_livestream": "false",
+    "media_full_length": "full",
+    "media_enterprise_units": "RTS",
+    "media_joker1": "full",
+    "media_joker2": "video_info_journal-19h30",
+    "media_joker3": "RTS Un",
+    "media_is_web_only": "false",
+    "media_production_source": "produced.for.broadcasting",
+    "media_tv_id": "258649937812",
+    "media_thumbnail": "https://www.rts.ch/2019/03/08/12/59/10272381.image/16x9/scale/width/344",
+    "media_publication_date": "2019-03-07",
+    "media_publication_time": "19:30:00",
+    "media_publication_datetime": "2019-03-07T19:30:00+01:00",
+    "media_content_group": "19h30,Vidéos,Info,rts.ch",
+    "media_channel_id": "143932a79bb5a123a646b68b1d1188d7ae493e5b",
+    "media_channel_name": "RTS Un",
+    "media_since_publication_d": "5",
+    "media_since_publication_h": "142"
+  }
+}
