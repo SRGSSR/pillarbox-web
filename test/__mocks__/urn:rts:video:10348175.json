@@ -1,0 +1,1579 @@
+{
+  "chapterUrn": "urn:rts:video:10348175",
+  "episode": {
+    "id": "10348148",
+    "title": "RTS Sport",
+    "publishedDate": "2019-04-07T21:00:00+02:00",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/8b32fd87-459e-40f1-9519-ba0cbb01f34e/NOT_SPECIFIED.jpg"
+  },
+  "show": {
+    "id": "9659332",
+    "vendor": "RTS",
+    "transmission": "TV",
+    "urn": "urn:rts:show:tv:9659332",
+    "title": "RTS Sport",
+    "imageUrl": "https://ws.srf.ch/asset/image/audio/8b32fd87-459e-40f1-9519-ba0cbb01f34e/NOT_SPECIFIED.jpg",
+    "topicList": [
+      {
+        "id": "912",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:912",
+        "title": "Sport"
+      },
+      {
+        "id": "622",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:622",
+        "title": "rts.ch"
+      }
+    ]
+  },
+  "chapterList": [
+    {
+      "id": "10348158",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10348158",
+      "title": "Curling, les équipes Suisses",
+      "description": "Sport Dimanche",
+      "imageUrl": "https://www.rts.ch/2019/04/07/22/28/10348149.image/16x9",
+      "imageTitle": "Curling, les équipes Suisses [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-07T18:25:51+02:00",
+      "duration": 297240,
+      "validFrom": "2019-04-07T19:28:00+02:00",
+      "playableAbroad": false,
+      "displayable": true,
+      "position": 0,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "Curling, les équipes Suisses",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10348158",
+        "ns_st_el": "297240",
+        "ns_st_cl": "297240",
+        "ns_st_sl": "297240",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "eo",
+        "ns_st_cmt": "ec"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Curling, les équipes Suisses",
+        "media_type": "Video",
+        "media_segment_id": "10348158",
+        "media_episode_length": "297",
+        "media_segment_length": "297",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "true",
+        "media_is_web_only": "true",
+        "media_production_source": "produced.for.web",
+        "media_urn": "urn:rts:video:10348158"
+      },
+      "eventData": "$fa2f0d1f0b556c35$d5b4d311fd741ccf4600655db2ff1e695fe492ed08c2a967e631c13b4e2f50d936a49d987270b989e4a27fe841660dabd88815ef932f7ab8ccb51217a3862d554ece19b2f4ffe3188dc78eff6a0a6c1bfa60b89ff36e99d92adbfc9770487f57c8251a9a7365ffa60c1cf8ca461f1ab11fa78c2e226b8e07ecd951e80c5a9ef27f985f4aae8ff28130de4d770f38f47c8077fe5095fe0731542fd96317f8beabd434875e2db7656a81bd63c4a60bf3d68180cc3fe3cb03f9e8ee67ebba88e12391f967a98e9c9b4794b79460bed9cc9463b7c495ab77955464be7c9146aa7db939f47a7a5b26cfe791c1a3651e2bd6c52d08fb23ba5531575b9c7d372785fe77",
+      "resourceList": [
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=133.0&end=430.24",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=133.0&end=430.24"
+          }
+        },
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=133.0&end=430.24",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=133.0&end=430.24"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=133.0&end=430.24",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=133.0&end=430.24"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=133.0&end=430.24",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=133.0&end=430.24"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10348160",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10348160",
+      "title": "Cyclisme, Tour des Flandres",
+      "description": "Sport Dimanche",
+      "imageUrl": "https://www.rts.ch/2019/04/07/22/28/10348159.image/16x9",
+      "imageTitle": "Cyclisme, Tour des Flandres [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-07T18:25:51+02:00",
+      "duration": 134040,
+      "validFrom": "2019-04-07T19:28:00+02:00",
+      "playableAbroad": false,
+      "displayable": true,
+      "position": 1,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "Cyclisme, Tour des Flandres",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10348160",
+        "ns_st_el": "134040",
+        "ns_st_cl": "134040",
+        "ns_st_sl": "134040",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "eo",
+        "ns_st_cmt": "ec"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Cyclisme, Tour des Flandres",
+        "media_type": "Video",
+        "media_segment_id": "10348160",
+        "media_episode_length": "134",
+        "media_segment_length": "134",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "true",
+        "media_is_web_only": "true",
+        "media_production_source": "produced.for.web",
+        "media_urn": "urn:rts:video:10348160"
+      },
+      "eventData": "$c817276c198c0bf3$8a446bbb035e5b46d0b6e74ea7c1c2d15b6301867ffa7dc537d9248ac246e4e0e67066c0fc4fa972ea5bd0393594c57ccd9fc4663644f19b86a919f20f4b596460578607211bcc928636b4de206732043959f3f4292a1c7d90002f39ec37c8375688d980000515c1112537bf505c34c9ac7f388e4c57198cb48c1c77cf5590a1f03a423ae3d949e212a0126b4994137a5ce2017a3c50303d8d2576b2a9dbafb9079ca4a105d2c63437316a04e7b06a99eed0bc275885804d2e60cf3b4f9401069452448025fce644a1da149d6dfb94e947772c7db8231f95e1f1ded2cfb13264e6c1beebca991c886cf6a0be58f84ace0a4e38e56decfd89595750a84ae12a6a",
+      "resourceList": [
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=430.24&end=564.28",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=430.24&end=564.28"
+          }
+        },
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=430.24&end=564.28",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=430.24&end=564.28"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=430.24&end=564.28",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=430.24&end=564.28"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=430.24&end=564.28",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=430.24&end=564.28"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10348162",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10348162",
+      "title": "Football, Xamax - St gall ( 0-1)",
+      "description": "Sport Dimanche",
+      "imageUrl": "https://www.rts.ch/2019/04/07/22/28/10348161.image/16x9",
+      "imageTitle": "Football, Xamax - St gall ( 0-1) [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-07T18:25:51+02:00",
+      "duration": 143920,
+      "validFrom": "2019-04-07T19:28:00+02:00",
+      "playableAbroad": false,
+      "displayable": true,
+      "position": 2,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "Football, Xamax - St gall ( 0-1)",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10348162",
+        "ns_st_el": "143920",
+        "ns_st_cl": "143920",
+        "ns_st_sl": "143920",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "eo",
+        "ns_st_cmt": "ec"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Football, Xamax - St gall ( 0-1)",
+        "media_type": "Video",
+        "media_segment_id": "10348162",
+        "media_episode_length": "144",
+        "media_segment_length": "144",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "true",
+        "media_is_web_only": "true",
+        "media_production_source": "produced.for.web",
+        "media_urn": "urn:rts:video:10348162"
+      },
+      "eventData": "$3f45052ed4e91739$58dc255568560efcaa6fddbc987f0b492c200a06708137049c9475b1a7ca66a8155e6c8f3aaa21568da2a1363c044cb78c5cd6c37b5511f6c426ccb118d9bd065870695e2b98c27b748fb795547d927fa07755d8e5d52616f77a4fe7ebff606e5e3ae3274ce35bc1baef30ac7948a150a74287862703887f9b512e5732425b0b46a8f57dcff692aee8be0cdba55d0a40292212a367e5657c9d5602dc9cae4a2b02bb830747813625df22b4c97e5373b858a1b3cb3b84a49339c6c463d5c7a3bbd0d4ef2135c64c6bb46a0d6372a9db638ff823088454f2abe55c8e3849c72694d95e24f8feaeb4d28d9974b2092c6da566a6a3579e60d42a6362003b22b4517e",
+      "resourceList": [
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=598.2&end=742.12",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=598.2&end=742.12"
+          }
+        },
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=598.2&end=742.12",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=598.2&end=742.12"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=598.2&end=742.12",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=598.2&end=742.12"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=598.2&end=742.12",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=598.2&end=742.12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10348164",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10348164",
+      "title": "Football, Sion - Lucerne (2-2)",
+      "description": "Sport Dimanche",
+      "imageUrl": "https://www.rts.ch/2019/04/07/22/28/10348163.image/16x9",
+      "imageTitle": "Football, Sion - Lucerne (2-2) [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-07T18:25:51+02:00",
+      "duration": 256960,
+      "validFrom": "2019-04-07T19:28:00+02:00",
+      "playableAbroad": false,
+      "displayable": true,
+      "position": 3,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "Football, Sion - Lucerne (2-2)",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10348164",
+        "ns_st_el": "256960",
+        "ns_st_cl": "256960",
+        "ns_st_sl": "256960",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "eo",
+        "ns_st_cmt": "ec"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Football, Sion - Lucerne (2-2)",
+        "media_type": "Video",
+        "media_segment_id": "10348164",
+        "media_episode_length": "257",
+        "media_segment_length": "257",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "true",
+        "media_is_web_only": "true",
+        "media_production_source": "produced.for.web",
+        "media_urn": "urn:rts:video:10348164"
+      },
+      "eventData": "$ef9c8a01f1424821$f779830509bc78fd79216f0a5ce78cb0bcaedd2e6cf3498e99bc65bac877e4f29cdd4ef68ae2b50db8632663ec114a9cca6c6ec17baec8c922bb71a68818306f4e9807282ce5d2d3d9aefdc2fd495604708103e084e33edff8caa227afeeb10fdd35b10bf379116b577606d04c1a23b3c38ac065933635da3e4204c1151c916932cbc01515f4af0c5491b80fcc68b5f64d6b5b4f9f5cbad9f5c8b8e1472dc39e4b3c3548a17748a0ef73c0e134fab898ae1cec8668e64aa0fa064296800766d0b74494235f0e6a4af4b2174e4e34156a022583340600a86be6870e65f51cce4b43307554a30e9407fa21e2369c9042722368881ff969f7df665cc2b525b33f59",
+      "resourceList": [
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=742.12&end=999.08",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=742.12&end=999.08"
+          }
+        },
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=742.12&end=999.08",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=742.12&end=999.08"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=742.12&end=999.08",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=742.12&end=999.08"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=742.12&end=999.08",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=742.12&end=999.08"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10348166",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10348166",
+      "title": "Football, Autres matches et tableaux des scores",
+      "description": "Sport Dimanche",
+      "imageUrl": "https://www.rts.ch/2019/04/07/22/28/10348165.image/16x9",
+      "imageTitle": "Football, Autres matches et tableaux des scores [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-07T18:25:51+02:00",
+      "duration": 82840,
+      "validFrom": "2019-04-07T19:28:00+02:00",
+      "playableAbroad": false,
+      "displayable": true,
+      "position": 4,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "Football, Autres matches et tableaux des scores",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10348166",
+        "ns_st_el": "82840",
+        "ns_st_cl": "82840",
+        "ns_st_sl": "82840",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "eo",
+        "ns_st_cmt": "ec"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Football, Autres matches et tableaux des scores",
+        "media_type": "Video",
+        "media_segment_id": "10348166",
+        "media_episode_length": "83",
+        "media_segment_length": "83",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "true",
+        "media_is_web_only": "true",
+        "media_production_source": "produced.for.web",
+        "media_urn": "urn:rts:video:10348166"
+      },
+      "eventData": "$8b8e214ab9f71564$8adf8fcb6cfcd55e70345c6a43a87eaa451624d3a564df0336f3e454288810e44bc4aae94825dd3df161f92ce06476a4fac8f031537ca8b603b9c0f719cc381ef01811cfadf406e6e4f75d6e25f4384c4dc5f3a142ce7520951fe7b801331247110c1b75db474f3c0d4136890e4d16e59c617c899ade2e25c50942232f98658158f546c5e6ec3b9006cfcaaca8f9157b00032daf2d7155185713aaf78963e93add51aad9405da00b3c028a64e21c950c72c135111a7cf8900b6c80094e4ef52db3dc672326309e16952e9e68def9592a093ea34722999094f253c0846c602c1022873fa33aeb87c849d18b524c3b19971b32ac8cb8fd3ac879c21569e93228bc",
+      "resourceList": [
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=999.08&end=1081.92",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=999.08&end=1081.92"
+          }
+        },
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=999.08&end=1081.92",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=999.08&end=1081.92"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=999.08&end=1081.92",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=999.08&end=1081.92"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=999.08&end=1081.92",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=999.08&end=1081.92"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10348168",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10348168",
+      "title": "Football, Vincent Sierro",
+      "description": "Sport Dimanche",
+      "imageUrl": "https://www.rts.ch/2019/04/07/22/28/10348167.image/16x9",
+      "imageTitle": "Football, Vincent Sierro [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-07T18:25:51+02:00",
+      "duration": 345880,
+      "validFrom": "2019-04-07T19:28:00+02:00",
+      "playableAbroad": false,
+      "displayable": true,
+      "position": 5,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "Football, Vincent Sierro",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10348168",
+        "ns_st_el": "345880",
+        "ns_st_cl": "345880",
+        "ns_st_sl": "345880",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "eo",
+        "ns_st_cmt": "ec"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Football, Vincent Sierro",
+        "media_type": "Video",
+        "media_segment_id": "10348168",
+        "media_episode_length": "346",
+        "media_segment_length": "346",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "true",
+        "media_is_web_only": "true",
+        "media_production_source": "produced.for.web",
+        "media_urn": "urn:rts:video:10348168"
+      },
+      "eventData": "$291300ba7c56ccf7$294547469b4284e632a68165f9392092c0789cb8d343af8e9ffd167676eeb1d3225de5a63f6b88eb7b7d8086a4bd2412d3c7da6fa3dd9434df18261ba84cdd3cf834a77b6f5e3bc83d1424ded09be8d6d2a443b81efc22f942c351acaa93ee9507ca627b207f0aaacae619123703f4dd1416f43566dda2879dced3207745f5c3a2e5a4e54d54f965a56565959ea1c72e9a0ec071a9bca6ca5cd2b248d9200753727e0d117fe38dc941ec97f58d90fdc83a5b2afd583fa43b36f2db5748d4b6af721497c7f989a04f91f72303bb117d3c7affd38960d6ca3d838dc32d38c72031e51b3fbd5cf3b29abc70e451a2e7192e49edfacc6a6ee7057f7aa09253b3ae54",
+      "resourceList": [
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=1081.92&end=1427.8",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=1081.92&end=1427.8"
+          }
+        },
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=1081.92&end=1427.8",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=1081.92&end=1427.8"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=1081.92&end=1427.8",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=1081.92&end=1427.8"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=1081.92&end=1427.8",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=1081.92&end=1427.8"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10348170",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10348170",
+      "title": "Escrime à Lausanne",
+      "description": "Sport Dimanche",
+      "imageUrl": "https://www.rts.ch/2019/04/07/22/28/10348169.image/16x9",
+      "imageTitle": "Escrime à Lausanne [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-07T18:25:51+02:00",
+      "duration": 194880,
+      "validFrom": "2019-04-07T19:28:00+02:00",
+      "playableAbroad": false,
+      "displayable": true,
+      "position": 6,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "Escrime à Lausanne",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10348170",
+        "ns_st_el": "194880",
+        "ns_st_cl": "194880",
+        "ns_st_sl": "194880",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "eo",
+        "ns_st_cmt": "ec"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Escrime à Lausanne",
+        "media_type": "Video",
+        "media_segment_id": "10348170",
+        "media_episode_length": "195",
+        "media_segment_length": "195",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "true",
+        "media_is_web_only": "true",
+        "media_production_source": "produced.for.web",
+        "media_urn": "urn:rts:video:10348170"
+      },
+      "eventData": "$e62068d9214c382e$071ea235fc5ebcc50c96d22fea57a7a5b1ce408349a444bc0f1112d5d1ec7fe91187efcfef8a3467bf7605f8e88f496576047d1b75662e550b5d7889d3fb82c8d607e9acc4ede06212ce512562bf6a1d137b7fa812a2474ea381c4328b364433d3961adcf96356db844c1ad29ea398d4a7303d07e91137ba88c1c6e2be698f4bedbc5bd51b2335c6ee6535214a536971ba7eebdc7e3595ce4aaad842355904c4e3603e1ed9a5672494cdb886f670be36feb0d2ad988dc7c1e2cb2c53552ffd08bda0661c20f55703e21f6a8f7a047ce6c3cdf233fb08417dfd667d4f6fb78aa9e2437d09fde77765c0177afc5b7d89795bf6ab33648b944103ae48811ca29d5e",
+      "resourceList": [
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=1595.2&end=1790.08",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=1595.2&end=1790.08"
+          }
+        },
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=1595.2&end=1790.08",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=1595.2&end=1790.08"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=1595.2&end=1790.08",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=1595.2&end=1790.08"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=1595.2&end=1790.08",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=1595.2&end=1790.08"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10348172",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10348172",
+      "title": "hippisme, Championnats du Monde",
+      "description": "Sport Dimanche",
+      "imageUrl": "https://www.rts.ch/2019/04/07/22/28/10347992.image/16x9",
+      "imageTitle": "hippisme, Championnats du Monde [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-07T18:25:51+02:00",
+      "duration": 217440,
+      "validFrom": "2019-04-07T19:28:00+02:00",
+      "playableAbroad": false,
+      "displayable": true,
+      "position": 7,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "hippisme, Championnats du Monde",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10348172",
+        "ns_st_el": "217440",
+        "ns_st_cl": "217440",
+        "ns_st_sl": "217440",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "eo",
+        "ns_st_cmt": "ec"
+      },
+      "analyticsMetadata": {
+        "media_segment": "hippisme, Championnats du Monde",
+        "media_type": "Video",
+        "media_segment_id": "10348172",
+        "media_episode_length": "217",
+        "media_segment_length": "217",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "true",
+        "media_is_web_only": "true",
+        "media_production_source": "produced.for.web",
+        "media_urn": "urn:rts:video:10348172"
+      },
+      "eventData": "$7ca379eb07c941d5$ecb922a1a89c5e68b02c2c2fb7029cdf9129e197e509e3b0f7e08e042b79df899f15b3b52ea32475124d46b60c060a3dd532417deddb4eeabda79503c8b1148c50e698c8ea670645e4686ac4b5e0e6c7a671f4749d4148d98ed36b8ae113b67750a12cfb6ae28981256591a9dc081724ad9e79c9419e0dd5e6618f1338e3f885953b7af19299a52c30a6b405f65404eea8985e5f16fe70ed0bb11b83fd7033938aa315812ac7ed8429ee5b720373f4eb57913cd94fd5617ea6aebee25f354be0505d7e9ad55aa4b908d1570d86ffd1bdb1ae73f70047b62356962f89ff025f062b5ec678d4655f1549fc31e35271f2bff14ef5049c5dc7d33f64702a31eb1b21",
+      "resourceList": [
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=1790.08&end=2007.52",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=1790.08&end=2007.52"
+          }
+        },
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=1790.08&end=2007.52",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=1790.08&end=2007.52"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=1790.08&end=2007.52",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=1790.08&end=2007.52"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=1790.08&end=2007.52",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=1790.08&end=2007.52"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10348174",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10348174",
+      "title": "Hockey, 7e Acte",
+      "description": "Sport Dimanche",
+      "imageUrl": "https://www.rts.ch/2019/04/07/22/28/10348173.image/16x9",
+      "imageTitle": "Hockey, 7e Acte [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-07T18:25:51+02:00",
+      "duration": 525520,
+      "validFrom": "2019-04-07T19:28:00+02:00",
+      "playableAbroad": false,
+      "displayable": true,
+      "position": 8,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "Hockey, 7e Acte",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10348174",
+        "ns_st_el": "525520",
+        "ns_st_cl": "525520",
+        "ns_st_sl": "525520",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "eo",
+        "ns_st_cmt": "ec"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Hockey, 7e Acte",
+        "media_type": "Video",
+        "media_segment_id": "10348174",
+        "media_episode_length": "526",
+        "media_segment_length": "526",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "true",
+        "media_is_web_only": "true",
+        "media_production_source": "produced.for.web",
+        "media_urn": "urn:rts:video:10348174"
+      },
+      "eventData": "$e7c66dbd21acdb7c$790cefc3f533ea7ef54c9fd7054b25a99af153715888ebdfca238e05005ab01e71f59f02a3edf4ba7443e90a39fd3ed1bb49a0c381bd552f36e2cc9587fd096061a399cc61fd9058306edc334aaee14820c792f5f53fd2781efbdba6a918318f6d56be63b2b2a8a6e4fe5ad57f50a08bef19de23e5e8ae36b23ec41ba3b09ee14d847c6b37a621652cedebb9906c774ad8f17c776e2c5315684c01eecdd01fdead007977b206c09c561899c778708db632c350b27ad2c77c34d08b935b3123f7125e9b1351be24aee795fb3875fd05b9a4fd95b41b631ce0e3ee503299ac28f81fad4816222cb531f182db760956f9ec12262a12b550f66f1146d4c1e08aaedf",
+      "resourceList": [
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=2007.52&end=2533.04",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=2007.52&end=2533.04"
+          }
+        },
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=2007.52&end=2533.04",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=2007.52&end=2533.04"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=2007.52&end=2533.04",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=2007.52&end=2533.04"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=2007.52&end=2533.04",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=2007.52&end=2533.04"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10348175",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:10348175",
+      "title": "Le Mag: Les commotions cérébrales",
+      "description": "Sport Dimanche",
+      "imageUrl": "https://www.rts.ch/2019/04/07/22/28/10348006.image/16x9",
+      "imageTitle": "Le Mag: Les commotions cérébrales [RTS]",
+      "type": "CLIP",
+      "date": "2019-04-07T18:25:51+02:00",
+      "duration": 589400,
+      "validFrom": "2019-04-07T19:28:00+02:00",
+      "playableAbroad": false,
+      "socialCountList": [
+        {
+          "key": "srgView",
+          "value": 307
+        },
+        {
+          "key": "srgLike",
+          "value": 0
+        },
+        {
+          "key": "fbShare",
+          "value": 1
+        },
+        {
+          "key": "twitterShare",
+          "value": 0
+        },
+        {
+          "key": "googleShare",
+          "value": 0
+        },
+        {
+          "key": "whatsAppShare",
+          "value": 0
+        }
+      ],
+      "displayable": true,
+      "position": 9,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "Le Mag: Les commotions cérébrales",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "10348175",
+        "ns_st_el": "589400",
+        "ns_st_cl": "589400",
+        "ns_st_sl": "589400",
+        "srg_mgeobl": "true",
+        "ns_st_tp": "1",
+        "ns_st_cn": "1",
+        "ns_st_ct": "vc11",
+        "ns_st_pn": "1",
+        "ns_st_cdm": "eo",
+        "ns_st_cmt": "ec"
+      },
+      "analyticsMetadata": {
+        "media_segment": "Le Mag: Les commotions cérébrales",
+        "media_type": "Video",
+        "media_segment_id": "10348175",
+        "media_episode_length": "589",
+        "media_segment_length": "589",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_duration_category": "short",
+        "media_is_geoblocked": "true",
+        "media_is_web_only": "true",
+        "media_production_source": "produced.for.web",
+        "media_urn": "urn:rts:video:10348175"
+      },
+      "eventData": "$90403cd08a472095$c991d9b1d950f527e9c1b2abdee9afb2483db5a31b741d6e52911015fb84a7ff16798f3bf49e9214b5692500b4f47a3e6cbd209d3e2009deae6449af9c8734c14136d1903dc8160dd8e4f1c35853346fe45f0e9daa6ade426ba3dc483e16591e294594974b494692948fd3117bc29e346ed185f668927a2c825cb05673d7110e522a8ee6dab5982ac77a843afd8c1e12d87f02b1c961e7fb00dc7117190f67b0fedd70b238853749bceff0f782a7836e4ae09175104cc6aef3adb299b4261f43f390cd039d32ec91c30c4f77cbaf40b4dd70f829bb2ff0f096db305945c3fefe5a5a94d87729e6518edd97c2c6506c079a080b6d0652815ddfcc0d5f3528a6b8",
+      "resourceList": [
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=2533.04&end=3122.44",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/master.m3u8?start=2533.04&end=3122.44"
+          }
+        },
+        {
+          "url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=2533.04&end=3122.44",
+          "quality": "SD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "https://rtsvodch-vh.akamaihd.net/i/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/master.m3u8?start=2533.04&end=3122.44"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=2533.04&end=3122.44",
+          "quality": "HD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "HD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,1201k,2001k,3501k,6001k,.mp4.csmil/manifest.f4m?start=2533.04&end=3122.44"
+          }
+        },
+        {
+          "url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=2533.04&end=3122.44",
+          "quality": "SD",
+          "protocol": "HDS",
+          "encoding": "H264",
+          "mimeType": "application/adobe-f4m",
+          "presentation": "DEFAULT",
+          "streaming": "HDS",
+          "dvr": false,
+          "live": false,
+          "mediaContainer": "MP4",
+          "audioCodec": "MP3",
+          "videoCodec": "H264",
+          "tokenType": "AKAMAI",
+          "analyticsData": {
+            "srg_mqual": "SD",
+            "srg_mpres": "DEFAULT"
+          },
+          "analyticsMetadata": {
+            "media_streaming_quality": "SD",
+            "media_special_format": "DEFAULT",
+            "media_url": "http://rtsvodch-vh.akamaihd.net/z/rtssp/2019/rtssp_20190407_full_5b90d205-105a-4631-aa3f-e4dcb313fcbc-,301k,101k,701k,.mp4.csmil/manifest.f4m?start=2533.04&end=3122.44"
+          }
+        }
+      ]
+    }
+  ],
+  "topicList": [
+    {
+      "id": "912",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:912",
+      "title": "Sport"
+    },
+    {
+      "id": "622",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:622",
+      "title": "rts.ch"
+    }
+  ],
+  "analyticsData": {
+    "srg_pr_id": "10348148",
+    "srg_plid": "9659332",
+    "ns_st_pl": "RTS Sport",
+    "ns_st_pr": "RTS Sport du 07.04.2019",
+    "ns_st_dt": "2019-04-07",
+    "ns_st_ddt": "2019-04-07",
+    "ns_st_tep": "16514d61-595d-11e9-bc0e-005056a344ea",
+    "ns_st_li": "0",
+    "ns_st_stc": "*null",
+    "ns_st_en": "10348148",
+    "ns_st_ce": "0",
+    "ns_st_cdm": "eo",
+    "ns_st_cmt": "ec",
+    "srg_unit": "RTS",
+    "srg_c1": "standard",
+    "srg_c2": "video_sport_sport-dimanche",
+    "srg_c3": "RTS.ch",
+    "srg_tv_id": "16514d61-595d-11e9-bc0e-005056a344ea"
+  },
+  "analyticsMetadata": {
+    "media_episode_id": "10348148",
+    "media_show_id": "9659332",
+    "media_show": "RTS Sport",
+    "media_episode": "RTS Sport du 07.04.2019",
+    "media_is_livestream": "false",
+    "media_full_length": "partial",
+    "media_enterprise_units": "RTS",
+    "media_joker1": "standard",
+    "media_joker2": "video_sport_sport-dimanche",
+    "media_joker3": "RTS.ch",
+    "media_is_web_only": "true",
+    "media_production_source": "produced.for.web",
+    "media_tv_id": "16514d61-595d-11e9-bc0e-005056a344ea",
+    "media_thumbnail": "https://www.rts.ch/2019/04/07/22/28/10348006.image/16x9/scale/width/344",
+    "media_publication_date": "2019-04-07",
+    "media_publication_time": "19:28:00",
+    "media_publication_datetime": "2019-04-07T19:28:00+02:00",
+    "media_content_group": "Sport,rts.ch",
+    "media_since_publication_d": "0",
+    "media_since_publication_h": "17"
+  }
+}

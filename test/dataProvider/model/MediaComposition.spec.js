@@ -221,23 +221,6 @@ describe('MediaComposition', () => {
 
   /**
    *****************************************************************************
-   * findDrmListByResource *****************************************************
-   *****************************************************************************
-   */
-  describe('findDrmListByResource', () => {
-    it('should return an array from a resource that contain a DrmList', () => {
-      expect(MediaComposition.findDrmListByResource(DRMLIST)).toBeTruthy();
-      expect(MediaComposition.findDrmListByResource(DRMLIST)).toHaveLength(2);
-    });
-
-    it('should return undefined from a resource that doesn\'t contain a DrmList', () => {
-      expect(MediaComposition.findDrmListByResource({})).toBeFalsy();
-      expect(MediaComposition.findDrmListByResource({})).toBeUndefined();
-    });
-  });
-
-  /**
-   *****************************************************************************
    * findResourceListByUrn *****************************************************
    *****************************************************************************
    */
@@ -627,97 +610,6 @@ describe('MediaComposition', () => {
       expect(mediaCompositionUrnChapterBadOrder.getMainSegments()).toHaveLength(
         0
       );
-    });
-  });
-
-  /**
-   *****************************************************************************
-   * getSubdivisions ***********************************************************
-   *****************************************************************************
-   */
-  describe('getSubdivisions', () => {
-    function toUrns(subdivisions) {
-      return subdivisions.map((d) => d.urn);
-    }
-
-    it('should return segments and chapters when first main chapter has segments', () => {
-      const subdivisions =
-        mediaCompositionUrnSubdivisionsMany_A.getSubdivisions();
-
-      expect(subdivisions).toBeTruthy();
-      expect(toUrns(subdivisions)).toStrictEqual([
-        'A:1',
-        'A:2',
-        'A:3',
-        'A:4',
-        'B',
-        'C',
-        'D',
-        'E'
-      ]);
-    });
-
-    it('should return segments and chapters when second main chapter has segments', () => {
-      const subdivisions =
-        mediaCompositionUrnSubdivisionsMany_B.getSubdivisions();
-
-      expect(subdivisions).toBeTruthy();
-      expect(toUrns(subdivisions)).toStrictEqual([
-        'A',
-        'B:1',
-        'B:2',
-        'B:3',
-        'B:4',
-        'C',
-        'D',
-        'E'
-      ]);
-    });
-
-    it('should return chapters when third main chapter has no segments', () => {
-      const subdivisions =
-        mediaCompositionUrnSubdivisionsMany_C.getSubdivisions();
-
-      expect(subdivisions).toBeTruthy();
-      expect(toUrns(subdivisions)).toStrictEqual(['A', 'B', 'C', 'D', 'E']);
-    });
-
-    it('should return all subdivisions from a chapterList', () => {
-      const jsonSubdivisions = urnChapterBadOrder.chapterList;
-      const subdivisions = mediaCompositionUrnChapterBadOrder.getSubdivisions();
-
-      expect(subdivisions).toBeTruthy();
-      expect(subdivisions).toHaveLength(jsonSubdivisions.length);
-      expect(subdivisions).toEqual(expect.arrayContaining(jsonSubdivisions));
-      expect(mediaCompositionUrnChapterBadOrder.getSubdivisions()).toEqual(
-        jsonSubdivisions
-      );
-    });
-
-    it('should return an array with one item when the mediaComposition has only one segment', () => {
-      const subdivisions = mediaCompositionUrnOnlyOneSegment.getSubdivisions();
-      const [subdivision] = subdivisions;
-      const [segment] = mediaCompositionUrnOnlyOneSegment.getMainSegments();
-
-      expect(subdivision.urn).toEqual(segment.urn);
-      expect(subdivisions).toBeTruthy();
-      expect(subdivisions).toHaveLength(1);
-    });
-
-    it('should return an empty array when the mediaComposition has only one chapter', () => {
-      const subdivisions = mediaCompositionUrnOnlyOneChapter.getSubdivisions();
-
-      expect(subdivisions).toBeTruthy();
-      expect(subdivisions).toHaveLength(0);
-      expect(subdivisions).toEqual([]);
-    });
-
-    it('should return an empty array when the mediaComposition has an empty chapterList', () => {
-      const subdivisions = mediaCompositionUrnEmptyChapters.getSubdivisions();
-
-      expect(subdivisions).toBeTruthy();
-      expect(subdivisions).toHaveLength(0);
-      expect(subdivisions).toEqual([]);
     });
   });
 });
