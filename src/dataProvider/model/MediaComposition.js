@@ -22,17 +22,6 @@ class MediaComposition {
   }
 
   /**
-   * Find all DRM vendors available for a resource.
-   *
-   * @param {Resource} resource
-   *
-   * @returns {Array} of DRM vendors
-   */
-  static findDrmListByResource(resource) {
-    return resource.drmList;
-  }
-
-  /**
    * Return a segment from main chapter following segmentUrn in mediaComposition.
    *
    * @returns {Object|undefined} main segment
@@ -283,39 +272,6 @@ class MediaComposition {
     const { resourceList } = this.getMainChapter();
 
     return resourceList || [];
-  }
-
-  /**
-   * Get subdivisions to be displayed for this MediaComposition.
-   * They can be segments or chapters.
-   *
-   * @returns {Array} of subdivisions
-   */
-  getSubdivisions() {
-    const chapters = this.getChapters();
-    const mainChapter = this.getMainChapter();
-    const subdivisions = [];
-    const displayableMainSegments = this.getMainSegments().filter(
-      (s) => s.displayable
-    );
-    const hasDisplayableSegments = Boolean(displayableMainSegments.length);
-
-    if (chapters.length === 1 && !hasDisplayableSegments) {
-      return [];
-    }
-
-    chapters.forEach((chapter) => {
-      const isSegment =
-        chapter.urn === mainChapter.urn && hasDisplayableSegments;
-
-      if (isSegment) {
-        subdivisions.push(...displayableMainSegments);
-      } else {
-        subdivisions.push(chapter);
-      }
-    });
-
-    return subdivisions;
   }
 }
 
