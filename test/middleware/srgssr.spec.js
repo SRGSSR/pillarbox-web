@@ -3,9 +3,11 @@ import DataProviderService from '../../src/dataProvider/services/DataProviderSer
 import Image from '../../src/utils/Image.js';
 import MediaComposition from '../../src/dataProvider/model/MediaComposition.js';
 import urnCredits from '../__mocks__/urn:rts:video:10313496-credits.json';
+import Pillarbox from '../../src/pillarbox.js';
 
 jest.mock('../../src/dataProvider/services/DataProviderService.js');
 jest.mock('../../src/utils/Image.js');
+jest.mock('../../src/pillarbox.js');
 
 describe('SrgSsr', () => {
   let player;
@@ -33,6 +35,118 @@ describe('SrgSsr', () => {
       },
     };
   });
+
+  /**
+   *****************************************************************************
+   * composeKeySystemsResources ************************************************
+   *****************************************************************************
+   */
+  describe('composeKeySystemsResources', () => {
+    it('should return an empty array if the resources are not defined or if the array is empty', () => {
+      expect(SrgSsr.composeKeySystemsResources()).toHaveLength(0);
+      expect(SrgSsr.composeKeySystemsResources([])).toHaveLength(0);
+    });
+
+    it('should not add the keySystems property if no resource has DRM', () => {
+      const resources = [
+        {
+          streaming: 'DASH',
+        },
+        {
+          streaming: 'HLS',
+        }
+      ];
+      const resourcesNoKeySystems = SrgSsr.composeKeySystemsResources(resources);
+
+      expect(resourcesNoKeySystems).toMatchObject(resources);
+    });
+
+    it('should add the keySystems property if at least one resource has DRM', () => {
+      const resources = [
+        {
+          streaming: 'DASH',
+          drmList: [{ type: 'WIDEVINE', licenseUrl: 'https://license.url' }],
+        },
+        {
+          streaming: 'DASH',
+        },
+        {
+          streaming: 'HLS',
+          drmList: [
+            {
+              type: 'FAIRPLAY',
+              licenseUrl: 'https://license.url',
+              certificateUrl: 'https://certificate.url',
+            }
+          ],
+        },
+        {
+          streaming: 'HLS',
+        }
+      ];
+
+      const expectedResources = [
+        {
+          streaming: 'DASH',
+          drmList: [{ type: 'WIDEVINE', licenseUrl: 'https://license.url' }],
+          keySystems: { 'com.widevine.alpha': 'https://license.url' },
+        },
+        {
+          streaming: 'DASH',
+          keySystems: {},
+        },
+        {
+          streaming: 'HLS',
+          drmList: [
+            {
+              type: 'FAIRPLAY',
+              licenseUrl: 'https://license.url',
+              certificateUrl: 'https://certificate.url',
+            }
+          ],
+          keySystems: {
+            'com.apple.fps.1_0': {
+              certificateUri: 'https://certificate.url',
+              licenseUri: 'https://license.url',
+            },
+          },
+        },
+        {
+          streaming: 'HLS',
+          keySystems: {},
+        }
+      ];
+
+      const resourcesWithKeySystems = SrgSsr.composeKeySystemsResources(resources);
+
+      expect(resourcesWithKeySystems).toMatchObject(expectedResources);
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * composeSrcMediaData *******************************************************
+   *****************************************************************************
+   */
+  describe('composeSrcMediaData', () => {
+    it('should return a source object', async () => {
+      const mockDataProvider = new DataProviderService();
+      const { mediaComposition } =
+        await mockDataProvider.getMediaCompositionByUrn('urn:fake');
+      const [mainSource] = mediaComposition.getMainResources();
+
+      expect(SrgSsr.composeSrcMediaData(mainSource)).toMatchObject({
+        src: mainSource.url,
+        type: mainSource.mimeType,
+      });
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * getMediaComposition *******************************************************
+   *****************************************************************************
+   */
   describe('getMediaComposition', () => {
     it('should use the default DataProvider', async () => {
       const { mediaComposition } = await SrgSsr.getMediaComposition('urn:fake');
@@ -56,19 +170,52 @@ describe('SrgSsr', () => {
       expect(mediaComposition).toBeInstanceOf(MediaComposition);
     });
   });
-  describe('getSource', () => {
-    it('should return a source object', async () => {
-      const mockDataProvider = new DataProviderService();
-      const { mediaComposition } =
-        await mockDataProvider.getMediaCompositionByUrn('urn:fake');
-      const [mainSource] = mediaComposition.getMainResources();
 
-      expect(SrgSsr.getSource(mainSource)).toMatchObject({
-        src: mainSource.url,
-        type: mainSource.mimeType,
+  /**
+   *****************************************************************************
+   * getMediaData **************************************************************
+   *****************************************************************************
+   */
+  describe('getMediaData', () => {
+    it('should return an HLS resource if available for any Safari browser', () => {
+      const mockIsAnySafari = jest.replaceProperty(Pillarbox, 'browser', {
+        IS_ANY_SAFARI: true,
       });
+      const resources = [{ streaming: 'DASH' }, { streaming: 'HLS' }];
+      const resource = SrgSsr.getMediaData(resources);
+
+      expect(resource).toMatchObject({ streaming: 'HLS' });
+      mockIsAnySafari.restore();
+    });
+
+    it('should return a DASH resource if available for any browser other than Safari', () => {
+      const resources = [{ streaming: 'HLS' }, { streaming: 'DASH' }];
+      const resource = SrgSsr.getMediaData(resources);
+
+      expect(resource).toMatchObject({ streaming: 'DASH' });
+    });
+
+    it('should default to the first available resource if no better resource is available', () => {
+      const resources = [
+        { streaming: 'HLS', isFirst: true },
+        { streaming: 'HLS', isFirst: false }
+      ];
+      const resource = SrgSsr.getMediaData(resources);
+
+      expect(resource).toMatchObject({ streaming: 'HLS', isFirst: true });
+    });
+
+    it('should return undefined if the resources are not defined or if the array is empty', () => {
+      expect(SrgSsr.getMediaData([])).toBeUndefined();
+      expect(SrgSsr.getMediaData()).toBeUndefined();
     });
   });
+
+  /**
+   *****************************************************************************
+   * updatePoster **************************************************************
+   *****************************************************************************
+   */
   describe('updatePoster', () => {
     it('should use the default Image class', async () => {
       const mockDataProvider = new DataProviderService();
@@ -90,6 +237,7 @@ describe('SrgSsr', () => {
       expect(spyOnPoster).toHaveBeenCalledWith(imageUrlResult);
       expect(spyOnPoster.mock.results[0].value).toBe(imageUrlResult);
     });
+
     it('should update the player\'s poster', async () => {
       const mockDataProvider = new DataProviderService();
       const { mediaComposition } =
@@ -111,6 +259,12 @@ describe('SrgSsr', () => {
       expect(spyOnPoster.mock.results[0].value).toBe(imageUrlResult);
     });
   });
+
+  /**
+   *****************************************************************************
+   * updateTitleBar ************************************************************
+   *****************************************************************************
+   */
   describe('updateTitleBar', () => {
     it('should update the player\'s title bar', async () => {
       const mockDataProvider = new DataProviderService();
@@ -130,13 +284,24 @@ describe('SrgSsr', () => {
       expect(spyOnUpate.mock.results[0].value).toMatchObject(result);
     });
   });
+
+  /**
+   *****************************************************************************
+   * middleware ****************************************************************
+   *****************************************************************************
+   */
   describe('middleware', () => {
     it('Should use the default DataProvider and Image class', async () => {
+      const spyOnComposeKeySystemsResources = jest.spyOn(SrgSsr, 'composeKeySystemsResources');
       const spyOnGetMediaComposition = jest.spyOn(
         SrgSsr,
         'getMediaComposition'
       );
-      const spyOnGetSource = jest.spyOn(SrgSsr, 'getSource');
+      const spyOnGetMediaData = jest.spyOn(SrgSsr, 'getMediaData');
+      const spyOnComposeSrcMediaData = jest.spyOn(
+        SrgSsr,
+        'composeSrcMediaData'
+      );
       const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
       const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
       const middleware = SrgSsr.middleware(player);
@@ -150,16 +315,24 @@ describe('SrgSsr', () => {
         setSource: expect.any(Function),
       });
       expect(spyOnGetMediaComposition).toHaveBeenCalled();
-      expect(spyOnGetSource).toHaveBeenCalled();
+      expect(spyOnComposeKeySystemsResources).toHaveBeenCalled();
+      expect(spyOnGetMediaData).toHaveBeenCalled();
+      expect(spyOnComposeSrcMediaData).toHaveBeenCalled();
       expect(spyOnUpdateTitleBar).toHaveBeenCalled();
       expect(spyOnUpdatePoster).toHaveBeenCalled();
     });
+
     it('Should call the next middleware without error', async () => {
+      const spyOnComposeKeySystemsResources = jest.spyOn(SrgSsr, 'composeKeySystemsResources');
       const spyOnGetMediaComposition = jest.spyOn(
         SrgSsr,
         'getMediaComposition'
       );
-      const spyOnGetSource = jest.spyOn(SrgSsr, 'getSource');
+      const spyOnGetMediaData = jest.spyOn(SrgSsr, 'getMediaData');
+      const spyOnComposeSrcMediaData = jest.spyOn(
+        SrgSsr,
+        'composeSrcMediaData'
+      );
       const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
       const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
       const middleware = SrgSsr.middleware(
@@ -177,17 +350,24 @@ describe('SrgSsr', () => {
         setSource: expect.any(Function),
       });
       expect(spyOnGetMediaComposition).toHaveBeenCalled();
-      expect(spyOnGetSource).toHaveBeenCalled();
+      expect(spyOnComposeKeySystemsResources).toHaveBeenCalled();
+      expect(spyOnGetMediaData).toHaveBeenCalled();
+      expect(spyOnComposeSrcMediaData).toHaveBeenCalled();
       expect(spyOnUpdateTitleBar).toHaveBeenCalled();
       expect(spyOnUpdatePoster).toHaveBeenCalled();
     });
 
     it('Should catch and error if the source is not defined', async () => {
+      const spyOnComposeKeySystemsResources = jest.spyOn(SrgSsr, 'composeKeySystemsResources');
       const spyOnGetMediaComposition = jest.spyOn(
         SrgSsr,
         'getMediaComposition'
       );
-      const spyOnGetSource = jest.spyOn(SrgSsr, 'getSource');
+      const spyOnGetMediaData = jest.spyOn(SrgSsr, 'getMediaData');
+      const spyOnComposeSrcMediaData = jest.spyOn(
+        SrgSsr,
+        'composeSrcMediaData'
+      );
       const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
       const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
       const middleware = SrgSsr.middleware(
@@ -204,7 +384,9 @@ describe('SrgSsr', () => {
         setSource: expect.any(Function),
       });
       expect(spyOnGetMediaComposition).not.toHaveBeenCalled();
-      expect(spyOnGetSource).not.toHaveBeenCalled();
+      expect(spyOnComposeKeySystemsResources).not.toHaveBeenCalled();
+      expect(spyOnGetMediaData).not.toHaveBeenCalled();
+      expect(spyOnComposeSrcMediaData).not.toHaveBeenCalled();
       expect(spyOnUpdateTitleBar).not.toHaveBeenCalled();
       expect(spyOnUpdatePoster).not.toHaveBeenCalled();
     });
