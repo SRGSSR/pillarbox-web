@@ -28,5 +28,10 @@ describe('Pillarbox', () => {
         videojs.VhsSourceHandler.VERSION
       );
     });
+    it('should contain the version provided by videojs-contrib-eme', () => {
+      expect(Pillarbox.VERSION[videojs.getPlugin('eme').name]).toEqual(
+        videojs.getPlugin('eme').VERSION
+      );
+    });
   });
 });
