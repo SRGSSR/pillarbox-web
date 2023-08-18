@@ -2,10 +2,27 @@ import Pillarbox from '../../src/pillarbox.js';
 import DataProviderService from '../dataProvider/services/DataProviderService.js';
 import Image from '../utils/Image.js';
 import Drm from '../utils/Drm.js';
+import AkamaiTokenService from '../utils/AkamaiTokenService.js';
 
 class SrgSsr {
   /**
-   * Add the keySystems property to all resources if at least one of them has DRM.
+   * Add the Akamai token to all resources
+   * if at least one of them has tokenType
+   * set to Akamai.
+   *
+   * @param {Array.<Object>} resources
+   *
+   * @returns {Promise<Array.<Object>>}
+   */
+  static async composeAkamaiResources(resources = []) {
+    if (!AkamaiTokenService.hasToken(resources)) Promise.resolve(resources);
+
+    return AkamaiTokenService.tokenizeSources(resources);
+  }
+
+  /**
+   * Add the keySystems property to all resources
+   * if at least one of them has DRM.
    *
    * @param {Array.<Object>} resources
    *
@@ -43,8 +60,7 @@ class SrgSsr {
    * @param {DataProviderService} dataProvider
    *
    * @returns {MediaComposition}
-   *
-  */
+   */
   static async getMediaComposition(
     urn,
     dataProvider = new DataProviderService()
@@ -60,8 +76,9 @@ class SrgSsr {
    * @returns {Object} By default, the first entry is used if none is compatible.
    */
   static getMediaData(resources = []) {
-    const type = Pillarbox.browser.IS_ANY_SAFARI ? 'HLS' : 'DASH';
+    if (AkamaiTokenService.hasToken(resources)) return resources[0];
 
+    const type = Pillarbox.browser.IS_ANY_SAFARI ? 'HLS' : 'DASH';
     const resource = resources.find(({ streaming }) => streaming === type);
 
     return resource || resources[0];
@@ -118,8 +135,10 @@ class SrgSsr {
             srcObj.src,
             dataProvider
           );
-          const mainResources = SrgSsr.composeKeySystemsResources(
-            mediaComposition.getMainResources()
+          const mainResources = await SrgSsr.composeAkamaiResources(
+            SrgSsr.composeKeySystemsResources(
+              mediaComposition.getMainResources()
+            )
           );
           const mediaData = SrgSsr.getMediaData(mainResources);
           const srcMediaObj = SrgSsr.composeSrcMediaData(mediaData);

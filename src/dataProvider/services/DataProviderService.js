@@ -17,6 +17,7 @@ class DataProviderService {
    *
    * @param {String} urn urn:rts:video:9800629
    * @param {Boolean} onlyChapters
+   *
    * @returns {Object} media composition json object
    */
   getMediaCompositionByUrn(urn, onlyChapters = false) {

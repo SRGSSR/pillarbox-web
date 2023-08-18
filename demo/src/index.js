@@ -46,6 +46,10 @@ window.sourceExamples = {
   rts1: {
     src: 'urn:rts:video:3608506',
     type: 'srgssr/urn',
+  },
+  token: {
+    src: 'urn:rts:video:1967124',
+    type: 'srgssr/urn',
   }
 };
 
