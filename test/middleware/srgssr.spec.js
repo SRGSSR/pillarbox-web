@@ -4,6 +4,7 @@ import Image from '../../src/utils/Image.js';
 import MediaComposition from '../../src/dataProvider/model/MediaComposition.js';
 import urnCredits from '../__mocks__/urn:rts:video:10313496-credits.json';
 import Pillarbox from '../../src/pillarbox.js';
+import AkamaiTokenService from '../../src/utils/AkamaiTokenService.js';
 
 jest.mock('../../src/dataProvider/services/DataProviderService.js');
 jest.mock('../../src/utils/Image.js');
@@ -24,6 +25,7 @@ describe('SrgSsr', () => {
         },
       };
     });
+    AkamaiTokenService.tokenize = jest.fn((source) => Promise.resolve(source));
 
     Image.scale = jest.fn(({ url }) => `https://mock-scale.ch/${url}`);
 
@@ -34,6 +36,29 @@ describe('SrgSsr', () => {
         update: ({ title, description }) => ({ title, description }),
       },
     };
+  });
+
+  /**
+   *****************************************************************************
+   * composeAkamaiResources ****************************************************
+   *****************************************************************************
+   */
+  describe('composeAkamaiResources', () => {
+    it('should return an empty array if the resources are not defined or if the array is empty', async () => {
+      expect(await SrgSsr.composeAkamaiResources()).toHaveLength(0);
+      expect(await SrgSsr.composeAkamaiResources([])).toHaveLength(0);
+    });
+
+    it('should return an array of resources', async () => {
+      const resources = [
+        {
+          streaming: 'HLS',
+          tokenType: 'AKAMAI',
+        }
+      ];
+
+      expect(await SrgSsr.composeAkamaiResources(resources)).toHaveLength(1);
+    });
   });
 
   /**
@@ -56,7 +81,8 @@ describe('SrgSsr', () => {
           streaming: 'HLS',
         }
       ];
-      const resourcesNoKeySystems = SrgSsr.composeKeySystemsResources(resources);
+      const resourcesNoKeySystems =
+        SrgSsr.composeKeySystemsResources(resources);
 
       expect(resourcesNoKeySystems).toMatchObject(resources);
     });
@@ -117,7 +143,8 @@ describe('SrgSsr', () => {
         }
       ];
 
-      const resourcesWithKeySystems = SrgSsr.composeKeySystemsResources(resources);
+      const resourcesWithKeySystems =
+        SrgSsr.composeKeySystemsResources(resources);
 
       expect(resourcesWithKeySystems).toMatchObject(expectedResources);
     });
@@ -177,6 +204,20 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('getMediaData', () => {
+    it('should return the first resource when there is a tokenType', () => {
+      const resources = [
+        { streaming: 'HLS', tokenType: 'AKAMAI', isFirst: true },
+        { streaming: 'HLS', tokenType: 'AKAMAI', isFirst: false }
+      ];
+      const resource = SrgSsr.getMediaData(resources);
+
+      expect(resource).toMatchObject({
+        streaming: 'HLS',
+        tokenType: 'AKAMAI',
+        isFirst: true,
+      });
+    });
+
     it('should return an HLS resource if available for any Safari browser', () => {
       const mockIsAnySafari = jest.replaceProperty(Pillarbox, 'browser', {
         IS_ANY_SAFARI: true,
@@ -292,7 +333,14 @@ describe('SrgSsr', () => {
    */
   describe('middleware', () => {
     it('Should use the default DataProvider and Image class', async () => {
-      const spyOnComposeKeySystemsResources = jest.spyOn(SrgSsr, 'composeKeySystemsResources');
+      const spyOnComposeAkamaiResources = jest.spyOn(
+        SrgSsr,
+        'composeAkamaiResources'
+      );
+      const spyOnComposeKeySystemsResources = jest.spyOn(
+        SrgSsr,
+        'composeKeySystemsResources'
+      );
       const spyOnGetMediaComposition = jest.spyOn(
         SrgSsr,
         'getMediaComposition'
@@ -316,6 +364,7 @@ describe('SrgSsr', () => {
       });
       expect(spyOnGetMediaComposition).toHaveBeenCalled();
       expect(spyOnComposeKeySystemsResources).toHaveBeenCalled();
+      expect(spyOnComposeAkamaiResources).toHaveBeenCalled();
       expect(spyOnGetMediaData).toHaveBeenCalled();
       expect(spyOnComposeSrcMediaData).toHaveBeenCalled();
       expect(spyOnUpdateTitleBar).toHaveBeenCalled();
@@ -323,7 +372,14 @@ describe('SrgSsr', () => {
     });
 
     it('Should call the next middleware without error', async () => {
-      const spyOnComposeKeySystemsResources = jest.spyOn(SrgSsr, 'composeKeySystemsResources');
+      const spyOnComposeAkamaiResources = jest.spyOn(
+        SrgSsr,
+        'composeAkamaiResources'
+      );
+      const spyOnComposeKeySystemsResources = jest.spyOn(
+        SrgSsr,
+        'composeKeySystemsResources'
+      );
       const spyOnGetMediaComposition = jest.spyOn(
         SrgSsr,
         'getMediaComposition'
@@ -351,6 +407,7 @@ describe('SrgSsr', () => {
       });
       expect(spyOnGetMediaComposition).toHaveBeenCalled();
       expect(spyOnComposeKeySystemsResources).toHaveBeenCalled();
+      expect(spyOnComposeAkamaiResources).toHaveBeenCalled();
       expect(spyOnGetMediaData).toHaveBeenCalled();
       expect(spyOnComposeSrcMediaData).toHaveBeenCalled();
       expect(spyOnUpdateTitleBar).toHaveBeenCalled();
@@ -358,7 +415,14 @@ describe('SrgSsr', () => {
     });
 
     it('Should catch and error if the source is not defined', async () => {
-      const spyOnComposeKeySystemsResources = jest.spyOn(SrgSsr, 'composeKeySystemsResources');
+      const spyOnComposeAkamaiResources = jest.spyOn(
+        SrgSsr,
+        'composeAkamaiResources'
+      );
+      const spyOnComposeKeySystemsResources = jest.spyOn(
+        SrgSsr,
+        'composeKeySystemsResources'
+      );
       const spyOnGetMediaComposition = jest.spyOn(
         SrgSsr,
         'getMediaComposition'
@@ -385,6 +449,7 @@ describe('SrgSsr', () => {
       });
       expect(spyOnGetMediaComposition).not.toHaveBeenCalled();
       expect(spyOnComposeKeySystemsResources).not.toHaveBeenCalled();
+      expect(spyOnComposeAkamaiResources).not.toHaveBeenCalled();
       expect(spyOnGetMediaData).not.toHaveBeenCalled();
       expect(spyOnComposeSrcMediaData).not.toHaveBeenCalled();
       expect(spyOnUpdateTitleBar).not.toHaveBeenCalled();
