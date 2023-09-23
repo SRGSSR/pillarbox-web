@@ -23,6 +23,7 @@
     "build": "parcel build --target main",
     "eslint": "eslint --ext .js src",
     "github:page": "parcel build --target github-page",
+    "outdated": "npm outdated",
     "release:ci": "semantic-release",
     "start": "parcel -p 6969 demo/*.html",
     "stylelint": "stylelint **/*.scss --custom-syntax",
