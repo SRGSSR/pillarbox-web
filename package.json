@@ -70,7 +70,7 @@
     "stylelint-order": "^6.0.3"
   },
   "dependencies": {
-    "video.js": "^8.5.2",
+    "video.js": "^8.5.3",
     "videojs-contrib-eme": "^3.11.1"
   }
 }
