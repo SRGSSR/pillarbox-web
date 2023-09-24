@@ -3,7 +3,7 @@ import MediaComposition from '../model/MediaComposition.js';
 /**
  * @ignore
  */
-class DataProviderService {
+class DataProvider {
   constructor(hostName = 'il.srgssr.ch') {
     this.setIlHost(hostName);
   }
@@ -47,4 +47,4 @@ class DataProviderService {
   }
 }
 
-export default DataProviderService;
+export default DataProvider;

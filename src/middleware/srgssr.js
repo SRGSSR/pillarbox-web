@@ -1,5 +1,5 @@
 import Pillarbox from '../../src/pillarbox.js';
-import DataProviderService from '../dataProvider/services/DataProviderService.js';
+import DataProvider from '../dataProvider/services/DataProvider.js';
 import Image from '../utils/Image.js';
 import Drm from '../utils/Drm.js';
 import AkamaiTokenService from '../utils/AkamaiTokenService.js';
@@ -38,33 +38,57 @@ class SrgSsr {
   }
 
   /**
-   * Add src object to the mediaData.
+   * Compose source options with media data.
+   * MediaData properties from source options overwrite mediaData from IL.
    *
-   * @param {Object} mediaData
+   * @param {Object} srcOptions - provided by player.src
+   * @param {Object} mediaData - provided by mediaComposition
    *
    * @returns {Object}
    */
-  static composeSrcMediaData({ url, mimeType, ...rest }) {
-    const src = {
+  static composeSrcMediaData(
+    { mediaData: srcMediaData } = {},
+    { url, mimeType, keySystems, ...mediaData }
+  ) {
+    return {
       src: url,
       type: mimeType,
+      keySystems,
+      mediaData: Pillarbox.obj.merge(mediaData, srcMediaData),
     };
+  }
 
-    return { ...src, ...rest };
+  /**
+   * SRG SSR data provider singleton.
+   *
+   * @param {VideoJsPlayer} player
+   *
+   * @returns {DataProvider}
+   */
+  static dataProvider(player) {
+    if (!player.options().srgOptions.dataProvider) {
+      const { dataProviderHost } = player.options().srgOptions;
+      const dataProvider = new DataProvider(dataProviderHost);
+
+      player.options({
+        srgOptions: {
+          dataProvider,
+        },
+      });
+    }
+
+    return player.options().srgOptions.dataProvider;
   }
 
   /**
    * Get mediaComposition from an URN.
    *
    * @param {String} urn
-   * @param {DataProviderService} dataProvider
+   * @param {DataProvider} dataProvider
    *
    * @returns {MediaComposition}
    */
-  static async getMediaComposition(
-    urn,
-    dataProvider = new DataProviderService()
-  ) {
+  static async getMediaComposition(urn, dataProvider = new DataProvider()) {
     return dataProvider.getMediaCompositionByUrn(urn);
   }
 
@@ -116,24 +140,21 @@ class SrgSsr {
    * Middleware to resolve SRG SSR URNs into playable media.
    *
    * @param {VideojsPlayer} player
-   * @param {DataProviderService} dataProvider
    * @param {Image} imageService
    *
    * @returns {Object}
    */
   static middleware(
     player,
-    dataProvider = new DataProviderService(
-      player.options()?.srgOptions?.dataProviderHost
-    ),
     imageService = Image
   ) {
     return {
       setSource: async (srcObj, next) => {
         try {
+          const { src: urn, ...srcOptions } = srcObj;
           const { mediaComposition } = await SrgSsr.getMediaComposition(
-            srcObj.src,
-            dataProvider
+            urn,
+            SrgSsr.dataProvider(player)
           );
           const mainResources = await SrgSsr.composeAkamaiResources(
             SrgSsr.composeKeySystemsResources(
@@ -141,7 +162,7 @@ class SrgSsr {
             )
           );
           const mediaData = SrgSsr.getMediaData(mainResources);
-          const srcMediaObj = SrgSsr.composeSrcMediaData(mediaData);
+          const srcMediaObj = SrgSsr.composeSrcMediaData(srcOptions, mediaData);
 
           SrgSsr.updateTitleBar(player, mediaComposition);
           SrgSsr.updatePoster(player, mediaComposition, imageService);

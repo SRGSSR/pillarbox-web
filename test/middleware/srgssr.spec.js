@@ -1,12 +1,12 @@
 import SrgSsr from '../../src/middleware/srgssr.js';
-import DataProviderService from '../../src/dataProvider/services/DataProviderService.js';
+import DataProvider from '../../src/dataProvider/services/DataProvider.js';
 import Image from '../../src/utils/Image.js';
 import MediaComposition from '../../src/dataProvider/model/MediaComposition.js';
 import urnCredits from '../__mocks__/urn:rts:video:10313496-credits.json';
 import Pillarbox from '../../src/pillarbox.js';
 import AkamaiTokenService from '../../src/utils/AkamaiTokenService.js';
 
-jest.mock('../../src/dataProvider/services/DataProviderService.js');
+jest.mock('../../src/dataProvider/services/DataProvider.js');
 jest.mock('../../src/utils/Image.js');
 jest.mock('../../src/pillarbox.js');
 
@@ -14,7 +14,7 @@ describe('SrgSsr', () => {
   let player;
 
   beforeAll(() => {
-    DataProviderService.mockImplementation(() => {
+    DataProvider.mockImplementation(() => {
       return {
         getMediaCompositionByUrn: (urn, _onlyChapters = false) => {
           if (!urn) throw new Error('Error');
@@ -30,7 +30,7 @@ describe('SrgSsr', () => {
     Image.scale = jest.fn(({ url }) => `https://mock-scale.ch/${url}`);
 
     player = {
-      options: () => {},
+      options: jest.fn().mockReturnValue({ srgOptions:{}}),
       poster: (url) => url,
       titleBar: {
         update: ({ title, description }) => ({ title, description }),
@@ -157,12 +157,12 @@ describe('SrgSsr', () => {
    */
   describe('composeSrcMediaData', () => {
     it('should return a source object', async () => {
-      const mockDataProvider = new DataProviderService();
+      const mockDataProvider = new DataProvider();
       const { mediaComposition } =
         await mockDataProvider.getMediaCompositionByUrn('urn:fake');
       const [mainSource] = mediaComposition.getMainResources();
 
-      expect(SrgSsr.composeSrcMediaData(mainSource)).toMatchObject({
+      expect(SrgSsr.composeSrcMediaData({}, mainSource)).toMatchObject({
         src: mainSource.url,
         type: mainSource.mimeType,
       });
@@ -182,7 +182,7 @@ describe('SrgSsr', () => {
     });
 
     it('should return an instance of MediaComposition', async () => {
-      const mockDataProvider = new DataProviderService();
+      const mockDataProvider = new DataProvider();
       const spyOnGetMediaCompositionByUrn = jest.spyOn(
         mockDataProvider,
         'getMediaCompositionByUrn'
@@ -259,7 +259,7 @@ describe('SrgSsr', () => {
    */
   describe('updatePoster', () => {
     it('should use the default Image class', async () => {
-      const mockDataProvider = new DataProviderService();
+      const mockDataProvider = new DataProvider();
       const { mediaComposition } =
         await mockDataProvider.getMediaCompositionByUrn('urn:fake');
       const imageUrl = mediaComposition.getMainChapterImageUrl();
@@ -280,7 +280,7 @@ describe('SrgSsr', () => {
     });
 
     it('should update the player\'s poster', async () => {
-      const mockDataProvider = new DataProviderService();
+      const mockDataProvider = new DataProvider();
       const { mediaComposition } =
         await mockDataProvider.getMediaCompositionByUrn('urn:fake');
       const imageUrl = mediaComposition.getMainChapterImageUrl();
@@ -308,7 +308,7 @@ describe('SrgSsr', () => {
    */
   describe('updateTitleBar', () => {
     it('should update the player\'s title bar', async () => {
-      const mockDataProvider = new DataProviderService();
+      const mockDataProvider = new DataProvider();
       const { mediaComposition } =
         await mockDataProvider.getMediaCompositionByUrn('urn:fake');
 
@@ -332,7 +332,7 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('middleware', () => {
-    it('Should use the default DataProvider and Image class', async () => {
+    it('Should use the default Image class', async () => {
       const spyOnComposeAkamaiResources = jest.spyOn(
         SrgSsr,
         'composeAkamaiResources'
@@ -393,7 +393,6 @@ describe('SrgSsr', () => {
       const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
       const middleware = SrgSsr.middleware(
         player,
-        new DataProviderService(),
         Image
       );
 
@@ -436,7 +435,6 @@ describe('SrgSsr', () => {
       const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
       const middleware = SrgSsr.middleware(
         player,
-        new DataProviderService(),
         Image
       );
 
