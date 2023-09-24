@@ -9,7 +9,7 @@ class DataProviderService {
   }
 
   setIlHost(hostName) {
-    this.baseUrl = `${hostName}/integrationlayer/2.0/`;
+    this.baseUrl = `${hostName}/integrationlayer/2.1/`;
   }
 
   /**
