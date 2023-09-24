@@ -130,6 +130,8 @@ class SrgSsr {
    * @param {MediaComposition} mediaComposition
    */
   static updateTitleBar(player, mediaComposition) {
+    if (!player.titleBar) return;
+
     player.titleBar.update({
       title: mediaComposition.getMainChapter().vendor,
       description: mediaComposition.getMainChapter().title,
