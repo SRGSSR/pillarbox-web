@@ -1,16 +1,16 @@
 import fetch from '../../__mocks__/fetch.js';
 
 import MediaComposition from '../../../src/dataProvider/model/MediaComposition.js';
-import DataProviderService from '../../../src/dataProvider/services/DataProviderService.js';
+import DataProvider from '../../../src/dataProvider/services/DataProvider.js';
 
-describe('DataProviderService', () => {
+describe('DataProvider', () => {
   const urn10272382 = 'urn:rts:video:10272382';
   const urn8414077 = 'urn:rts:video:8414077';
   const urnNotFound = 'urn:not:found';
-  const dataproviderService = new DataProviderService();
+  const dataproviderService = new DataProvider();
 
   it('should override the default hostName parameter', async () => {
-    const dataproviderServiceOverrideHostName = new DataProviderService(
+    const dataproviderServiceOverrideHostName = new DataProvider(
       'rts.ch'
     );
 

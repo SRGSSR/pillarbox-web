@@ -20,4 +20,9 @@ class Pillarbox extends videojs {
   }
 }
 
+Pillarbox.options.srgOptions = {
+  dataProviderHost: undefined,
+  tagCommanderScriptURL: undefined,
+};
+
 export default Pillarbox;
