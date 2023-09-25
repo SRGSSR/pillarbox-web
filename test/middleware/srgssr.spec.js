@@ -30,7 +30,10 @@ describe('SrgSsr', () => {
     Image.scale = jest.fn(({ url }) => `https://mock-scale.ch/${url}`);
 
     player = {
-      options: jest.fn().mockReturnValue({ srgOptions:{}}),
+      debug: jest.fn(),
+      on: jest.fn(),
+      one: jest.fn(),
+      options: jest.fn().mockReturnValue({ srgOptions: {}, trackers: {}}),
       poster: (url) => url,
       titleBar: {
         update: ({ title, description }) => ({ title, description }),
@@ -165,6 +168,9 @@ describe('SrgSsr', () => {
       expect(SrgSsr.composeSrcMediaData({}, mainSource)).toMatchObject({
         src: mainSource.url,
         type: mainSource.mimeType,
+        keySystems: undefined,
+        disableTrackers: undefined,
+        mediaData: undefined,
       });
     });
   });
@@ -350,6 +356,7 @@ describe('SrgSsr', () => {
         SrgSsr,
         'composeSrcMediaData'
       );
+      const spyOnSrgAnalytics = jest.spyOn(SrgSsr, 'srgAnalytics');
       const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
       const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
       const middleware = SrgSsr.middleware(player);
@@ -367,6 +374,7 @@ describe('SrgSsr', () => {
       expect(spyOnComposeAkamaiResources).toHaveBeenCalled();
       expect(spyOnGetMediaData).toHaveBeenCalled();
       expect(spyOnComposeSrcMediaData).toHaveBeenCalled();
+      expect(spyOnSrgAnalytics).toHaveBeenCalled();
       expect(spyOnUpdateTitleBar).toHaveBeenCalled();
       expect(spyOnUpdatePoster).toHaveBeenCalled();
     });
@@ -389,12 +397,10 @@ describe('SrgSsr', () => {
         SrgSsr,
         'composeSrcMediaData'
       );
+      const spyOnSrgAnalytics = jest.spyOn(SrgSsr, 'srgAnalytics');
       const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
       const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
-      const middleware = SrgSsr.middleware(
-        player,
-        Image
-      );
+      const middleware = SrgSsr.middleware(player, Image);
 
       await middleware.setSource({ src: 'urn:fake' }, async (err, srcObj) => {
         expect(err).toBeNull();
@@ -409,6 +415,7 @@ describe('SrgSsr', () => {
       expect(spyOnComposeAkamaiResources).toHaveBeenCalled();
       expect(spyOnGetMediaData).toHaveBeenCalled();
       expect(spyOnComposeSrcMediaData).toHaveBeenCalled();
+      expect(spyOnSrgAnalytics).toHaveBeenCalled();
       expect(spyOnUpdateTitleBar).toHaveBeenCalled();
       expect(spyOnUpdatePoster).toHaveBeenCalled();
     });
@@ -433,10 +440,7 @@ describe('SrgSsr', () => {
       );
       const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
       const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
-      const middleware = SrgSsr.middleware(
-        player,
-        Image
-      );
+      const middleware = SrgSsr.middleware(player, Image);
 
       await middleware.setSource(undefined, async (err) => {
         expect(err).toEqual(expect.any(Error));

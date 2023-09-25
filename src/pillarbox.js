@@ -24,5 +24,6 @@ Pillarbox.options.srgOptions = {
   dataProviderHost: undefined,
   tagCommanderScriptURL: undefined,
 };
+Pillarbox.options.trackers = {};
 
 export default Pillarbox;

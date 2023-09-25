@@ -3,6 +3,7 @@ import DataProvider from '../dataProvider/services/DataProvider.js';
 import Image from '../utils/Image.js';
 import Drm from '../utils/Drm.js';
 import AkamaiTokenService from '../utils/AkamaiTokenService.js';
+import SRGAnalytics from '../analytics/SRGAnalytics.js';
 
 class SrgSsr {
   /**
@@ -17,6 +18,7 @@ class SrgSsr {
   static async composeAkamaiResources(resources = []) {
     if (!AkamaiTokenService.hasToken(resources)) Promise.resolve(resources);
 
+    // TODO allow to modify the Akamai URL
     return AkamaiTokenService.tokenizeSources(resources);
   }
 
@@ -38,6 +40,20 @@ class SrgSsr {
   }
 
   /**
+   * Get the main resources from a mediaComposition.
+   * May add an Akamai token or key systems if required by the resource.
+   *
+   * @param {import('../dataProvider/model/MediaComposition.js').default} mediaComposition
+   *
+   * @returns {Promise<Array.<Object>>}
+   */
+  static composeMainResources(mediaComposition) {
+    return SrgSsr.composeAkamaiResources(
+      SrgSsr.composeKeySystemsResources(mediaComposition.getMainResources())
+    );
+  }
+
+  /**
    * Compose source options with media data.
    * MediaData properties from source options overwrite mediaData from IL.
    *
@@ -47,13 +63,14 @@ class SrgSsr {
    * @returns {Object}
    */
   static composeSrcMediaData(
-    { mediaData: srcMediaData } = {},
+    { mediaData: srcMediaData, disableTrackers },
     { url, mimeType, keySystems, ...mediaData }
   ) {
     return {
       src: url,
       type: mimeType,
       keySystems,
+      disableTrackers,
       mediaData: Pillarbox.obj.merge(mediaData, srcMediaData),
     };
   }
@@ -109,6 +126,32 @@ class SrgSsr {
   }
 
   /**
+   * SRG SSR analytics singleton.
+   *
+   * @param {VideoJsPlayer} player
+   *
+   * @returns
+   */
+  static srgAnalytics(player) {
+    if (player.options().trackers.srgAnalytics === false) return;
+
+    if (!player.options().trackers.srgAnalytics) {
+      const srgAnalytics = new SRGAnalytics(player, {
+        debug: player.debug(),
+        playerVersion: Pillarbox.VERSION.pillarbox,
+        tagCommanderScriptURL:
+          player.options().srgOptions.tagCommanderScriptURL,
+      });
+
+      player.options({
+        trackers: {
+          srgAnalytics,
+        },
+      });
+    }
+  }
+
+  /**
    * Update player's poster.
    *
    * @param {VideojsPlayer} player
@@ -146,11 +189,9 @@ class SrgSsr {
    *
    * @returns {Object}
    */
-  static middleware(
-    player,
-    imageService = Image
-  ) {
+  static middleware(player, imageService = Image) {
     return {
+      /* eslint max-statements: ["error", 15]*/
       setSource: async (srcObj, next) => {
         try {
           const { src: urn, ...srcOptions } = srcObj;
@@ -158,14 +199,13 @@ class SrgSsr {
             urn,
             SrgSsr.dataProvider(player)
           );
-          const mainResources = await SrgSsr.composeAkamaiResources(
-            SrgSsr.composeKeySystemsResources(
-              mediaComposition.getMainResources()
-            )
+          const mainResources = await SrgSsr.composeMainResources(
+            mediaComposition
           );
           const mediaData = SrgSsr.getMediaData(mainResources);
           const srcMediaObj = SrgSsr.composeSrcMediaData(srcOptions, mediaData);
 
+          SrgSsr.srgAnalytics(player);
           SrgSsr.updateTitleBar(player, mediaComposition);
           SrgSsr.updatePoster(player, mediaComposition, imageService);
 
