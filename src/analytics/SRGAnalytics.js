@@ -99,6 +99,7 @@ class SRGAnalytics {
     this.heartBeatIntervalId = undefined;
     /* Set to true when 'init' event is sent or queued. */
     this.initialized = false;
+    this.isSeeking = false;
     this.isWaiting = false;
     this.mediaSession = 0;
     this.pendingQueue = [];
@@ -207,6 +208,7 @@ class SRGAnalytics {
     this.player.off(PlayerEvents.PLAYING, this.playListener);
     this.player.off(PlayerEvents.PAUSE, this.pauseListener);
     this.player.off(PlayerEvents.RATE_CHANGE, this.rateChangeListener);
+    this.player.off(PlayerEvents.SEEKING, this.seekingListener);
     this.player.off(PlayerEvents.TIME_UPDATE, this.timeUpdateListener);
     this.player.off(PlayerEvents.WAITING, this.waitingListener);
   }
@@ -469,6 +471,8 @@ class SRGAnalytics {
    * - loadeddata
    * - play
    * - pause
+   * - ratechange
+   * - seeking
    * - timeupdate
    * - waiting
    */
@@ -481,6 +485,7 @@ class SRGAnalytics {
     this.playListener = this.play.bind(this);
     this.pauseListener = this.pause.bind(this);
     this.rateChangeListener = this.rateChange.bind(this);
+    this.seekingListener = this.seeking.bind(this);
     this.timeUpdateListener = this.timeUpdate.bind(this);
     this.waitingListener = this.waiting.bind(this);
   }
@@ -512,6 +517,7 @@ class SRGAnalytics {
     this.player.on(PlayerEvents.PLAYING, this.playListener);
     this.player.on(PlayerEvents.PAUSE, this.pauseListener);
     this.player.on(PlayerEvents.RATE_CHANGE, this.rateChangeListener);
+    this.player.on(PlayerEvents.SEEKING, this.seekingListener);
     this.player.on(PlayerEvents.TIME_UPDATE, this.timeUpdateListener);
     this.player.on(PlayerEvents.WAITING, this.waitingListener);
     this.player.one('dispose', this.dispose.bind(this));
@@ -725,10 +731,11 @@ class SRGAnalytics {
       this.uptime();
     }
 
-    if (!this.isPlaybackResumed && this.hasFirstStart) {
-      this.isPlaybackResumed = true;
+    if (this.hasFirstStart) {
       this.notify('play');
     }
+
+    if (this.isSeeking) this.isSeeking = false;
   }
 
   /**
@@ -741,8 +748,6 @@ class SRGAnalytics {
    * @see https://docs.videojs.com/player#event:pause
    */
   pause() {
-    this.isPlaybackResumed = false;
-
     if (!this.isMediaOnDemand()) {
       this.elapsedPlaybackTime = this.getElapsedPlayingTime();
       this.startPlaybackSession = 0;
@@ -750,11 +755,17 @@ class SRGAnalytics {
 
     if (
       !this.player.seeking() &&
-      !this.player.scrubbing() &&
       !this.isMediaLive() &&
       this.player.currentTime() < this.player.duration()
     ) {
       this.notify('pause');
+
+      return;
+    }
+
+    if (!this.isSeeking){
+      this.notify('seek');
+      this.isSeeking = true;
     }
   }
 
@@ -781,46 +792,25 @@ class SRGAnalytics {
   }
 
   /**
-   * Calculate the time elapsed between two timeUpdate events.
-   * It allows to know when a seek does start and when it ends.
+   * Sent when the current time is modified by the player's currentTime API.
    *
-   * __Rules__:
-   * - A seek action must start with a buffer_start notification
-   * - A seek event must be fired with the position where the seek starts
-   * - A seek action must end with a notification of play or pause according to the state of the player before seeking
-   * - Finally a buffer_stop must be notified
+   * @see https://docs.videojs.com/player#event:seeking
+   */
+  seeking() {
+    if (!this.player.paused() && !this.isSeeking) {
+      this.notify('seek');
+      this.isSeeking = true;
+    }
+  }
+
+  /**
+   * Track current time updates delayed by a tick.
    *
    * @see https://docs.videojs.com/player#event:timeupdate
    */
   timeUpdate() {
-    if (!this.hasFirstStart) return;
-
-    if (
-      !this.isMediaLive() &&
-      Math.abs(this.trackedCurrentTime - this.player.currentTime()) > 1.5 &&
-      !this.isSeeking
-    ) {
-      this.isSeeking = true;
-      this.isPlaybackResumed = false;
-
-      this.notify('seek');
-    }
-
-    this.trackedCurrentTime = this.player.currentTime();
-
-    const hasDoneSeeking = this.isSeeking && !this.player.scrubbing();
-
-    if (!hasDoneSeeking) return;
-
-    this.isSeeking = false;
-
-    if (!this.player.paused() && !this.isPlaybackResumed) {
-      this.isPlaybackResumed = true;
-      this.notify('play');
-    }
-
-    if (this.player.paused()) {
-      this.notify('pause');
+    if (!this.player.paused()) {
+      this.trackedCurrentTime = this.player.currentTime();
     }
   }
 

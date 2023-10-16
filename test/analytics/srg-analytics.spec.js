@@ -9,10 +9,29 @@ jest.mock('../../src/pillarbox.js', () => ({
 }));
 
 const playbackSequences = (player, timeRanges = [[]]) => {
-  timeRanges.forEach(([start, end]) => {
-    for (let x = end - start, i = 0; i <= x; i++) {
-      player.currentTime.mockReturnValue(start + i);
+  timeRanges.forEach(([start, end], i) => {
+    let shouldSeek = i > 0;
+
+    for (let x = end - start, j = 0; j <= x; j++) {
+      const currentTimeNextTick = start + j;
+      const isSeeking = shouldSeek && currentTimeNextTick === start;
+
+      if (isSeeking) {
+        player.seeking.mockReturnValue(true);
+        player.trigger('pause');
+        player.trigger('seeking');
+      }
+
+      player.currentTime.mockReturnValue(currentTimeNextTick);
       player.trigger('timeupdate');
+
+      if (isSeeking) {
+        player.trigger('seeked');
+        player.seeking.mockReturnValue(false);
+        player.trigger('play');
+        player.trigger('playing');
+      }
+
       jest.advanceTimersByTime(1_000);
     }
   });
@@ -165,8 +184,8 @@ describe('SRGAnalytics', () => {
       player.trigger('loadeddata');
 
       player.duration.mockReturnValue(720);
-      player.play();
       player.paused.mockReturnValue(false);
+      player.play();
 
       playbackSequences(player, [
         [0, 10],
