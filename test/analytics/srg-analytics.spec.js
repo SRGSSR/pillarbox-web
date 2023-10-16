@@ -47,6 +47,7 @@ describe('SRGAnalytics', () => {
     audioTracks: jest.fn().mockReturnValue({}),
     currentSource: jest.fn().mockReturnValue(mediaData),
     currentTime: jest.fn().mockReturnValue(0),
+    debug: jest.fn().mockReturnValue(false),
     duration: jest.fn().mockReturnValue(0),
     liveTracker: {
       atLiveEdge: jest.fn(),

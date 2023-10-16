@@ -151,7 +151,7 @@ class SRGAnalytics {
    */
   debug(enabled) {
     if (enabled === undefined) {
-      return this.isDebugEnabled;
+      return this.isDebugEnabled || this.player.debug();
     }
 
     this.isDebugEnabled = Boolean(enabled);
