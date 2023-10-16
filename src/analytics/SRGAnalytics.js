@@ -607,7 +607,11 @@ class SRGAnalytics {
    * @returns {Boolean} __true__ if disabled __false__ otherwise.
    */
   isTrackerDisabled() {
-    if (this.srcMediaData && !this.srcMediaData.mediaData) return true;
+    if (
+      !this.srcMediaData ||
+      (this.srcMediaData && !this.srcMediaData.mediaData)
+    )
+      return true;
 
     if (!Array.isArray(this.srcMediaData.disableTrackers)) {
       return Boolean(this.srcMediaData.disableTrackers);
