@@ -18,6 +18,7 @@
         "test/**"
       ],
       "rules": {
+        "complexity": "off",
         "max-lines-per-function": "off",
         "max-statements": "off",
         "max-nested-callbacks": "off",
