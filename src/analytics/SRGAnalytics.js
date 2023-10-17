@@ -95,7 +95,7 @@ class SRGAnalytics {
     this.isDebugEnabled = debug;
     this.elapsedPlaybackTime = 0;
     this.environment = environment;
-    this.hasFirstStart = false;
+    this.hasStarted = false;
     this.heartBeatIntervalId = undefined;
     /* Set to true when 'init' event is sent or queued. */
     this.initialized = false;
@@ -167,7 +167,7 @@ class SRGAnalytics {
       window.tc_vars = {};
     }
     this.elapsedPlaybackTime = 0;
-    this.hasFirstStart = false;
+    this.hasStarted = false;
     this.heartBeatIntervalId = undefined;
     this.initialized = false;
     this.isWaiting = false;
@@ -235,23 +235,6 @@ class SRGAnalytics {
     this.mediaSession = 0;
 
     this.clearTimers();
-  }
-
-  /**
-   * Sent at the first play.
-   * Allows the trackedCurrentTime to be correctly updated.
-   * To avoid sending a seek notification when there is a pending seek (eg. live).
-   */
-  firstPlay() {
-    this.player.one(PlayerEvents.PLAYING, () => {
-      this.hasFirstStart = true;
-
-      if (!this.isMediaOnDemand()) {
-        this.trackedCurrentTime = this.player.liveTracker.liveWindow();
-      }
-
-      this.notify('play');
-    });
   }
 
   /**
@@ -640,7 +623,7 @@ class SRGAnalytics {
     this.reloadTagCommanderContainer();
 
     this.notify('buffer_start');
-    this.firstPlay();
+    this.hasStarted = false;
   }
 
   /**
@@ -724,6 +707,8 @@ class SRGAnalytics {
    * @see https://docs.videojs.com/player#event:play
    */
   play() {
+    if (!this.hasStarted) this.hasStarted = true;
+
     if (!this.startPlaybackSession && !this.isMediaOnDemand()) {
       this.startPlaybackSession = SRGAnalytics.now();
     }
@@ -735,9 +720,7 @@ class SRGAnalytics {
       this.uptime();
     }
 
-    if (this.hasFirstStart) {
-      this.notify('play');
-    }
+    this.notify('play');
 
     if (this.isSeeking) this.isSeeking = false;
   }
@@ -767,7 +750,7 @@ class SRGAnalytics {
       return;
     }
 
-    if (!this.isSeeking){
+    if (this.hasStarted && !this.isSeeking) {
       this.notify('seek');
       this.isSeeking = true;
     }
@@ -801,7 +784,7 @@ class SRGAnalytics {
    * @see https://docs.videojs.com/player#event:seeking
    */
   seeking() {
-    if (!this.player.paused() && !this.isSeeking) {
+    if (this.hasStarted && !this.player.paused() && !this.isSeeking) {
       this.notify('seek');
       this.isSeeking = true;
     }

@@ -594,7 +594,7 @@ describe('SRGAnalytics', () => {
       player.trigger('loadeddata');
       player.trigger('timeupdate');
 
-      expect(analytics.hasFirstStart).toBe(false);
+      expect(analytics.hasStarted).toBe(false);
       expect(spyIsMediaLive).not.toHaveBeenCalled();
     });
   });
