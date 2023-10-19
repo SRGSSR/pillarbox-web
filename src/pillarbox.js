@@ -1,6 +1,7 @@
 import { version } from '../package.json';
 import videojs from 'video.js';
 import 'videojs-contrib-eme';
+import './components/player.js';
 
 /**
  * @namespace
