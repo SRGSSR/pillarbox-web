@@ -57,8 +57,9 @@ describe('Player', () => {
         language: 'en',
       });
     });
-    it('should return undefined if the language and kind properties do not satisfy the condition', () => {
+    it('should return undefined and not disable the already active audio track if the language and kind properties do not satisfy the condition', () => {
       expect(player.audioTrack({ language: 'fr' })).toBeUndefined();
+      expect(player.audioTracks.mock.results[0].value[0].enabled).toBe(true);
     });
   });
 

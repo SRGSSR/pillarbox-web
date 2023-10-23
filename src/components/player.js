@@ -6,6 +6,9 @@ class Player extends videojs.getComponent('player') {
    * Activates the audio track according to the language and kind properties.
    * Falls back on the first audio track found if the kind property is not satisfied.
    *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/AudioTrack/kind
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/AudioTrack/language
+   *
    * @param {TrackSelector} [trackSelector]
    *
    * @example
@@ -31,13 +34,14 @@ class Player extends videojs.getComponent('player') {
 
     const { kind, language } = trackSelector;
     const audioTrack =
-      audioTracks.find((audioTrack) => {
-        return (audioTrack.enabled =
-          audioTrack.language === language && audioTrack.kind === kind);
-      }) ||
-      audioTracks.find((audioTrack) => {
-        return (audioTrack.enabled = audioTrack.language === language);
-      });
+      audioTracks.find(
+        (audioTrack) =>
+          audioTrack.language === language && audioTrack.kind === kind
+      ) || audioTracks.find((audioTrack) => audioTrack.language === language);
+
+    if (audioTrack) {
+      audioTrack.enabled = true;
+    }
 
     return audioTrack;
   }
@@ -47,6 +51,9 @@ class Player extends videojs.getComponent('player') {
    * Activates the text track according to the language and kind properties.
    * Falls back on the first text track found if the kind property is not satisfied.
    * Disables all subtitle tracks that are `showing` if the `trackSelector` is truthy but does not satisfy any condition.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/TextTrack/kind
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/textTrack/language
    *
    * @param {TrackSelector} [trackSelector]
    *
