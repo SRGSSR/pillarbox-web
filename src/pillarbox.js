@@ -16,7 +16,7 @@ class Pillarbox extends videojs {
       pillarbox: version,
       videojs: videojs.VERSION,
       [videojs.VhsSourceHandler.name]: videojs.VhsSourceHandler.VERSION,
-      [videojs.getPlugin('eme').name]: videojs.getPlugin('eme').VERSION,
+      eme: videojs.getPlugin('eme').VERSION,
     };
   }
 }
