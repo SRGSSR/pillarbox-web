@@ -10,6 +10,8 @@ jest.mock('../../src/dataProvider/services/DataProvider.js');
 jest.mock('../../src/utils/Image.js');
 jest.mock('../../src/pillarbox.js');
 
+window.MediaError = jest.fn().mockRejectedValue({ MEDIA_ERR_ABORTED: 1 });
+
 describe('SrgSsr', () => {
   let player;
 
@@ -31,14 +33,49 @@ describe('SrgSsr', () => {
 
     player = {
       debug: jest.fn(),
+      error: jest.fn(),
+      localize: jest.fn(),
       on: jest.fn(),
       one: jest.fn(),
       options: jest.fn().mockReturnValue({ srgOptions: {}, trackers: {}}),
       poster: (url) => url,
+      src: jest.fn(),
       titleBar: {
         update: ({ title, description }) => ({ title, description }),
       },
     };
+  });
+
+  /**
+   *****************************************************************************
+   * blockingReason ************************************************************
+   *****************************************************************************
+   */
+  describe('blockingReason', () => {
+    it('should return undefined if the block reason is undefined', async () => {
+      const spyOnLocalize = jest.spyOn(player, 'localize');
+
+      expect(SrgSsr.blockingReason(player, undefined, {})).toBeUndefined();
+      expect(spyOnLocalize).not.toHaveBeenCalled();
+    });
+
+    it('should return true and generate an error', async () => {
+      const spyOnLocalize = jest.spyOn(player, 'localize');
+      const spyOnPlayerError = jest.spyOn(player, 'error');
+      const spyOnError = jest.spyOn(SrgSsr, 'error');
+
+      expect(SrgSsr.blockingReason(player, 'STARTDATE', {})).toBe(true);
+      expect(spyOnLocalize).toHaveBeenCalled();
+      expect(spyOnError).toHaveBeenCalledWith(
+        player,
+        expect.any(Object)
+      );
+      expect(spyOnPlayerError.mock.calls[1]).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ cause: { type: 'STARTDATE', src: {}}})
+        ])
+      );
+    });
   });
 
   /**
@@ -177,6 +214,39 @@ describe('SrgSsr', () => {
 
   /**
    *****************************************************************************
+   * dataProviderError *********************************************************
+   *****************************************************************************
+   */
+  describe('dataProviderError', () => {
+    it('should not generate an error if the error parameter does not contain an url property', async () => {
+      const spyOnError = jest.spyOn(SrgSsr, 'error');
+
+      expect(SrgSsr.dataProviderError(player, {})).toBeUndefined();
+      expect(spyOnError).not.toHaveBeenCalled();
+    });
+    it('should generate an error', async () => {
+      const spyOnError = jest.spyOn(SrgSsr, 'error');
+
+      jest.spyOn(SrgSsr, 'dataProvider').mockReturnValueOnce({
+        baseUrl: 'http://mock.url.ch',
+      });
+
+      expect(
+        SrgSsr.dataProviderError(player, {
+          url: 'http://mock.url.ch',
+          status: 404,
+          statusText: 'Not Found',
+        })
+      ).toBe(true);
+      expect(spyOnError).toHaveBeenCalledWith(
+        player,
+        expect.any(Object)
+      );
+    });
+  });
+
+  /**
+   *****************************************************************************
    * getMediaComposition *******************************************************
    *****************************************************************************
    */
@@ -255,6 +325,28 @@ describe('SrgSsr', () => {
     it('should return undefined if the resources are not defined or if the array is empty', () => {
       expect(SrgSsr.getMediaData([])).toBeUndefined();
       expect(SrgSsr.getMediaData()).toBeUndefined();
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * error *************************************************************
+   *****************************************************************************
+   */
+
+  describe('error', () => {
+    it('should generate an error', async () => {
+      const spyOnPlayerError = jest.spyOn(player, 'error');
+      const error = {
+        code: 1,
+        message: 'error message',
+        cause: 'error cause',
+      };
+
+      SrgSsr.error(player, error);
+
+      expect(spyOnPlayerError).toHaveBeenNthCalledWith(1, null);
+      expect(spyOnPlayerError).toHaveBeenNthCalledWith(2, error);
     });
   });
 
@@ -456,6 +548,67 @@ describe('SrgSsr', () => {
       expect(spyOnComposeSrcMediaData).not.toHaveBeenCalled();
       expect(spyOnUpdateTitleBar).not.toHaveBeenCalled();
       expect(spyOnUpdatePoster).not.toHaveBeenCalled();
+    });
+
+    it('Should return undefined and generate an error if the media has a block reason', async () => {
+      jest.spyOn(SrgSsr, 'getMediaData').mockReturnValueOnce({
+        analyticsData: {},
+        analyticsMetadata: {},
+        blockReason: 'STARTDATE',
+        vendor: 'SRF',
+        dvr: true,
+        eventData: '',
+        id: '',
+        imageCopyright: '',
+        live: true,
+        mediaType: 'VIDEO',
+        mimeType: 'application/x-mpegURL',
+        presentation: '',
+        quality: '',
+        streaming: '',
+        url: 'https://fake.stream.url.ch/',
+      });
+
+      const spyOnBlockingReason = jest.spyOn(SrgSsr, 'blockingReason');
+      const result = await SrgSsr.middleware(player).setSource(
+        { src: 'urn:fake' },
+        jest.fn().mockResolvedValue(true)
+      );
+
+      expect(result).toBeUndefined();
+      expect(spyOnBlockingReason).toHaveBeenCalledWith(
+        player,
+        'STARTDATE',
+        expect.any(Object)
+      );
+    });
+
+    it('Should return undefined and generate an error the URN doest not exist', async () => {
+      const spyOnDataProvider = jest.spyOn(SrgSsr, 'dataProvider').mockReturnValue({
+        baseUrl: 'http://mock.url.ch',
+      });
+      const spyOnError = jest.spyOn(SrgSsr, 'error');
+      const spyOnDataProviderError = jest.spyOn(SrgSsr, 'dataProviderError');
+
+      jest.spyOn(SrgSsr, 'getMediaComposition').mockRejectedValueOnce({
+        status: '404',
+        statusText: 'Not Found',
+        url: 'http://mock.url.ch',
+      });
+
+      const result = await SrgSsr.middleware(player).setSource(
+        { src: 'urn:fake' },
+        jest.fn().mockResolvedValue(true)
+      );
+
+      expect(result).toBeUndefined();
+      expect(spyOnDataProviderError.mock.results[0].value).toBe(true);
+      expect(spyOnError).toHaveBeenCalledWith(
+        player,
+        expect.any(Object)
+      );
+
+      spyOnDataProvider.mockReset();
     });
   });
 });

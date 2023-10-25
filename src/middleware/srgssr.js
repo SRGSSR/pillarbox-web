@@ -7,6 +7,30 @@ import SRGAnalytics from '../analytics/SRGAnalytics.js';
 
 class SrgSsr {
   /**
+   * Set a blocking reason according
+   * the block reason returned by mediaData.
+   *
+   * @param {VideoJsPlayer} player
+   * @param {String} blockReason
+   * @param {Object} srcMediaObj
+   *
+   * @returns {undefined|Boolean}
+   */
+  static blockingReason(player, blockReason, srcMediaObj) {
+    if (!blockReason) return;
+
+    const message = player.localize(blockReason);
+
+    SrgSsr.error(player, {
+      code: MediaError.MEDIA_ERR_ABORTED,
+      message,
+      cause: { type: blockReason, src: srcMediaObj },
+    });
+
+    return true;
+  }
+
+  /**
    * Add the Akamai token to all resources
    * if at least one of them has tokenType
    * set to Akamai.
@@ -95,6 +119,51 @@ class SrgSsr {
     }
 
     return player.options().srgOptions.dataProvider;
+  }
+
+  /**
+   * Set an error if something goes wrong with the data provider.
+   *
+   * @param {VideoJsPlayer} player
+   * @param {Object} error
+   *
+   * @returns {undefined|true}
+   */
+  static dataProviderError(player, error) {
+    const hasError =
+      error.url && error.url.includes(SrgSsr.dataProvider(player).baseUrl);
+
+    if (!hasError) return;
+
+    SrgSsr.error(player, {
+      code: 0,
+      message: player.localize('UNKNOWN'),
+      cause: {
+        type: 'UNKNOWN',
+        urn: player.src(),
+        status: error.status,
+        statusText: error.statusText,
+        url: error.url,
+      },
+    });
+
+    return true;
+  }
+
+  /**
+   * Set player error.
+   *
+   * @param {VideoJsPlayer} player
+   * @param {Object} error
+   */
+  static error(player, { code, message, cause }) {
+    player.error(null);
+
+    player.error({
+      code,
+      message,
+      cause,
+    });
   }
 
   /**
@@ -209,8 +278,13 @@ class SrgSsr {
           SrgSsr.updateTitleBar(player, mediaComposition);
           SrgSsr.updatePoster(player, mediaComposition, imageService);
 
+          if (SrgSsr.blockingReason(player, mediaData.blockReason, srcMediaObj))
+            return;
+
           return next(null, srcMediaObj);
         } catch (error) {
+          if (SrgSsr.dataProviderError(player, error)) return;
+
           return next(error);
         }
       },
