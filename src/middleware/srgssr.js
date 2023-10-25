@@ -5,6 +5,13 @@ import Drm from '../utils/Drm.js';
 import AkamaiTokenService from '../utils/AkamaiTokenService.js';
 import SRGAnalytics from '../analytics/SRGAnalytics.js';
 
+// Translations
+import '../lang/de.js';
+import '../lang/en.js';
+import '../lang/fr.js';
+import '../lang/it.js';
+import '../lang/rm.js';
+
 class SrgSsr {
   /**
    * Set a blocking reason according to the block reason returned

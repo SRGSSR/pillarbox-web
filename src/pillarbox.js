@@ -27,16 +27,4 @@ Pillarbox.options.srgOptions = {
 };
 Pillarbox.options.trackers = {};
 
-// TODO will be moved, see https://github.com/SRGSSR/pillarbox-web/issues/48
-Pillarbox.addLanguage('en', {
-  AGERATING12: 'To protect children this content is only available between 8PM and 6AM.',
-  AGERATING18: 'To protect children this content is only available between 10PM and 5AM.',
-  COMMERCIAL: 'This commercial content is not available.',
-  ENDDATE: 'This content is not available anymore.',
-  GEOBLOCK: 'This content is not available outside Switzerland.',
-  LEGAL: 'This content is not available due to legal restrictions.',
-  STARTDATE: 'This content is not available yet.',
-  UNKNOWN: 'This content is not available.',
-});
-
 export default Pillarbox;
