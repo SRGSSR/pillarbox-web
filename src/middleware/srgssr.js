@@ -7,8 +7,8 @@ import SRGAnalytics from '../analytics/SRGAnalytics.js';
 
 class SrgSsr {
   /**
-   * Set a blocking reason according
-   * the block reason returned by mediaData.
+   * Set a blocking reason according to the block reason returned
+   * by mediaData.
    *
    * @param {VideoJsPlayer} player
    * @param {String} blockReason
