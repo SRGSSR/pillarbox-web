@@ -2,7 +2,9 @@
   "name": "@srgssr/pillarbox-web",
   "description": "Pillarbox is the modern SRG SSR player",
   "version": "0.6.9",
-  "main": "dist/pillarbox.js",
+  "pillarbox-core": "dist/pillarbox.core.js",
+  "pillarbox": "dist/pillarbox.js",
+  "pillarbox-css": "dist/pillarbox.css",
   "targets": {
     "github-page": {
       "publicUrl": "./",
@@ -12,15 +14,42 @@
       "isLibrary": false,
       "outputFormat": "esmodule"
     },
-    "main": {
-      "source": "src/pillarbox.js"
+    "pillarbox-core": {
+      "source": "src/pillarbox.js",
+      "distDir": "./dist",
+      "outputFormat": "esmodule",
+      "includeNodeModules": false,
+      "isLibrary": true,
+      "optimize": true
+    },
+    "pillarbox": {
+      "source": "build.js",
+      "distDir": "./dist",
+      "includeNodeModules": false,
+      "isLibrary": true,
+      "outputFormat": "esmodule",
+      "optimize": true
+    },
+    "pillarbox-css": {
+      "source": "node_modules/video.js/dist/video-js.css",
+      "distDir": "./dist",
+      "isLibrary": false,
+      "optimize": true
     }
   },
+  "files": [
+    "dist/*",
+    "docs/*"
+  ],
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "build": "parcel build --target main",
+    "prebuild": "rimraf dist",
+    "build": "npm run build:css && npm run build:pillarbox && npm run build:pillarbox-core",
+    "build:css": "parcel build --target pillarbox-css",
+    "build:pillarbox": "parcel build --target pillarbox",
+    "build:pillarbox-core": "parcel build --target pillarbox-core",
     "eslint": "eslint --ext .js src",
     "github:page": "parcel build --target github-page",
     "outdated": "npm outdated",
@@ -64,6 +93,7 @@
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.6.1",
     "parcel": "^2.9.2",
+    "rimraf": "^5.0.5",
     "semantic-release": "^22.0.5",
     "stylelint": "^15.10.1",
     "stylelint-config-rational-order": "^0.1.2",
