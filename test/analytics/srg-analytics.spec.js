@@ -84,7 +84,7 @@ describe('SRGAnalytics', () => {
     tech: jest.fn().mockReturnValue({
       isCasting: undefined,
     }),
-    textTracks: jest.fn().mockReturnValue({}),
+    textTrack: jest.fn().mockReturnValue(undefined),
     trigger: jest.fn((evt) => {
       document.dispatchEvent(new Event(evt));
     }),
@@ -393,32 +393,17 @@ describe('SRGAnalytics', () => {
    *****************************************************************************
    */
   describe('getCurrentTextTrack', () => {
-    it('should return an empty string if no audio track is enabled', () => {
+    it('should return an empty string if no text track is enabled', () => {
       expect(analytics.getCurrentTextTrack()).toBeFalsy();
     });
 
-    it('should return an upper case string representing the audio language', () => {
-      player.textTracks = jest.fn(() => ({
-        0: {
+    it('should return an upper case string representing the text language', () => {
+      player.textTrack.mockReturnValueOnce({
           kind: 'subtitle',
           language: 'fr',
           label: 'Français',
           mode: 'showing',
-        },
-        1: {
-          kind: 'subtitle',
-          language: 'en',
-          label: 'English',
-          mode: 'hidden',
-        },
-        2: {
-          kind: 'metadata',
-          language: 'whatever',
-          label: 'we-dont-care',
-          mode: 'god',
-        },
-        length: 3,
-      }));
+      });
 
       expect(analytics.getCurrentTextTrack()).toBe('FR');
     });

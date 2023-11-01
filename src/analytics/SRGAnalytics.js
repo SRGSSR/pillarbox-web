@@ -286,9 +286,7 @@ class SRGAnalytics {
    * @returns {String} empty string or uppercase language.
    */
   getCurrentTextTrack() {
-    const currentTrack = Array.from(this.player.textTracks())
-      .filter((track) => track.kind !== 'metadata')
-      .find((track) => track.mode === 'showing');
+    const currentTrack = this.player.textTrack();
     let language = 'und';
 
     if (currentTrack && !!currentTrack.language) {
