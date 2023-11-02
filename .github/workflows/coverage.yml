@@ -1,5 +1,6 @@
 name: Coverage
 on:
+  merge_group:
   pull_request_target:
     branches:
       - main
