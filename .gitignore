@@ -1,4 +1,13 @@
+### Compiled output ###
 node_modules
+
+### Compiled output ###
 .parcel-cache
 dist
 coverage
+
+### IntelliJ IDEA ###
+.idea
+*.iml
+*.iws
+*.ipr
