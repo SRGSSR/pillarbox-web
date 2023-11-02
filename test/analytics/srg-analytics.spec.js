@@ -399,10 +399,10 @@ describe('SRGAnalytics', () => {
 
     it('should return an upper case string representing the text language', () => {
       player.textTrack.mockReturnValueOnce({
-          kind: 'subtitle',
-          language: 'fr',
-          label: 'Français',
-          mode: 'showing',
+        kind: 'subtitle',
+        language: 'fr',
+        label: 'Français',
+        mode: 'showing',
       });
 
       expect(analytics.getCurrentTextTrack()).toBe('FR');
