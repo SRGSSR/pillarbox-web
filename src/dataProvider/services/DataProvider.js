@@ -25,21 +25,19 @@ class DataProvider {
 
     return fetch(url)
       .then((response) => {
-        if (response.ok) {
-          return response.json().then((data) => {
-            const mediaComposition = Object.assign(
-              new MediaComposition(),
-              data,
-              { onlyChapters }
-            );
-
-            return {
-              mediaComposition,
-            };
-          });
+        if (!response.ok) {
+          return Promise.reject(response);
         }
 
-        return Promise.reject(response);
+        return response.json().then((data) => {
+          const mediaComposition = Object.assign(new MediaComposition(), data, {
+            onlyChapters,
+          });
+
+          return {
+            mediaComposition,
+          };
+        });
       })
       .catch((reason) => {
         return Promise.reject(reason);
