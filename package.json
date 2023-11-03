@@ -8,9 +8,8 @@
   "targets": {
     "github-page": {
       "publicUrl": "./",
-      "source": [
-        "demo/index.html"
-      ],
+      "source": "demo/index.html",
+      "distDir": "./dist",
       "isLibrary": false,
       "outputFormat": "esmodule"
     },
