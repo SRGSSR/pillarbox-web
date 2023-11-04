@@ -715,6 +715,7 @@ class SRGAnalytics {
       this.uptime();
     }
 
+    this.timeUpdate();
     this.notify('play');
 
     if (this.isSeeking) this.isSeeking = false;
