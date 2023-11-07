@@ -22,11 +22,11 @@ window.pillarbox = Pillarbox;
 window.player = player;
 
 // Set Pillarbox version
-document.querySelector('.version').textContent = Pillarbox.VERSION.pillarbox;
+document.querySelector('.version').textContent = `Pillarbox @ ${Pillarbox.VERSION.pillarbox}`;
 
 // Allow to load any example
 document
-  .querySelector('#search-bar')
+  .querySelector('#load-bar')
   .addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
       const src = event.target.value;

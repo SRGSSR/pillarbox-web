@@ -6,62 +6,87 @@
 
 body {
   display: grid;
-
-  margin: 0;
-  color: var(--gray-0);
+  margin: 0 var(--size-2);
+  color: var(--gray-4);
   font-size: var(--size-5);
   font-family: var(--font-sans);
-  background-color: var(--gray-12);
+  background-color: var(--gray-11);
   place-content: center;
 }
 
-h1 {
+.pbw-title {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
+  font-size: var(--size-7);
+}
+
+.pbw-title * {
+  margin-right: var(--size-1);
+}
+
+.pbw-title:last-child {
+  margin-right: 0;
+}
+
+.pbw-logo {
+  height : var(--size-7);
 }
 
 .version {
   font-weight: bold;
 }
 
-.container {
-  margin: 10px;
-}
-
 .pbw-demo {
-  font-size: 15px;
+  font-size: var(--size-3);
 }
 
-#search-bar {
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  color: #fff;
-  font-size: 16px;
-  background-color: #333;
+.load-bar-container {
+  display: flex;
+  align-items: center;
+  padding-left: var(--size-3);
+  background-color: var(--gray-8);
+  border-radius: var(--radius-2);
+}
+
+.load-bar-container i {
+  color: var(--gray-5);
+}
+
+#load-bar {
+  width: 90%;
+  margin: var(--size-1) 0;
+  padding: var(--size-4) var(--size-3);
+  color: var(--gray-2);
+  font-size: var(--size-3);
+  background-color: var(--gray-8);
   border: none;
-  border-radius: 5px;
   outline: none;
 }
 
-#search-bar::placeholder {
-  color: #888;
+#load-bar::placeholder {
+  color: var(--gray-3);
 }
 
-.btn-link {
-  color: #fff;
+.btn {
+  color: var(--gray-0);
+  font-size: var(--size-3);
   text-align: center;
   text-decoration: none;
-  background-color: #333;
-  border: 1px solid #444;
-  border-radius: 5px;
-  transition: background-color 0.3s, border-color 0.3s;
+  background-color: var(--gray-9);
+  border: 1px solid var(--gray-10);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: background-color 0.4s, border-color 0.4s;
 }
 
-.btn-link:hover {
-  background-color: #444;
-  border-color: #555;
+.btn:hover {
+  background-color: var(--gray-8);
+  border-color: var(--gray-9);
+}
+
+h2 {
+  font-size: var(--size-4);
 }
 
 @import "dialog";

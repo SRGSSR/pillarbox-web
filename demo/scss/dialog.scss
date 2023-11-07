@@ -14,14 +14,15 @@ dialog::backdrop {
 
 .dialog-close-btn {
   position: absolute;
-  top: -15px;
-  right: 0px;
-  z-index: 1;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+  top: calc(var(--size-3) * -1);
+  right: 0;
+  /* video-js error screen is z-index=1 and the button is not easily clickable */
+  z-index: 2;
+  width: var(--size-7);
+  height: var(--size-7);
+  font-size: var(--size-4);
   text-align: center;
-  border-radius: 50%;
+  border-radius: var(--radius-round);
 }
 
 
