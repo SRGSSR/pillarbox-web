@@ -13,15 +13,22 @@
   <body>
   <!-- Dialog with the player -->
   <dialog id="pbw-dialog">
-    <a id="pbw-dialog-close-btn" class="btn-link dialog-close-btn" href="#">&times;</a>
+    <button id="pbw-dialog-close-btn" class="btn dialog-close-btn">&times;</button>
     <video-js id="player" class="pbw-demo" controls crossorigin="anonymous"></video-js>
   </dialog>
 
-  <!-- Main page -->
-  <h1>Pillarbox@<span class="version"></span></h1>
-
   <div class="container">
-    <input type="text" id="search-bar" placeholder="Load any URL or URN...">
+    <!-- Main page -->
+    <h1 class="pbw-title">
+      <img class="pbw-logo" src="img/logo.png" />
+      <span class="version"></span>
+    </h1>
+
+    <div class="load-bar-container">
+      <i class="vjs-icon-play-circle"></i>
+      <input type="text" id="load-bar" placeholder="Enter a URL or URN to play its content...">
+    </div>
+
 
     <!-- List of examples -->
     <div id="examples"></div>

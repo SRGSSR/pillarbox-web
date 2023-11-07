@@ -1,5 +1,5 @@
-import { openModal } from './ExampleDialog';
 import { EXAMPLES } from './Examples';
+import { openModal } from './ExampleDialog';
 
 /**
  * Loads a list of video examples into the specified HTML container and sets
@@ -8,21 +8,27 @@ import { EXAMPLES } from './Examples';
 export const loadExamples = () => {
   const examplesList = document.getElementById('examples');
 
-  EXAMPLES.forEach((example) => {
-    const exampleEl = document.createElement('a');
-
-    exampleEl.classList.add('btn-link', 'example-btn');
-    exampleEl.href = '#';
-    exampleEl.textContent = example.title;
-
-    examplesList.appendChild(exampleEl);
-  });
+  Object.entries(EXAMPLES).forEach(([category, examples]) =>
+    examplesList.insertAdjacentHTML('beforeend', `
+    <div class="category" data-category="${category}">
+        <h2>${category}</h2>
+        ${examples.map(example => `
+          ${example.description != null ? `<p>${example.description}</p>` : ''}
+          <button class="btn example-btn">${example.title}</button>
+        `).join('')}
+    </div>`));
 
   examplesList.addEventListener('click', (event) => {
-    const exampleIdx = Array
-      .from(event.target.parentNode.children)
+    if (event.target.tagName.toLowerCase() !== 'button') {
+      return;
+    }
+
+    const parent = event.target.parentNode;
+    const category = parent.dataset.category;
+    const exampleIdx = Array.from(parent.children)
+      .filter(child => child.tagName.toLowerCase() === 'button')
       .indexOf(event.target);
 
-    openModal(EXAMPLES[exampleIdx]);
+    openModal(EXAMPLES[category][exampleIdx]);
   });
 };
