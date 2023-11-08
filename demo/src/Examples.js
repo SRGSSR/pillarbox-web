@@ -223,7 +223,9 @@ export const EXAMPLES = {
     {
       'title': 'VoD - Dash Widewine cenc (H264)',
       'src': 'https://storage.googleapis.com/wvmedia/cenc/h264/tears/tears.mpd',
-      'licenseUrl': 'https://proxy.uat.widevine.com/proxy?video_id=2015_tears&provider=widevine_test'
+      'keySystems': {
+        'com.widevine.alpha': 'https://proxy.uat.widevine.com/proxy?video_id=2015_tears&provider=widevine_test'
+      }
     },
     {
       'title': 'VoD - Dash (H265)',
@@ -232,7 +234,9 @@ export const EXAMPLES = {
     {
       'title': 'VoD - Dash widewine cenc (H265)',
       'src': 'https://storage.googleapis.com/wvmedia/cenc/hevc/tears/tears.mpd',
-      'licenseUrl': 'https://proxy.uat.widevine.com/proxy?video_id=2015_tears&provider=widevine_test'
+      'keySystems': {
+        'com.widevine.alpha': 'https://proxy.uat.widevine.com/proxy?video_id=2015_tears&provider=widevine_test'
+      }
     },
     {
       'title': 'VoD - Dash - MP4',
