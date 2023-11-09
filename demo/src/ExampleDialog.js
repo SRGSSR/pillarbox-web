@@ -8,6 +8,13 @@ dialog.addEventListener('close', () => Pillarbox.getPlayer('player').pause());
 // Close the dialog on close button clicked
 dialog.querySelector('#pbw-dialog-close-btn').addEventListener('click', () => dialog.close());
 
+// Close the dialog when the backdrop is clicked
+dialog.addEventListener('click', (e) => {
+  if (dialog !== e.target) return;
+
+  dialog.close();
+});
+
 /**
  * Opens a modal containing a video player with specified source and type. Can only
  * load URN if the type 'srgssr/urn`is explicitly provided, otherwise the created
