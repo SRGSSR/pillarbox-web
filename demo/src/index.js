@@ -5,14 +5,18 @@ import { openModal } from './ExampleDialog';
 
 // Initialize the player statically
 const player = new Pillarbox('player', {
-  playsinline: true,
+  fill: true,
+  html5: {
+    vhs: { useForcedSubtitles: true },
+  },
+  liveTracker: {
+    trackingThreshold: 120,
+    liveTolerance: 15,
+  },
   liveui: true,
   muted: true,
-  fill: true,
+  playsinline: true,
   plugins: { eme: true },
-  html5: {
-    vhs: { useForcedSubtitles: true }
-  }
 });
 
 // Expose the Pillarbox in the window object
