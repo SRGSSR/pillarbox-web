@@ -308,11 +308,6 @@ export const EXAMPLES = {
     {
       'title': 'AVC Progressive',
       'src': 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4'
-    },
-    {
-      'title': 'Test1',
-      'description': 'Forced subtitles',
-      'src': 'https://prd.vod-srgssr.ch/origin/1053457/fr/master.m3u8?complexSubs=true'
     }
   ]
 };
