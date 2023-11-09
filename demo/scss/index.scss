@@ -31,6 +31,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.container {
+  max-width: var(--size-15);
+}
+
 .pbw-title {
   display: flex;
   align-items: center;
