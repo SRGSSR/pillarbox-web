@@ -14,6 +14,23 @@ body {
   place-content: center;
 }
 
+a {
+  color: var(--gray-4);
+  font-weight: var(--font-weight-6);
+  font-size: var(--size-4);
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .pbw-title {
   display: flex;
   align-items: center;
@@ -30,7 +47,7 @@ body {
 }
 
 .pbw-logo {
-  height : var(--size-7);
+  height: var(--size-7);
 }
 
 .version {
@@ -87,6 +104,19 @@ body {
 
 h2 {
   font-size: var(--size-4);
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+}
+
+.github-icon {
+  fill: var(--gray-5);
+}
+
+.github-icon:hover {
+  fill: var(--gray-2);
 }
 
 @import "dialog";

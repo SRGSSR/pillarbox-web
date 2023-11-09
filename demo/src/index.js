@@ -2,6 +2,7 @@ import Pillarbox from '../../src/pillarbox.js';
 import '../../src/middleware/srgssr.js';
 import { loadExamples } from './ExamplesLoader';
 import { openModal } from './ExampleDialog';
+import svg from 'bundle-text:../img/github-logo.svg';
 
 // Initialize the player statically
 const player = new Pillarbox('player', {
@@ -23,6 +24,9 @@ window.player = player;
 
 // Set Pillarbox version
 document.querySelector('.version').textContent = `Pillarbox @ ${Pillarbox.VERSION.pillarbox}`;
+
+// Set github icon
+document.querySelector('.github-link').insertAdjacentHTML('beforeend', svg);
 
 // Allow to load any example
 document

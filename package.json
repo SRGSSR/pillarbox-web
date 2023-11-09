@@ -78,6 +78,7 @@
     "@babel/preset-env": "^7.22.5",
     "@commitlint/cli": "^18.0.0",
     "@commitlint/config-conventional": "^18.0.0",
+    "@parcel/transformer-inline-string": "^2.10.0",
     "@parcel/transformer-sass": "^2.9.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
