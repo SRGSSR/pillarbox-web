@@ -1,0 +1,25 @@
+.result-btn {
+  width: 100%;
+  margin: var(--size-1) 0;
+  padding: var(--size-5) 0;
+}
+
+.search-bar-container {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  margin-bottom: var(--size-1);
+  padding-left: var(--size-2);
+  background-color: var(--gray-8);
+  border-radius: var(--radius-2);
+}
+
+#search-bar {
+  width: 90%;
+}
+
+#results {
+  display: grid;
+}

@@ -21,75 +21,11 @@ a {
   text-decoration: none;
 }
 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 a:hover {
   text-decoration: underline;
 }
 
-.container {
-  max-width: var(--size-15);
-}
-
-.pbw-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--size-7);
-}
-
-.pbw-title * {
-  margin-right: var(--size-1);
-}
-
-.pbw-title:last-child {
-  margin-right: 0;
-}
-
-.pbw-logo {
-  height: var(--size-7);
-}
-
-.version {
-  font-weight: bold;
-}
-
-.pbw-demo {
-  font-size: var(--size-3);
-}
-
-.load-bar-container {
-  display: flex;
-  align-items: center;
-  padding-left: var(--size-3);
-  background-color: var(--gray-8);
-  border-radius: var(--radius-2);
-}
-
-.load-bar-container i {
-  color: var(--gray-5);
-}
-
-#load-bar {
-  width: 90%;
-  margin: var(--size-1) 0;
-  padding: var(--size-4) var(--size-3);
-  color: var(--gray-2);
-  font-size: var(--size-3);
-  background-color: var(--gray-8);
-  border: none;
-  outline: none;
-}
-
-#load-bar::placeholder {
-  color: var(--gray-3);
-}
-
-.btn {
+button {
   color: var(--gray-0);
   font-size: var(--size-3);
   text-align: center;
@@ -101,29 +37,52 @@ a:hover {
   transition: background-color 0.4s, border-color 0.4s;
 }
 
-.btn:hover {
+button:hover {
   background-color: var(--gray-8);
   border-color: var(--gray-9);
+}
+
+h1 {
+  font-size: var(--size-7);
 }
 
 h2 {
   font-size: var(--size-4);
 }
 
-.github-link {
-  display: flex;
-  align-items: center;
+input[type=text], select {
+  margin: var(--size-1) 0;
+  padding: var(--size-4) var(--size-3);
+  color: var(--gray-2);
+  font-size: var(--size-3);
+  background-color: var(--gray-8);
+  border: none;
+  outline: none;
 }
 
-.github-icon {
-  fill: var(--gray-5);
+input[type=text]::placeholder {
+  color: var(--gray-3);
 }
 
-.github-icon:hover {
-  fill: var(--gray-2);
+select {
+  cursor: pointer;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.pbw-demo {
+  font-size: var(--size-3);
+}
+
+.container {
+  max-width: var(--size-15);
 }
 
 @import "dialog";
 @import "examples";
+@import "header";
+@import "search";
 
 
