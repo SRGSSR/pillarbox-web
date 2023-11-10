@@ -21,8 +21,16 @@ const createContentEl = () => parseHtml(`
       <div class="category" data-category="${category}">
         <h2>${category}</h2>
         ${examples.map(example => `
-          ${example.description != null ? `<p>${example.description}</p>` : ''}
-          <button class="example-btn">${example.title}</button>
+        <button class="btn example-btn">
+          ${
+            example.description != null
+            ? `
+              <span class="example-description">${example.description}</span>
+              <span class="example-title">${example.title}</span>
+              `
+            : `${example.title}`
+          }
+        </button>
         `).join('')}
       </div>
       `).join('')}

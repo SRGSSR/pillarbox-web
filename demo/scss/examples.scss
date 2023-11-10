@@ -18,6 +18,7 @@
 }
 
 .example-btn {
+  display: grid;
   margin: var(--size-1) 0;
   padding: var(--size-5) 0;
 }
@@ -36,4 +37,14 @@
 
 #load-bar {
   width: 90%;
+}
+
+.example-title {
+  margin-top: var(--size-2);
+  color: var(--gray-6);
+  font-style: italic;
+}
+
+.example-description {
+  padding-right: var(--size-1);
 }
