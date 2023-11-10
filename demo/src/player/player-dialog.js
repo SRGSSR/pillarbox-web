@@ -1,4 +1,10 @@
-import Pillarbox from '../../src/pillarbox';
+/**
+ * Defines the behaviour of the player dialog and provides a function to open the
+ * dialog and reload the player's content.
+ *
+ * @module
+ */
+import Pillarbox from '../../../src/pillarbox';
 
 const dialog = document.getElementById('pbw-dialog');
 
@@ -25,7 +31,7 @@ dialog.addEventListener('click', (e) => {
  * @param {string} [options.type] - (Optional) The type/format of the video (e.g., 'video/mp4').
  * @param {object} [options.keySystems] - (Optional) The DRM configuration for DRM protected sources.
  */
-export const openModal = async ({ src, type, keySystems }) => {
+export const openPlayerModal = ({ src, type, keySystems }) => {
   const player = Pillarbox.getPlayer('player');
 
   if (player.currentSrc() !== src) {

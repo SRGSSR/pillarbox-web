@@ -1,4 +1,4 @@
-export const EXAMPLES = {
+const EXAMPLES = {
   'SRGSSR': [
     {
       'title': 'Horizontal video',
@@ -311,3 +311,5 @@ export const EXAMPLES = {
     }
   ]
 };
+
+export default EXAMPLES;
