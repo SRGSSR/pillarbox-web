@@ -7,7 +7,7 @@
 import router from '../core/router';
 import { parseHtml } from '../core/html-utils';
 import { openPlayerModal } from '../player/player-dialog';
-import searchProvider from './search-provider';
+import ilProvider from '../core/il-provider';
 
 const createContentEl = () => {
   return parseHtml(`
@@ -40,7 +40,7 @@ router.addRoute('search', () => {
       const bu = document.querySelector('#bu-dropdown').value;
       const query = event.target.value;
 
-      searchProvider.search(bu, query).then(results => {
+      ilProvider.search(bu, query).then(results => {
         document.querySelector('#results').replaceChildren(...createResultsEl(results));
       });
     }

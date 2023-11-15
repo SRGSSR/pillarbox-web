@@ -20,7 +20,8 @@ const createHeaderEl = () => parseHtml(`
   </div>
   <div id="menu">
     <a href="examples" data-spa-route>Examples</a> |
-    <a href="search" data-spa-route>Search</a>
+    <a href="search" data-spa-route>Search</a> |
+    <a href="lists" data-spa-route>Lists</a>
   </div>
 `);
 
