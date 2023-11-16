@@ -5,14 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pillarbox - Demo Page</title>
+    <link rel="stylesheet" href="npm:material-icons/iconfont/material-icons.css">
     <link rel="stylesheet" href="https://unpkg.com/open-props" />
     <link rel="stylesheet" href="npm:video.js/dist/video-js.css" />
     <link rel="stylesheet" href="scss/index.scss" />
   </head>
 
   <body>
+
   <!-- Dialog with the player -->
-  <dialog id="pbw-dialog">
+  <dialog id="pbw-dialog" class="slide-fade">
     <button id="pbw-dialog-close-btn" class="btn dialog-close-btn">&times;</button>
     <video-js id="player" class="pbw-demo" controls crossorigin="anonymous"></video-js>
   </dialog>

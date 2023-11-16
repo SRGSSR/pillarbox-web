@@ -9,6 +9,7 @@ import { parseHtml } from '../core/html-utils';
 import { openPlayerModal } from '../player/player-dialog';
 import ilProvider from '../core/il-provider';
 import SpinnerComponent from '../core/spinner-component';
+import Pillarbox from '../../../src/pillarbox';
 
 /**
  * Represents the search page.
@@ -79,12 +80,16 @@ class SearchPage {
     });
 
     this.#resultsEl.addEventListener('click', (event) => {
-      if (event.target.tagName.toLowerCase() !== 'button') {
+      const button = event.target.closest('button');
+
+      if (!('urn' in button.dataset)) {
         return;
       }
 
-      openPlayerModal({ src: event.target.dataset.urn, type: 'srgssr/urn' });
+      openPlayerModal({ src: button.dataset.urn, type: 'srgssr/urn' });
     });
+
+    this.#resultsEl.addEventListener('animationend', () => this.#resultsEl.classList.remove('fade-in'));
   }
 
   /**
@@ -109,6 +114,7 @@ class SearchPage {
       const results = await ilProvider.search(bu, query, signal);
 
       this.#resultsEl.replaceChildren(...this.createResultsEl(results));
+      this.#resultsEl.classList.add('fade-in');
     } finally {
       this.#spinner.hide();
     }
@@ -121,7 +127,7 @@ class SearchPage {
    */
   createContentEl() {
     return parseHtml(`
-    <div class="search-bar-container">
+    <div class="search-bar-container fade-in">
       <select id="bu-dropdown" aria-label="Select a business unit">
           <option value="rsi" selected>RSI</option>
           <option value="rtr">RTR</option>
@@ -145,9 +151,19 @@ class SearchPage {
    * @returns {HTMLElement[]} - An array of HTML elements representing the search results.
    */
   createResultsEl(results) {
-    return parseHtml(results.map(
-      r => `<button class="result-btn" data-urn="${r.urn}">${r.title}</button>`
-    ).join(''));
+    return parseHtml(results.map(r => {
+      const date = new Intl.DateTimeFormat('fr-CH').format(new Date(r.date));
+      const duration = Pillarbox.formatTime(r.duration / 1000);
+
+      return `
+        <button class="content-btn" data-urn="${r.urn}" title="${r.title}">
+            <span class="content-btn-title">${r.title}</span>
+            <div class="content-btn-metadata-container">
+                <span class="material-icons-outlined">${r.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</span>
+                <span class="content-btn-info">&nbsp;| ${date} | ${duration}</span>
+            </div>
+        </button>`;
+    }).join(''));
   }
 }
 
