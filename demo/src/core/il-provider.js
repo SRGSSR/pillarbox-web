@@ -35,16 +35,18 @@ class ILProvider {
    *
    * @param {string} bu - The business unit for which the search is performed (rsi, rtr, rts, srf or swi).
    * @param {string} query - The search query.
+   * @param {AbortSignal} [signal=undefined] - (Optional) An abort signal, allows to abort the query through an abort controller.
    *
    * @returns {Promise<Array<{ title: string, urn: string }>>} - A promise that resolves to an array
    * of objects containing the title and URN of the search results.
    *
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
-  async search(bu, query) {
+  async search(bu, query, signal = undefined) {
     const data = await this.fetch(
       `/${bu.toLowerCase()}/searchResultMediaList`,
-      { ...DEFAULT_SEARCH_PARAMS, 'q': query }
+      { ...DEFAULT_SEARCH_PARAMS, 'q': query },
+      signal
     );
 
     return data.searchResultMediaList.map(
@@ -261,11 +263,11 @@ class ILProvider {
     );
   }
 
-  async fetch(path, params = DEFAULT_QUERY_PARAMS) {
+  async fetch(path, params = DEFAULT_QUERY_PARAMS, signal = undefined) {
     const queryParams = new URLSearchParams(params).toString();
     const url = `https://${this.baseUrl}/${path.replace(/^\/+/, '')}?${queryParams}`;
 
-    return fetch(url).then(response => {
+    return fetch(url, { signal }).then(response => {
       if (!response.ok) {
         return Promise.reject(response);
       }
