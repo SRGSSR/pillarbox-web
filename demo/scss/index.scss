@@ -4,18 +4,50 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-y: scroll;
+
+  --color-1: var(--gray-1);
+  --color-2: var(--gray-2);
+  --color-3: var(--gray-3);
+  --color-4: var(--gray-4);
+  --color-5: var(--gray-5);
+  --color-6: var(--gray-6);
+  --color-7: var(--gray-7);
+  --color-8: var(--gray-8);
+  --color-9: var(--gray-9);
+  --color-10: var(--gray-10);
+  --color-11: var(--gray-11);
+  --color-12: var(--gray-12);
+
+  @media (prefers-color-scheme: light) {
+    --color-1: var(--gray-12);
+    --color-2: var(--gray-11);
+    --color-3: var(--gray-10);
+    --color-4: var(--gray-9);
+    --color-5: var(--gray-8);
+    --color-6: var(--gray-7);
+    --color-7: var(--gray-6);
+    --color-8: var(--gray-5);
+    --color-9: var(--gray-4);
+    --color-10: var(--gray-3);
+    --color-11: var(--gray-2);
+    --color-12: var(--gray-1);
+  }
+}
+
 body {
-  display: grid;
-  margin: 0 var(--size-2);
-  color: var(--gray-4);
+  max-width: var(--size-15);
+  margin: 0 auto;
+  padding: 0 var(--size-2);
+  color: var(--color-4);
   font-size: var(--size-5);
   font-family: var(--font-sans);
-  background-color: var(--gray-11);
-  place-content: center;
+  background-color: var(--color-11);
 }
 
 a {
-  color: var(--gray-4);
+  color: var(--color-4);
   font-weight: var(--font-weight-6);
   font-size: var(--size-4);
   text-decoration: none;
@@ -26,20 +58,20 @@ a:hover {
 }
 
 button {
-  color: var(--gray-0);
+  color: var(--color-0);
   font-size: var(--size-3);
   text-align: center;
   text-decoration: none;
-  background-color: var(--gray-9);
-  border: 1px solid var(--gray-10);
+  background-color: var(--color-9);
+  border: 1px solid var(--color-10);
   border-radius: var(--radius-2);
   cursor: pointer;
   transition: background-color 0.4s, border-color 0.4s;
 }
 
 button:hover {
-  background-color: var(--gray-8);
-  border-color: var(--gray-9);
+  background-color: var(--color-8);
+  border-color: var(--color-9);
 }
 
 h1 {
@@ -53,15 +85,24 @@ h2 {
 input[type=text], select {
   margin: var(--size-1) 0;
   padding: var(--size-4) var(--size-3);
-  color: var(--gray-2);
+  color: var(--color-2);
   font-size: var(--size-3);
-  background-color: var(--gray-8);
+  background-color: var(--color-8);
   border: none;
   outline: none;
 }
 
 input[type=text]::placeholder {
-  color: var(--gray-3);
+  color: var(--color-3);
+}
+
+// Removes autofill styling
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--color-8) inset !important;
+  -webkit-text-fill-color: var(--color-2) !important;
 }
 
 select {
@@ -76,9 +117,56 @@ dialog::backdrop {
   font-size: var(--size-3);
 }
 
-.container {
-  max-width: var(--size-15);
+.fade-in {
+  opacity: 0;
+  animation: var(--animation-fade-in) forwards;
+  animation-duration: 0.4s;
+  animation-timing-function: var(--ease-elastic-in-3);
 }
+
+.slide-fade {
+  opacity: 0;
+  animation: var(--animation-fade-in) forwards, var(--animation-slide-in-up) backwards;
+  animation-duration: 0.4s;
+  animation-timing-function: var(--ease-elastic-in-3);
+}
+
+.content-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin: var(--size-1) 0;
+  padding: var(--size-4) var(--size-3);
+  font-weight: var(--font-weight-6);
+
+  text-align: justify;
+}
+
+.content-btn-title {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.content-btn-metadata-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: var(--size-2);
+
+  * {
+    color: var(--color-6);
+    font-weight: var(--font-weight-5);
+    font-size: var(--size-3);
+  }
+}
+
+.content-btn-info {
+  font-style: italic;
+}
+
 
 @import "dialog";
 @import "examples";

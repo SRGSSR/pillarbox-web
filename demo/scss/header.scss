@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 470px;
 }
 
 .pbw-title {
@@ -12,7 +11,7 @@
 }
 
 .pbw-title * {
-  margin-right: var(--size-1);
+  margin-right: var(--size-2);
 }
 
 .pbw-title:last-child {
@@ -24,7 +23,11 @@
 }
 
 .version {
-  font-weight: bold;
+  align-self: flex-end;
+  color: var(--color-6);
+  font-weight: var(--font-weight-4);
+  font-size: var(--size-3);
+  line-height: var(--size-5);
 }
 
 .github-link {
@@ -33,13 +36,27 @@
 }
 
 .github-icon {
-  fill: var(--gray-5);
+  fill: var(--color-5);
 }
 
 .github-icon:hover {
-  fill: var(--gray-2);
+  fill: var(--color-2);
 }
 
 #menu {
   margin-bottom: var(--size-4);
+}
+
+#menu a {
+  padding: var(--size-1) var(--size-2);
+  border-radius: var(--radius-3);
+  transition: background-color 0.4s, color 0.4s;
+}
+
+#menu a.selected {
+  color: var(--color-8);
+  text-decoration: none;
+  background-color: var(--color-5);
+  cursor: default;
+  transition: background-color 0.8s, color 0.4s;
 }

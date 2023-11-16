@@ -9,6 +9,7 @@ import router from '../core/router';
 import { openPlayerModal } from '../player/player-dialog';
 import { contentTreeRootSections } from './content-tree-root-sections';
 import SpinnerComponent from '../core/spinner-component';
+import Pillarbox from '../../../src/pillarbox';
 
 /**
  * Represents the Lists page.
@@ -88,13 +89,15 @@ class ListsPage {
   initListeners() {
     // Attach content selection listener
     this.#sectionsEl.addEventListener('click', async (event) => {
-      if (!this.#spinner.hidden || event.target.tagName.toLowerCase() !== 'button') {
+      const button = event.target.closest('button');
+
+      if (!this.#spinner.hidden || !('nodeIdx' in button.dataset)) {
         return;
       }
 
       this.#spinner.show();
-      const sectionIndex = event.target.parentNode.dataset.sectionIdx;
-      const nodeIndex = event.target.dataset.nodeIdx;
+      const sectionIndex = button.parentNode.dataset.sectionIdx;
+      const nodeIndex = button.dataset.nodeIdx;
 
       try {
         await this.navigateTo(sectionIndex, nodeIndex);
@@ -157,14 +160,33 @@ class ListsPage {
   updateSections() {
     this.#sectionsEl.replaceChildren(
       ...parseHtml(this.#currentLevel.map((section, idx) => `
-      <div data-section-idx="${idx}" class="section">
+      <div data-section-idx="${idx}" class="section fade-in">
           <h2>${section.title}</h2>
-          ${section.nodes.map((node, idx) => `
-          <button class="content-tree-btn" data-node-idx="${idx}">${typeof node === 'string' ? node : node.title}</button>
-          `).join('')}
+          ${section.nodes.map((node, idx) => this.createButtonEl(node, idx)).join('')}
       </div>
     `).join(''))
     );
+  }
+
+  createButtonEl(node, idx) {
+    if (node.hasOwnProperty('mediaType')) {
+      const date = new Intl.DateTimeFormat('fr-CH').format(new Date(node.date));
+      const duration = Pillarbox.formatTime(node.duration / 1000);
+
+      return `
+        <button class="content-btn"data-node-idx="${idx}" title="${node.title}">
+            <span class="content-btn-title">${node.title}</span>
+            <div class="content-btn-metadata-container">
+                <span class="material-icons-outlined">${node.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</span>
+                <span class="content-btn-info">&nbsp;| ${date} | ${duration}</span>
+            </div>
+        </button>`;
+    } else {
+      return `
+        <button class="content-btn" data-node-idx="${idx}">
+            <span class="content-btn-title">${typeof node === 'string' ? node : node.title}</span>
+        </button>`;
+    }
   }
 
   /**

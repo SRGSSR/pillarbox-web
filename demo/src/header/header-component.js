@@ -7,22 +7,34 @@ import githubLogoSvg from 'bundle-text:../../img/github-logo.svg';
 import srgssrLogo from '../../img/srgssr-logo.png';
 import Pillarbox from '../../../src/pillarbox';
 import { parseHtml } from '../core/html-utils';
+import router from '../core/router';
 
 const createHeaderEl = () => parseHtml(`
   <div id="pbw-title-container">
     <h1 class="pbw-title">
       <img class="pbw-logo" src="${srgssrLogo}"/>
-      <span class="version">Pillarbox @ ${Pillarbox.VERSION.pillarbox}</span>
+      <span>Pillarbox</span>
+      <span class="version">${Pillarbox.VERSION.pillarbox}</span>
     </h1>
     <a href="https://github.com/srgssr/pillarbox-web" class="github-link" title="Source on Github">
       ${githubLogoSvg}
     </a>
   </div>
   <div id="menu">
-    <a href="examples" data-spa-route>Examples</a> |
-    <a href="search" data-spa-route>Search</a> |
+    <a href="examples" data-spa-route>Examples</a>
+    <a href="search" data-spa-route>Search</a>
     <a href="lists" data-spa-route>Lists</a>
   </div>
 `);
 
 document.querySelector('nav').append(...createHeaderEl());
+
+router.addEventListener('routechanged', () => {
+  document.querySelectorAll('#menu a').forEach(a => {
+    const path = new URL(a.href).pathname;
+    const isActive = router.isActiveRoute(path);
+
+    a.classList.toggle('selected', isActive);
+    a.ariaDisabled = isActive;
+  });
+});

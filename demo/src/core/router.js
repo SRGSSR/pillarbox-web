@@ -29,8 +29,12 @@ import { Minimatch } from 'minimatch';
  *
  * @class
  */
-class Router {
+class Router extends EventTarget {
+  #fallback;
+
   constructor() {
+    super();
+
     this.routes = [];
     this.currentRoute = null;
 
@@ -60,7 +64,8 @@ class Router {
    * @param {function} start - The function to be called when the route is navigated to.
    * @param {function} destroy - The function to be called when the route is navigated away from.
    */
-  addRoute(pattern, start, destroy = () => {}) {
+  addRoute(pattern, start, destroy = () => {
+  }) {
     const path = new Minimatch(pattern, { matchBase: true });
 
     this.routes.push({ path, start, destroy });
@@ -113,8 +118,9 @@ class Router {
       route.destroy();
       this.currentRoute = route;
       route.start();
-    } else if (this._fallback) {
-      this.handleRouteChange(this._fallback);
+      this.dispatchEvent(new Event('routechanged'));
+    } else if (this.#fallback) {
+      this.handleRouteChange(this.#fallback);
     } else {
       throw Error(`No route found for '${path}'`);
     }
@@ -138,7 +144,7 @@ class Router {
    *      rework this router in order to handle relative paths better.
    */
   set fallback(fallback) {
-    this._fallback = 'examples';
+    this.#fallback = fallback;
   }
 }
 

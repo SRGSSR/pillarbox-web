@@ -49,9 +49,10 @@ class ILProvider {
       signal
     );
 
-    return data.searchResultMediaList.map(
-      ({ title, urn }) => ({ title, urn })
-    );
+    return data.searchResultMediaList
+      .map(({ title, urn, mediaType, date, duration }) => ({
+        title, urn, mediaType, date, duration
+      }));
   }
 
   /**
@@ -86,9 +87,9 @@ class ILProvider {
   async latestByTopic(topicUrn) {
     const data = await this.fetch(`/mediaList/latest/byTopicUrn/${topicUrn}`);
 
-    return data.mediaList.map(
-      ({ title, urn }) => ({ title, urn })
-    );
+    return data.mediaList.map(({ title, urn, mediaType, date, duration }) => ({
+      title, urn, mediaType, date, duration
+    }));
   }
 
   /**
@@ -131,9 +132,11 @@ class ILProvider {
       { ...DEFAULT_QUERY_PARAMS, 'pageSize': pageSize }
     );
 
-    return data.episodeList.map(({ mediaList }) => mediaList[0]).map(
-      ({ title, urn }) => ({ title, urn })
-    );
+    return data.episodeList
+      .map(({ mediaList }) => mediaList[0])
+      .map(({ title, urn, mediaType, date, duration }) => ({
+        title, urn, mediaType, date, duration
+      }));
   }
 
   /**
@@ -153,9 +156,9 @@ class ILProvider {
       { ...DEFAULT_QUERY_PARAMS, 'pageSize': pageSize }
     );
 
-    return data.mediaList.map(
-      ({ title, urn }) => ({ title, urn })
-    );
+    return data.mediaList.map(({ title, urn, mediaType, date, duration }) => ({
+      title, urn, mediaType, date, duration
+    }));
   }
 
   /**
@@ -172,9 +175,9 @@ class ILProvider {
   async livestreams(bu, mediaType = 'video') {
     const data = await this.fetch(`/${bu.toLowerCase()}/mediaList/${mediaType}/livestreams`);
 
-    return data.mediaList.map(
-      ({ title, urn }) => ({ title, urn })
-    );
+    return data.mediaList.map(({ title, urn, mediaType, date, duration }) => ({
+      title, urn, mediaType, date, duration
+    }));
   }
 
   /**
@@ -194,9 +197,9 @@ class ILProvider {
       { ...DEFAULT_QUERY_PARAMS, 'pageSize': pageSize }
     );
 
-    return data.mediaList.map(
-      ({ title, urn }) => ({ title, urn })
-    );
+    return data.mediaList.map(({ title, urn, mediaType, date, duration }) => ({
+      title, urn, mediaType, date, duration
+    }));
   }
 
   /**
@@ -216,9 +219,9 @@ class ILProvider {
       { ...DEFAULT_QUERY_PARAMS, 'pageSize': pageSize }
     );
 
-    return data.mediaList.map(
-      ({ title, urn }) => ({ title, urn })
-    );
+    return data.mediaList.map(({ title, urn, mediaType, date, duration }) => ({
+      title, urn, mediaType, date, duration
+    }));
   }
 
   /**

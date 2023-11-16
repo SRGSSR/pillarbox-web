@@ -45,26 +45,28 @@ class SpinnerComponent {
   }
 
   /**
+   * Toggle the display state of the spinner.
+   *
+   * @param {boolean} show - if the spinner will be shown or hidden.
+   */
+  toggle(show) {
+    this.#spinnerEl.classList.toggle('hidden', !show);
+    this.#spinnerEl.classList.toggle('slide-fade', show);
+    this.#hidden = !show;
+  }
+
+  /**
    * Show the spinner.
    */
   show() {
-    if (this.hidden) {
-      this.#spinnerEl.classList.remove('hidden');
-      this.#spinnerEl.classList.add('slide-fade');
-      this.#hidden = false;
-    }
+    this.toggle(true);
   }
 
   /**
    * Hide the spinner.
    */
   hide() {
-    if (!this.hidden) {
-      this.#spinnerEl.classList.add('hidden');
-      this.#spinnerEl.classList.remove('slide-fade');
-
-      this.#hidden = true;
-    }
+    this.toggle(false);
   }
 
   /**
