@@ -11,3 +11,21 @@
 #search-bar {
   width: 90%;
 }
+
+#results {
+  display: grid;
+}
+
+#results:empty:before {
+  align-self: center;
+  justify-self: center;
+  min-height: var(--size-12);
+  margin-top: var(--size-10);
+  color: var(--gray-8);
+  background-image: url("https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/search/default/24px.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: var(--size-8);
+  filter: invert(1);
+  content: "No result";
+}
