@@ -139,7 +139,7 @@ class SearchPage {
     </div>
 
     <!-- Search results -->
-    <div id="results" class="results-container"></div>
+    <div id="results" class="results-container material-icons"></div>
   `);
   }
 
