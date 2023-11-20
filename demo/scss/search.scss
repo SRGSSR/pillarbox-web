@@ -1,3 +1,5 @@
+@import '../../node_modules/material-icons/css/material-icons.scss';
+
 .search-bar-container {
   display: flex;
   align-items: center;
@@ -13,19 +15,25 @@
 }
 
 .results-container {
-  display: grid;
+  display: flex;
+  flex-direction: column;
 }
 
-.results:empty:before {
-  align-self: center;
-  justify-self: center;
+.results-container:empty {
+  @include material-icon('search');
+  gap: var(--size-3);
+  align-items: center;
+  justify-content: center;
   min-height: var(--size-12);
   margin-top: var(--size-10);
   color: var(--gray-8);
-  background-image: url("https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/search/default/24px.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: var(--size-8);
-  filter: invert(1);
-  content: "No result";
+}
+
+.results-container:empty:after {
+  font-family: var(--font-sans);
+  content: "No results";
+}
+
+.results-container:empty:before {
+  font-size: var(--size-9);
 }
