@@ -1,28 +1,14 @@
-#pbw-title-container {
+.pbw-title-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.pbw-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pbw-title * {
-  margin-right: var(--size-2);
-}
-
-.pbw-title:last-child {
-  margin-right: 0;
 }
 
 .pbw-logo {
   height: var(--size-7);
 }
 
-.version {
+.version-txt {
   align-self: flex-end;
   color: var(--color-6);
   font-weight: var(--font-weight-4);
@@ -37,26 +23,26 @@
 
 .github-icon {
   fill: var(--color-5);
+
+  &:hover {
+    fill: var(--color-2);
+  }
 }
 
-.github-icon:hover {
-  fill: var(--color-2);
-}
-
-#menu {
+.pbw-menu {
   margin-bottom: var(--size-4);
-}
 
-#menu a {
-  padding: var(--size-1) var(--size-2);
-  border-radius: var(--radius-3);
-  transition: background-color 0.4s, color 0.4s;
-}
+  a {
+    padding: var(--size-1) var(--size-2);
+    border-radius: var(--radius-3);
+    transition: background-color 0.4s, color 0.4s;
 
-#menu a.selected {
-  color: var(--color-8);
-  text-decoration: none;
-  background-color: var(--color-5);
-  cursor: default;
-  transition: background-color 0.8s, color 0.4s;
+    &.selected {
+      color: var(--color-8);
+      text-decoration: none;
+      background-color: var(--color-5);
+      cursor: default;
+      transition: background-color 0.8s, color 0.4s;
+    }
+  }
 }

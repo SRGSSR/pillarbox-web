@@ -12,8 +12,10 @@
   display: grid;
   place-content: center;
   margin: var(--size-10);
+
+  &.hidden {
+    display: none;
+  }
 }
 
-.hidden {
-  display: none;
-}
+

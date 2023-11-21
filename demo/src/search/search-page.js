@@ -54,7 +54,7 @@ class SearchPage {
    * Initializes and sets up the necessary elements and event listeners.
    */
   constructor() {
-    const containerEl = document.querySelector('.container');
+    const containerEl = document.querySelector('#pbw-container');
 
     containerEl.replaceChildren(...this.createContentEl());
     this.#spinner = new SpinnerComponent(containerEl);
@@ -139,7 +139,7 @@ class SearchPage {
     </div>
 
     <!-- Search results -->
-    <div id="results"></div>
+    <div id="results" class="results-container"></div>
   `);
   }
 

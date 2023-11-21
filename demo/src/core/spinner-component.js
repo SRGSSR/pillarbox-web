@@ -40,7 +40,7 @@ class SpinnerComponent {
     this.#spinnerEl = document.getElementById(id);
 
     this.#spinnerEl.addEventListener('animationend', (event) => {
-      event.target.classList.remove('slide-fade');
+      event.target.classList.remove('slide-up-fade-in');
     });
   }
 
@@ -51,7 +51,7 @@ class SpinnerComponent {
    */
   toggle(show) {
     this.#spinnerEl.classList.toggle('hidden', !show);
-    this.#spinnerEl.classList.toggle('slide-fade', show);
+    this.#spinnerEl.classList.toggle('slide-up-fade-in', show);
     this.#hidden = !show;
   }
 

@@ -6,17 +6,17 @@
   padding-left: var(--size-2);
   background-color: var(--color-8);
   border-radius: var(--radius-2);
+
+  input {
+    width: 90%;
+  }
 }
 
-#search-bar {
-  width: 90%;
-}
-
-#results {
+.results-container {
   display: grid;
 }
 
-#results:empty:before {
+.results:empty:before {
   align-self: center;
   justify-self: center;
   min-height: var(--size-12);

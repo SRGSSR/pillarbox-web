@@ -1,0 +1,18 @@
+.fade-in {
+  opacity: 0;
+  animation: fade-in .4s var(--ease-elastic-in-3) forwards;
+}
+
+.spin, .spin-back {
+  animation: spin 0.5s var(--ease-out-3) 1;
+}
+
+.spin-back {
+  animation-direction: reverse;
+}
+
+.slide-up-fade-in {
+  opacity: 0;
+  animation: fade-in .4s var(--ease-elastic-in-3) forwards,
+  slide-in-up .4s var(--ease-elastic-in-3);
+}

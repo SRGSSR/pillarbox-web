@@ -57,8 +57,14 @@ a:hover {
   text-decoration: underline;
 }
 
+hr {
+  width: 100%;
+  border-color: var(--color-6);
+}
+
 button {
   color: var(--color-0);
+  font-weight: var(--font-weight-6);
   font-size: var(--size-3);
   text-align: center;
   text-decoration: none;
@@ -67,11 +73,30 @@ button {
   border-radius: var(--radius-2);
   cursor: pointer;
   transition: background-color 0.4s, border-color 0.4s;
-}
 
-button:hover {
-  background-color: var(--color-8);
-  border-color: var(--color-9);
+  &.icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: var(--size-1) 0;
+    padding: var(--size-4) var(--size-3);
+
+    span {
+      margin-right: var(--size-2);
+    }
+  }
+
+  &:hover {
+    background-color: var(--color-8);
+    border-color: var(--color-9);
+  }
+
+  &:hover:disabled, &:disabled {
+    color: var(--color-9);
+    background-color: var(--color-7);
+    border-color: var(--color-7);
+    cursor: not-allowed;
+  }
 }
 
 h1 {
@@ -80,10 +105,22 @@ h1 {
 
 h2 {
   font-size: var(--size-4);
+
+  &.sticky {
+    position: sticky;
+    top: 0;
+    margin: 0;
+    padding: var(--size-3) 0;
+    background-color: var(--color-11);
+  }
+}
+
+h3 {
+  font-size: var(--size-3);
 }
 
 input[type=text], select {
-  margin: var(--size-1) 0;
+  margin: var(--size-1) 0 0 0;
   padding: var(--size-4) var(--size-3);
   color: var(--color-2);
   font-size: var(--size-3);
@@ -93,7 +130,11 @@ input[type=text], select {
 }
 
 input[type=text]::placeholder {
-  color: var(--color-3);
+  color: var(--color-5);
+}
+
+select:required:invalid {
+  color: var(--color-5);
 }
 
 // Removes autofill styling
@@ -113,24 +154,6 @@ dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.pbw-demo {
-  font-size: var(--size-3);
-}
-
-.fade-in {
-  opacity: 0;
-  animation: var(--animation-fade-in) forwards;
-  animation-duration: 0.4s;
-  animation-timing-function: var(--ease-elastic-in-3);
-}
-
-.slide-fade {
-  opacity: 0;
-  animation: var(--animation-fade-in) forwards, var(--animation-slide-in-up) backwards;
-  animation-duration: 0.4s;
-  animation-timing-function: var(--ease-elastic-in-3);
-}
-
 .content-btn {
   display: flex;
   flex-direction: column;
@@ -138,8 +161,6 @@ dialog::backdrop {
   width: 100%;
   margin: var(--size-1) 0;
   padding: var(--size-4) var(--size-3);
-  font-weight: var(--font-weight-6);
-
   text-align: justify;
 }
 
@@ -167,6 +188,10 @@ dialog::backdrop {
   font-style: italic;
 }
 
+.warning-text {
+  color: var(--red-7);
+}
+
 
 @import "dialog";
 @import "examples";
@@ -174,4 +199,5 @@ dialog::backdrop {
 @import "search";
 @import "content-tree";
 @import "spinner";
+@import "animations";
 

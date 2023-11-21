@@ -68,10 +68,10 @@ class ListsPage {
    */
   init() {
     // Create the view
-    const containerEl = document.querySelector('.container');
+    const containerEl = document.querySelector('#pbw-container');
 
     containerEl.replaceChildren(...parseHtml(`
-        <div id="tree-navigation"></div>
+        <div id="tree-navigation" class="tree-navigation-container"></div>
         <div id="sections"></div>
     `));
 
@@ -161,7 +161,7 @@ class ListsPage {
     this.#sectionsEl.replaceChildren(
       ...parseHtml(this.#currentLevel.map((section, idx) => `
       <div data-section-idx="${idx}" class="section fade-in">
-          <h2>${section.title}</h2>
+          <h2 class="sticky">${section.title}</h2>
           ${section.nodes.map((node, idx) => this.createButtonEl(node, idx)).join('')}
       </div>
     `).join(''))
