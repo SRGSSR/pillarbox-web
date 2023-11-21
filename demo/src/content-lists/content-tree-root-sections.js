@@ -44,7 +44,7 @@ class Section {
 export const contentTreeRootSections = [
   new Section({
     title: 'TV Topics',
-    nodes: ['RSI', 'RTS', 'RTR', 'SRF', 'SWI'],
+    nodes: ['RSI', 'RTR', 'RTS', 'SRF', 'SWI'],
     resolve: async (bu) => new Section({
       title: `${bu} TV Topics`,
       nodes: await ilProvider.topics(bu),
@@ -56,7 +56,7 @@ export const contentTreeRootSections = [
   }),
   new Section({
     title: 'TV Shows',
-    nodes: ['RSI', 'RTS', 'RTR', 'SRF', 'SWI'],
+    nodes: ['RSI', 'RTR', 'RTS', 'SRF', 'SWI'],
     resolve: async (bu) => new Section({
       title: `${bu} TV Shows`,
       nodes: await ilProvider.shows(bu),
@@ -68,7 +68,7 @@ export const contentTreeRootSections = [
   }),
   new Section({
     title: 'TV Latest Videos',
-    nodes: ['RSI', 'RTS', 'RTR', 'SRF', 'SWI'],
+    nodes: ['RSI', 'RTR', 'RTS', 'SRF', 'SWI'],
     resolve: async (bu) => new Section({
       title: `${bu} TV Latest Videos`,
       nodes: await ilProvider.editorial(bu)
@@ -76,7 +76,7 @@ export const contentTreeRootSections = [
   }),
   new Section({
     title: 'TV Livestreams',
-    nodes: ['RSI', 'RTS', 'RTR', 'SRF'],
+    nodes: ['RSI', 'RTR', 'RTS', 'SRF'],
     resolve: async (bu) => new Section({
       title: `${bu} TV Livestreams`,
       nodes: await ilProvider.livestreams(bu)
@@ -84,7 +84,7 @@ export const contentTreeRootSections = [
   }),
   new Section({
     title: 'Live web',
-    nodes: ['RSI', 'RTS', 'RTR', 'SRF'],
+    nodes: ['RSI', 'RTR', 'RTS', 'SRF'],
     resolve: async (bu) => new Section({
       title: `${bu} Live web`,
       nodes: await ilProvider.scheduledLivestream(bu)
@@ -92,7 +92,7 @@ export const contentTreeRootSections = [
   }),
   new Section({
     title: 'Live center',
-    nodes: ['RSI', 'RTS', 'RTR', 'SRF'],
+    nodes: ['RSI', 'RTR', 'RTS', 'SRF'],
     resolve: async (bu) => new Section({
       title: `${bu} Live center`,
       nodes: await ilProvider.livecenter(bu)
@@ -100,7 +100,7 @@ export const contentTreeRootSections = [
   }),
   new Section({
     title: 'Radio Shows',
-    nodes: ['RSI', 'RTS', 'RTR', 'SRF'],
+    nodes: ['RSI', 'RTR', 'RTS', 'SRF'],
     resolve: async (bu) => new Section({
       title: `${bu} Radio Channels`,
       nodes: await ilProvider.channels(bu),
@@ -116,7 +116,7 @@ export const contentTreeRootSections = [
   }),
   new Section({
     title: 'Radio Livestreams',
-    nodes: ['RSI', 'RTS', 'RTR', 'SRF'],
+    nodes: ['RSI', 'RTR', 'RTS', 'SRF'],
     resolve: async (bu) => new Section({
       title: `${bu} Radio Livestreams`,
       nodes: await ilProvider.livestreams(bu, 'audio')
