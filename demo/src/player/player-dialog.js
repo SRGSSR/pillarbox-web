@@ -12,7 +12,13 @@ const dialog = document.getElementById('pbw-dialog');
 dialog.addEventListener('close', () => Pillarbox.getPlayer('player').pause());
 
 // Close the dialog on close button clicked
-dialog.querySelector('#pbw-dialog-close-btn').addEventListener('click', () => dialog.close());
+dialog.querySelector('#pbw-dialog-close-btn').addEventListener('click', () => {
+  dialog.close();
+});
+
+dialog.addEventListener('animationend', () => {
+  dialog.classList.toggle('slide-up-fade-in', false);
+});
 
 // Close the dialog when the backdrop is clicked
 dialog.addEventListener('click', (e) => {
@@ -39,4 +45,5 @@ export const openPlayerModal = ({ src, type, keySystems }) => {
   }
 
   dialog.showModal();
+  dialog.classList.toggle('slide-up-fade-in', true);
 };

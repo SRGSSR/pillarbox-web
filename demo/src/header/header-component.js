@@ -10,17 +10,17 @@ import { parseHtml } from '../core/html-utils';
 import router from '../core/router';
 
 const createHeaderEl = () => parseHtml(`
-  <div id="pbw-title-container">
-    <h1 class="pbw-title">
+  <div class="pbw-title-container">
+    <h1>
       <img class="pbw-logo" src="${srgssrLogo}"/>
       <span>Pillarbox</span>
-      <span class="version">${Pillarbox.VERSION.pillarbox}</span>
+      <span class="version-txt">${Pillarbox.VERSION.pillarbox}</span>
     </h1>
     <a href="https://github.com/srgssr/pillarbox-web" class="github-link" title="Source on Github">
       ${githubLogoSvg}
     </a>
   </div>
-  <div id="menu">
+  <div id="pbw-menu" class="pbw-menu">
     <a href="examples" data-spa-route>Examples</a>
     <a href="search" data-spa-route>Search</a>
     <a href="lists" data-spa-route>Lists</a>
@@ -30,7 +30,7 @@ const createHeaderEl = () => parseHtml(`
 document.querySelector('nav').append(...createHeaderEl());
 
 router.addEventListener('routechanged', () => {
-  document.querySelectorAll('#menu a').forEach(a => {
+  document.querySelectorAll('#pbw-menu a').forEach(a => {
     const path = new URL(a.href).pathname;
     const isActive = router.isActiveRoute(path);
 
