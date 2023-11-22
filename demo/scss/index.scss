@@ -199,12 +199,12 @@ dialog::backdrop {
   color: var(--red-7);
 }
 
-
 @import "dialog";
 @import "examples";
 @import "header";
 @import "search";
 @import "content-tree";
 @import "spinner";
+@import "sentinel";
 @import "animations";
 

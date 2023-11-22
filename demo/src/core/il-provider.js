@@ -35,10 +35,13 @@ class ILProvider {
    *
    * @param {string} bu - The business unit for which the search is performed (rsi, rtr, rts, srf or swi).
    * @param {string} query - The search query.
-   * @param {AbortSignal} [signal=undefined] - (Optional) An abort signal, allows to abort the query through an abort controller.
+   * @param {AbortSignal} [signal=undefined] - (Optional) An abort signal,
+   * allows to abort the query through an abort controller.
    *
-   * @returns {Promise<Array<{ title: string, urn: string }>>} - A promise that resolves to an array
-   * of objects containing the title and URN of the search results.
+   * @returns {Promise<{ results: Array<{ title: string, urn: string }>, next: function }>} - A promise
+   * that resolves to an object containing :
+   * - `results`: An array of objects containing the title, URN, media type, date, and duration of the search results.
+   * - `next`: A function that, when called, retrieves the next set of data and returns a new object with updated results and the next function.
    *
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
@@ -48,11 +51,16 @@ class ILProvider {
       { ...DEFAULT_SEARCH_PARAMS, 'q': query },
       signal
     );
-
-    return data.searchResultMediaList
-      .map(({ title, urn, mediaType, date, duration }) => ({
+    const toSearchResults = (data) => data.searchResultMediaList.map(
+      ({ title, urn, mediaType, date, duration }) => ({
         title, urn, mediaType, date, duration
-      }));
+      })
+    );
+
+    return {
+      results: toSearchResults(data),
+      next: this.#nextProvider(data.next, toSearchResults)
+    };
   }
 
   /**
@@ -279,6 +287,39 @@ class ILProvider {
     }).catch((reason) => {
       return Promise.reject(reason);
     });
+  }
+
+  /**
+   * Generates a function that, when called, retrieves the next set of data and
+   * returns a new object with updated results and the next function.
+   *
+   * @template T - The type of data returned by the resultMapper function.
+   *
+   * @param {string} nextUrl - The URL for fetching the next set of data.
+   * @param {(data: any) => T} resultMapper - A function to map the raw data to the desired format.
+   *
+   * @returns {(signal?: AbortSignal) => Promise<{ results: T, next: function }>} - A function that,
+   * when called, retrieves the next set of data and returns a new object with updated results and the next function.
+   */
+  #nextProvider(nextUrl, resultMapper) {
+    return async (signal) => {
+      const nextData = await fetch(nextUrl, { signal }).then(response => {
+        if (!response.ok) {
+          return Promise.reject(response);
+        }
+
+        return response.json();
+      }).catch((reason) => {
+        return Promise.reject(reason);
+      });
+
+      const nextResults = resultMapper(nextData);
+
+      return {
+        results: nextResults,
+        next: this.#nextProvider(nextData.next, resultMapper)
+      };
+    };
   }
 }
 

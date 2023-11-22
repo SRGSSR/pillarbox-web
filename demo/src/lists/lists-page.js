@@ -7,7 +7,7 @@
 import { parseHtml } from '../core/html-utils';
 import router from '../core/router';
 import { openPlayerModal } from '../player/player-dialog';
-import { contentTreeRootSections } from './content-tree-root-sections';
+import { listsSections } from './lists-sections';
 import SpinnerComponent from '../core/spinner-component';
 import Pillarbox from '../../../src/pillarbox';
 
@@ -75,7 +75,9 @@ class ListsPage {
         <div id="sections"></div>
     `));
 
-    this.#spinner = new SpinnerComponent(containerEl);
+    this.#spinner = new SpinnerComponent(
+      (node) => containerEl.appendChild(node)
+    );
     this.#sectionsEl = document.querySelector('#sections');
     this.#treeNavigationEl = document.querySelector('#tree-navigation');
 
@@ -204,4 +206,4 @@ class ListsPage {
 }
 
 // Add route for 'content-tree' path
-router.addRoute('lists', () => new ListsPage(contentTreeRootSections).init());
+router.addRoute('lists', () => new ListsPage(listsSections).init());

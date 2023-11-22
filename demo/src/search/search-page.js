@@ -10,6 +10,7 @@ import { openPlayerModal } from '../player/player-dialog';
 import ilProvider from '../core/il-provider';
 import SpinnerComponent from '../core/spinner-component';
 import Pillarbox from '../../../src/pillarbox';
+import SentinelComponent from '../core/sentinel-component';
 
 /**
  * Represents the search page.
@@ -17,13 +18,6 @@ import Pillarbox from '../../../src/pillarbox';
  * @class
  */
 class SearchPage {
-  /**
-   * The spinner component for displaying loading state.
-   *
-   * @private
-   * @type {SpinnerComponent}
-   */
-  #spinner;
 
   /**
    * The element to display search results.
@@ -56,6 +50,20 @@ class SearchPage {
    * @type {Element}
    */
   #searchBarEl;
+  /**
+   * The search bar element.
+   *
+   * @private
+   * @type {SentinelComponent}
+   */
+  #sentinelComponent;
+  /**
+   * The function that triggers the fetching of the next page data.
+   *
+   * @private
+   * @type {(signal?: AbortSignal) => Promise<{ results: any, next: function }>}
+   */
+  #fetchNextPage;
 
   /**
    * Creates an instance of SearchPage.
@@ -65,7 +73,6 @@ class SearchPage {
     const containerEl = document.querySelector('#pbw-container');
 
     containerEl.replaceChildren(...this.createContentEl());
-    this.#spinner = new SpinnerComponent(containerEl);
     this.#resultsEl = document.querySelector('#results');
     this.#dropdownEl = document.querySelector('#bu-dropdown');
     this.#searchBarEl = document.querySelector('#search-bar');
@@ -112,25 +119,77 @@ class SearchPage {
    *
    * @param {string} bu - The selected business unit.
    * @param {string} query - The search query.
+   *
+   * @throws {Promise<Response>} - A rejected promise with the response object if
+   * the fetch request for the search results fails.
    */
   async search(bu, query) {
-    // Abort previous search and creates a new abort controller
+    const signal = this.abortPreviousSearch();
+    const spinner = new SpinnerComponent(
+      (node) => this.#resultsEl.replaceChildren(node),
+      false
+    );
+
+    this.#sentinelComponent?.remove();
+
+    try {
+      const data = await ilProvider.search(bu, query, signal);
+
+      this.#fetchNextPage = data.next;
+      this.#resultsEl.replaceChildren(...this.createResultsEl(data.results));
+      this.#resultsEl.classList.add('fade-in');
+      this.initSentinel();
+    } finally {
+      spinner.remove();
+    }
+  }
+
+  /**
+   * Initializes the SentinelComponent for infinite scrolling.
+   *
+   * This function creates and attaches a SentinelComponent to the DOM, enabling
+   * infinite scrolling behavior. The SentinelComponent triggers the {@link nextPage}
+   * method when it comes into view, allowing the loading of the next set of search results.
+   */
+  initSentinel() {
+    if (!this.#fetchNextPage) return;
+
+    this.#sentinelComponent = new SentinelComponent(
+      (n) => this.#resultsEl.insertAdjacentElement('afterend', n),
+      () => this.nextPage()
+    );
+  }
+
+  /**
+   * Advances to the next page of search results and updates the UI accordingly.
+   *
+   * @throws {Promise<Response>} - A rejected promise with the response object if
+   * the fetch request for the next page fails.
+   */
+  async nextPage() {
+    const signal = this.abortPreviousSearch();
+    const data = await this.#fetchNextPage(signal);
+
+    if (!data.next) {
+      this.#sentinelComponent.remove();
+      this.#sentinelComponent = null;
+    }
+
+    this.#fetchNextPage = data.next;
+    this.#resultsEl.append(...this.createResultsEl(data.results));
+  }
+
+  /**
+   * Aborts the previous search by cancelling the associated abort signal and
+   * creates a new abort controller for the next search.
+   *
+   * @returns {AbortSignal} - The abort signal associated with the new search.
+   */
+  abortPreviousSearch() {
     this.#abortController?.abort('New search launched');
     this.#abortController = new AbortController();
 
-    const signal = this.#abortController.signal;
-
-    this.#resultsEl.replaceChildren();
-    this.#spinner.show();
-
-    try {
-      const results = await ilProvider.search(bu, query, signal);
-
-      this.#resultsEl.replaceChildren(...this.createResultsEl(results));
-      this.#resultsEl.classList.add('fade-in');
-    } finally {
-      this.#spinner.hide();
-    }
+    return this.#abortController.signal;
   }
 
   /**
@@ -164,7 +223,7 @@ class SearchPage {
    * @returns {HTMLElement[]} - An array of HTML elements representing the search results.
    */
   createResultsEl(results) {
-    return parseHtml(results.map(r => {
+    return parseHtml(results.map((r) => {
       const date = new Intl.DateTimeFormat('fr-CH').format(new Date(r.date));
       const duration = Pillarbox.formatTime(r.duration / 1000);
 

@@ -20,28 +20,36 @@ class SpinnerComponent {
    * @private
    * @type {Element}
    */
-  #spinnerEl;
+  #el;
 
   /**
    * Creates a new Spinner component and attaches it to the provided parent element.
+   * The spinner start hidden unless specified otherwise,
    *
    * @constructor
-   * @param {Element} parentEl - The target DOM element where the new spinner will be attached
+   * @param {(node?: Node) => void} attach - Callback function
+   *     to customize how the spinner is attached to document. Receives the spinner
+   *     HTML node as an argument.
+   * @param {boolean} [hidden=true] - Whether the spinner starts hidden or not.
    */
-  constructor(parentEl) {
+  constructor(attach, hidden = true) {
     const id = `spinner-${SPINNER_ID += 1}`;
 
-    parentEl.appendChild(parseHtml(`
+    attach(parseHtml(`
       <div id="${id}" class="spinner-container hidden">
         <div class="spinner"></div>
       </div>
     `)[0]);
 
-    this.#spinnerEl = document.getElementById(id);
+    this.#el = document.getElementById(id);
 
-    this.#spinnerEl.addEventListener('animationend', (event) => {
+    this.#el.addEventListener('animationend', (event) => {
       event.target.classList.remove('slide-up-fade-in');
     });
+
+    if (!hidden) {
+      this.show();
+    }
   }
 
   /**
@@ -50,8 +58,8 @@ class SpinnerComponent {
    * @param {boolean} show - if the spinner will be shown or hidden.
    */
   toggle(show) {
-    this.#spinnerEl.classList.toggle('hidden', !show);
-    this.#spinnerEl.classList.toggle('slide-up-fade-in', show);
+    this.#el.classList.toggle('hidden', !show);
+    this.#el.classList.toggle('slide-up-fade-in', show);
     this.#hidden = !show;
   }
 
@@ -77,6 +85,10 @@ class SpinnerComponent {
    */
   get hidden() {
     return this.#hidden;
+  }
+
+  remove() {
+    this.#el.remove();
   }
 }
 
