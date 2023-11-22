@@ -50,6 +50,14 @@ class SearchPage {
   #abortController;
 
   /**
+   * The search bar element.
+   *
+   * @private
+   * @type {Element}
+   */
+  #searchBarEl;
+
+  /**
    * Creates an instance of SearchPage.
    * Initializes and sets up the necessary elements and event listeners.
    */
@@ -60,6 +68,7 @@ class SearchPage {
     this.#spinner = new SpinnerComponent(containerEl);
     this.#resultsEl = document.querySelector('#results');
     this.#dropdownEl = document.querySelector('#bu-dropdown');
+    this.#searchBarEl = document.querySelector('#search-bar');
     this.#abortController = new AbortController();
     this.initListeners();
   }
@@ -71,20 +80,24 @@ class SearchPage {
    * - Listens for clicks on search results to open the player modal.
    */
   initListeners() {
-    document.querySelector('#search-bar').addEventListener('keyup', async (event) => {
-      if (event.key === 'Enter') {
-        const bu = this.#dropdownEl.value;
+    this.#searchBarEl.addEventListener('keyup', Pillarbox.fn.debounce(async (event) => {
+      const bu = this.#dropdownEl.value;
 
-        await this.search(bu, event.target.value);
-      }
+      await this.search(bu, event.target.value);
+    }, 500));
+
+    this.#dropdownEl.addEventListener('change', async () => {
+      if (!this.#searchBarEl.value) return;
+
+      const bu = this.#dropdownEl.value;
+
+      await this.search(bu, this.#searchBarEl.value);
     });
 
     this.#resultsEl.addEventListener('click', (event) => {
       const button = event.target.closest('button');
 
-      if (!('urn' in button.dataset)) {
-        return;
-      }
+      if (!('urn' in button.dataset)) return;
 
       openPlayerModal({ src: button.dataset.urn, type: 'srgssr/urn' });
     });

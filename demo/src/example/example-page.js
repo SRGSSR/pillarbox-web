@@ -81,9 +81,8 @@ class ExamplePage {
       const exampleEl = event.target.closest('button');
 
       // Check if the clicked element is a button and has the 'section' dataset attribute.
-      if (!exampleEl || !('section' in exampleEl.parentNode.dataset)) {
-        return;
-      }
+      if (!exampleEl || !('section' in exampleEl.parentNode.dataset)) return;
+
 
       const parent = exampleEl.parentNode;
       const section = parent.dataset.section;

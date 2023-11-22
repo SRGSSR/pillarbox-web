@@ -40,9 +40,7 @@ class Router extends EventTarget {
 
     // Event listener for click events on the document
     document.addEventListener('click', (event) => {
-      if (!('spaRoute' in event.target.dataset)) {
-        return;
-      }
+      if (!('spaRoute' in event.target.dataset)) return;
 
       event.preventDefault();
       const path = new URL(event.target.href).pathname;
@@ -98,9 +96,7 @@ class Router extends EventTarget {
    * @param {string} path - The path to navigate to.
    */
   navigateTo(path) {
-    if (this.isActiveRoute(path)) {
-      return;
-    }
+    if (this.isActiveRoute(path)) return;
 
     window.history.pushState({}, '', this.base + path);
     this.handleRouteChange(path);

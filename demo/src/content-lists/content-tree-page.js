@@ -91,9 +91,7 @@ class ListsPage {
     this.#sectionsEl.addEventListener('click', async (event) => {
       const button = event.target.closest('button');
 
-      if (!this.#spinner.hidden || !('nodeIdx' in button.dataset)) {
-        return;
-      }
+      if (!this.#spinner.hidden || !('nodeIdx' in button.dataset)) return;
 
       this.#spinner.show();
       const sectionIndex = button.parentNode.dataset.sectionIdx;
@@ -108,9 +106,7 @@ class ListsPage {
 
     // Attach navigation listener
     this.#treeNavigationEl.addEventListener('click', (event) => {
-      if (event.target.tagName.toLowerCase() !== 'button') {
-        return;
-      }
+      if (event.target.tagName.toLowerCase() !== 'button') return;
 
       const navigationIdx = event.target.dataset.navigationIdx;
 
