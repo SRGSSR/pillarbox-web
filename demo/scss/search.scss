@@ -17,6 +17,7 @@
 .results-container {
   display: flex;
   flex-direction: column;
+  margin-top: var(--size-3);
 }
 
 .results-container:empty {

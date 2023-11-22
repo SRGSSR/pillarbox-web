@@ -9,3 +9,17 @@ export const parseHtml = (htmlString) => {
 
   return el.body.childNodes;
 };
+
+const DEFAULT_INT_OPTIONS = { root: null, rootMargin: '0px', threshold: 0.1 };
+
+export const onIntersecting =
+  (target, callback, options = DEFAULT_INT_OPTIONS) => {
+    new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          callback();
+          // observer.unobserve(entry.target);
+        }
+      });
+    }, options).observe(target);
+  };

@@ -41,7 +41,7 @@ class Section {
  *
  * @type {Section[]}
  */
-export const contentTreeRootSections = [
+export const listsSections = [
   new Section({
     title: 'TV Topics',
     nodes: ['RSI', 'RTR', 'RTS', 'SRF', 'SWI'],
