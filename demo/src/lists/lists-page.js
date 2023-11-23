@@ -195,7 +195,7 @@ class ListsPage {
       this.#treeNavigationEl.replaceChildren(...parseHtml(`
       <button data-navigation-idx="0">Home</button>
       ${this.#traversalStack.slice(1).map((step, idx) => `
-      <span>&gt;</span>
+      <i class="material-icons-outlined">chevron_right</i>
       <button data-navigation-idx="${idx + 1}">${step.level[step.sectionIndex].title}</button>
       `).join('')}
     `));
