@@ -1,7 +1,13 @@
 .pbw-title-container {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
+
+  h1 {
+    display: flex;
+    gap: .15em;
+    align-items: center;
+  }
 }
 
 .pbw-logo {
