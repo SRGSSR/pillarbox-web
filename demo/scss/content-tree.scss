@@ -1,3 +1,15 @@
-.tree-navigation-containers {
-  font-size: var(--size-4);
+.tree-navigation-container {
+  display: flex;
+  align-items: end;
+
+  & button {
+    padding: 0;
+    color: var(--color-6);
+    background: transparent;
+    border: none;
+
+    &:hover {
+      color: inherit;
+    }
+  }
 }
