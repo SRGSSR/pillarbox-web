@@ -18,11 +18,14 @@ class Section {
    * @param {string[]} options.nodes - An array of nodes associated with the section.
    * @param {function} [options.resolve] - (Optional) A function that, when defined, resolves the next level
    *                                       of the hierarchy asynchronously.
+   * @param {function} [options.next] - (Optional) A function that, when defined, resolves the next level
+   *                                    of the hierarchy asynchronously.
    */
-  constructor({ title, nodes, resolve = undefined }) {
+  constructor({ title, nodes, resolve = undefined, next = undefined }) {
     this.title = title;
     this.nodes = nodes;
     this.resolve = resolve;
+    this.next = next;
   }
 
   /**
@@ -33,7 +36,24 @@ class Section {
   isLeaf() {
     return !this.resolve;
   }
+
+  /**
+   * Fetch more nodes from the next function if available.
+   * @param signal
+   * @returns {Promise<*>}
+   */
+  async fetchNext(signal = undefined) {
+    if (!this.next) return;
+    const data = await this.next(signal);
+
+    this.next = data.next;
+    this.nodes.push(data.results);
+
+    return data.results;
+  }
 }
+
+const toNodesAndNext = (data) =>  ({ nodes: data.results, next: data.next });
 
 /**
  * An asynchronous tree-like structure that allows traversing the SRG SSR content
@@ -50,7 +70,7 @@ export const listsSections = [
       nodes: await ilProvider.topics(bu),
       resolve: async (topic) => new Section({
         title: topic.title,
-        nodes: await ilProvider.latestByTopic(topic.urn)
+        ...toNodesAndNext(await ilProvider.latestByTopic(topic.urn))
       })
     })
   }),
@@ -62,16 +82,16 @@ export const listsSections = [
       nodes: await ilProvider.shows(bu),
       resolve: async (show) => new Section({
         title: show.title,
-        nodes: await ilProvider.latestByShow(show.urn)
+        ...toNodesAndNext(await ilProvider.latestByShow(show.urn))
       })
     })
   }),
   new Section({
     title: 'TV Latest Videos',
-    nodes: ['RSI', 'RTR', 'RTS', 'SRF', 'SWI'],
+    nodes: ['RSI', 'RTR', 'RTS', 'SRF'],
     resolve: async (bu) => new Section({
       title: `${bu} TV Latest Videos`,
-      nodes: await ilProvider.editorial(bu)
+      ...toNodesAndNext(await ilProvider.editorial(bu))
     })
   }),
   new Section({
@@ -87,7 +107,7 @@ export const listsSections = [
     nodes: ['RSI', 'RTR', 'RTS', 'SRF'],
     resolve: async (bu) => new Section({
       title: `${bu} Live web`,
-      nodes: await ilProvider.scheduledLivestream(bu)
+      ...toNodesAndNext(await ilProvider.scheduledLivestream(bu))
     })
   }),
   new Section({
@@ -106,10 +126,10 @@ export const listsSections = [
       nodes: await ilProvider.channels(bu),
       resolve: async (channel) => new Section({
         title: `${channel.title} Radio shows`,
-        nodes: await ilProvider.radioShowByChannel(channel.id),
+        nodes: await ilProvider.radioShowByChannel(bu, channel.id),
         resolve: async (show) => new Section({
           title: show.title,
-          nodes: await ilProvider.latestByShow(show.urn)
+          ...toNodesAndNext(await ilProvider.latestByShow(show.urn))
         })
       })
     })

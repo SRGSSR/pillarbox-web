@@ -10,7 +10,7 @@ import { openPlayerModal } from '../player/player-dialog';
 import ilProvider from '../core/il-provider';
 import SpinnerComponent from '../core/spinner-component';
 import Pillarbox from '../../../src/pillarbox';
-import SentinelComponent from '../core/sentinel-component';
+import IntersectionObserverComponent from '../core/intersection-observer-component';
 
 /**
  * Represents the search page.
@@ -34,7 +34,6 @@ class SearchPage {
    * @type {Element}
    */
   #dropdownEl;
-
   /**
    * The abort controller for handling search cancellation.
    *
@@ -42,7 +41,6 @@ class SearchPage {
    * @type {AbortController}
    */
   #abortController;
-
   /**
    * The search bar element.
    *
@@ -51,12 +49,12 @@ class SearchPage {
    */
   #searchBarEl;
   /**
-   * The search bar element.
+   * The component that triggers the next page fetching when in view.
    *
    * @private
-   * @type {SentinelComponent}
+   * @type {IntersectionObserverComponent}
    */
-  #sentinelComponent;
+  #intersectionObserverComponent;
   /**
    * The function that triggers the fetching of the next page data.
    *
@@ -124,13 +122,13 @@ class SearchPage {
    * the fetch request for the search results fails.
    */
   async search(bu, query) {
-    const signal = this.abortPreviousSearch();
-    const spinner = new SpinnerComponent(
+    const signal = this.abortPreviousSearch(), spinner = new SpinnerComponent(
       (node) => this.#resultsEl.replaceChildren(node),
       false
     );
 
-    this.#sentinelComponent?.remove();
+    this.#intersectionObserverComponent?.remove();
+    this.#intersectionObserverComponent = null;
 
     try {
       const data = await ilProvider.search(bu, query, signal);
@@ -138,23 +136,23 @@ class SearchPage {
       this.#fetchNextPage = data.next;
       this.#resultsEl.replaceChildren(...this.createResultsEl(data.results));
       this.#resultsEl.classList.add('fade-in');
-      this.initSentinel();
+      this.initIntersectionObserver();
     } finally {
       spinner.remove();
     }
   }
 
   /**
-   * Initializes the SentinelComponent for infinite scrolling.
+   * Initializes the {@link IntersectionObserverComponent} for infinite scrolling.
    *
-   * This function creates and attaches a SentinelComponent to the DOM, enabling
-   * infinite scrolling behavior. The SentinelComponent triggers the {@link nextPage}
+   * This function creates and attaches a component to the DOM, enabling
+   * infinite scrolling behavior. The component triggers the {@link nextPage}
    * method when it comes into view, allowing the loading of the next set of search results.
    */
-  initSentinel() {
+  initIntersectionObserver() {
     if (!this.#fetchNextPage) return;
 
-    this.#sentinelComponent = new SentinelComponent(
+    this.#intersectionObserverComponent = new IntersectionObserverComponent(
       (n) => this.#resultsEl.insertAdjacentElement('afterend', n),
       () => this.nextPage()
     );
@@ -169,11 +167,6 @@ class SearchPage {
   async nextPage() {
     const signal = this.abortPreviousSearch();
     const data = await this.#fetchNextPage(signal);
-
-    if (!data.next) {
-      this.#sentinelComponent.remove();
-      this.#sentinelComponent = null;
-    }
 
     this.#fetchNextPage = data.next;
     this.#resultsEl.append(...this.createResultsEl(data.results));
