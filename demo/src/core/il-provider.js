@@ -15,6 +15,10 @@ const DEFAULT_SHOWLIST_PARAMS = {
   ...DEFAULT_QUERY_PARAMS
 };
 
+const toMedia = ({ title, urn, mediaType, date, duration }) => ({
+  title, urn, mediaType, date, duration
+});
+
 /**
  * Class representing a provider for the integration layer.
  *
@@ -46,20 +50,16 @@ class ILProvider {
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
   async search(bu, query, signal = undefined) {
-    const data = await this.fetch(
+    const data = await this.#fetch(
       `/${bu.toLowerCase()}/searchResultMediaList`,
       { ...DEFAULT_SEARCH_PARAMS, 'q': query },
       signal
     );
-    const toSearchResults = (data) => data.searchResultMediaList.map(
-      ({ title, urn, mediaType, date, duration }) => ({
-        title, urn, mediaType, date, duration
-      })
-    );
+    const toResults = (data) => data.searchResultMediaList.map(toMedia);
 
     return {
-      results: toSearchResults(data),
-      next: this.#nextProvider(data.next, toSearchResults)
+      results: toResults(data),
+      next: data.next ? this.#nextProvider(data.next, toResults) : undefined
     };
   }
 
@@ -75,7 +75,7 @@ class ILProvider {
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
   async topics(bu, transmission = 'tv') {
-    const data = await this.fetch(`/${bu.toLowerCase()}/topicList/${transmission}`);
+    const data = await this.#fetch(`/${bu.toLowerCase()}/topicList/${transmission}`);
 
     return data.topicList.map(
       ({ title, urn }) => ({ title, urn })
@@ -86,18 +86,24 @@ class ILProvider {
    * Retrieves the latest media content for a specific topic.
    *
    * @param {string} topicUrn - The URN (Unique Resource Name) of the topic.
+   * @param {number} [pageSize=30] - The maximum number of episodes to retrieve.
    *
-   * @returns {Promise<Array<{ title: string, urn: string }>>} - A promise that resolves to an array
-   * of objects containing the title and URN of the latest media content related to the topic.
+   * @returns {Promise<{ results: Array<{ title: string, urn: string }>, next: function }>} - A promise
+   * that resolves to an object containing :
+   * - `results`: An array of objects containing the title, URN, media type, date, and duration of the medias.
+   * - `next`: A function that, when called, retrieves the next set of data and returns a new object with updated results and the next function.
    *
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
-  async latestByTopic(topicUrn) {
-    const data = await this.fetch(`/mediaList/latest/byTopicUrn/${topicUrn}`);
+  async latestByTopic(topicUrn, pageSize = 30) {
+    const data = await this.#fetch(`/mediaList/latest/byTopicUrn/${topicUrn}`, { pageSize });
 
-    return data.mediaList.map(({ title, urn, mediaType, date, duration }) => ({
-      title, urn, mediaType, date, duration
-    }));
+    const toResults = (data) => data.mediaList.map(toMedia);
+
+    return {
+      results: toResults(data),
+      next: data.next ? this.#nextProvider(data.next, toResults) : undefined
+    };
   }
 
   /**
@@ -113,7 +119,7 @@ class ILProvider {
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
   async shows(bu, pageSize = 'unlimited', transmission = 'tv') {
-    const data = await this.fetch(
+    const data = await this.#fetch(
       `/${bu.toLowerCase()}/showList/${transmission}/alphabetical`,
       { ...DEFAULT_SHOWLIST_PARAMS, 'pageSize': pageSize }
     );
@@ -129,22 +135,27 @@ class ILProvider {
    * @param {string} showUrn - The URN (Unique Resource Name) of the show.
    * @param {number} [pageSize=30] - The maximum number of episodes to retrieve.
    *
-   * @returns {Promise<Array<{ title: string, urn: string }>>} - A promise that resolves to an array
-   * of objects containing the title and URN of the latest media content related to the show.
+   * @returns {Promise<{ results: Array<{ title: string, urn: string }>, next: function }>} - A promise
+   * that resolves to an object containing :
+   * - `results`: An array of objects containing the title, URN, media type, date, and duration of the medias.
+   * - `next`: A function that, when called, retrieves the next set of data and returns a new object with updated results and the next function.
    *
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
   async latestByShow(showUrn, pageSize = 30) {
-    const data = await this.fetch(
+    const data = await this.#fetch(
       `/episodeComposition/latestByShow/byUrn/${showUrn}`,
       { ...DEFAULT_QUERY_PARAMS, 'pageSize': pageSize }
     );
 
-    return data.episodeList
+    const toResults = (data) => data.episodeList
       .map(({ mediaList }) => mediaList[0])
-      .map(({ title, urn, mediaType, date, duration }) => ({
-        title, urn, mediaType, date, duration
-      }));
+      .map(toMedia);
+
+    return {
+      results: toResults(data),
+      next: data.next ? this.#nextProvider(data.next, toResults) : undefined
+    };
   }
 
   /**
@@ -153,20 +164,25 @@ class ILProvider {
    * @param {string} bu - The business unit for which to retrieve editorial media (rsi, rtr, rts, srf, or swi).
    * @param {number} [pageSize=30] - The maximum number of editorial media items to retrieve.
    *
-   * @returns {Promise<Array<{ title: string, urn: string }>>} - A promise that resolves to an array
-   * of objects containing the title and URN of the editorial media content.
+   * @returns {Promise<{ results: Array<{ title: string, urn: string }>, next: function }>} - A promise
+   * that resolves to an object containing :
+   * - `results`: An array of objects containing the title, URN, media type, date, and duration of the medias.
+   * - `next`: A function that, when called, retrieves the next set of data and returns a new object with updated results and the next function.
    *
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
   async editorial(bu, pageSize = 30) {
-    const data = await this.fetch(
+    const data = await this.#fetch(
       `/${bu.toLowerCase()}/mediaList/video/editorial`,
       { ...DEFAULT_QUERY_PARAMS, 'pageSize': pageSize }
     );
 
-    return data.mediaList.map(({ title, urn, mediaType, date, duration }) => ({
-      title, urn, mediaType, date, duration
-    }));
+    const toResults = (data) => data.mediaList.map(toMedia);
+
+    return {
+      results: toResults(data),
+      next: data.next ? this.#nextProvider(data.next, toResults) : undefined
+    };
   }
 
   /**
@@ -181,11 +197,9 @@ class ILProvider {
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
   async livestreams(bu, mediaType = 'video') {
-    const data = await this.fetch(`/${bu.toLowerCase()}/mediaList/${mediaType}/livestreams`);
+    const data = await this.#fetch(`/${bu.toLowerCase()}/mediaList/${mediaType}/livestreams`);
 
-    return data.mediaList.map(({ title, urn, mediaType, date, duration }) => ({
-      title, urn, mediaType, date, duration
-    }));
+    return data.mediaList.map(toMedia);
   }
 
   /**
@@ -194,20 +208,24 @@ class ILProvider {
    * @param {string} bu - The business unit for which to retrieve scheduled livestreams (rsi, rtr, rts, srf, or swi).
    * @param {number} [pageSize=10] - The maximum number of scheduled livestreams to retrieve.
    *
-   * @returns {Promise<Array<{ title: string, urn: string }>>} - A promise that resolves to an array
-   * of objects containing the title and URN of the scheduled livestream media content.
+   * @returns {Promise<{ results: Array<{ title: string, urn: string }>, next: function }>} - A promise
+   * that resolves to an object containing :
+   * - `results`: An array of objects containing the title, URN, media type, date, and duration of the medias.
+   * - `next`: A function that, when called, retrieves the next set of data and returns a new object with updated results and the next function.
    *
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
   async scheduledLivestream(bu, pageSize = 10) {
-    const data = await this.fetch(
+    const data = await this.#fetch(
       `/${bu.toLowerCase()}/mediaList/video/scheduledLivestreams`,
       { ...DEFAULT_QUERY_PARAMS, 'pageSize': pageSize }
     );
+    const toResults = (data) => data.mediaList.map(toMedia);
 
-    return data.mediaList.map(({ title, urn, mediaType, date, duration }) => ({
-      title, urn, mediaType, date, duration
-    }));
+    return {
+      results: toResults(data),
+      next: data.next ? this.#nextProvider(data.next, toResults) : undefined
+    };
   }
 
   /**
@@ -216,20 +234,24 @@ class ILProvider {
    * @param {string} bu - The business unit for which to retrieve livecenter media (rsi, rtr, rts, srf, or swi).
    * @param {number} [pageSize=10] - The maximum number of livecenter media items to retrieve.
    *
-   * @returns {Promise<Array<{ title: string, urn: string }>>} - A promise that resolves to an array
-   * of objects containing the title and URN of the livecenter media content.
+   * @returns {Promise<{ results: Array<{ title: string, urn: string }>, next: function }>} - A promise
+   * that resolves to an object containing :
+   * - `results`: An array of objects containing the title, URN, media type, date, and duration of the medias.
+   * - `next`: A function that, when called, retrieves the next set of data and returns a new object with updated results and the next function.
    *
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
   async livecenter(bu, pageSize = 10) {
-    const data = await this.fetch(
+    const data = await this.#fetch(
       `/${bu.toLowerCase()}/mediaList/video/scheduledLivestreams/livecenter`,
       { ...DEFAULT_QUERY_PARAMS, 'pageSize': pageSize }
     );
+    const toResults = (data) => data.mediaList.map(toMedia);
 
-    return data.mediaList.map(({ title, urn, mediaType, date, duration }) => ({
-      title, urn, mediaType, date, duration
-    }));
+    return {
+      results: toResults(data),
+      next: data.next ? this.#nextProvider(data.next, toResults) : undefined
+    };
   }
 
   /**
@@ -244,7 +266,7 @@ class ILProvider {
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
   async channels(bu, transmission = 'radio') {
-    const data = await this.fetch(`/${bu.toLowerCase()}/channelList/${transmission}`);
+    const data = await this.#fetch(`/${bu.toLowerCase()}/channelList/${transmission}`);
 
     return data.channelList.map(
       ({ title, id }) => ({ title, id })
@@ -264,7 +286,7 @@ class ILProvider {
    * @throws {Promise<Response>} - A rejected promise with the response object if the fetch request fails.
    */
   async radioShowByChannel(bu, channelId, pageSize = 'unlimited') {
-    const data = await this.fetch(
+    const data = await this.#fetch(
       `/${bu.toLowerCase()}/showList/radio/alphabeticalByChannel/${channelId}`,
       { ...DEFAULT_QUERY_PARAMS, 'pageSize': pageSize }
     );
@@ -274,7 +296,21 @@ class ILProvider {
     );
   }
 
-  async fetch(path, params = DEFAULT_QUERY_PARAMS, signal = undefined) {
+
+  /**
+   * Asynchronously fetches data from the IL for the specified path and parameters.
+   *
+   * @private
+   * @param {string} path - The path to fetch data from.
+   * @param {Object} [params=DEFAULT_QUERY_PARAMS] - (Optional) parameters for the request.
+   * @param {AbortSignal} [signal=undefined] - (Optional) AbortSignal to abort the request.
+   *
+   * @returns {Promise<*>} A Promise that resolves to the JSON response data.
+   *
+   * @throws {Response} If the HTTP response is not ok (status code other than 2xx).
+   * @throws {Error} If the fetch operation fails for any other reason.
+   */
+  async #fetch(path, params = DEFAULT_QUERY_PARAMS, signal = undefined) {
     const queryParams = new URLSearchParams(params).toString();
     const url = `https://${this.baseUrl}/${path.replace(/^\/+/, '')}?${queryParams}`;
 
@@ -293,6 +329,7 @@ class ILProvider {
    * Generates a function that, when called, retrieves the next set of data and
    * returns a new object with updated results and the next function.
    *
+   * @private
    * @template T - The type of data returned by the resultMapper function.
    *
    * @param {string} nextUrl - The URL for fetching the next set of data.
@@ -302,7 +339,7 @@ class ILProvider {
    * when called, retrieves the next set of data and returns a new object with updated results and the next function.
    */
   #nextProvider(nextUrl, resultMapper) {
-    return async (signal) => {
+    return async (signal = undefined) => {
       const nextData = await fetch(nextUrl, { signal }).then(response => {
         if (!response.ok) {
           return Promise.reject(response);

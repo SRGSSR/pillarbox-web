@@ -10,6 +10,8 @@ import { openPlayerModal } from '../player/player-dialog';
 import { listsSections } from './lists-sections';
 import SpinnerComponent from '../core/spinner-component';
 import Pillarbox from '../../../src/pillarbox';
+import IntersectionObserverComponent
+  from '../core/intersection-observer-component';
 
 /**
  * Represents the Lists page.
@@ -52,6 +54,20 @@ class ListsPage {
    * @type {Array<Section>}
    */
   #currentLevel;
+  /**
+   * The abort controller for handling search cancellation.
+   *
+   * @private
+   * @type {AbortController}
+   */
+  #abortController;
+  /**
+   * The component that triggers the next page fetching when in view.
+   *
+   * @private
+   * @type {IntersectionObserverComponent}
+   */
+  #intersectionObserverComponent;
 
   /**
    * Creates an instance of ListsPage.
@@ -156,18 +172,83 @@ class ListsPage {
    * Updates the sections in the content tree page.
    */
   updateSections() {
+    this.#intersectionObserverComponent?.remove();
     this.#sectionsEl.replaceChildren(
       ...parseHtml(this.#currentLevel.map((section, idx) => `
       <div data-section-idx="${idx}" class="section fade-in">
           <h2 class="sticky">${section.title}</h2>
-          ${section.nodes.map((node, idx) => this.createButtonEl(node, idx)).join('')}
+          ${this.createNodesHtml(section.nodes)}
       </div>
     `).join(''))
     );
+    this.initIntersectionObserver();
   }
 
+  /**
+   * Creates the HTML content for all the nodes in a section.
+   *
+   * @param nodes the nodes which content has to be created.
+   *
+   * @returns {string} the HTML as a string.
+   */
+  createNodesHtml(nodes) {
+    return nodes.map((node, idx) => this.createButtonEl(node, idx)).join('');
+  }
+
+  /**
+   * Initializes the {@link IntersectionObserverComponent} for infinite scrolling.
+   *
+   * This function creates and attaches a component to the DOM, enabling
+   * infinite scrolling behavior. This component triggers the {@link nextPage}
+   * method when it comes into view, allowing the loading of the next set of nodes.
+   */
+  initIntersectionObserver() {
+    const firstSection = this.#currentLevel[0];
+
+    if (this.#currentLevel.length !== 1 || !firstSection.next) return;
+
+    this.#intersectionObserverComponent = new IntersectionObserverComponent(
+      (n) => this.#sectionsEl.insertAdjacentElement('afterend', n),
+      () => this.nextPage(firstSection)
+    );
+  }
+
+  /**
+   * Advances to the next page of nodes  and updates the UI accordingly.
+   *
+   * @throws {Promise<Response>} - A rejected promise with the response object if
+   * the fetch request for the next page fails.
+   */
+  async nextPage(section) {
+    const signal = this.abortCurrentFetch();
+    const nodes = await section.fetchNext(signal);
+
+    this.#sectionsEl.append(...parseHtml(this.createNodesHtml(nodes)));
+  }
+
+  /**
+   * Aborts the previous search by cancelling the associated abort signal and
+   * creates a new abort controller for the next search.
+   *
+   * @returns {AbortSignal} - The abort signal associated with the new search.
+   */
+  abortCurrentFetch() {
+    this.#abortController?.abort('New fetch launched');
+    this.#abortController = new AbortController();
+
+    return this.#abortController.signal;
+  }
+
+  /**
+   * Creates the html content of a button for a node.
+   *
+   * @param node the node.
+   * @param idx the index of the node in the section.
+   *
+   * @returns {string} the HTML as a string.
+   */
   createButtonEl(node, idx) {
-    if (node.hasOwnProperty('mediaType')) {
+    if (node.mediaType) {
       const date = new Intl.DateTimeFormat('fr-CH').format(new Date(node.date));
       const duration = Pillarbox.formatTime(node.duration / 1000);
 
