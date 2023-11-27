@@ -16,11 +16,11 @@ class DataProvider {
    * Get media composition by URN.
    *
    * @param {String} urn urn:rts:video:9800629
-   * @param {Boolean} onlyChapters
+   * @param {Boolean} [onlyChapters=true] Whether to retrieve only chapters or not.
    *
    * @returns {Object} media composition json object
    */
-  getMediaCompositionByUrn(urn, onlyChapters = false) {
+  getMediaCompositionByUrn(urn, onlyChapters = true) {
     const url = `https://${this.baseUrl}mediaComposition/byUrn/${urn}?onlyChapters=${onlyChapters}&vector=portalplay`;
 
     return fetch(url)
