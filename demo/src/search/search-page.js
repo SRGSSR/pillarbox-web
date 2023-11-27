@@ -85,18 +85,27 @@ class SearchPage {
    * - Listens for clicks on search results to open the player modal.
    */
   initListeners() {
+    let lastQuery;
+
     this.#searchBarEl.addEventListener('keyup', Pillarbox.fn.debounce(async (event) => {
+      const query = event.target.value.trim();
+
+      if (!query || query === lastQuery) return;
+
       const bu = this.#dropdownEl.value;
 
-      await this.search(bu, event.target.value);
+      await this.search(bu, query);
+      lastQuery = query;
     }, 500));
 
     this.#dropdownEl.addEventListener('change', async () => {
-      if (!this.#searchBarEl.value) return;
+      const query = this.#searchBarEl.value.trim();
+
+      if (!query) return;
 
       const bu = this.#dropdownEl.value;
 
-      await this.search(bu, this.#searchBarEl.value);
+      await this.search(bu, query);
     });
 
     this.#resultsEl.addEventListener('click', (event) => {
