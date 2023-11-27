@@ -175,7 +175,7 @@ class ListsPage {
         <button class="content-btn"data-node-idx="${idx}" title="${node.title}">
             <span class="content-btn-title">${node.title}</span>
             <div class="content-btn-metadata-container">
-                <span class="material-icons-outlined">${node.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</span>
+                <i class="material-icons-outlined">${node.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
                 <span class="content-btn-info">&nbsp;| ${date} | ${duration}</span>
             </div>
         </button>`;

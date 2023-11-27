@@ -162,7 +162,7 @@ class ExamplePage {
   initDrmSettings() {
     const settingsEl = document.querySelector('#load-bar-settings');
     const settingsBtnEl = document.querySelector('#open-settings-btn');
-    const settingsIconEl = settingsBtnEl.querySelector('span');
+    const settingsIconEl = settingsBtnEl.querySelector('i');
 
     settingsEl.addEventListener('animationend', () => {
       settingsEl.classList.toggle('fade-in', false);
@@ -192,11 +192,11 @@ class ExamplePage {
     return `
       <div class="fade-in">
         <div class="load-bar-container">
-          <span class="material-icons-outlined">insert_link</span>
+          <i class="material-icons-outlined">insert_link</i>
           <input type="text" id="load-bar" placeholder="Enter a URL or URN to play its content...">
-          <button id="open-settings-btn" title="Open DRM Settings"><span class="material-icons-outlined">settings</span></button>
+          <button id="open-settings-btn" title="Open DRM Settings"><i class="material-icons-outlined">settings</i></button>
         </div>
-        
+
         <form id="load-bar-settings" class="drm-settings-container hidden" aria-hidden="true">
           <h3>DRM Settings</h3>
           <select id="drm-vendor" aria-label="Select a DRM vendor" required>
@@ -207,12 +207,12 @@ class ExamplePage {
           </select>
           <input type="text" id="license-url-input" placeholder="Enter the license url...">
           <input type="text" id="certificate-url-input" placeholder="Enter the certificate url...">
-          <button id="clear-settings-btn" class="icon-btn warning-text" type="reset"><span class="material-icons-outlined">delete</span>Clear Settings</button>
+          <button id="clear-settings-btn" class="icon-btn warning-text" type="reset"><i class="material-icons-outlined">delete</i>Clear Settings</button>
           <hr>
         </form>
-  
+
          <button class="icon-btn load-bar-action" id="play-content-btn" disabled="true">
-           <span class="material-icons-outlined">play_circle</span> Play content
+           <i class="material-icons-outlined">play_circle</i> Play content
          </button>
       </div>`;
   }

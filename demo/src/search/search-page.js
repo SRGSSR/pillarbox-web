@@ -231,7 +231,7 @@ class SearchPage {
         <button class="content-btn" data-urn="${r.urn}" title="${r.title}">
             <span class="content-btn-title">${r.title}</span>
             <div class="content-btn-metadata-container">
-                <span class="material-icons-outlined">${r.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</span>
+                <i class="material-icons-outlined">${r.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
                 <span class="content-btn-info">&nbsp;| ${date} | ${duration}</span>
             </div>
         </button>`;
