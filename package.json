@@ -49,7 +49,7 @@
     "build:css": "parcel build --target pillarbox-css",
     "build:pillarbox": "parcel build --target pillarbox",
     "build:pillarbox-core": "parcel build --target pillarbox-core",
-    "eslint": "eslint --ext .js src",
+    "eslint": "eslint --ext .js src demo",
     "github:page": "parcel build --target github-page",
     "outdated": "npm outdated",
     "release:ci": "semantic-release",
