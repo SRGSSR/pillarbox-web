@@ -13,4 +13,9 @@ import router from './core/router';
 // Initialize the router with the current path or 'examples' if none is found
 router.initBase();
 router.fallback = 'examples';
-router.handleRouteChange(window.location.pathname);
+
+const url = new URL(window.location.href);
+const path = url.pathname;
+const queryParams = Object.fromEntries(url.searchParams.entries());
+
+router.handleRouteChange(path, queryParams);
