@@ -15,33 +15,28 @@ class DataProvider {
   /**
    * Get media composition by URN.
    *
-   * @param {String} urn urn:rts:video:9800629
+   * @param {String} urn URN of the media composition.
    * @param {Boolean} [onlyChapters=true] Whether to retrieve only chapters or not.
    *
-   * @returns {Object} media composition json object
+   * @returns {Promise<{mediaComposition: MediaComposition}>} Promise that resolves with the `mediaComposition` object.
+   * @throws {Promise<Response>} If the response is not ok.
    */
-  getMediaCompositionByUrn(urn, onlyChapters = true) {
+  async getMediaCompositionByUrn(urn, onlyChapters = true) {
     const url = `https://${this.baseUrl}mediaComposition/byUrn/${urn}?onlyChapters=${onlyChapters}&vector=portalplay`;
+    const response = await fetch(url);
 
-    return fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          return Promise.reject(response);
-        }
+    if (!response.ok) {
+      throw response;
+    }
 
-        return response.json().then((data) => {
-          const mediaComposition = Object.assign(new MediaComposition(), data, {
-            onlyChapters,
-          });
+    const data = await response.json();
+    const mediaComposition = Object.assign(new MediaComposition(), data, {
+      onlyChapters,
+    });
 
-          return {
-            mediaComposition,
-          };
-        });
-      })
-      .catch((reason) => {
-        return Promise.reject(reason);
-      });
+    return {
+      mediaComposition,
+    };
   }
 }
 
