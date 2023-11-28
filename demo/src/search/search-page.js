@@ -10,7 +10,8 @@ import { openPlayerModal } from '../player/player-dialog';
 import ilProvider from '../core/il-provider';
 import SpinnerComponent from '../core/spinner-component';
 import Pillarbox from '../../../src/pillarbox';
-import IntersectionObserverComponent from '../core/intersection-observer-component';
+import IntersectionObserverComponent
+  from '../core/intersection-observer-component';
 
 /**
  * Represents the search page.
@@ -40,7 +41,7 @@ class SearchPage {
    * @private
    * @type {AbortController}
    */
-  #abortController;
+  #abortController = new AbortController();
   /**
    * The search bar element.
    *
@@ -74,8 +75,17 @@ class SearchPage {
     this.#resultsEl = document.querySelector('#results');
     this.#dropdownEl = document.querySelector('#bu-dropdown');
     this.#searchBarEl = document.querySelector('#search-bar');
-    this.#abortController = new AbortController();
+
     this.initListeners();
+  }
+
+  async onStateChanged({ query, bu }) {
+    this.clearSearch();
+    this.#searchBarEl.value = query || '';
+    this.#dropdownEl.value = bu || 'rsi';
+
+    if (query)
+      await this.search(this.#dropdownEl.value, this.#searchBarEl.value);
   }
 
   /**
@@ -87,25 +97,25 @@ class SearchPage {
   initListeners() {
     let lastQuery;
 
-    this.#searchBarEl.addEventListener('keyup', Pillarbox.fn.debounce(async (event) => {
+    this.#searchBarEl.addEventListener('keyup', Pillarbox.fn.debounce((event) => {
       const query = event.target.value.trim();
 
       if (!query || query === lastQuery) return;
 
       const bu = this.#dropdownEl.value;
 
-      await this.search(bu, query);
+      router.updateState({ query, bu });
       lastQuery = query;
     }, 500));
 
-    this.#dropdownEl.addEventListener('change', async () => {
+    this.#dropdownEl.addEventListener('change', () => {
       const query = this.#searchBarEl.value.trim();
 
       if (!query) return;
 
       const bu = this.#dropdownEl.value;
 
-      await this.search(bu, query);
+      router.updateState({ query, bu });
     });
 
     this.#resultsEl.addEventListener('click', (event) => {
@@ -149,6 +159,12 @@ class SearchPage {
     } finally {
       spinner.remove();
     }
+  }
+
+  clearSearch() {
+    this.abortPreviousSearch();
+    this.#intersectionObserverComponent?.remove();
+    this.#resultsEl.replaceChildren();
   }
 
   /**
@@ -242,4 +258,17 @@ class SearchPage {
 }
 
 
-router.addRoute('search', () => new SearchPage());
+let onStateChangedListener;
+
+router.addRoute('search', async (queryParams) => {
+  const searchPage = new SearchPage();
+
+  onStateChangedListener = async () => {
+    await searchPage.onStateChanged(router.queryParams);
+  };
+
+  router.addEventListener('queryparams', onStateChangedListener);
+  await searchPage.onStateChanged(queryParams);
+}, () => {
+  router.removeEventListener('queryparams', onStateChangedListener);
+});

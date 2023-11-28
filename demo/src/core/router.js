@@ -31,28 +31,33 @@ import { Minimatch } from 'minimatch';
  */
 class Router extends EventTarget {
   #fallback;
+  #currentRoute = null;
+  #currentQueryParams = {};
+  #routes = [];
 
   constructor() {
     super();
-
-    this.routes = [];
-    this.currentRoute = null;
 
     // Event listener for click events on the document
     document.addEventListener('click', (event) => {
       if (!('spaRoute' in event.target.dataset)) return;
 
       event.preventDefault();
-      const path = new URL(event.target.href).pathname;
+      const url = new URL(event.target.href);
+      const path = url.pathname;
+      const queryParams = Object.fromEntries(url.searchParams.entries());
 
-      if (!this.isActiveRoute(path)) {
-        window.history.pushState({}, '', event.target.href);
-        this.handleRouteChange(path);
-      }
+      window.history.pushState({}, '', url.href);
+      this.handleRouteChange(path, queryParams);
     });
 
     // Event listener for the popstate event
-    window.addEventListener('popstate', () => this.handleRouteChange(window.location.pathname));
+    window.addEventListener('popstate', () => {
+      const entries = new URL(window.location.href).searchParams.entries();
+      const queryParams = Object.fromEntries(entries);
+
+      this.handleRouteChange(window.location.pathname, queryParams);
+    });
   }
 
   /**
@@ -62,11 +67,10 @@ class Router extends EventTarget {
    * @param {function} start - The function to be called when the route is navigated to.
    * @param {function} destroy - The function to be called when the route is navigated away from.
    */
-  addRoute(pattern, start, destroy = () => {
-  }) {
+  addRoute(pattern, start, destroy = () => {}) {
     const path = new Minimatch(pattern, { matchBase: true });
 
-    this.routes.push({ path, start, destroy });
+    this.#routes.push({ path, start, destroy });
   }
 
   /**
@@ -76,8 +80,8 @@ class Router extends EventTarget {
    * @returns {boolean} - True if the given path is the current active route, false otherwise.
    */
   isActiveRoute(path) {
-    return this.currentRoute &&
-      this.currentRoute.path === this.findRoute(path).path;
+    return this.#currentRoute &&
+      this.#currentRoute.path === this.findRoute(path).path;
   }
 
   /**
@@ -87,39 +91,70 @@ class Router extends EventTarget {
    * @returns {object} - The route object if found, otherwise undefined.
    */
   findRoute(path) {
-    return this.routes.find(r => r.path.match(path));
+    return this.#routes.find(r => r.path.match(path));
   }
 
   /**
    * Navigates to the specified path.
    *
    * @param {string} path - The path to navigate to.
+   * @param {object} queryParams - Optional query parameters to be associated with the route.
    */
-  navigateTo(path) {
-    if (this.isActiveRoute(path)) return;
+  navigateTo(path, queryParams = {}) {
+    const url = new URL(window.location.href);
 
-    window.history.pushState({}, '', this.base + path);
-    this.handleRouteChange(path);
+    url.pathname = path;
+    url.search = new URLSearchParams(queryParams).toString();
+
+    window.history.pushState({}, '', url.href);
+    this.handleRouteChange(path, queryParams);
+  }
+
+  updateState(queryParams) {
+    this.navigateTo(window.location.pathname, queryParams);
   }
 
   /**
    * Handles a change in the route.
    *
    * @param {string} path - The path of the new route.
+   * @param {object} [queryParams={}] - (Optional) The query parameters associated with the route.
    */
-  handleRouteChange(path) {
+  handleRouteChange(path, queryParams = {}) {
+    if (this.isActiveRoute(path)) {
+      if (!this.#matchCurrentParams(queryParams)) {
+        this.#currentQueryParams = queryParams;
+        this.dispatchEvent(new Event('queryparams'));
+      }
+
+      return;
+    }
+
     const route = this.findRoute(path);
 
-    if (route) {
-      route.destroy();
-      this.currentRoute = route;
-      route.start();
-      this.dispatchEvent(new Event('routechanged'));
-    } else if (this.#fallback) {
+    if (route)
+      this.#updateCurrentRoute(route, queryParams);
+    else if (this.#fallback)
       this.handleRouteChange(this.#fallback);
-    } else {
+    else
       throw Error(`No route found for '${path}'`);
-    }
+  }
+
+  #matchCurrentParams(params) {
+    const paramsKeys = Object.keys(params);
+
+    if (paramsKeys.length !== Object.keys(this.#currentQueryParams).length)
+      return false;
+
+    return paramsKeys.every(k => this.#currentQueryParams[k] === params[k]);
+  }
+
+  #updateCurrentRoute(route, queryParams) {
+    route.destroy();
+    this.#currentRoute = route;
+    this.#currentQueryParams = queryParams;
+    route.start(queryParams);
+    this.dispatchEvent(new Event('routechanged'));
   }
 
   /**
@@ -141,6 +176,10 @@ class Router extends EventTarget {
    */
   set fallback(fallback) {
     this.#fallback = fallback;
+  }
+
+  get queryParams() {
+    return this.#currentQueryParams;
   }
 }
 
