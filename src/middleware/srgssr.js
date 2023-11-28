@@ -17,7 +17,7 @@ class SrgSsr {
    * Set a blocking reason according to the block reason returned
    * by mediaData.
    *
-   * @param {VideoJsPlayer} player
+   * @param {import('video.js/dist/types/player').default} player
    * @param {String} blockReason
    * @param {Object} srcMediaObj
    *
@@ -109,7 +109,7 @@ class SrgSsr {
   /**
    * SRG SSR data provider singleton.
    *
-   * @param {VideoJsPlayer} player
+   * @param {import('video.js/dist/types/player').default} player
    *
    * @returns {DataProvider}
    */
@@ -131,7 +131,7 @@ class SrgSsr {
   /**
    * Set an error if something goes wrong with the data provider.
    *
-   * @param {VideoJsPlayer} player
+   * @param {import('video.js/dist/types/player').default} player
    * @param {Object} error
    *
    * @returns {undefined|true}
@@ -160,7 +160,7 @@ class SrgSsr {
   /**
    * Set player error.
    *
-   * @param {VideoJsPlayer} player
+   * @param {import('video.js/dist/types/player').default} player
    * @param {Object} error
    */
   static error(player, { code, message, cause }) {
@@ -179,7 +179,7 @@ class SrgSsr {
    * @param {String} urn
    * @param {DataProvider} dataProvider
    *
-   * @returns {MediaComposition}
+   * @returns {Promise<{mediaComposition: import('../dataProvider/model/MediaComposition.js').default}>}
    */
   static async getMediaComposition(urn, dataProvider = new DataProvider()) {
     return dataProvider.getMediaCompositionByUrn(urn);
@@ -204,9 +204,7 @@ class SrgSsr {
   /**
    * SRG SSR analytics singleton.
    *
-   * @param {VideoJsPlayer} player
-   *
-   * @returns
+   * @param {import('video.js/dist/types/player').default} player
    */
   static srgAnalytics(player) {
     if (player.options().trackers.srgAnalytics === false) return;
@@ -230,8 +228,8 @@ class SrgSsr {
   /**
    * Update player's poster.
    *
-   * @param {VideojsPlayer} player
-   * @param {MediaComposition} mediaComposition
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {import('../dataProvider/model/MediaComposition.js').default} mediaComposition
    * @param {Image} imageService
    */
   static updatePoster(player, mediaComposition, imageService = Image) {
@@ -245,8 +243,8 @@ class SrgSsr {
   /**
    * Update player titleBar with title and description.
    *
-   * @param {VideojsPlayer} player
-   * @param {MediaComposition} mediaComposition
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {import('../dataProvider/model/MediaComposition.js').default} mediaComposition
    */
   static updateTitleBar(player, mediaComposition) {
     if (!player.titleBar) return;
@@ -260,7 +258,7 @@ class SrgSsr {
   /**
    * Middleware to resolve SRG SSR URNs into playable media.
    *
-   * @param {VideojsPlayer} player
+   * @param {import('video.js/dist/types/player').default} player
    * @param {Image} imageService
    *
    * @returns {Object}
