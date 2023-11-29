@@ -1,0 +1,448 @@
+/*
+********************************************************************************
+-- pbw-demo custom template
+********************************************************************************
+*/
+.pbw-demo {
+  /*
+  ******************************************************************************
+  -- Title bar : Defines the default player size for each break point
+  ******************************************************************************
+  */
+  &.vjs-layout-tiny {
+    font-size: 8px;
+  }
+
+  &.vjs-layout-x-small {
+    font-size: 10px;
+  }
+
+  &.vjs-layout-small {
+    font-size: 12px;
+  }
+
+  &.vjs-layout-medium {
+    font-size: 14px;
+  }
+
+  &.vjs-layout-large {
+    font-size: 16px;
+  }
+
+  &.vjs-layout-x-large {
+    font-size: 18px;
+  }
+
+  &.vjs-layout-huge {
+    font-size: 20px;
+  }
+
+  /*
+  ******************************************************************************
+  -- Title bar
+  ******************************************************************************
+  */
+  .vjs-title-bar {
+    padding-bottom: 2em;
+    background: linear-gradient(rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  }
+
+  /*
+  ******************************************************************************
+  -- Text track display
+  ******************************************************************************
+  */
+  .vjs-text-track-display {
+    inset: 0 0 4em;
+  }
+
+  /*
+  ******************************************************************************
+  -- Big play button
+  ******************************************************************************
+  */
+  &:hover .vjs-big-play-button {
+    background-color: transparent;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+
+  // Refer to https://github.com/videojs/video.js/pull/8398
+  .vjs-big-play-button {
+    width: 2em;
+    height: 2em;
+    margin: 0;
+    background: transparent;
+    border: 0.1em solid #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .vjs-big-play-button .vjs-icon-placeholder::before {
+    position: initial;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+  }
+
+  /*
+  ******************************************************************************
+  -- Loading spinner
+  ******************************************************************************
+  */
+  // Refer to https://github.com/videojs/video.js/pull/8369
+  .vjs-loading-spinner {
+    font-size: 1.2em;
+    border: 0.25em solid transparent;
+  }
+
+  .vjs-loading-spinner,
+  .vjs-loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @keyframes vjs-spinner-fade {
+    0% {
+      border-top-color: #333;
+    }
+    20% {
+      border-top-color: #333;
+    }
+    35% {
+      border-top-color: #fff;
+    }
+    60% {
+      border-top-color: #333;
+    }
+    100% {
+      border-top-color: #333;
+    }
+  }
+
+  /*
+  ******************************************************************************
+  -- Button
+  ******************************************************************************
+  */
+  // Overrides behavior from index.scss
+  // TODO remove this once index.scss is refactored
+  .vjs-button:hover {
+    background: none;
+    border: none;
+  }
+
+  /*
+  ******************************************************************************
+  -- Slider
+  ******************************************************************************
+  */
+  .vjs-slider {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 1em;
+  }
+
+  /*
+  ******************************************************************************
+  -- Control bar
+  ******************************************************************************
+  */
+  .vjs-control-bar {
+    align-items: end;
+    height: 6em;
+    padding-inline: 1em;
+    background: linear-gradient(#000 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+  }
+
+  /*
+  ******************************************************************************
+  -- Control: Defines controls default height
+  ******************************************************************************
+  */
+  .vjs-control {
+    height: 3em;
+  }
+
+  /*
+  ******************************************************************************
+  -- Time control
+  ******************************************************************************
+  */
+  // Avoid displaying the time controls if the source is a live stream and is small layouts
+  &:not(.vjs-layout-tiny, .vjs-layout-x-small, .vjs-live) .vjs-time-divider,
+  &:not(.vjs-layout-tiny, .vjs-layout-x-small, .vjs-live) .vjs-current-time,
+  &:not(.vjs-layout-tiny, .vjs-layout-x-small, .vjs-live) .vjs-duration {
+    display: block;
+    padding: 0;
+    font-weight: bold;
+  }
+
+  .vjs-current-time {
+    margin-left: 1em;
+  }
+
+  .vjs-time-divider {
+    min-width: 1em;
+    text-align: center;
+  }
+
+  .vjs-remaining-time {
+    display: none;
+  }
+
+  /*
+  ******************************************************************************
+  -- Progress control
+  ******************************************************************************
+  */
+  .vjs-progress-control {
+    position: absolute;
+    bottom: 3em;
+    width: calc(100% - 2em);
+    height: 1em;
+  }
+
+  .vjs-progress-holder {
+    margin: 0;
+  }
+
+  // Avoid hiding the progress control
+  &.vjs-layout-tiny,
+  &.vjs-layout-x-small {
+    .vjs-progress-control {
+      display: flex;
+    }
+  }
+
+  .vjs-load-progress {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 1em;
+
+    div {
+      background: transparent;
+    }
+  }
+
+  .vjs-play-progress {
+    color: #af001e;
+    background: #af001e;
+    border-radius: 1em;
+  }
+
+  .vjs-play-progress::before {
+    font-size: 0px;
+    text-shadow: 0px 0px 1px #000;
+  }
+
+  .vjs-progress-control:hover  {
+    .vjs-play-progress::before {
+      font-size: .9em;
+    }
+
+    // Avoids recalculation of time tooltip position
+    .vjs-time-tooltip {
+      right: 0% !important;
+      transform: translateX(50%);
+    }
+  }
+
+  .vjs-progress-holder:focus-visible {
+    .vjs-play-progress::before {
+      font-size: .9em;
+    }
+  }
+
+  .vjs-time-tooltip,
+  .vjs-mouse-display .vjs-time-tooltip {
+    top: -3em;
+    padding: 0.4em;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px #000;
+    background-color: transparent;
+  }
+
+  /*
+  ******************************************************************************
+  -- Seek to live
+  ******************************************************************************
+  */
+  // Overrides behavior from index.scss
+  .vjs-seek-to-live-control:hover {
+    background-color: transparent;
+  }
+
+  /*
+  ******************************************************************************
+  -- Volume control
+  ******************************************************************************
+  */
+  .vjs-volume-level {
+    border-radius: 1em;
+  }
+
+  .vjs-volume-tooltip {
+    top: -2em;
+    padding: 0.4em;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px #000;
+    background-color: transparent;
+  }
+
+  /*
+  ******************************************************************************
+  -- Spacer control
+  ******************************************************************************
+  */
+  .vjs-custom-control-spacer {
+    display: block;
+    flex: auto;
+  }
+
+  /*
+  ******************************************************************************
+  -- Menu
+  ******************************************************************************
+  */
+  // Prevent the menu from showing when hovering with the mouse
+  .vjs-menu-button-popup.vjs-hover .vjs-menu {
+    display: none;
+  }
+
+  .vjs-menu-button-popup .vjs-menu {
+    right: 0;
+    bottom: 0;
+    left: unset;
+    width: 100%;
+    margin: 0;
+  }
+
+  .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+    right: 50%;
+    bottom: 5em;
+    display: grid;
+    gap: .25em;
+    min-width: 13em;
+    padding: 1em .5em;
+    background: rgba(22,22,22,.95);
+    border-radius: .5em;
+    transform: translateX(50%);
+    overscroll-behavior: contain;
+  }
+
+  .vjs-menu-item {
+    border-radius: .25em;
+
+    .vjs-selected {
+      color: #222;
+      background-color: #fff;
+      pointer-events: none;
+    }
+  }
+
+  /*
+  ******************************************************************************
+  -- Error
+  ******************************************************************************
+  */
+
+  .vjs-error-display::before {
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2em;
+    height: 2em;
+    margin: 0;
+    padding: .75em;
+    font-size: 3em;
+    text-shadow: none;
+    border: solid .1em #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .vjs-error-display .vjs-modal-dialog-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 8em;
+  }
+
+  /*
+  ******************************************************************************
+  -- Text track setting modal
+  ******************************************************************************
+  */
+  select {
+    all: unset; // Prevent overrides coming from index.scss
+    margin-top: 0.25em;
+    color: #fff;
+    background: #333;
+    border: none;
+    appearance: auto;
+  }
+
+  .vjs-modal-dialog.vjs-text-track-settings {
+    top: 50%;
+    left: 50%;
+    max-width: 25em;
+    max-height: 50em;
+    background: rgba(22,22,22,.95);
+    border-radius: 0.5em;
+    box-shadow: 2px 2px 3px #0005;
+    transform: translate(-50%, -50%);
+    overscroll-behavior: contain;
+  }
+
+  .vjs-text-track-settings .vjs-modal-dialog-content {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 1.5em 0;
+  }
+
+  .vjs-text-track-settings legend {
+    font-size: 1em;
+  }
+
+  .vjs-text-track-settings fieldset span {
+    padding-inline: 0;
+  }
+
+  .vjs-text-track-settings fieldset {
+    display: flex;
+    margin: 0 0 1em 0;
+    padding: 0;
+  }
+
+  &.video-js .vjs-text-track-settings select {
+    padding: 0.5em;
+  }
+
+  .vjs-track-settings-controls {
+      display: flex;
+      flex-direction: row;
+      gap: 1em;
+      justify-content: end;
+
+      button {
+      margin-block: 1em;
+      padding: .25em .5em;
+      background-image: none;
+
+      &:hover {
+        color: white;
+      }
+    }
+
+    .vjs-default-button {
+      margin-right: 0;
+    }
+  }
+}

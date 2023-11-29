@@ -3,7 +3,7 @@
  *
  * @module
  */
-import Pillarbox from '../../../src/pillarbox';
+import Pillarbox from '../../../src/pillarbox.js';
 import '../../../src/middleware/srgssr.js';
 
 const player = new Pillarbox('player', {
@@ -19,6 +19,7 @@ const player = new Pillarbox('player', {
   muted: true,
   playsinline: true,
   plugins: { eme: true },
+  responsive: true
 });
 
 // Expose Pillarbox and player in the window object for debugging

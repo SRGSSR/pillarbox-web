@@ -200,6 +200,7 @@ dialog::backdrop {
   color: var(--red-7);
 }
 
+@import "player";
 @import "dialog";
 @import "examples";
 @import "header";
