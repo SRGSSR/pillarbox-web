@@ -3,6 +3,7 @@ import DataProvider from '../../src/dataProvider/services/DataProvider.js';
 import Image from '../../src/utils/Image.js';
 import MediaComposition from '../../src/dataProvider/model/MediaComposition.js';
 import urnCredits from '../__mocks__/urn:rts:video:10313496-credits.json';
+import urnRtsAudio from '../__mocks__/urn:rts:audio:3262320.json';
 import Pillarbox from '../../src/pillarbox.js';
 import AkamaiTokenService from '../../src/utils/AkamaiTokenService.js';
 
@@ -66,10 +67,7 @@ describe('SrgSsr', () => {
 
       expect(SrgSsr.blockingReason(player, 'STARTDATE', {})).toBe(true);
       expect(spyOnLocalize).toHaveBeenCalled();
-      expect(spyOnError).toHaveBeenCalledWith(
-        player,
-        expect.any(Object)
-      );
+      expect(spyOnError).toHaveBeenCalledWith(player, expect.any(Object));
       expect(spyOnPlayerError.mock.calls[1]).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ cause: { type: 'STARTDATE', src: {}}})
@@ -238,10 +236,7 @@ describe('SrgSsr', () => {
           statusText: 'Not Found',
         })
       ).toBe(true);
-      expect(spyOnError).toHaveBeenCalledWith(
-        player,
-        expect.any(Object)
-      );
+      expect(spyOnError).toHaveBeenCalledWith(player, expect.any(Object));
     });
   });
 
@@ -347,6 +342,37 @@ describe('SrgSsr', () => {
 
       expect(spyOnPlayerError).toHaveBeenNthCalledWith(1, null);
       expect(spyOnPlayerError).toHaveBeenNthCalledWith(2, error);
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * filterIncompatibleResources ***********************************************
+   *****************************************************************************
+   */
+
+  describe('filterIncompatibleResources', () => {
+    it('should filter incompatible resources', async () => {
+      const resources = urnRtsAudio.chapterList[0].resourceList;
+      const filteredResources = SrgSsr.filterIncompatibleResources(resources);
+
+      expect(filteredResources).toHaveLength(2);
+    });
+
+    it('should return an empty array if no source is compatible', async () => {
+      const incompatibleResources = [
+        { streaming: 'HDS' },
+        { streaming: 'RTMP' }
+      ];
+      const filteredResources = SrgSsr.filterIncompatibleResources(
+        incompatibleResources
+      );
+
+      expect(filteredResources).toHaveLength(0);
+    });
+
+    it('should return an empty array the resource is undefined', async () => {
+      expect(SrgSsr.filterIncompatibleResources()).toHaveLength(0);
     });
   });
 
@@ -584,9 +610,11 @@ describe('SrgSsr', () => {
     });
 
     it('Should return undefined and generate an error the URN doest not exist', async () => {
-      const spyOnDataProvider = jest.spyOn(SrgSsr, 'dataProvider').mockReturnValue({
-        baseUrl: 'http://mock.url.ch',
-      });
+      const spyOnDataProvider = jest
+        .spyOn(SrgSsr, 'dataProvider')
+        .mockReturnValue({
+          baseUrl: 'http://mock.url.ch',
+        });
       const spyOnError = jest.spyOn(SrgSsr, 'error');
       const spyOnDataProviderError = jest.spyOn(SrgSsr, 'dataProviderError');
 
@@ -603,10 +631,7 @@ describe('SrgSsr', () => {
 
       expect(result).toBeUndefined();
       expect(spyOnDataProviderError.mock.results[0].value).toBe(true);
-      expect(spyOnError).toHaveBeenCalledWith(
-        player,
-        expect.any(Object)
-      );
+      expect(spyOnError).toHaveBeenCalledWith(player, expect.any(Object));
 
       spyOnDataProvider.mockReset();
     });
