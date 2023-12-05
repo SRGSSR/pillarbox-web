@@ -11,11 +11,4 @@ import './lists/lists-page';
 import router from './core/router';
 
 // Initialize the router with the current path or 'examples' if none is found
-router.initBase();
-router.fallback = 'examples';
-
-const url = new URL(window.location.href);
-const path = url.pathname;
-const queryParams = Object.fromEntries(url.searchParams.entries());
-
-router.handleRouteChange(path, queryParams);
+router.start({ defaultPath: 'examples' });
