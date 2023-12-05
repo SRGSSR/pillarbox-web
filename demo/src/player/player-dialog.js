@@ -42,12 +42,6 @@ export const openPlayerModal = ({ src, type, keySystems }) => {
 
   if (player.currentSrc() !== src) {
     player.reset();
-
-    // TODO should be removed when https://github.com/videojs/video.js/pull/8481
-    // and https://github.com/videojs/video.js/pull/8482 are released
-    player.error(null);
-    player.titleBar.update({ title: undefined, description: undefined });
-
     player.src({ src, type, keySystems });
   }
 
