@@ -12,6 +12,7 @@ import SpinnerComponent from '../core/spinner-component';
 import Pillarbox from '../../../src/pillarbox';
 import IntersectionObserverComponent
   from '../core/intersection-observer-component';
+import ListsPageStateManager from './lists-page-state-manager';
 
 /**
  * Represents the Lists page.
@@ -27,13 +28,6 @@ class ListsPage {
    */
   #spinner;
   /**
-   * Stack to keep track of the traversal steps for navigation.
-   *
-   * @private
-   * @type {Array<Array<Section>>}
-   */
-  #traversalStack = [];
-  /**
    * The DOM element that contains the sections.
    *
    * @private
@@ -47,13 +41,6 @@ class ListsPage {
    * @type {Element}
    */
   #treeNavigationEl;
-  /**
-   * The current level of the content tree.
-   *
-   * @private
-   * @type {Array<Section>}
-   */
-  #currentLevel;
   /**
    * The abort controller for handling search cancellation.
    *
@@ -69,6 +56,8 @@ class ListsPage {
    */
   #intersectionObserverComponent;
 
+  #stateManager;
+
   /**
    * Creates an instance of ListsPage.
    *
@@ -76,7 +65,7 @@ class ListsPage {
    * @param {Array} contentRoot - The root of the content tree.
    */
   constructor(contentRoot) {
-    this.#currentLevel = contentRoot;
+    this.#stateManager = new ListsPageStateManager(contentRoot);
   }
 
   /**
@@ -97,7 +86,7 @@ class ListsPage {
     this.#sectionsEl = document.querySelector('#sections');
     this.#treeNavigationEl = document.querySelector('#tree-navigation');
 
-    this.updateView(this.#currentLevel);
+    this.updateView();
     this.initListeners();
   }
 
@@ -117,6 +106,7 @@ class ListsPage {
 
       try {
         await this.navigateTo(sectionIndex, nodeIndex);
+        this.#updateRouterState();
       } finally {
         this.#spinner.hide();
       }
@@ -125,12 +115,9 @@ class ListsPage {
     // Attach navigation listener
     this.#treeNavigationEl.addEventListener('click', (event) => {
       if (event.target.tagName.toLowerCase() !== 'button') return;
-
-      const navigationIdx = event.target.dataset.navigationIdx;
-
-      this.#currentLevel = this.#traversalStack[navigationIdx].level;
-      this.#traversalStack.splice(navigationIdx);
+      this.#stateManager.fetchPreviousState(event.target.dataset.navigationIdx);
       this.updateView();
+      this.#updateRouterState();
     });
   }
 
@@ -141,23 +128,49 @@ class ListsPage {
    * @param {number} nodeIndex - The index of the node.
    */
   async navigateTo(sectionIndex, nodeIndex) {
-    const selectedSection = this.#currentLevel[sectionIndex];
-    const selectedNode = selectedSection.nodes[nodeIndex];
+    if (this.#stateManager.isLeafSection(sectionIndex)) {
+      const selectedNode = this.#stateManager
+        .retrieveNode(sectionIndex, nodeIndex);
 
-    if (selectedSection.isLeaf()) {
       openPlayerModal({ src: selectedNode.urn, type: 'srgssr/urn' });
     } else {
       this.#sectionsEl.replaceChildren();
-      const nextLevel = [await selectedSection.resolve(selectedNode)];
-
-      this.#traversalStack.push({
-        level: this.#currentLevel,
-        sectionIndex,
-        nodeIndex
-      });
-      this.#currentLevel = nextLevel;
+      await this.#stateManager.fetchNextState(sectionIndex, nodeIndex);
       this.updateView();
     }
+  }
+
+  /**
+   * Handles the state change event by navigating to the specified section and
+   * nodes in the content tree based on the provided parameters.
+   *
+   * This method updates the ListsPage instance's state, triggering navigation
+   * and ensuring the view is in sync with the new state.
+   *
+   * @param {object} options - Options related to the state change event.
+   * @param {string} options.section - The section to navigate to.
+   * @param {string} options.bu - The business unit (node) to navigate to.
+   * @param {string} options.nodes - A comma-separated list of node identifiers indicating additional nodes to navigate to.
+   */
+  async onStateChanged({ section, bu, nodes }) {
+    const manager = new ListsPageStateManager(
+      this.#stateManager.root
+    );
+
+    await manager.initialize(section, bu, nodes);
+    this.#stateManager = manager;
+
+    this.updateView();
+  }
+
+
+  /**
+   * Updates the state of the router based on the current traversal stack.
+   * This method is responsible for updating the router's state with the current navigation information,
+   * ensuring that the browser's URL reflects the current state of the ListsPage instance.
+   */
+  #updateRouterState() {
+    router.updateState(this.#stateManager.params);
   }
 
   /**
@@ -174,7 +187,7 @@ class ListsPage {
   updateSections() {
     this.#intersectionObserverComponent?.remove();
     this.#sectionsEl.replaceChildren(
-      ...parseHtml(this.#currentLevel.map((section, idx) => `
+      ...parseHtml(this.#stateManager.level.map((section, idx) => `
       <div data-section-idx="${idx}" class="section fade-in">
           <h2 class="sticky">${section.title}</h2>
           ${this.createNodesHtml(section.nodes)}
@@ -203,9 +216,9 @@ class ListsPage {
    * method when it comes into view, allowing the loading of the next set of nodes.
    */
   initIntersectionObserver() {
-    const firstSection = this.#currentLevel[0];
+    const firstSection = this.#stateManager.level[0];
 
-    if (this.#currentLevel.length !== 1 || !firstSection.next) return;
+    if (this.#stateManager.level.length !== 1 || !firstSection.next) return;
 
     this.#intersectionObserverComponent = new IntersectionObserverComponent(
       (n) => this.#sectionsEl.insertAdjacentElement('afterend', n),
@@ -272,10 +285,10 @@ class ListsPage {
    * Updates the navigation in the content tree page.
    */
   updateNavigation() {
-    if (this.#traversalStack.length > 0) {
+    if (this.#stateManager.stack.length > 0) {
       this.#treeNavigationEl.replaceChildren(...parseHtml(`
       <button data-navigation-idx="0">Home</button>
-      ${this.#traversalStack.slice(1).map((step, idx) => `
+      ${this.#stateManager.stack.slice(1).map((step, idx) => `
       <i class="material-icons-outlined">chevron_right</i>
       <button data-navigation-idx="${idx + 1}">${step.level[step.sectionIndex].title}</button>
       `).join('')}
@@ -286,5 +299,24 @@ class ListsPage {
   }
 }
 
-// Add route for 'content-tree' path
-router.addRoute('lists', () => new ListsPage(listsSections).init());
+let onStateChangedListener;
+
+// Add route for 'lists' path
+router.addRoute('lists', async (queryParams) => {
+  const listsPage = new ListsPage(listsSections);
+
+  listsPage.init();
+
+  onStateChangedListener = async (event) => {
+    if (event.detail.popstate) {
+      // If the state change is triggered externally we force the update,
+      // otherwise the page is already aware of the change.
+      await listsPage.onStateChanged(event.detail.queryParams);
+    }
+  };
+
+  router.addEventListener('queryparams', onStateChangedListener);
+  await listsPage.onStateChanged(queryParams);
+}, () => {
+  router.removeEventListener('queryparams', onStateChangedListener);
+});

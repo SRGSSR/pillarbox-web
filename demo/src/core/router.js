@@ -30,10 +30,34 @@ import { Minimatch } from 'minimatch';
  * @class
  */
 class Router extends EventTarget {
-  #fallback;
+  /**
+   * The fallback route to be used in case no matching route is found.
+   * @private
+   * @type {string|null}
+   */
+  #defaultPath = null;
+
+  /**
+   * The currently active route.
+   * @private
+   * @type {object|null}
+   */
   #currentRoute = null;
+
+  /**
+   * The query parameters associated with the current route.
+   * @private
+   * @type {object}
+   */
   #currentQueryParams = {};
+
+  /**
+   * An array containing registered route objects with their patterns and associated actions.
+   * @private
+   * @type {Array<{ path: Minimatch, start: function, destroy: function }>}
+   */
   #routes = [];
+
 
   constructor() {
     super();
@@ -48,7 +72,7 @@ class Router extends EventTarget {
       const queryParams = Object.fromEntries(url.searchParams.entries());
 
       window.history.pushState({}, '', url.href);
-      this.handleRouteChange(path, queryParams);
+      this.#handleRouteChange(path, queryParams);
     });
 
     // Event listener for the popstate event
@@ -56,7 +80,7 @@ class Router extends EventTarget {
       const entries = new URL(window.location.href).searchParams.entries();
       const queryParams = Object.fromEntries(entries);
 
-      this.handleRouteChange(window.location.pathname, queryParams);
+      this.#handleRouteChange(window.location.pathname, queryParams, true);
     });
   }
 
@@ -67,7 +91,8 @@ class Router extends EventTarget {
    * @param {function} start - The function to be called when the route is navigated to.
    * @param {function} destroy - The function to be called when the route is navigated away from.
    */
-  addRoute(pattern, start, destroy = () => {}) {
+  addRoute(pattern, start, destroy = () => {
+  }) {
     const path = new Minimatch(pattern, { matchBase: true });
 
     this.#routes.push({ path, start, destroy });
@@ -98,7 +123,7 @@ class Router extends EventTarget {
    * Navigates to the specified path.
    *
    * @param {string} path - The path to navigate to.
-   * @param {object} queryParams - Optional query parameters to be associated with the route.
+   * @param {object} [queryParams={}] - (Optional) query parameters to be associated with the route.
    */
   navigateTo(path, queryParams = {}) {
     const url = new URL(window.location.href);
@@ -107,9 +132,14 @@ class Router extends EventTarget {
     url.search = new URLSearchParams(queryParams).toString();
 
     window.history.pushState({}, '', url.href);
-    this.handleRouteChange(path, queryParams);
+    this.#handleRouteChange(path, queryParams);
   }
 
+  /**
+   * Update the state of the current route (i.e. it's query params).
+   *
+   * @param {object} queryParams - query parameters to be associated with the route.
+   */
   updateState(queryParams) {
     this.navigateTo(window.location.pathname, queryParams);
   }
@@ -117,14 +147,22 @@ class Router extends EventTarget {
   /**
    * Handles a change in the route.
    *
+   * @private
    * @param {string} path - The path of the new route.
    * @param {object} [queryParams={}] - (Optional) The query parameters associated with the route.
+   * @param {boolean} [popstate=false] - (Optional) if a popstate is at the origin of this route change.
    */
-  handleRouteChange(path, queryParams = {}) {
+  #handleRouteChange(path, queryParams = {}, popstate = false) {
     if (this.isActiveRoute(path)) {
       if (!this.#matchCurrentParams(queryParams)) {
         this.#currentQueryParams = queryParams;
-        this.dispatchEvent(new Event('queryparams'));
+        this.dispatchEvent(new CustomEvent('queryparams', {
+          detail: {
+            route: this.#currentRoute,
+            popstate,
+            queryParams
+          }
+        }));
       }
 
       return;
@@ -133,13 +171,20 @@ class Router extends EventTarget {
     const route = this.findRoute(path);
 
     if (route)
-      this.#updateCurrentRoute(route, queryParams);
-    else if (this.#fallback)
-      this.handleRouteChange(this.#fallback);
+      this.#updateCurrentRoute(route, queryParams, popstate);
+    else if (this.#defaultPath)
+      this.#handleRouteChange(this.#defaultPath, queryParams, popstate);
     else
       throw Error(`No route found for '${path}'`);
   }
 
+  /**
+   * Checks if the given query parameters match the current query parameters.
+   *
+   * @private
+   * @param {object} params - The query parameters to compare.
+   * @returns {boolean} - True if the given parameters match the current query parameters, false otherwise.
+   */
   #matchCurrentParams(params) {
     const paramsKeys = Object.keys(params);
 
@@ -149,33 +194,44 @@ class Router extends EventTarget {
     return paramsKeys.every(k => this.#currentQueryParams[k] === params[k]);
   }
 
-  #updateCurrentRoute(route, queryParams) {
+  /**
+   * Updates the current route and dispatches the 'routechanged' event.
+   *
+   * @private
+   * @param {object} route - The route object.
+   * @param {object} queryParams - The query parameters associated with the route.
+   * @param {boolean} [popstate=false] - (Optional) if a popstate is at the origin of this route change.
+   */
+  #updateCurrentRoute(route, queryParams, popstate = false) {
     route.destroy();
     this.#currentRoute = route;
     this.#currentQueryParams = queryParams;
     route.start(queryParams);
-    this.dispatchEvent(new Event('routechanged'));
+    this.dispatchEvent(new CustomEvent('routechanged', {
+      detail: {
+        route,
+        popstate,
+        queryParams
+      }
+    }));
   }
 
   /**
-   * Initializes the base path for the router based on the current window location pathname.
-   * If the current pathname matches a route, the base is set to the pathname with the last path segment removed.
-   * If there is no matching route, the base is set to the full pathname.
+   * Initiates the router based on the current window location.
+   *
+   * @param defaultPath - The fallback path when no path is found during route resolving.
    */
-  initBase() {
-    const pathname = window.location.pathname;
+  start({ defaultPath }) {
+    const url = new URL(window.location.href);
+    const path = url.pathname;
+    const queryParams = Object.fromEntries(url.searchParams.entries());
 
-    this.base = this.findRoute(pathname) ?
-      pathname.replace(/\/[^/]+\/?$/, '/') :
-      pathname;
-  }
+    this.#defaultPath = defaultPath;
+    this.base = this.findRoute(path) ?
+      path.replace(/\/[^/]+\/?$/, '/') :
+      path;
 
-  /**
-   * TODO Serves the purpose of having a fallback url in case of none found. We should
-   *      rework this router in order to handle relative paths better.
-   */
-  set fallback(fallback) {
-    this.#fallback = fallback;
+    this.#handleRouteChange(path, queryParams);
   }
 
   get queryParams() {
