@@ -128,7 +128,7 @@ class ListsPageStateManager {
     }
 
     const root = this.stack[0];
-    const rootSection = root.level[root.sectionIndex].toLowerCase();
+    const rootSection = root.level[root.sectionIndex];
     const nodes = this.stack.slice(1).map(n => {
       const node = n.level[n.sectionIndex].nodes[n.nodeIndex];
 
@@ -136,7 +136,7 @@ class ListsPageStateManager {
     });
     let params = {
       section: toKebabCase(rootSection.title),
-      bu: rootSection.nodes[root.nodeIndex]
+      bu: rootSection.nodes[root.nodeIndex].toLowerCase()
     };
 
     if (nodes && nodes.length) {
