@@ -35,6 +35,7 @@ class SearchPage {
    * @type {Element}
    */
   #dropdownEl;
+
   /**
    * The abort controller for handling search cancellation.
    *
@@ -42,6 +43,7 @@ class SearchPage {
    * @type {AbortController}
    */
   #abortController = new AbortController();
+
   /**
    * The search bar element.
    *
@@ -49,6 +51,7 @@ class SearchPage {
    * @type {Element}
    */
   #searchBarEl;
+
   /**
    * The component that triggers the next page fetching when in view.
    *
@@ -56,6 +59,7 @@ class SearchPage {
    * @type {IntersectionObserverComponent}
    */
   #intersectionObserverComponent;
+
   /**
    * The function that triggers the fetching of the next page data.
    *
@@ -63,6 +67,13 @@ class SearchPage {
    * @type {(signal?: AbortSignal) => Promise<{ results: any, next: function }>}
    */
   #fetchNextPage;
+
+  /**
+   * The last performed query.
+   *
+   * @type {string}
+   */
+  #lastQuery;
 
   /**
    * Creates an instance of SearchPage.
@@ -80,7 +91,7 @@ class SearchPage {
   }
 
   async onStateChanged({ query, bu }) {
-    this.clearSearch();
+    this.#clearSearchResults();
     this.#searchBarEl.value = query || '';
     this.#dropdownEl.value = bu || 'rsi';
 
@@ -95,27 +106,22 @@ class SearchPage {
    * - Listens for clicks on search results to open the player modal.
    */
   initListeners() {
-    let lastQuery;
+
+    document
+      .querySelector('#clear-search-btn')
+      .addEventListener('click', () => this.#clearSearchInput());
 
     this.#searchBarEl.addEventListener('keyup', Pillarbox.fn.debounce((event) => {
       const query = event.target.value.trim();
 
-      if (!query || query === lastQuery) return;
-
-      const bu = this.#dropdownEl.value;
-
-      router.updateState({ query, bu });
-      lastQuery = query;
+      if (query === this.#lastQuery) return;
+      this.#updateSearch(query);
     }, 500));
 
     this.#dropdownEl.addEventListener('change', () => {
       const query = this.#searchBarEl.value.trim();
 
-      if (!query) return;
-
-      const bu = this.#dropdownEl.value;
-
-      router.updateState({ query, bu });
+      this.#updateSearch(query);
     });
 
     this.#resultsEl.addEventListener('click', (event) => {
@@ -129,6 +135,33 @@ class SearchPage {
     this.#resultsEl.addEventListener('animationend', () => this.#resultsEl.classList.remove('fade-in'));
   }
 
+  /**
+   * Clears the search input and updates the query params accordingly.
+   *
+   * @private
+   */
+  #clearSearchInput() {
+    const bu = this.#dropdownEl.value;
+
+    this.#searchBarEl.value = '';
+    router.updateState({ bu });
+    this.#lastQuery = '';
+  }
+
+  /**
+   * Updates the search parameters and updates the query parameters accordingly.
+   *
+   * @private
+   * @param query the new query.
+   */
+  #updateSearch(query) {
+    if (!query) return;
+
+    const bu = this.#dropdownEl.value;
+
+    router.updateState({ query, bu });
+    this.#lastQuery = query;
+  }
   /**
    * Performs a search based on the specified business unit and query. Performing
    * a new search will abort the previous search if it's ongoing and display a
@@ -161,7 +194,12 @@ class SearchPage {
     }
   }
 
-  clearSearch() {
+  /**
+   * Clear the search results and intersection observer and aborts any ongoing search query.
+   *
+   * @private
+   */
+  #clearSearchResults() {
     this.abortPreviousSearch();
     this.#intersectionObserverComponent?.remove();
     this.#resultsEl.replaceChildren();
@@ -226,6 +264,7 @@ class SearchPage {
           <option value="swi">SWI</option>
       </select>
       <input type="text" id="search-bar" placeholder="Search for content...">
+      <button id="clear-search-btn" title="Clear search"><i class="material-icons-outlined">close</i></button>
     </div>
 
     <!-- Search results -->
