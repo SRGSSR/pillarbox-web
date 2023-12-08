@@ -12,6 +12,7 @@ import SpinnerComponent from '../core/spinner-component';
 import Pillarbox from '../../../src/pillarbox';
 import IntersectionObserverComponent
   from '../core/intersection-observer-component';
+import ScrollToTopButton from '../core/scroll-to-top-btn';
 
 /**
  * Represents the search page.
@@ -61,6 +62,14 @@ class SearchPage {
   #intersectionObserverComponent;
 
   /**
+   * The button allowing to scroll to the top of the page.
+   *
+   * @priate
+   * @type {ScrollToTopButton}
+   */
+  #scrollToTopBtn;
+
+  /**
    * The function that triggers the fetching of the next page data.
    *
    * @private
@@ -91,12 +100,13 @@ class SearchPage {
   }
 
   async onStateChanged({ query, bu }) {
-    this.#clearSearchResults();
     this.#searchBarEl.value = query || '';
     this.#dropdownEl.value = bu || 'rsi';
 
     if (query)
       await this.search(this.#dropdownEl.value, this.#searchBarEl.value);
+    else
+      this.#clearSearchResults();
   }
 
   /**
@@ -162,6 +172,7 @@ class SearchPage {
     router.updateState({ query, bu });
     this.#lastQuery = query;
   }
+
   /**
    * Performs a search based on the specified business unit and query. Performing
    * a new search will abort the previous search if it's ongoing and display a
@@ -174,13 +185,11 @@ class SearchPage {
    * the fetch request for the search results fails.
    */
   async search(bu, query) {
-    const signal = this.abortPreviousSearch(), spinner = new SpinnerComponent(
+    const signal = this.#clearSearchResults();
+    const spinner = new SpinnerComponent(
       (node) => this.#resultsEl.replaceChildren(node),
       false
     );
-
-    this.#intersectionObserverComponent?.remove();
-    this.#intersectionObserverComponent = null;
 
     try {
       const data = await ilProvider.search(bu, query, signal);
@@ -189,6 +198,7 @@ class SearchPage {
       this.#resultsEl.replaceChildren(...this.createResultsEl(data.results));
       this.#resultsEl.classList.add('fade-in');
       this.initIntersectionObserver();
+      this.initScrollToTopButton();
     } finally {
       spinner.remove();
     }
@@ -198,11 +208,34 @@ class SearchPage {
    * Clear the search results and intersection observer and aborts any ongoing search query.
    *
    * @private
+   *
+   * @returns {AbortSignal} - The abort signal associated with a new search.
    */
   #clearSearchResults() {
-    this.abortPreviousSearch();
+    const signal = this.abortPreviousSearch();
+
+    this.#scrollToTopBtn?.remove();
+    this.#scrollToTopBtn = null;
     this.#intersectionObserverComponent?.remove();
+    this.#intersectionObserverComponent = null;
     this.#resultsEl.replaceChildren();
+
+    return signal;
+  }
+
+  /**
+   * Initializes the {@link ScrollToTopButton}.
+   *
+   * This function creates and attaches a component to the DOM allowing to
+   * immediately scroll to the top of the page on click. The component
+   * is only attached if more than a page exists on the search result.
+   */
+  initScrollToTopButton() {
+    if (!this.#fetchNextPage) return;
+
+    this.#scrollToTopBtn = new ScrollToTopButton(
+      (n) => this.#resultsEl.insertAdjacentElement('afterend', n)
+    );
   }
 
   /**
@@ -297,10 +330,11 @@ class SearchPage {
 }
 
 
+let searchPage;
 let onStateChangedListener;
 
 router.addRoute('search', async (queryParams) => {
-  const searchPage = new SearchPage();
+  searchPage = new SearchPage();
 
   onStateChangedListener = async () => {
     await searchPage.onStateChanged(router.queryParams);
@@ -310,4 +344,6 @@ router.addRoute('search', async (queryParams) => {
   await searchPage.onStateChanged(queryParams);
 }, () => {
   router.removeEventListener('queryparams', onStateChangedListener);
+  searchPage.abortPreviousSearch();
+  searchPage = null;
 });

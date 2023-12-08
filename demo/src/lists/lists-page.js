@@ -13,6 +13,7 @@ import Pillarbox from '../../../src/pillarbox';
 import IntersectionObserverComponent
   from '../core/intersection-observer-component';
 import ListsPageStateManager from './lists-page-state-manager';
+import ScrollToTopButton from '../core/scroll-to-top-btn';
 
 /**
  * Represents the Lists page.
@@ -55,7 +56,20 @@ class ListsPage {
    * @type {IntersectionObserverComponent}
    */
   #intersectionObserverComponent;
-
+  /**
+   * The button allowing to scroll to the top of the page.
+   *
+   * @priate
+   * @type {ScrollToTopButton}
+   */
+  #scrollToTopBtn;
+  /**
+   * Keeps track of the state of the list page : the current level in display, as
+   * well as the traversal stack.
+   *
+   * @private
+   * @type {ListsPageStateManager}
+   */
   #stateManager;
 
   /**
@@ -186,6 +200,7 @@ class ListsPage {
    */
   updateSections() {
     this.#intersectionObserverComponent?.remove();
+    this.#scrollToTopBtn?.remove();
     this.#sectionsEl.replaceChildren(
       ...parseHtml(this.#stateManager.level.map((section, idx) => `
       <div data-section-idx="${idx}" class="section fade-in">
@@ -195,6 +210,7 @@ class ListsPage {
     `).join(''))
     );
     this.initIntersectionObserver();
+    this.initScrollToTopButton();
   }
 
   /**
@@ -206,6 +222,23 @@ class ListsPage {
    */
   createNodesHtml(nodes) {
     return nodes.map((node, idx) => this.createButtonEl(node, idx)).join('');
+  }
+
+  /**
+   * Initializes the {@link ScrollToTopButton}.
+   *
+   * This function creates and attaches a component to the DOM allowing to
+   * immediately scroll to the top of the page on click. The component
+   * is only attached if more than a page exists on the search result.
+   */
+  initScrollToTopButton() {
+    const firstSection = this.#stateManager.level[0];
+
+    if (this.#stateManager.level.length !== 1 || !firstSection.next) return;
+
+    this.#scrollToTopBtn = new ScrollToTopButton(
+      (n) => this.#sectionsEl.insertAdjacentElement('afterend', n)
+    );
   }
 
   /**
@@ -236,7 +269,9 @@ class ListsPage {
     const signal = this.abortCurrentFetch();
     const nodes = await section.fetchNext(signal);
 
-    this.#sectionsEl.append(...parseHtml(this.createNodesHtml(nodes)));
+    this.#sectionsEl
+      .querySelector('.section')
+      .append(...parseHtml(this.createNodesHtml(nodes)));
   }
 
   /**
@@ -299,11 +334,12 @@ class ListsPage {
   }
 }
 
+let listsPage;
 let onStateChangedListener;
 
 // Add route for 'lists' path
 router.addRoute('lists', async (queryParams) => {
-  const listsPage = new ListsPage(listsSections);
+  listsPage = new ListsPage(listsSections);
 
   listsPage.init();
 
@@ -319,4 +355,6 @@ router.addRoute('lists', async (queryParams) => {
   await listsPage.onStateChanged(queryParams);
 }, () => {
   router.removeEventListener('queryparams', onStateChangedListener);
+  listsPage.abortCurrentFetch();
+  listsPage = null;
 });
