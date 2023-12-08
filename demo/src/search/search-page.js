@@ -195,13 +195,23 @@ class SearchPage {
       const data = await ilProvider.search(bu, query, signal);
 
       this.#fetchNextPage = data.next;
-      this.#resultsEl.replaceChildren(...this.createResultsEl(data.results));
-      this.#resultsEl.classList.add('fade-in');
+      this.#updateResults(data.results);
       this.initIntersectionObserver();
       this.initScrollToTopButton();
     } finally {
       spinner.remove();
     }
+  }
+
+  /**
+   * Updates the results in the page.
+   *
+   * @param results {{ title: string, urn: string }[]} the results.
+   */
+  #updateResults(results) {
+    this.#resultsEl.replaceChildren(...this.createResultsEl(results));
+    this.#resultsEl.classList.add('fade-in');
+    this.#resultsEl.classList.toggle('no-results', results.length === 0);
   }
 
   /**
@@ -219,6 +229,7 @@ class SearchPage {
     this.#intersectionObserverComponent?.remove();
     this.#intersectionObserverComponent = null;
     this.#resultsEl.replaceChildren();
+    this.#resultsEl.classList.toggle('no-results', false);
 
     return signal;
   }
@@ -308,9 +319,9 @@ class SearchPage {
   /**
    * Creates and returns HTML elements for the search results based on the provided results data.
    *
-   * @param {Object[]} results - An array of search results.
+   * @param {{ title: string, urn: string }[]} results - An array of search results.
    *
-   * @returns {HTMLElement[]} - An array of HTML elements representing the search results.
+   * @returns {NodeListOf<ChildNode>} - An array of HTML elements representing the search results.
    */
   createResultsEl(results) {
     return parseHtml(results.map((r) => {
