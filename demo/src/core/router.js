@@ -203,7 +203,7 @@ class Router extends EventTarget {
    * @param {boolean} [popstate=false] - (Optional) if a popstate is at the origin of this route change.
    */
   #updateCurrentRoute(route, queryParams, popstate = false) {
-    route.destroy();
+    this.#currentRoute?.destroy();
     this.#currentRoute = route;
     this.#currentQueryParams = queryParams;
     route.start(queryParams);
