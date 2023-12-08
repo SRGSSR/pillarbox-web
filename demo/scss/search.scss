@@ -38,9 +38,16 @@
 
 .results-container:empty:after {
   font-family: var(--font-sans);
-  content: "No results";
+  content: "Enter Something to search";
 }
 
 .results-container:empty:before {
   font-size: var(--size-9);
+}
+
+.results-container.no-results:empty {
+  @include material-icon('do_not_disturb_alt');
+  &:after {
+    content: "No results";
+  }
 }
