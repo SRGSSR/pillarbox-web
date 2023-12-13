@@ -47,7 +47,9 @@ class SrgSsr {
    * @returns {Promise<Array.<Object>>}
    */
   static async composeAkamaiResources(resources = []) {
-    if (!AkamaiTokenService.hasToken(resources)) Promise.resolve(resources);
+    if (!AkamaiTokenService.hasToken(resources)) {
+      return Promise.resolve(resources);
+    }
 
     // TODO allow to modify the Akamai URL
     return AkamaiTokenService.tokenizeSources(resources);

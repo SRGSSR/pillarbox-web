@@ -87,6 +87,20 @@ describe('SrgSsr', () => {
       expect(await SrgSsr.composeAkamaiResources([])).toHaveLength(0);
     });
 
+    it('should not tokenize a resource', () => {
+      const spyOnTokenizeSources = jest.spyOn(AkamaiTokenService, 'tokenizeSources');
+      const resources = [
+        {
+          streaming: 'HLS',
+          tokenType: 'NONE',
+        }
+      ];
+
+      SrgSsr.composeAkamaiResources(resources);
+
+      expect(spyOnTokenizeSources).not.toHaveBeenCalled();
+    });
+
     it('should return an array of resources', async () => {
       const resources = [
         {
