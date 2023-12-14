@@ -157,10 +157,12 @@ dialog::backdrop {
 .content-btn {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: var(--size-2);
+  justify-content: center;
   width: 100%;
+  min-height: var(--size-10);
   margin: 0 0;
-  padding: var(--size-4) var(--size-3);
+  padding-inline: var(--size-3);
   text-align: justify;
 
   &:first-of-type {
@@ -183,7 +185,6 @@ dialog::backdrop {
   display: flex;
   align-items: center;
   width: 100%;
-  margin-top: var(--size-2);
 
   * {
     color: var(--color-6);
