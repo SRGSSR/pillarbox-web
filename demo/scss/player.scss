@@ -387,6 +387,10 @@
     background: #333;
     border: none;
     appearance: auto;
+
+    &:focus-within {
+      outline: solid;
+    }
   }
 
   .vjs-modal-dialog.vjs-text-track-settings {
