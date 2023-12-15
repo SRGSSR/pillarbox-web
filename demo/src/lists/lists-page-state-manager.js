@@ -16,14 +16,12 @@ class ListsPageStateManager {
     /**
      * Stack to keep track of the traversal steps for navigation.
      *
-     * @private
      * @type {Array<{level: Array<Section>, sectionIndex: number, nodeIndex: number}>}
      */
     this.stack = [];
     /**
      * The current level of the content tree.
      *
-     * @private
      * @type {Array<Section>}
      */
     this.level = root;

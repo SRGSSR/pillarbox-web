@@ -12,7 +12,7 @@ import { Minimatch } from 'minimatch';
  *    ```
  * 2. Define routes by using the `addRoute` method:
  *    ```javascript
- *    router.addRoute('/', () => {
+ *    router.addRoute('/', 'home-component', () => {
  *      // Function to execute when navigating to the root path
  *      console.log('Navigated to the root path');
  *    }, () => {
@@ -20,13 +20,16 @@ import { Minimatch } from 'minimatch';
  *      console.log('Navigated away from the root path');
  *    });
  *    ```
- * 3. Integrate with an `<a>` tag using the `data-spa-route` attribute:
+ * 3. Integrate with an `<route-link>` tag using the `href` attribute:
  *    ```html
- *    <a href="/" data-spa-route>Home</a>
- *    <a href="/about" data-spa-route>About</a>
+ *    <route-link href="/">Home</route-link>
+ *    <route-link href="/about">About</route-link>
  *    ```
  *    Clicking on these links will trigger the router to navigate to the specified paths.
- *
+ * 4. Define a route outlet where the component associated with the route will be rendered :
+ *    ```html
+ *    <route-outlet></route-outlet>
+ *    ``
  * @class
  */
 class Router extends EventTarget {
@@ -40,7 +43,7 @@ class Router extends EventTarget {
   /**
    * The currently active route.
    * @private
-   * @type {object|null}
+   * @type {{ path: Minimatch, start: function, destroy: function }|null}
    */
   #currentRoute = null;
 
@@ -62,19 +65,6 @@ class Router extends EventTarget {
   constructor() {
     super();
 
-    // Event listener for click events on the document
-    document.addEventListener('click', (event) => {
-      if (!('spaRoute' in event.target.dataset)) return;
-
-      event.preventDefault();
-      const url = new URL(event.target.href);
-      const path = url.pathname;
-      const queryParams = Object.fromEntries(url.searchParams.entries());
-
-      window.history.pushState({}, '', url.href);
-      this.#handleRouteChange(path, queryParams);
-    });
-
     // Event listener for the popstate event
     window.addEventListener('popstate', () => {
       const entries = new URL(window.location.href).searchParams.entries();
@@ -88,14 +78,14 @@ class Router extends EventTarget {
    * Adds a route to the router.
    *
    * @param {string} pattern - The path of the route, can be a glob pattern.
+   * @param {string} component - The component to be rendered when the route is navigated to.
    * @param {function} start - The function to be called when the route is navigated to.
    * @param {function} destroy - The function to be called when the route is navigated away from.
    */
-  addRoute(pattern, start, destroy = () => {
-  }) {
+  addRoute(pattern, component = null, start = () => {}, destroy = () => {}) {
     const path = new Minimatch(pattern, { matchBase: true });
 
-    this.#routes.push({ path, start, destroy });
+    this.#routes.push({ path, start, component, destroy });
   }
 
   /**
@@ -106,7 +96,7 @@ class Router extends EventTarget {
    */
   isActiveRoute(path) {
     return this.#currentRoute &&
-      this.#currentRoute.path === this.findRoute(path).path;
+      this.#currentRoute.path === this.findRoute(path)?.path;
   }
 
   /**
@@ -236,6 +226,10 @@ class Router extends EventTarget {
 
   get queryParams() {
     return this.#currentQueryParams;
+  }
+
+  get currentRoute() {
+    return this.#currentRoute;
   }
 }
 

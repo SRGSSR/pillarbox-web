@@ -1,3 +1,5 @@
+@import "../../../node_modules/open-props/animations.min.css";
+
 .fade-in {
   opacity: 0;
   animation: fade-in .4s var(--ease-elastic-in-3) forwards;

@@ -1,0 +1,19 @@
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  margin: 0 0 var(--size-1) 0;
+  padding: 0 var(--size-2);
+  background-color: var(--color-8);
+  border-radius: var(--radius-2);
+
+  input {
+    width: 90%;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-8);
+    border: 0;
+  }
+}

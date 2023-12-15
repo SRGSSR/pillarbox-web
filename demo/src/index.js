@@ -4,11 +4,12 @@
  * @module
  */
 import './player/player';
-import './header/header-component';
-import './example/example-page';
+import './layout/header-component';
+import './router/route-outlet-component';
+import './examples/examples-page';
 import './search/search-page';
 import './lists/lists-page';
-import router from './core/router';
+import router from './router/router';
 
 // Initialize the router with the current path or 'examples' if none is found
 router.start({ defaultPath: 'examples' });

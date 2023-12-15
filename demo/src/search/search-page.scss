@@ -1,0 +1,53 @@
+$material-icons-font-path: '../../../node_modules/material-icons/iconfont/';
+@import '../../../node_modules/material-icons/iconfont/material-icons.scss';
+@import '../../../node_modules/material-icons/css/material-icons.scss';
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--size-3);
+}
+
+.results-container.empty, .results-container.no-results  {
+  gap: var(--size-3);
+  align-items: center;
+  justify-content: center;
+  min-height: var(--size-12);
+  margin-top: var(--size-10);
+  color: var(--gray-8);
+
+  &:before {
+    font-size: var(--size-9);
+  }
+
+  &:after {
+    font-family: var(--font-sans);
+  }
+}
+
+.results-container.empty {
+  @include material-icon('search');
+
+  &:after {
+    content: "Enter something to search";
+  }
+}
+
+.results-container.no-results {
+  @include material-icon('do_not_disturb_alt');
+
+  &:after {
+    content: "No results";
+  }
+}
+
+intersection-observer::part(sentinel) {
+  width: 100%;
+  height: var(--size-9);
+  margin-top: var(--size-4);
+  background-color: var(--color-9);
+  border: 1px solid var(--color-10);
+  border-radius: var(--radius-3);
+  animation: var(--animation-blink);
+}
+
