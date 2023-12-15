@@ -1,41 +1,28 @@
-/**
- * Defines a route for the '/search' path that replaces the main content of the
- * page with a search bar to find srgssr content.
- *
- * @module
- */
-import router from '../core/router';
-import { parseHtml } from '../core/html-utils';
-import { openPlayerModal } from '../player/player-dialog';
+import { html, LitElement, unsafeCSS } from 'lit';
+import { animations, theme } from '../theme/theme';
+import router from '../router/router';
+import componentCSS from 'bundle-text:./search-page.scss';
+import './search-bar-component';
 import ilProvider from '../core/il-provider';
-import SpinnerComponent from '../core/spinner-component';
+import '../spinner/spinner-component';
+import '../core/intersection-observer-component';
+import '../core/scroll-to-top-component';
+import { map } from 'lit/directives/map.js';
 import Pillarbox from '../../../src/pillarbox';
-import IntersectionObserverComponent
-  from '../core/intersection-observer-component';
-import ScrollToTopButton from '../core/scroll-to-top-btn';
+import { when } from 'lit/directives/when.js';
+import { openPlayerModal } from '../player/player-dialog';
+import { classMap } from 'lit/directives/class-map.js';
 
-/**
- * Represents the search page.
- *
- * @class
- */
-class SearchPage {
+export class SearchPage extends LitElement {
+  static properties = {
+    loading: { state: true, type: Boolean },
+    results: { state: true, type: Array },
+    nextPage: { state: true, type: Function }
+  };
 
-  /**
-   * The element to display search results.
-   *
-   * @private
-   * @type {Element}
-   */
-  #resultsEl;
-
-  /**
-   * The dropdown element for selecting a business unit.
-   *
-   * @private
-   * @type {Element}
-   */
-  #dropdownEl;
+  static styles = [
+    theme, animations, unsafeCSS(componentCSS)
+  ];
 
   /**
    * The abort controller for handling search cancellation.
@@ -44,133 +31,53 @@ class SearchPage {
    * @type {AbortController}
    */
   #abortController = new AbortController();
-
   /**
-   * The search bar element.
+   * The reference to the query params changed event handler.
    *
    * @private
-   * @type {Element}
+   * @type {Function}
    */
-  #searchBarEl;
+  #onQueryParamsChanged;
 
-  /**
-   * The component that triggers the next page fetching when in view.
-   *
-   * @private
-   * @type {IntersectionObserverComponent}
-   */
-  #intersectionObserverComponent;
-
-  /**
-   * The button allowing to scroll to the top of the page.
-   *
-   * @priate
-   * @type {ScrollToTopButton}
-   */
-  #scrollToTopBtn;
-
-  /**
-   * The function that triggers the fetching of the next page data.
-   *
-   * @private
-   * @type {(signal?: AbortSignal) => Promise<{ results: any, next: function }>}
-   */
-  #fetchNextPage;
-
-  /**
-   * The last performed query.
-   *
-   * @type {string}
-   */
-  #lastQuery;
-
-  /**
-   * Creates an instance of SearchPage.
-   * Initializes and sets up the necessary elements and event listeners.
-   */
   constructor() {
-    const containerEl = document.querySelector('#pbw-container');
+    super();
 
-    containerEl.replaceChildren(...this.createContentEl());
-    this.#resultsEl = document.querySelector('#results');
-    this.#dropdownEl = document.querySelector('#bu-dropdown');
-    this.#searchBarEl = document.querySelector('#search-bar');
-
-    this.initListeners();
+    this.loading = false;
+    this.results = null;
+    this.nextPage = null;
   }
 
-  async onStateChanged({ query, bu }) {
-    this.#searchBarEl.value = query || '';
-    this.#dropdownEl.value = bu || 'rsi';
+  connectedCallback() {
+    super.connectedCallback();
+    this.#onQueryParamsChanged = async () => {
+      const query = router.queryParams.query ?? '';
+      const bu = router.queryParams.bu ?? 'rsi';
+      const searchBar = this.renderRoot.querySelector('search-bar');
 
-    if (query)
-      await this.search(this.#dropdownEl.value, this.#searchBarEl.value);
-    else
-      this.#clearSearchResults();
+      if (searchBar.query !== query || searchBar.bu !== bu) {
+        searchBar.query = query;
+        searchBar.bu = bu;
+        await this.#search(bu, query);
+      }
+    };
+    router.addEventListener('queryparams', this.#onQueryParamsChanged);
   }
 
-  /**
-   * Initializes the event listeners for the search bar and search results :
-   *
-   * - Listens for 'Enter' key press to trigger a search.
-   * - Listens for clicks on search results to open the player modal.
-   */
-  initListeners() {
-
-    document
-      .querySelector('#clear-search-btn')
-      .addEventListener('click', () => this.#clearSearchInput());
-
-    this.#searchBarEl.addEventListener('keyup', Pillarbox.fn.debounce((event) => {
-      const query = event.target.value.trim();
-
-      if (query === this.#lastQuery) return;
-      this.#updateSearch(query);
-    }, 500));
-
-    this.#dropdownEl.addEventListener('change', () => {
-      const query = this.#searchBarEl.value.trim();
-
-      this.#updateSearch(query);
-    });
-
-    this.#resultsEl.addEventListener('click', (event) => {
-      const button = event.target.closest('button');
-
-      if (!('urn' in button.dataset)) return;
-
-      openPlayerModal({ src: button.dataset.urn, type: 'srgssr/urn' });
-    });
-
-    this.#resultsEl.addEventListener('animationend', () => this.#resultsEl.classList.remove('fade-in'));
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.abortSearch();
+    router.removeEventListener('queryparams', this.#onQueryParamsChanged);
   }
 
-  /**
-   * Clears the search input and updates the query params accordingly.
-   *
-   * @private
-   */
-  #clearSearchInput() {
-    const bu = this.#dropdownEl.value;
+  firstUpdated(_changedProperties) {
+    super.firstUpdated(_changedProperties);
 
-    this.#searchBarEl.value = '';
-    router.updateState({ bu });
-    this.#lastQuery = '';
+    this.#onQueryParamsChanged();
   }
 
-  /**
-   * Updates the search parameters and updates the query parameters accordingly.
-   *
-   * @private
-   * @param query the new query.
-   */
-  #updateSearch(query) {
-    if (!query) return;
-
-    const bu = this.#dropdownEl.value;
-
-    router.updateState({ query, bu });
-    this.#lastQuery = query;
+  async #onSearchBarChanged(bu, query) {
+    router.updateState({ bu, ...(query ? { query } : {}) });
+    await this.#search(bu, query);
   }
 
   /**
@@ -184,85 +91,23 @@ class SearchPage {
    * @throws {Promise<Response>} - A rejected promise with the response object if
    * the fetch request for the search results fails.
    */
-  async search(bu, query) {
-    const signal = this.#clearSearchResults();
-    const spinner = new SpinnerComponent(
-      (node) => this.#resultsEl.replaceChildren(node),
-      false
-    );
+  async #search(bu, query) {
+    const signal = this.abortSearch();
 
+    if (!query) {
+      [this.results, this.nextPage] = [null, null];
+
+      return;
+    }
+
+    this.loading = true;
     try {
       const data = await ilProvider.search(bu, query, signal);
 
-      this.#fetchNextPage = data.next;
-      this.#updateResults(data.results);
-      this.initIntersectionObserver();
-      this.initScrollToTopButton();
+      [this.results, this.nextPage] = [data.results, data.next];
     } finally {
-      spinner.remove();
+      this.loading = false;
     }
-  }
-
-  /**
-   * Updates the results in the page.
-   *
-   * @param results {{ title: string, urn: string }[]} the results.
-   */
-  #updateResults(results) {
-    this.#resultsEl.replaceChildren(...this.createResultsEl(results));
-    this.#resultsEl.classList.add('fade-in');
-    this.#resultsEl.classList.toggle('no-results', results.length === 0);
-  }
-
-  /**
-   * Clear the search results and intersection observer and aborts any ongoing search query.
-   *
-   * @private
-   *
-   * @returns {AbortSignal} - The abort signal associated with a new search.
-   */
-  #clearSearchResults() {
-    const signal = this.abortPreviousSearch();
-
-    this.#scrollToTopBtn?.remove();
-    this.#scrollToTopBtn = null;
-    this.#intersectionObserverComponent?.remove();
-    this.#intersectionObserverComponent = null;
-    this.#resultsEl.replaceChildren();
-    this.#resultsEl.classList.toggle('no-results', false);
-
-    return signal;
-  }
-
-  /**
-   * Initializes the {@link ScrollToTopButton}.
-   *
-   * This function creates and attaches a component to the DOM allowing to
-   * immediately scroll to the top of the page on click. The component
-   * is only attached if more than a page exists on the search result.
-   */
-  initScrollToTopButton() {
-    if (!this.#fetchNextPage) return;
-
-    this.#scrollToTopBtn = new ScrollToTopButton(
-      (n) => this.#resultsEl.insertAdjacentElement('afterend', n)
-    );
-  }
-
-  /**
-   * Initializes the {@link IntersectionObserverComponent} for infinite scrolling.
-   *
-   * This function creates and attaches a component to the DOM, enabling
-   * infinite scrolling behavior. The component triggers the {@link nextPage}
-   * method when it comes into view, allowing the loading of the next set of search results.
-   */
-  initIntersectionObserver() {
-    if (!this.#fetchNextPage) return;
-
-    this.#intersectionObserverComponent = new IntersectionObserverComponent(
-      (n) => this.#resultsEl.insertAdjacentElement('afterend', n),
-      () => this.nextPage()
-    );
   }
 
   /**
@@ -271,12 +116,12 @@ class SearchPage {
    * @throws {Promise<Response>} - A rejected promise with the response object if
    * the fetch request for the next page fails.
    */
-  async nextPage() {
-    const signal = this.abortPreviousSearch();
-    const data = await this.#fetchNextPage(signal);
+  async #fetchNextPage() {
+    const signal = this.abortSearch();
+    const data = await this.nextPage(signal);
 
-    this.#fetchNextPage = data.next;
-    this.#resultsEl.append(...this.createResultsEl(data.results));
+    this.nextPage = data.next;
+    this.results = [...this.results, ...data.results];
   }
 
   /**
@@ -285,76 +130,82 @@ class SearchPage {
    *
    * @returns {AbortSignal} - The abort signal associated with the new search.
    */
-  abortPreviousSearch() {
+  abortSearch() {
     this.#abortController?.abort('New search launched');
     this.#abortController = new AbortController();
 
     return this.#abortController.signal;
   }
 
-  /**
-   * Creates and returns the HTML elements for the search page content.
-   *
-   * @returns {HTMLElement[]} - An array of HTML elements representing the search page content.
-   */
-  createContentEl() {
-    return parseHtml(`
-    <div class="search-bar-container fade-in">
-      <select id="bu-dropdown" aria-label="Select a business unit">
-          <option value="rsi" selected>RSI</option>
-          <option value="rtr">RTR</option>
-          <option value="rts">RTS</option>
-          <option value="srf">SRF</option>
-          <option value="swi">SWI</option>
-      </select>
-      <input type="text" id="search-bar" placeholder="Search for content...">
-      <button id="clear-search-btn" title="Clear search"><i class="material-icons-outlined">close</i></button>
-    </div>
+  #openPlayer(event) {
+    const button = event.target.closest('button');
 
-    <!-- Search results -->
-    <div id="results" class="results-container material-icons"></div>
-  `);
+    if (!('urn' in button.dataset)) return;
+
+    openPlayerModal({ src: button.dataset.urn, type: 'srgssr/urn' });
   }
 
-  /**
-   * Creates and returns HTML elements for the search results based on the provided results data.
-   *
-   * @param {{ title: string, urn: string }[]} results - An array of search results.
-   *
-   * @returns {NodeListOf<ChildNode>} - An array of HTML elements representing the search results.
-   */
-  createResultsEl(results) {
-    return parseHtml(results.map((r) => {
-      const date = new Intl.DateTimeFormat('fr-CH').format(new Date(r.date));
-      const duration = Pillarbox.formatTime(r.duration / 1000);
+  #renderButton(r) {
+    const date = new Intl.DateTimeFormat('fr-CH').format(new Date(r.date));
+    const duration = Pillarbox.formatTime(r.duration / 1000);
 
-      return `
-        <button class="content-btn" data-urn="${r.urn}" title="${r.title}">
-            <span class="content-btn-title">${r.title}</span>
-            <div class="content-btn-metadata-container">
-                <i class="material-icons-outlined">${r.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
-                <span class="content-btn-info">&nbsp;| ${date} | ${duration}</span>
-            </div>
-        </button>`;
-    }).join(''));
+    return html`
+      <button class="content-btn" data-urn="${r.urn}" title="${r.title}">
+        <span class="content-btn-title">${r.title}</span>
+        <div class="content-btn-metadata-container">
+          <i
+            class="material-icons-outlined">${r.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
+          <span class="content-btn-info">&nbsp;| ${date} | ${duration}</span>
+        </div>
+      </button>
+    `;
+  }
+
+  #renderResults() {
+    const resultsClassMap = {
+      'empty' : this.results == null,
+      'no-results' : this.results && this.results.length === 0
+    };
+
+    return html`
+      <div
+        class="results-container material-icons fade-in ${classMap(resultsClassMap)}"
+        @animationend="${e => e.target.classList.remove('fade-in')}"
+        @click="${this.#openPlayer.bind(this)}">
+        ${map(this.results ?? [], this.#renderButton.bind(this))}
+        ${when(this.nextPage, () => html`
+          <intersection-observer
+            @intersecting="${this.#fetchNextPage.bind(this)}">
+          </intersection-observer>
+        `)}
+      </div>
+    `;
+  }
+
+  #renderSpinner() {
+    return html`
+      <loading-spinner loading class="slide-up-fade-in"
+                       @animationend="${e => e.target.classList.remove('slide-up-fade-in')}">
+      </loading-spinner>
+    `;
+  }
+
+  #renderScrollToTopBtn() {
+    return html`<scroll-to-top-button></scroll-to-top-button>`;
+  }
+
+  render() {
+    return html`
+      <search-bar
+        @change="${(e) => this.#onSearchBarChanged(e.detail.bu, e.detail.query)}">
+      </search-bar>
+
+      <!-- Search results -->
+      ${when(this.loading, this.#renderSpinner.bind(this), this.#renderResults.bind(this))}
+      ${when(this.results?.length > 0, this.#renderScrollToTopBtn.bind(this))}
+    `;
   }
 }
 
-
-let searchPage;
-let onStateChangedListener;
-
-router.addRoute('search', async (queryParams) => {
-  searchPage = new SearchPage();
-
-  onStateChangedListener = async () => {
-    await searchPage.onStateChanged(router.queryParams);
-  };
-
-  router.addEventListener('queryparams', onStateChangedListener);
-  await searchPage.onStateChanged(queryParams);
-}, () => {
-  router.removeEventListener('queryparams', onStateChangedListener);
-  searchPage.abortPreviousSearch();
-  searchPage = null;
-});
+customElements.define('search-page', SearchPage);
+router.addRoute('search', 'search-page');

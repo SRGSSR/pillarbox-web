@@ -38,17 +38,17 @@
 .pbw-menu {
   margin-bottom: var(--size-4);
 
-  a {
+  route-link::part(a) {
     padding: var(--size-1) var(--size-2);
     border-radius: var(--radius-3);
     transition: background-color 0.4s, color 0.4s;
+  }
 
-    &.selected {
-      color: var(--color-8);
-      text-decoration: none;
-      background-color: var(--color-5);
-      cursor: default;
-      transition: background-color 0.8s, color 0.4s;
-    }
+  route-link::part(a active) {
+    color: var(--color-8);
+    text-decoration: none;
+    background-color: var(--color-5);
+    cursor: default;
+    transition: background-color 0.8s, color 0.4s;
   }
 }

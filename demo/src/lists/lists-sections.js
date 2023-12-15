@@ -47,7 +47,7 @@ class Section {
     const data = await this.next(signal);
 
     this.next = data.next;
-    this.nodes.push(data.results);
+    this.nodes.push(...data.results);
 
     return data.results;
   }
