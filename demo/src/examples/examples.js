@@ -362,6 +362,14 @@ const EXAMPLES = {
       'src': 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4',
       'type': 'video/mp4'
     }
+  ],
+  'AOD': [
+    {
+      'title': 'Audio HLS',
+      'description': 'Content with PTS rollover',
+      'src': 'https://cdn.rts.ch/audio-sample/playlist.m3u8',
+      'type': 'application/x-mpegURL'
+    }
   ]
 };
 
