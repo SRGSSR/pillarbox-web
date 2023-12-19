@@ -4,12 +4,12 @@
  *
  * @module
  */
-import Pillarbox from '../../../src/pillarbox';
+import { createPlayer, destroyPlayer } from './player';
 
 const dialog = document.getElementById('pbw-dialog');
 
 // Pauses de video once the modal is closed.
-dialog.addEventListener('close', () => Pillarbox.getPlayer('player').pause());
+dialog.addEventListener('close', destroyPlayer);
 
 // Close the dialog on close button clicked
 dialog.querySelector('#pbw-dialog-close-btn').addEventListener('click', () => {
@@ -38,13 +38,9 @@ dialog.addEventListener('click', (e) => {
  * @param {object} [options.keySystems] - (Optional) The DRM configuration for DRM protected sources.
  */
 export const openPlayerModal = ({ src, type, keySystems }) => {
-  const player = Pillarbox.getPlayer('player');
+  const player = createPlayer();
 
-  if (player.currentSrc() !== src) {
-    player.reset();
-    player.src({ src, type, keySystems });
-  }
-
+  player.src({ src, type, keySystems });
   dialog.showModal();
   dialog.classList.toggle('slide-up-fade-in', true);
 };
