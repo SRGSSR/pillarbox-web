@@ -9,7 +9,10 @@ import { createPlayer, destroyPlayer } from './player';
 const dialog = document.getElementById('pbw-dialog');
 
 // Pauses de video once the modal is closed.
-dialog.addEventListener('close', destroyPlayer);
+dialog.addEventListener('close', () => {
+  document.documentElement.style.overflowY = 'scroll';
+  destroyPlayer();
+});
 
 // Close the dialog on close button clicked
 dialog.querySelector('#pbw-dialog-close-btn').addEventListener('click', () => {
@@ -40,6 +43,7 @@ dialog.addEventListener('click', (e) => {
 export const openPlayerModal = ({ src, type, keySystems }) => {
   const player = createPlayer();
 
+  document.documentElement.style.overflowY = 'hidden';
   player.src({ src, type, keySystems });
   dialog.showModal();
   dialog.classList.toggle('slide-up-fade-in', true);
