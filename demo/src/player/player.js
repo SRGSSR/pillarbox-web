@@ -5,8 +5,24 @@
  */
 import Pillarbox from '../../../src/pillarbox.js';
 import '../../../src/middleware/srgssr.js';
+import PreferencesProvider from '../settings/preferences-provider';
 
 const DEMO_PLAYER_ID = 'player';
+const DEFAULT_OPTIONS = {
+  fill: true,
+  html5: {
+    vhs: { useForcedSubtitles: true },
+  },
+  liveTracker: {
+    trackingThreshold: 120,
+    liveTolerance: 15,
+  },
+  liveui: true,
+  playsinline: true,
+  plugins: { eme: true },
+  responsive: true,
+  restoreEl: true
+};
 
 /**
  * Creates and configures a Pillarbox video player.
@@ -14,21 +30,15 @@ const DEMO_PLAYER_ID = 'player';
  * @returns {Object} The configured Pillarbox video player instance.
  */
 export const createPlayer = () => {
+  const preferences = PreferencesProvider.loadPreferences();
+
   window.player = new Pillarbox(DEMO_PLAYER_ID, {
-    fill: true,
-    html5: {
-      vhs: { useForcedSubtitles: true },
-    },
-    liveTracker: {
-      trackingThreshold: 120,
-      liveTolerance: 15,
-    },
-    liveui: true,
-    muted: true,
-    playsinline: true,
-    plugins: { eme: true },
-    responsive: true,
-    restoreEl: true
+    ...DEFAULT_OPTIONS,
+    ...{
+      muted: preferences.muted ?? true,
+      autoplay: preferences.autoplay ?? false,
+      debug: preferences.debug ?? false,
+    }
   });
 
   return window.player;

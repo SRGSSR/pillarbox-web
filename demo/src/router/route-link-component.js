@@ -1,6 +1,6 @@
 import router from './router';
 import { html, LitElement } from 'lit';
-import { theme, animations } from '../theme/theme';
+import { animations, theme } from '../theme/theme';
 
 export class RouteLinkCompenent extends LitElement {
   static properties = {
@@ -10,32 +10,48 @@ export class RouteLinkCompenent extends LitElement {
 
   static styles = [theme, animations];
 
+  #updateSelected() {
+    const url = new URL(`${window.location.origin}/${this.href}`);
+
+    this.selected = router.isActiveRoute(url.pathname);
+  }
+
   constructor() {
     super();
 
-    router.addEventListener('routechanged', ({ detail: { route }}) => {
-      this.selected = route.path.match(this.href);
+    router.addEventListener('routechanged', () => {
+      this.#updateSelected();
     });
   }
+
+  #onClick = (event) => {
+    event.preventDefault();
+
+    const url = new URL(`${window.location.origin}/${this.href}`);
+    const queryParams = Object.fromEntries(url.searchParams.entries());
+
+    router.navigateTo(url.pathname, queryParams);
+  };
 
   connectedCallback() {
     super.connectedCallback();
 
-    this.selected = router.isActiveRoute(this.href);
-    this.renderRoot.addEventListener('click', (event) => {
-      event.preventDefault();
-      router.navigateTo(this.href);
-    });
+    this.#updateSelected();
+    this.addEventListener('click', this.#onClick);
   }
 
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('click', this.#onClick);
+  }
 
   render() {
     return html`
-      <a href="${this.href}"
-         aria-disabled="${this.selected}"
-         part="a ${this.selected ? 'active' : ''}">
-        <slot></slot>
-      </a>
+        <a href="${this.href}"
+           aria-disabled="${this.selected}"
+           part="a ${this.selected ? 'active' : ''}">
+            <slot></slot>
+        </a>
     `;
   }
 }

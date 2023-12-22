@@ -197,7 +197,7 @@ export class SearchPage extends LitElement {
   render() {
     return html`
       <search-bar
-        @change="${(e) => this.#onSearchBarChanged(e.detail.bu, e.detail.query)}">
+        @change="${e => this.#onSearchBarChanged(e.detail.bu, e.detail.query)}">
       </search-bar>
 
       <!-- Search results -->
