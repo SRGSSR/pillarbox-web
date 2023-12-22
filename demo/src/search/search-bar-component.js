@@ -26,48 +26,39 @@ export class SearchBarComponent extends LitElement {
     this.query = '';
   }
 
-  #change() {
-    const query = this.query ?? '';
-    const bu = this.bu ?? DEFAULT_BU;
-
-    /**
-     * Custom event dispatched by SearchBarComponent when the value of the bar changes.
-     *
-     * @event SearchBarComponent#change
-     * @type {CustomEvent}
-     * @property {Object} detail - The event detail object.
-     * @property {string} detail.query - The query on the search bar.a
-     * @property {string} detail.bu - The selected bu.
-     */
-    this.dispatchEvent(new CustomEvent('change', {
-      detail: { query, bu }
-    }));
-  }
-
   #handleSearchBarKeyUp() {
-    const query = this.renderRoot.querySelector('input').value;
-
-    if (query !== this.query) {
-      this.query = query;
-      this.#change();
-    }
+    this.query = this.renderRoot.querySelector('input').value;
   }
 
   #handleSelectChange(e) {
-    const bu = e.target.value;
+    this.bu = e.target.value;
+  }
 
-    if (bu !== this.bu) {
-      this.bu = bu;
-      this.#change();
+  updated(_changedProperties) {
+    super.updated(_changedProperties);
+
+    if (['bu', 'query'].some(property => _changedProperties.has(property))) {
+      const query = this.query ?? '';
+      const bu = this.bu ?? DEFAULT_BU;
+
+      /**
+       * Custom event dispatched by SearchBarComponent when the value of the bar changes.
+       *
+       * @event SearchBarComponent#change
+       * @type {CustomEvent}
+       * @property {Object} detail - The event detail object.
+       * @property {string} detail.query - The query on the search bar.a
+       * @property {string} detail.bu - The selected bu.
+       */
+      this.dispatchEvent(new CustomEvent('change', {
+        detail: { query, bu }
+      }));
     }
   }
 
   #clearSearchBar() {
-    if (this.query !== '') {
-      this.query = '';
-      this.renderRoot.querySelector('input').value = '';
-      this.#change();
-    }
+    this.query = '';
+    this.renderRoot.querySelector('input').value = '';
   }
 
   render() {

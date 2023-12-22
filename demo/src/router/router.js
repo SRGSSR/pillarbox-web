@@ -126,12 +126,25 @@ class Router extends EventTarget {
   }
 
   /**
-   * Update the state of the current route (i.e. it's query params).
+   * Updates the state by navigating to the current path with the provided query parameters.
    *
-   * @param {object} queryParams - query parameters to be associated with the route.
+   * @param {Object} queryParams - The new query parameters to be merged with the current ones.
    */
   updateState(queryParams) {
-    this.navigateTo(window.location.pathname, queryParams);
+    this.navigateTo(
+      window.location.pathname,
+      { ...this.#currentQueryParams, ...queryParams }
+    );
+  }
+
+  /**
+   * Replaces the current state by navigating to the current path with the provided query parameters,
+   * discarding the current query parameters.
+   *
+   * @param {Object} newParams - The new query parameters to replace the current ones.
+   */
+  replaceState(newParams) {
+    this.navigateTo(window.location.pathname, newParams);
   }
 
   /**
