@@ -49,16 +49,11 @@ export class SearchPage extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.#onQueryParamsChanged = async () => {
-      const query = router.queryParams.query ?? '';
-      const bu = router.queryParams.bu ?? 'rsi';
+    this.#onQueryParamsChanged = () => {
       const searchBar = this.renderRoot.querySelector('search-bar');
 
-      if (searchBar.query !== query || searchBar.bu !== bu) {
-        searchBar.query = query;
-        searchBar.bu = bu;
-        await this.#search(bu, query);
-      }
+      searchBar.query = router.queryParams.query ?? '';
+      searchBar.bu = router.queryParams.bu ?? 'rsi';
     };
     router.addEventListener('queryparams', this.#onQueryParamsChanged);
   }
@@ -69,10 +64,12 @@ export class SearchPage extends LitElement {
     router.removeEventListener('queryparams', this.#onQueryParamsChanged);
   }
 
-  firstUpdated(_changedProperties) {
+  async firstUpdated(_changedProperties) {
     super.firstUpdated(_changedProperties);
+    const searchBar = this.renderRoot.querySelector('search-bar');
 
     this.#onQueryParamsChanged();
+    await this.#search(searchBar.bu, searchBar.query);
   }
 
   async #onSearchBarChanged(bu, query) {

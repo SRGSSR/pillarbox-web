@@ -5,6 +5,7 @@
  * @module
  */
 import { createPlayer, destroyPlayer } from './player';
+import router from '../router/router';
 
 const dialog = document.getElementById('pbw-dialog');
 
@@ -12,6 +13,14 @@ const dialog = document.getElementById('pbw-dialog');
 dialog.addEventListener('close', () => {
   document.documentElement.style.overflowY = 'scroll';
   destroyPlayer();
+
+  const params = router.queryParams;
+  const keysToRemove = ['src', 'type', 'vendor', 'certificateUrl', 'licenseUrl'];
+  const filteredParams = Object.fromEntries(
+    Object.entries(params).filter(([key]) => !keysToRemove.includes(key))
+  );
+
+  router.replaceState(filteredParams);
 });
 
 // Close the dialog on close button clicked
@@ -30,6 +39,19 @@ dialog.addEventListener('click', (e) => {
   dialog.close();
 });
 
+const toParams = (keySystems) => {
+  const vendor = Object.keys(keySystems ?? {})[0];
+
+  if (!vendor) {
+    return {};
+  }
+
+  return {
+    vendor: vendor,
+    ...keySystems[vendor]
+  };
+};
+
 /**
  * Opens a modal containing a video player with specified source and type. Can only
  * load URN if the type 'srgssr/urn`is explicitly provided, otherwise the created
@@ -45,6 +67,35 @@ export const openPlayerModal = ({ src, type, keySystems }) => {
 
   document.documentElement.style.overflowY = 'hidden';
   player.src({ src, type, keySystems });
+
+  router.updateState({ src, type, ...toParams(keySystems) });
+
   dialog.showModal();
   dialog.classList.toggle('slide-up-fade-in', true);
 };
+
+
+const toKeySystem = (params) => {
+  if (!params.vendor) {
+    return undefined;
+  }
+
+  const keySystem = {};
+  const { certificateUrl, licenseUrl } = params;
+
+  keySystem[params.vendor] = { certificateUrl, licenseUrl };
+
+  return keySystem;
+};
+
+// Only listen for 'routechanged' events since opening the modal in this fashion is only useful on the first load of the page.
+router.addEventListener('routechanged', (e) => {
+  const params = e.detail.queryParams;
+
+  if ('src' in params) {
+    const { src, type } = params;
+    const keySystems = toKeySystem(params);
+
+    openPlayerModal({ src, type, keySystems });
+  }
+});
