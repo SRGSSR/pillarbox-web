@@ -9,6 +9,7 @@ import PreferencesProvider from '../settings/preferences-provider';
 
 const DEMO_PLAYER_ID = 'player';
 const DEFAULT_OPTIONS = {
+  enableSmoothSeeking: true,
   fill: true,
   html5: {
     vhs: { useForcedSubtitles: true },
