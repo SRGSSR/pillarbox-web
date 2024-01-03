@@ -117,7 +117,7 @@ export class LoadMediaFormComponent extends LitElement {
   #drmSettingsTemplate() {
     return html`
       <form class="drm-settings-container ${this.drmSettingsShown ? 'fade-in' : 'hidden'}"
-            aria-hidden="${this.drmSettingsShown}"
+            aria-hidden="${!this.drmSettingsShown}"
             @reset="${this.#initDrmSettings}"
             @animationend="${e => e.target.classList.remove('fade-in')}">
         <h3>DRM Settings</h3>

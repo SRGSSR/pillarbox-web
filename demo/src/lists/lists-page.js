@@ -52,8 +52,7 @@ export class ListsPage extends LitElement {
 
     this.loading = false;
     this.#stateManager = new ListsPageStateManager(listsSections);
-    this.stack = this.#stateManager.stack;
-    this.level = this.#stateManager.level;
+    this.#updateState();
   }
 
   connectedCallback() {
@@ -133,35 +132,36 @@ export class ListsPage extends LitElement {
     return this.#abortController.signal;
   }
 
-  #openPlayer(event) {
-    const button = event.target.closest('button');
-
-    if (!('urn' in button.dataset)) return;
-
-    openPlayerModal({ src: button.dataset.urn, type: 'srgssr/urn' });
+  #toMediaButtonParams(node) {
+    return new URLSearchParams({ ...router.queryParams, src: node.urn, type: 'srgssr/urn' }).toString();
   }
 
-  #renderMediaButton(node, idx) {
+  #renderMediaButton(node) {
     const date = new Intl.DateTimeFormat('fr-CH').format(new Date(node.date));
     const duration = Pillarbox.formatTime(node.duration / 1000);
 
     return html`
-        <button class="content-btn" data-node-idx="${idx}"
-                title="${node.title}">
-            <span class="content-btn-title">${node.title}</span>
-            <div class="content-btn-metadata-container">
-                <i class="material-icons-outlined">${node.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
-                <span class="content-btn-info">&nbsp;| ${date} | ${duration}</span>
-            </div>
-        </button>
+      <content-link title="${node.title}" href="lists?${this.#toMediaButtonParams(node)}">
+        <div slot="description">
+          <i class="material-icons-outlined">${node.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
+          <span>&nbsp;| ${date} | ${duration}</span>
+        </div>
+      </content-link>
     `;
   }
 
-  #renderLevelButton(node, idx) {
+  #toLevelParams(sectionIdx, nodeIdx) {
+    const params = this.#stateManager.paramsAt(sectionIdx, nodeIdx);
+
+    return new URLSearchParams(params).toString();
+  }
+
+  #renderLevelButton(node, sectionIdx, nodeIdx) {
     return html`
-        <button class="content-btn" data-node-idx="${idx}">
-            <span class="content-btn-title">${typeof node === 'string' ? node : node.title}</span>
-        </button>
+      <content-link title="${typeof node === 'string' ? node : node.title}"
+                   href="lists?${this.#toLevelParams(sectionIdx, nodeIdx)}"
+                   data-section-idx="${sectionIdx}" data-node-idx="${nodeIdx}">
+      </content-link>
     `;
   }
 
@@ -172,13 +172,13 @@ export class ListsPage extends LitElement {
     this.#updateState();
   }
 
-  #renderNodes(nodes) {
+  #renderNodes(nodes, sectionIdx) {
     const firstSection = this.level[0];
     const hasIntesectionObserver = this.level.length === 1 && firstSection.next;
 
     return html`
         ${map(nodes, (node, idx) => html`
-            ${when(node.mediaType, () => this.#renderMediaButton(node, idx), () => this.#renderLevelButton(node, idx))}
+            ${when(node.mediaType, () => this.#renderMediaButton(node, idx), () => this.#renderLevelButton(node, sectionIdx, idx))}
         `)}
         ${when(hasIntesectionObserver, () => html`
             <intersection-observer
@@ -189,15 +189,14 @@ export class ListsPage extends LitElement {
   }
 
   async #onSectionsClicked(e) {
-    const button = e.target.closest('button');
+    const button = e.target.closest('content-link');
 
     if (this.loading || !('nodeIdx' in button.dataset)) return;
 
-    const sectionIndex = button.parentNode.dataset.sectionIdx;
+    const sectionIndex = button.dataset.sectionIdx;
     const nodeIndex = button.dataset.nodeIdx;
 
     await this.navigateTo(sectionIndex, nodeIndex);
-    router.updateState(this.#stateManager.params);
   }
 
   #renderResults() {
@@ -206,9 +205,9 @@ export class ListsPage extends LitElement {
              @animationend="${e => e.target.classList.remove('fade-in')}"
              @click="${this.#onSectionsClicked.bind(this)}">
             ${map(this.level, (section, idx) => html`
-                <div data-section-idx="${idx}" class="section">
+                <div class="section">
                     <h2 class="sticky">${section.title}</h2>
-                    ${this.#renderNodes(section.nodes)}
+                    ${this.#renderNodes(section.nodes, idx)}
                 </div>
             `)}
         </div>
@@ -233,7 +232,7 @@ export class ListsPage extends LitElement {
     this.abortFetch();
     this.#stateManager.fetchPreviousState(e.target.dataset.navigationIdx);
     this.#updateState();
-    router.updateState(this.#stateManager.params);
+    router.updateState(this.#stateManager.params, ['section', 'bu', 'nodes']);
   }
 
   #renderNavigation() {

@@ -14,13 +14,7 @@ dialog.addEventListener('close', () => {
   document.documentElement.style.overflowY = 'scroll';
   destroyPlayer();
 
-  const params = router.queryParams;
-  const keysToRemove = ['src', 'type', 'vendor', 'certificateUrl', 'licenseUrl'];
-  const filteredParams = Object.fromEntries(
-    Object.entries(params).filter(([key]) => !keysToRemove.includes(key))
-  );
-
-  router.replaceState(filteredParams);
+  router.updateState({}, ['src', 'type', 'vendor', 'certificateUrl', 'licenseUrl']);
 });
 
 // Close the dialog on close button clicked
@@ -74,6 +68,9 @@ export const openPlayerModal = ({ src, type, keySystems }) => {
   dialog.classList.toggle('slide-up-fade-in', true);
 };
 
+export const asQueryParams = ({ src, type, keySystems }) => {
+  return new URLSearchParams({ src, type, ...toParams(keySystems) }).toString();
+};
 
 const toKeySystem = (params) => {
   if (!params.vendor) {
@@ -88,8 +85,7 @@ const toKeySystem = (params) => {
   return keySystem;
 };
 
-// Only listen for 'routechanged' events since opening the modal in this fashion is only useful on the first load of the page.
-router.addEventListener('routechanged', (e) => {
+const loadPlayerFromRouter = (e) => {
   const params = e.detail.queryParams;
 
   if ('src' in params) {
@@ -98,4 +94,7 @@ router.addEventListener('routechanged', (e) => {
 
     openPlayerModal({ src, type, keySystems });
   }
-});
+};
+
+router.addEventListener('routechanged', loadPlayerFromRouter);
+router.addEventListener('queryparams', loadPlayerFromRouter);

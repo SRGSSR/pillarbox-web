@@ -7,10 +7,10 @@ import ilProvider from '../core/il-provider';
 import '../spinner/spinner-component';
 import '../core/intersection-observer-component';
 import '../core/scroll-to-top-component';
+import '../core/content-link-component';
 import { map } from 'lit/directives/map.js';
 import Pillarbox from '../../../src/pillarbox';
 import { when } from 'lit/directives/when.js';
-import { openPlayerModal } from '../player/player-dialog';
 import { classMap } from 'lit/directives/class-map.js';
 
 export class SearchPage extends LitElement {
@@ -134,12 +134,8 @@ export class SearchPage extends LitElement {
     return this.#abortController.signal;
   }
 
-  #openPlayer(event) {
-    const button = event.target.closest('button');
-
-    if (!('urn' in button.dataset)) return;
-
-    openPlayerModal({ src: button.dataset.urn, type: 'srgssr/urn' });
+  #toQueryParams(r) {
+    return new URLSearchParams({ ...router.queryParams, src: r.urn, type: 'srgssr/urn' }).toString();
   }
 
   #renderButton(r) {
@@ -147,28 +143,26 @@ export class SearchPage extends LitElement {
     const duration = Pillarbox.formatTime(r.duration / 1000);
 
     return html`
-      <button class="content-btn" data-urn="${r.urn}" title="${r.title}">
-        <span class="content-btn-title">${r.title}</span>
-        <div class="content-btn-metadata-container">
-          <i
-            class="material-icons-outlined">${r.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
-          <span class="content-btn-info">&nbsp;| ${date} | ${duration}</span>
-        </div>
-      </button>
+      <content-link title="${r.title}"
+                   href="search?${this.#toQueryParams(r)}">
+          <div slot="description">
+              <i class="material-icons-outlined">${r.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
+              <span>&nbsp;| ${date} | ${duration}</span>
+          </div>
+      </content-link>
     `;
   }
 
   #renderResults() {
     const resultsClassMap = {
       'empty' : this.results == null,
-      'no-results' : this.results && this.results.length === 0
+      'no-results' : this.results && this.results.length === 0,
+      'material-icons': !this.results || this.results.length === 0
     };
 
     return html`
-      <div
-        class="results-container material-icons fade-in ${classMap(resultsClassMap)}"
-        @animationend="${e => e.target.classList.remove('fade-in')}"
-        @click="${this.#openPlayer.bind(this)}">
+      <div class="results-container fade-in ${classMap(resultsClassMap)}"
+        @animationend="${e => e.target.classList.remove('fade-in')}">
         ${map(this.results ?? [], this.#renderButton.bind(this))}
         ${when(this.nextPage, () => html`
           <intersection-observer
