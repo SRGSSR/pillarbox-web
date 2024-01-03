@@ -4,6 +4,7 @@
  * @module
  */
 import './player/player';
+import './player/player-dialog';
 import './layout/header-component';
 import './router/route-outlet-component';
 import './examples/examples-page';

@@ -121,13 +121,17 @@ class ListsPageStateManager {
    * @returns {{}|{bu: string, section: string, nodes?: string}} The current state as query params.
    */
   get params() {
-    if (this.stack.length === 0) {
+    return ListsPageStateManager.#params(this.stack);
+  }
+
+  static #params(stack) {
+    if (stack.length === 0) {
       return {};
     }
 
-    const root = this.stack[0];
+    const root = stack[0];
     const rootSection = root.level[root.sectionIndex];
-    const nodes = this.stack.slice(1).map(n => {
+    const nodes = stack.slice(1).map(n => {
       const node = n.level[n.sectionIndex].nodes[n.nodeIndex];
 
       return node.id || node.urn;
@@ -144,6 +148,11 @@ class ListsPageStateManager {
     return params;
   }
 
+  paramsAt(sectionIndex, nodeIndex) {
+    return ListsPageStateManager.#params(
+      [...this.stack, { level: this.level, sectionIndex, nodeIndex }]
+    );
+  }
 
   /**
    * Finds the index of a section based on its title in kebab case.

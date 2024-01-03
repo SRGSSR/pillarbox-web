@@ -82,7 +82,9 @@ class Router extends EventTarget {
    * @param {function} start - The function to be called when the route is navigated to.
    * @param {function} destroy - The function to be called when the route is navigated away from.
    */
-  addRoute(pattern, component = null, start = () => {}, destroy = () => {}) {
+  addRoute(pattern, component = null, start = () => {
+  }, destroy = () => {
+  }) {
     const path = new Minimatch(pattern, { matchBase: true });
 
     this.#routes.push({ path, start, component, destroy });
@@ -117,8 +119,11 @@ class Router extends EventTarget {
    */
   navigateTo(path, queryParams = {}) {
     const url = new URL(window.location.href);
+    const normalizedPath = '/' + path.trim().replace(/^\/+/, '');
 
-    url.pathname = path;
+    url.pathname = normalizedPath.startsWith(this.base) ?
+      normalizedPath :
+      this.base + normalizedPath;
     url.search = new URLSearchParams(queryParams).toString();
 
     window.history.pushState({}, '', url.href);
@@ -130,10 +135,15 @@ class Router extends EventTarget {
    *
    * @param {Object} queryParams - The new query parameters to be merged with the current ones.
    */
-  updateState(queryParams) {
+  updateState(queryParams, keysToRemove = []) {
+    const filteredParams = Object.fromEntries(
+      Object.entries(this.#currentQueryParams)
+        .filter(([key]) => !keysToRemove.includes(key))
+    );
+
     this.navigateTo(
       window.location.pathname,
-      { ...this.#currentQueryParams, ...queryParams }
+      { ...filteredParams, ...queryParams }
     );
   }
 
@@ -233,6 +243,8 @@ class Router extends EventTarget {
     this.base = this.findRoute(path) ?
       path.replace(/\/[^/]+\/?$/, '/') :
       path;
+
+    this.base = this.base.replace(/\/+$/, '');
 
     this.#handleRouteChange(path, queryParams);
   }
