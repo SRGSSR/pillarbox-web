@@ -21,6 +21,11 @@ class Pillarbox extends videojs {
   }
 }
 
+/**
+ * Enable smooth seeking for Pillarbox.
+ * @type {boolean}
+ */
+Pillarbox.options.enableSmoothSeeking = true;
 Pillarbox.options.srgOptions = {
   dataProviderHost: undefined,
   tagCommanderScriptURL: undefined,
