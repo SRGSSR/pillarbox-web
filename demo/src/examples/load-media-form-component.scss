@@ -17,10 +17,7 @@
 }
 
 .drm-settings-container {
-  display: flex;
-  flex-direction: column;
-  max-height: var(--size-15);
-  transition: max-height 0.4s ease;
+  display: none;
 
   input {
     border-radius: var(--radius-2);
@@ -29,13 +26,35 @@
   select {
     border-right: var(--size-5) solid var(--color-8);
   }
-}
 
-.drm-settings-container.hidden {
-  max-height: 0;
-  overflow: hidden;
+  &.active {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .load-bar-action {
   width: 100%;
+}
+
+
+.fade-in-grow {
+  opacity: 0;
+  animation: fade-in .4s var(--ease-elastic-in-3) forwards,
+  grow .4s ease;
+}
+
+.shrink {
+  opacity: 0;
+  animation: grow .4s ease;
+  animation-direction: reverse;
+}
+
+@keyframes grow {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: var(--size-15);
+  }
 }
