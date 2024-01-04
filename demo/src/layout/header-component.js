@@ -38,34 +38,32 @@ export class HeaderElement extends LitElement {
 
   render() {
     return html`
-        <nav>
-            <div class="pbw-title-container">
-                <h1>
-                    <img class="pbw-logo" src="${srgssrLogo}"/>
-                    <span>Pillarbox</span>
-                    <span class="version-txt">${Pillarbox.VERSION.pillarbox}</span>
-                </h1>
-                <a href="https://github.com/srgssr/pillarbox-web"
-                   class="github-link"
-                   title="Source on Github">
-                    ${unsafeSVG(githubLogoSvg)}
-                </a>
-            </div>
-            <div id="pbw-menu" class="pbw-menu">
-                <route-link href="examples${this.debug ? '?debug=true' : ''}">
-                    Examples
-                </route-link>
-                <route-link href="search${this.debug ? '?debug=true' : ''}">
-                    Search
-                </route-link>
-                <route-link href="lists${this.debug ? '?debug=true' : ''}">
-                    Lists
-                </route-link>
-                <route-link href="settings${this.debug ? '?debug=true' : ''}">
-                    Settings
-                </route-link>
-            </div>
-        </nav>
+      <header>
+        <h1>
+          <img class="pbw-logo" src="${srgssrLogo}"/>
+          <span>Pillarbox</span>
+          <span class="version-txt">${Pillarbox.VERSION.pillarbox}</span>
+        </h1>
+        <a href="https://github.com/srgssr/pillarbox-web" class="github-link" title="Source on Github">
+          ${unsafeSVG(githubLogoSvg)}
+        </a>
+      </header>
+      <nav>
+        <ul>
+          <li>
+            <route-link href="examples${this.debug ? '?debug=true' : ''}">Examples</route-link>
+          </li>
+          <li>
+            <route-link href="search${this.debug ? '?debug=true' : ''}">Search</route-link>
+          </li>
+          <li>
+            <route-link href="lists${this.debug ? '?debug=true' : ''}">Lists</route-link>
+          </li>
+          <li>
+            <route-link href="settings${this.debug ? '?debug=true' : ''}">Settings</route-link>
+          </li>
+        </ul>
+      </nav>
     `;
   }
 }

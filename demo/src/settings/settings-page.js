@@ -59,12 +59,12 @@ export class SettingsPage extends LitElement {
   }
   render() {
     return html`
-      <div class="fade-in" @animationend="${e => e.target.classList.remove('fade-in')}">
+      <section class="fade-in" @animationend="${e => e.target.classList.remove('fade-in')}">
         <h2 part="title">Player Settings</h2>
         ${this.#renderToggle('autoplay', 'Autoplay')}
         ${this.#renderToggle('muted', 'Player starts muted')}
         ${this.#renderToggle('debug', 'Enable debug mode')}
-      </div>
+      </section>
     `;
   }
 }

@@ -33,7 +33,7 @@ export class ExamplesPage extends LitElement {
       <div class="fade-in"
            @animationend="${e => e.target.classList.remove('fade-in')}">
         ${map(Object.entries(Examples), ([section, examples]) => html`
-          <div class="example-section" data-section="${section}">
+          <section class="example-section" data-section="${section}">
             <h2 class="sticky">${section}</h2>
             ${map(examples, example => html`
               <content-link title="${example.description || example.title}"
@@ -43,7 +43,7 @@ export class ExamplesPage extends LitElement {
                 `)}
               </content-link>
             `)}
-          </div>
+          </section>
         `)}
       </div>
     `;
