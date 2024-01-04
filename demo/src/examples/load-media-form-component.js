@@ -87,7 +87,8 @@ export class LoadMediaFormComponent extends LitElement {
     };
 
     return html`
-      <div class="fade-in">
+      <div class="fade-in"
+           @animationend="${e => e.target.classList.remove('fade-in')}">
         <div class="load-bar-container">
           <i class="material-icons-outlined">insert_link</i>
           <input type="text"
@@ -114,12 +115,35 @@ export class LoadMediaFormComponent extends LitElement {
     `;
   }
 
+  updated(_changedProperties) {
+    super.updated(_changedProperties);
+
+    if (_changedProperties.has('drmSettingsShown') && this.drmSettingsShown) {
+      this.shadowRoot.querySelector('.drm-settings-container').add('active');
+    }
+  }
+
+  #onFormAnimationEnd(e) {
+    if (e.target.classList.contains('shrink')) {
+      e.target.classList.add('active');
+    }
+
+    e.target.classList.remove('fade-in-grow', 'shrink');
+  }
+
+  #formAnimationClassMap() {
+    return {
+      'fade-in-grow': this.drmSettingsShown === true,
+      'shrink': this.drmSettingsShown === false
+    };
+  }
+
   #drmSettingsTemplate() {
     return html`
-      <form class="drm-settings-container ${this.drmSettingsShown ? 'fade-in' : 'hidden'}"
+      <form class="drm-settings-container ${classMap(this.#formAnimationClassMap())}"
             aria-hidden="${!this.drmSettingsShown}"
             @reset="${this.#initDrmSettings}"
-            @animationend="${e => e.target.classList.remove('fade-in')}">
+            @animationend="${e => this.#onFormAnimationEnd(e)}">
         <h3>DRM Settings</h3>
         <select aria-label="Select a DRM vendor" required
                 .value="${this.drmSettings.vendor}"

@@ -16,5 +16,5 @@
 .slide-up-fade-in {
   opacity: 0;
   animation: fade-in .4s var(--ease-elastic-in-3) forwards,
-  slide-in-up .4s var(--ease-elastic-in-3);
+             slide-in-up .4s var(--ease-elastic-in-3);
 }
