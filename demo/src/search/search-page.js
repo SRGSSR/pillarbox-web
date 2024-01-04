@@ -161,7 +161,7 @@ export class SearchPage extends LitElement {
     };
 
     return html`
-      <div class="results-container fade-in ${classMap(resultsClassMap)}"
+      <section class="results-container fade-in ${classMap(resultsClassMap)}"
         @animationend="${e => e.target.classList.remove('fade-in')}">
         ${map(this.results ?? [], this.#renderButton.bind(this))}
         ${when(this.nextPage, () => html`
@@ -169,7 +169,7 @@ export class SearchPage extends LitElement {
             @intersecting="${this.#fetchNextPage.bind(this)}">
           </intersection-observer>
         `)}
-      </div>
+      </section>
     `;
   }
 

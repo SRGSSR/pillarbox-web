@@ -1,4 +1,14 @@
-.pbw-title-container {
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: inline-block;
+}
+
+header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -35,7 +45,7 @@
   }
 }
 
-.pbw-menu {
+nav ul {
   margin-bottom: var(--size-4);
 
   route-link::part(a) {

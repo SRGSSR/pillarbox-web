@@ -201,14 +201,14 @@ export class ListsPage extends LitElement {
 
   #renderResults() {
     return html`
-        <div class="sections fade-in"
+        <div class="fade-in"
              @animationend="${e => e.target.classList.remove('fade-in')}"
              @click="${this.#onSectionsClicked.bind(this)}">
             ${map(this.level, (section, idx) => html`
-                <div class="section">
+                <section>
                     <h2 class="sticky">${section.title}</h2>
                     ${this.#renderNodes(section.nodes, idx)}
-                </div>
+                </section>
             `)}
         </div>
     `;
