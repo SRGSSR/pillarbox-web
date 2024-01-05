@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit';
-import { animations } from '../theme/theme';
+import { animations } from '../../theme/theme';
 
 
 const DEFAULT_INT_OPTIONS = { root: null, rootMargin: '0px', threshold: 0.1 };

@@ -1,4 +1,4 @@
-import router from '../router/router';
+import router from '../../router/router';
 import { html, LitElement, unsafeCSS } from 'lit';
 import componentCSS from 'bundle-text:./content-link-component.scss';
 

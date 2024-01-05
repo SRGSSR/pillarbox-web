@@ -1,16 +1,15 @@
 import { html, LitElement, unsafeCSS } from 'lit';
-import { animations, theme } from '../theme/theme';
-import router from '../router/router';
+import { animations, theme } from '../../../theme/theme';
+import router from '../../../router/router';
 import componentCSS from 'bundle-text:./lists-page.scss';
-import '../spinner/spinner-component';
-import '../core/intersection-observer-component';
-import '../core/scroll-to-top-component';
+import '../../../components/spinner/spinner-component';
+import '../../../components/intersection-observer/intersection-observer-component';
+import '../../../components/scroll-to-top/scroll-to-top-component';
 import { map } from 'lit/directives/map.js';
 import { when } from 'lit/directives/when.js';
-import { openPlayerModal } from '../player/player-dialog';
 import ListsPageStateManager from './lists-page-state-manager';
 import { listsSections } from './lists-sections';
-import Pillarbox from '../../../src/pillarbox';
+import Pillarbox from '../../../../../src/pillarbox';
 
 export class ListsPage extends LitElement {
   static properties = {
@@ -103,11 +102,7 @@ export class ListsPage extends LitElement {
    * @param {number} nodeIndex - The index of the node.
    */
   async navigateTo(sectionIndex, nodeIndex) {
-    if (this.#stateManager.isLeafSection(sectionIndex)) {
-      const node = this.#stateManager.retrieveNode(sectionIndex, nodeIndex);
-
-      openPlayerModal({ src: node.urn, type: 'srgssr/urn' });
-    } else {
+    if (!this.#stateManager.isLeafSection(sectionIndex)) {
       this.abortFetch();
       this.loading = true;
       try {

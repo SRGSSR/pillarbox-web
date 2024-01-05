@@ -1,15 +1,15 @@
 import { html, LitElement, unsafeCSS } from 'lit';
-import { animations, theme } from '../theme/theme';
-import router from '../router/router';
+import { animations, theme } from '../../../theme/theme';
+import router from '../../../router/router';
 import componentCSS from 'bundle-text:./search-page.scss';
 import './search-bar-component';
-import ilProvider from '../core/il-provider';
-import '../spinner/spinner-component';
-import '../core/intersection-observer-component';
-import '../core/scroll-to-top-component';
-import '../core/content-link-component';
+import ilProvider from '../../../utils/il-provider';
+import '../../../components/spinner/spinner-component';
+import '../../../components/intersection-observer/intersection-observer-component';
+import '../../../components/scroll-to-top/scroll-to-top-component';
+import '../../../components/content-link/content-link-component';
 import { map } from 'lit/directives/map.js';
-import Pillarbox from '../../../src/pillarbox';
+import Pillarbox from '../../../../../src/pillarbox';
 import { when } from 'lit/directives/when.js';
 import { classMap } from 'lit/directives/class-map.js';
 

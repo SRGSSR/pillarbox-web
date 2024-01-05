@@ -1,7 +1,7 @@
 import { html, LitElement, unsafeCSS } from 'lit';
-import { animations, theme } from '../theme/theme';
+import { animations, theme } from '../../../theme/theme';
 import componentCSS from 'bundle-text:./search-bar-component.scss';
-import Pillarbox from '../../../src/pillarbox';
+import Pillarbox from '../../../../../src/pillarbox';
 
 const DEFAULT_BU = 'rsi';
 

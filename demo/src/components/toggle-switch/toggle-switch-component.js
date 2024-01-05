@@ -1,5 +1,5 @@
 import { html, LitElement, unsafeCSS } from 'lit';
-import { theme } from '../theme/theme';
+import { theme } from '../../theme/theme';
 import componentCSS from 'bundle-text:./toggle-switch-component.scss';
 
 /**

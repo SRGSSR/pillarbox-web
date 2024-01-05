@@ -1,12 +1,12 @@
-import router from '../router/router';
+import router from '../../../router/router';
 import { css, html, LitElement } from 'lit';
-import { animations, theme } from '../theme/theme';
+import { animations, theme } from '../../../theme/theme';
 import './load-media-form-component';
-import '../core/content-link-component';
+import '../../../components/content-link/content-link-component';
 import Examples from './examples';
-import { asQueryParams, openPlayerModal } from '../player/player-dialog';
 import { map } from 'lit/directives/map.js';
 import { when } from 'lit/directives/when.js';
+import { asQueryParams, openPlayerModal } from '../../../components/player/player';
 
 /**
  * A web component that represents the examples page.
