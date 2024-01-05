@@ -1,4 +1,4 @@
-.dialog-container {
+[part="container"] {
   block-size: 480px;
   aspect-ratio: var(--ratio-widescreen);
   padding: 0;
@@ -6,7 +6,7 @@
   background-color: var(--color-12);
 }
 
-.dialog-close-btn {
+[part="close-btn"] {
   position: absolute;
   top: calc(var(--size-3) * -1);
   right: 0;
@@ -16,6 +16,6 @@
   height: var(--size-7);
   font-size: var(--size-4);
   text-align: center;
-  background: var(--gray-0);
+  background: var(--gray-6);
   border-radius: var(--radius-round);
 }

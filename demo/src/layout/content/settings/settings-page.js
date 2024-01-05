@@ -1,7 +1,7 @@
-import router from '../router/router';
+import router from '../../../router/router';
 import { html, LitElement, unsafeCSS } from 'lit';
-import { animations, theme } from '../theme/theme';
-import '../core/toggle-switch-component.js';
+import { animations, theme } from '../../../theme/theme';
+import '../../../components/toggle-switch/toggle-switch-component.js';
 import PreferencesProvider from './preferences-provider';
 import componentCss from 'bundle-text:./settings-page.scss';
 

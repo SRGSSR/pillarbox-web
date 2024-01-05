@@ -36,17 +36,12 @@
   </head>
 
   <body>
-
-  <!-- Dialog with the player -->
-  <dialog id="pbw-dialog" class="dialog-container">
+  <demo-dialog>
     <video-js id="player" class="pbw-demo" controls crossorigin="anonymous"></video-js>
-    <button id="pbw-dialog-close-btn" class="btn dialog-close-btn" title="Close player dialog">&times;</button>
-  </dialog>
+  </demo-dialog>
 
-  <pbw-header></pbw-header>
-
+  <demo-header></demo-header>
   <route-outlet id="pbw-container"></route-outlet>
-
   <script type="module" src="src/index.js"></script>
   </body>
 </html>

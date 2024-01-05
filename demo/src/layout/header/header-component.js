@@ -1,19 +1,19 @@
-import githubLogoSvg from 'bundle-text:../../img/github-logo.svg';
-import srgssrLogo from '../../img/srgssr-logo.png';
-import Pillarbox from '../../../src/pillarbox';
+import githubLogoSvg from 'bundle-text:../../../img/github-logo.svg';
+import srgssrLogo from '../../../img/srgssr-logo.png';
+import Pillarbox from '../../../../src/pillarbox';
 import { html, LitElement, unsafeCSS } from 'lit';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
-import '../router/route-link-component';
-import { theme } from '../theme/theme';
+import '../../router/route-link-component';
+import { theme } from '../../theme/theme';
 import headerCSS from 'bundle-text:./header-component.scss';
-import router from '../router/router';
+import router from '../../router/router';
 
 /**
  * A web component that represents the header element of the demo page.
  *
  * @element pbw-header
  */
-export class HeaderElement extends LitElement {
+export class DemoHeaderElement extends LitElement {
   static properties = {
     debug: { type: Boolean, state: true }
   };
@@ -68,4 +68,4 @@ export class HeaderElement extends LitElement {
   }
 }
 
-customElements.define('pbw-header', HeaderElement);
+customElements.define('demo-header', DemoHeaderElement);

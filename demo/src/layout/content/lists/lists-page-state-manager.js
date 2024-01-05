@@ -1,4 +1,4 @@
-import { toKebabCase } from '../core/string-utils';
+import { toKebabCase } from '../../../utils/string-utils';
 
 /**
  * Manages the state of a lists page, allowing navigation and retrieval of section data.

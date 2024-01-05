@@ -1,5 +1,5 @@
 import { css, html, LitElement } from 'lit';
-import { animations, theme } from '../theme/theme';
+import { animations, theme } from '../../theme/theme';
 
 /**
  * A custom web component that provides a button to scroll to the top of the page.

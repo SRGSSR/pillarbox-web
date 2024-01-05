@@ -1,4 +1,4 @@
-import ilProvider from '../core/il-provider';
+import ilProvider from '../../../utils/il-provider';
 
 /**
  * A section within the content hierarchy.

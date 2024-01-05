@@ -1,5 +1,5 @@
 import { html, LitElement, unsafeCSS } from 'lit';
-import { animations, theme } from '../theme/theme';
+import { animations, theme } from '../../../theme/theme';
 import componentCSS from 'bundle-text:./load-media-form-component.scss';
 import { classMap } from 'lit/directives/class-map.js';
 
@@ -119,13 +119,13 @@ export class LoadMediaFormComponent extends LitElement {
     super.updated(_changedProperties);
 
     if (_changedProperties.has('drmSettingsShown') && this.drmSettingsShown) {
-      this.shadowRoot.querySelector('.drm-settings-container').add('active');
+      this.shadowRoot.querySelector('.drm-settings-container').classList.add('active');
     }
   }
 
   #onFormAnimationEnd(e) {
     if (e.target.classList.contains('shrink')) {
-      e.target.classList.add('active');
+      e.target.classList.remove('active');
     }
 
     e.target.classList.remove('fade-in-grow', 'shrink');

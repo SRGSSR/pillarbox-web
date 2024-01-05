@@ -3,16 +3,16 @@
  *
  * @module
  */
-import './player/player';
-import './player/player-dialog';
-import './layout/header-component';
+import './components/dialog/demo-dialog-component';
+import './components/player/player';
+import './layout/header/header-component';
 import './router/route-outlet-component';
-import './examples/examples-page';
-import './search/search-page';
-import './settings/settings-page';
-import './lists/lists-page';
+import './layout/content/examples/examples-page';
+import './layout/content/search/search-page';
+import './layout/content/settings/settings-page';
+import './layout/content/lists/lists-page';
 import router from './router/router';
-import PreferencesProvider from './settings/preferences-provider';
+import PreferencesProvider from './layout/content/settings/preferences-provider';
 
 const preferences = PreferencesProvider.loadPreferences();
 
