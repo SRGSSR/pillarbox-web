@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pillarbox - Development Page</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="stylesheet" href="npm:video.js/dist/video-js.css" />
+  <link rel="stylesheet" href="scss/player.scss" />
+
+  <style>
+    body {
+      height: 100dvh;
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <video id="player" class="video-js pbw-demo" controls muted></video>
+
+  <script type="module">
+    import Pillarbox from "../src/pillarbox.js";
+    import "../src/middleware/srgssr.js";
+
+    // Handle URL parameters
+    const url = new URL(location.toString());
+    const audioOnlyMode = url.searchParams.has("audioOnlyMode");
+    let currentTime = url.searchParams.get("currentTime");
+    const debug = url.searchParams.has("debug");
+    const ilHost = url.searchParams.get("ilHost") || undefined;
+    const language = url.searchParams.get("language");
+    const resize = url.searchParams.has("resize");
+    const urn = url.searchParams.get("urn") || "urn:swi:video:48115940";
+
+    // Expose Pillarbox and player in the window object for debugging
+    window.pillarbox = Pillarbox;
+
+    // Allows to track comscore events until TC becomes Pillarbox-compatible
+    window.videojs = Pillarbox;
+
+    window.player = new Pillarbox("player", {
+      audioOnlyMode,
+      debug,
+      fill: true,
+      language,
+      liveui: true,
+      liveTracker: {
+        trackingThreshold: 120,
+        liveTolerance: 30,
+      },
+      plugins: {
+        eme: true,
+      },
+      responsive: true,
+      srgOptions: {
+        dataProviderHost: ilHost
+      }
+    });
+
+    if (resize) {
+      /** @type {HTMLElement} */
+      const el = player.el();
+
+      el.style.resize = "both";
+      el.style.overflow = "hidden";
+    }
+
+    player.on("loadedmetadata", () => {
+      if (!currentTime) return;
+
+      player.currentTime(currentTime);
+      currentTime = undefined;
+    });
+
+    player.src({
+      src: urn,
+      type: "srgssr/urn",
+    });
+  </script>
+</body>
+
+</html>
