@@ -26,14 +26,14 @@
     import "../src/middleware/srgssr.js";
 
     // Handle URL parameters
-    const url = new URL(location.toString());
-    const audioOnlyMode = url.searchParams.has("audioOnlyMode");
-    let currentTime = url.searchParams.get("currentTime");
-    const debug = url.searchParams.has("debug");
-    const ilHost = url.searchParams.get("ilHost") || undefined;
-    const language = url.searchParams.get("language");
-    const resize = url.searchParams.has("resize");
-    const urn = url.searchParams.get("urn") || "urn:swi:video:48115940";
+    const searchParams = new URLSearchParams(location.search);
+    const audioOnlyMode = searchParams.has("audioOnlyMode");
+    let currentTime = searchParams.get("currentTime");
+    const debug = searchParams.has("debug");
+    const ilHost = searchParams.get("ilHost") || undefined;
+    const language = searchParams.get("language");
+    const resize = searchParams.has("resize");
+    const urn = searchParams.get("urn") || "urn:swi:video:48115940";
 
     // Expose Pillarbox and player in the window object for debugging
     window.pillarbox = Pillarbox;
