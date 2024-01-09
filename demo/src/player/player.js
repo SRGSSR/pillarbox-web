@@ -10,17 +10,6 @@ import PreferencesProvider from '../settings/preferences-provider';
 const DEMO_PLAYER_ID = 'player';
 const DEFAULT_OPTIONS = {
   fill: true,
-  html5: {
-    vhs: { useForcedSubtitles: true },
-  },
-  liveTracker: {
-    trackingThreshold: 120,
-    liveTolerance: 15,
-  },
-  liveui: true,
-  playsinline: true,
-  plugins: { eme: true },
-  responsive: true,
   restoreEl: true
 };
 
