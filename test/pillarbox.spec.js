@@ -20,6 +20,35 @@ describe('Pillarbox', () => {
     it('should have enableSmoothSeeking set to true by default', () => {
       expect(Pillarbox.options.enableSmoothSeeking).toBe(true);
     });
+
+    it('should set useForcedSubtitles to true in VHS configuration', () => {
+      expect(Pillarbox.options.html5).toEqual({
+        vhs: { useForcedSubtitles: true }
+      });
+    });
+
+    it('should have liveTracker configuration with default values', () => {
+      expect(Pillarbox.options.liveTracker).toEqual({
+        trackingThreshold: 120,
+        liveTolerance: 15,
+      });
+    });
+
+    it('should have liveui set to true by default', () => {
+      expect(Pillarbox.options.liveui).toBe(true);
+    });
+
+    it('should have playsinline set to true by default', () => {
+      expect(Pillarbox.options.playsinline).toBe(true);
+    });
+
+    it('should have plugins configuration with EME set to true by default', () => {
+      expect(Pillarbox.options.plugins).toEqual({ eme: true });
+    });
+
+    it('should have responsive set to true by default', () => {
+      expect(Pillarbox.options.responsive).toBe(true);
+    });
   });
 
   describe('VERSION', () => {
