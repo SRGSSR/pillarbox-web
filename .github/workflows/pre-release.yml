@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          fetch-tags: true
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
@@ -25,6 +28,11 @@ jobs:
           npm pkg delete scripts.prepare
           npm ci
 
+#      - name: Configure Actions identity
+#        run: |
+#          git config --global user.email "you@example.com"
+#          git config --global user.name "Your Name"
+
       - name: Run build
         run: |
           npm run build
@@ -34,7 +42,6 @@ jobs:
         run: npm run release:ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pre-release main tag failed 🫣
         if: failure()
