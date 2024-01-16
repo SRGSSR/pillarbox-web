@@ -1,0 +1,70 @@
+/*
+******************************************************************************
+-- Progress control: Contains the load progress, and play progress
+******************************************************************************
+*/
+&:not(.vjs-audio-only-mode) .vjs-progress-control {
+  position: absolute;
+  bottom: 3em;
+  width: calc(100% - 2em);
+  height: 1em;
+}
+
+.vjs-progress-holder {
+  margin: 0;
+}
+
+.vjs-load-progress {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 1em;
+
+  div {
+    background: transparent;
+  }
+}
+
+&.vjs-scrubbing,
+&.vjs-seeking {
+  .vjs-play-progress .vjs-time-tooltip {
+    display: none;
+  }
+}
+
+.vjs-play-progress {
+  color: #af001e;
+  background: #af001e;
+  border-radius: 1em;
+}
+
+.vjs-play-progress::before {
+  font-size: 0px;
+  text-shadow: 0px 0px 1px #000;
+}
+
+.vjs-progress-control:hover  {
+  .vjs-play-progress::before {
+    font-size: .9em;
+  }
+
+  // Avoids recalculation of time tooltip position
+  .vjs-time-tooltip {
+    right: 0% !important;
+    transform: translateX(50%);
+  }
+}
+
+.vjs-progress-holder:focus-visible {
+  .vjs-play-progress::before {
+    font-size: .9em;
+  }
+}
+
+.vjs-time-tooltip,
+.vjs-mouse-display .vjs-time-tooltip {
+  top: -3em;
+  padding: 0.4em;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px #000, 1px 1px 2px #000;
+  background-color: transparent;
+}

@@ -1,0 +1,15 @@
+/*
+******************************************************************************
+-- Control bar: Contains the main controls of the player
+******************************************************************************
+*/
+&:not(.vjs-audio-only-mode) .vjs-control-bar {
+  align-items: end;
+  height: 6em;
+  padding-inline: 1em;
+  background: linear-gradient(#000 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+&.vjs-audio-only-mode .vjs-control-bar {
+  background-color: #1e232c;
+}

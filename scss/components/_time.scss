@@ -1,0 +1,29 @@
+/*
+******************************************************************************
+-- Time control: Provides media-related time information
+******************************************************************************
+*/
+.vjs-current-time {
+  margin-left: 1em;
+}
+
+.vjs-time-divider {
+  min-width: 1em;
+  text-align: center;
+}
+
+.vjs-remaining-time {
+  display: none;
+}
+
+&.vjs-audio-only-mode {
+  .vjs-current-time,
+  .vjs-time-divider,
+  .vjs-duration {
+    order: 1;
+  }
+
+  .vjs-duration {
+    margin-right: 1em;
+  }
+}

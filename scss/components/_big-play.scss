@@ -1,0 +1,30 @@
+/*
+******************************************************************************
+-- Big play button: Initial play button shown before the video has played
+******************************************************************************
+*/
+&:hover .vjs-big-play-button {
+  background-color: #16161688;
+  transition: background-color .25s ease;
+}
+
+// Refer to https://github.com/videojs/video.js/pull/8398
+.vjs-big-play-button {
+  width: 2em;
+  height: 2em;
+  margin: 0;
+  font-size: 2.25em;
+  background: transparent;
+  border: 0.1em solid #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: background-color .25s ease;
+}
+
+.vjs-big-play-button .vjs-icon-placeholder::before {
+  position: initial;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75em;
+}

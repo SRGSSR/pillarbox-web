@@ -1,0 +1,26 @@
+/*
+******************************************************************************
+-- Menu Item
+******************************************************************************
+*/
+
+.vjs-menu .vjs-menu-item {
+  border-radius: .25em;
+
+  &:not(.vjs-selected):focus,
+  &:not(.vjs-selected):hover {
+    background-color: #3f3f3f;
+  }
+
+  &.vjs-texttrack-settings:focus,
+  &.vjs-texttrack-settings:hover {
+    background-color: transparent;
+  }
+
+
+  .vjs-selected {
+    color: #222;
+    background-color: #fff;
+    pointer-events: none;
+  }
+}
