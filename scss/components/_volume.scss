@@ -1,0 +1,16 @@
+/*
+******************************************************************************
+-- Volume control: Contains the volume slider
+******************************************************************************
+*/
+.vjs-volume-level {
+  border-radius: 1em;
+}
+
+.vjs-volume-tooltip {
+  top: -2em;
+  padding: 0.4em;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px #000;
+  background-color: transparent;
+}

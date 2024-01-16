@@ -1,0 +1,63 @@
+/*
+******************************************************************************
+-- Title bar : Defines the default player size for each break point
+******************************************************************************
+*/
+&.vjs-layout-tiny {
+  font-size: 8px;
+}
+
+&.vjs-layout-x-small {
+  font-size: 10px;
+}
+
+&.vjs-layout-small {
+  font-size: 12px;
+}
+
+&.vjs-layout-medium {
+  font-size: 14px;
+}
+
+&.vjs-layout-large {
+  font-size: 16px;
+}
+
+&.vjs-layout-x-large {
+  font-size: 18px;
+}
+
+&.vjs-layout-huge {
+  font-size: 20px;
+}
+
+/*
+******************************************************************************
+-- Time control
+******************************************************************************
+*/
+// Avoid displaying the time controls if the source is a live stream and is small layouts
+&:not(.vjs-layout-tiny, .vjs-layout-x-small, .vjs-live) .vjs-time-divider,
+&:not(.vjs-layout-tiny, .vjs-layout-x-small, .vjs-live) .vjs-current-time,
+&:not(.vjs-layout-tiny, .vjs-layout-x-small, .vjs-live) .vjs-duration {
+  display: block;
+  padding: 0;
+  font-weight: bold;
+}
+
+/*
+******************************************************************************
+-- Progress control
+******************************************************************************
+*/
+// Avoid hiding the progress control
+&.vjs-layout-tiny,
+&.vjs-layout-x-small {
+  .vjs-progress-control {
+    display: flex;
+  }
+}
+
+&.vjs-layout-x-small.vjs-audio-only-mode .vjs-custom-control-spacer {
+  display: none;
+}

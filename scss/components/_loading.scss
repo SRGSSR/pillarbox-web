@@ -1,0 +1,34 @@
+/*
+******************************************************************************
+-- Loading spinner: Displayed while the media is loading
+******************************************************************************
+*/
+// Refer to https://github.com/videojs/video.js/pull/8369
+& .vjs-loading-spinner {
+  border: 0.25em solid transparent;
+}
+
+.vjs-loading-spinner,
+.vjs-loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes vjs-spinner-fade {
+  0% {
+    border-top-color: #333;
+  }
+  20% {
+    border-top-color: #333;
+  }
+  35% {
+    border-top-color: #fff;
+  }
+  60% {
+    border-top-color: #333;
+  }
+  100% {
+    border-top-color: #333;
+  }
+}
