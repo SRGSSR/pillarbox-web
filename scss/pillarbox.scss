@@ -1,0 +1,25 @@
+@import '../node_modules/video.js/dist/video-js.css';
+
+/*
+******************************************************************************
+-- Pillarbox default theme
+******************************************************************************
+*/
+.pillarbox-js {
+  @import "components/big-play";
+  @import "components/captions-settings";
+  @import "components/control";
+  @import "components/control-bar";
+  @import "components/control-spacer";
+  @import "components/error";
+  @import 'components/layout';
+  @import "components/loading";
+  @import "components/menu/menu";
+  @import "components/menu/menu-popup";
+  @import "components/slider";
+  @import "components/text-track";
+  @import "components/time";
+  @import "components/title-bar";
+  @import "components/progress";
+  @import "components/volume";
+}
