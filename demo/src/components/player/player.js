@@ -17,11 +17,13 @@ const DEFAULT_OPTIONS = {
 };
 
 /**
- * Creates and configures a Pillarbox video player.
+ * Creates and configures a Pillarbox player.
  *
- * @returns {Object} The configured Pillarbox video player instance.
+ * @param {Object} options - (Optional) options to customize the player behaviour.
+ *
+ * @returns {Object} The configured Pillarbox player instance.
  */
-const createPlayer = () => {
+const createPlayer = (options = {}) => {
   const preferences = PreferencesProvider.loadPreferences();
 
   window.player = new Pillarbox(DEMO_PLAYER_ID, {
@@ -30,7 +32,8 @@ const createPlayer = () => {
       muted: preferences.muted ?? true,
       autoplay: preferences.autoplay ?? false,
       debug: preferences.debug ?? false,
-    }
+    },
+    ...options
   });
 
   return window.player;
@@ -119,11 +122,23 @@ router.addEventListener('queryparams', loadPlayerFromRouter);
  * @param {string} options.src - The source URL of the video.
  * @param {string} [options.type] - (Optional) The type/format of the video (e.g., 'video/mp4').
  * @param {object} [options.keySystems] - (Optional) The DRM configuration for DRM protected sources.
+ * @param {object} [options.playerOptions] - (Optional) Additional configuration for the player.
+ * @param {Boolean} shouldUpdateRouter - Whether the router should be updated or not (Default: true).
+ *
+ * @returns {Object} The configured Pillarbox player instance.
  */
-export const openPlayerModal = ({ src, type, keySystems }) => {
-  const player = createPlayer();
+export const openPlayerModal = (
+  { src, type, keySystems, playerOptions },
+  shouldUpdateRouter = true
+) => {
+  const player = createPlayer(playerOptions ?? {});
 
   playerDialog.open = true;
   player.src({ src, type, keySystems });
-  router.updateState({ src, type, ...toParams(keySystems) });
+
+  if (shouldUpdateRouter) {
+    router.updateState({ src, type, ...toParams(keySystems) });
+  }
+
+  return player;
 };

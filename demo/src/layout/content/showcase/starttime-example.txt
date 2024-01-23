@@ -1,0 +1,11 @@
+// Create by referencing the video element with its unique ID
+const player = new Pillarbox('video-element-id')
+
+// Load the video source
+player.src({src: 'urn:swi:video:48115940', type: 'srgssr/urn'});
+
+// Listen for the 'loadeddata' event, indicating that the video data has loaded
+player.on('loadeddata', () => {
+  // Set the desired start position in seconds (e.g., start at 5 minutes)
+  player.currentTime(300);
+});

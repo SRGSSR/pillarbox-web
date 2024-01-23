@@ -4,8 +4,9 @@ import { animations, theme } from '../theme/theme';
 
 export class RouteLinkCompenent extends LitElement {
   static properties = {
-    href: {},
-    selected: { state: true },
+    href: { type: String },
+    title: { type: String },
+    selected: { type: Boolean, state: true },
   };
 
   static styles = [theme, animations];
@@ -49,6 +50,7 @@ export class RouteLinkCompenent extends LitElement {
     return html`
         <a href="${this.href}"
            aria-disabled="${this.selected}"
+           title="${this.title}"
            part="a ${this.selected ? 'active' : ''}">
             <slot></slot>
         </a>
