@@ -1,0 +1,10 @@
+@import '~highlight.js/scss/atom-one-dark';
+
+[part="container"] {
+  overflow-x: auto;
+  font-size: var(--font-size-0);
+}
+
+slot {
+  display: none;
+}

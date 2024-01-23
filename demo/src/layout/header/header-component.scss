@@ -12,11 +12,13 @@ header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  margin: var(--size-4) 0;
 
   h1 {
     display: flex;
     gap: .15em;
     align-items: center;
+    margin: 0;
   }
 }
 
@@ -45,20 +47,48 @@ header {
   }
 }
 
+.header-end {
+  display: flex;
+  align-items: center;
+
+  route-link::part(a) {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .material-icons-outlined {
+    font-size: var(--size-7);
+  }
+
+  route-link {
+    margin-left: var(--size-2);
+  }
+}
+
 nav ul {
   margin-bottom: var(--size-4);
 
-  route-link::part(a) {
-    padding: var(--size-1) var(--size-2);
-    border-radius: var(--radius-3);
-    transition: background-color 0.4s, color 0.4s;
+  li {
+    margin-right: var(--size-1);
   }
 
-  route-link::part(a active) {
-    color: var(--color-8);
-    text-decoration: none;
-    background-color: var(--color-5);
-    cursor: default;
-    transition: background-color 0.8s, color 0.4s;
+  li:last-child {
+    margin: 0;
   }
+}
+
+route-link::part(a) {
+  padding: var(--size-1) var(--size-1);
+  font-size: var(--size-4);
+  border-radius: var(--radius-3);
+  transition: background-color 0.4s, color 0.4s;
+}
+
+route-link::part(a active) {
+  color: var(--color-8);
+  text-decoration: none;
+  background-color: var(--color-5);
+  cursor: default;
+  transition: background-color 0.8s, color 0.4s;
 }

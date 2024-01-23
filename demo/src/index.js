@@ -5,16 +5,18 @@
  */
 import './components/dialog/demo-dialog-component';
 import './components/player/player';
-import './layout/header/header-component';
-import './router/route-outlet-component';
 import './layout/content/examples/examples-page';
+import './layout/content/lists/lists-page';
 import './layout/content/search/search-page';
 import './layout/content/settings/settings-page';
-import './layout/content/lists/lists-page';
+import './layout/content/showcase/showcase-page';
+import './layout/header/header-component';
+import './router/route-outlet-component';
 import router from './router/router';
 import PreferencesProvider from './layout/content/settings/preferences-provider';
 
 const preferences = PreferencesProvider.loadPreferences();
+
 
 // Initialize the router with the current path or 'examples' if none is found
 router.start({ defaultPath: 'examples' });

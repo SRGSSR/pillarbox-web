@@ -99,7 +99,7 @@ export class LoadMediaFormComponent extends LitElement {
                   @click="${() => this.drmSettingsShown = !this.drmSettingsShown}">
             <i class="material-icons-outlined ${classMap(btnSettingsClassMap)}"
                @animationend="${e => e.target.classList.remove('spin', 'spin-back')}">
-              settings
+              key
             </i>
           </button>
         </div>
