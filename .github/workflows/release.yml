@@ -17,8 +17,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@srgssr'
       - run: |
-          npm dist-tag ls @srgssr/pillarbox-web
-          npm dist-tag add @srgssr/pillarbox-web@$(npm view @srgssr/pillarbox-web dist-tags.main) latest
+          npm dist-tag add @srgssr/pillarbox-web@$(echo "${{github.ref_name}}" | cut -c 2-) latest
           exit 0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
