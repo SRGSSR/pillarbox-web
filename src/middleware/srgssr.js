@@ -31,7 +31,7 @@ class SrgSsr {
     SrgSsr.error(player, {
       code: MediaError.MEDIA_ERR_ABORTED,
       message,
-      cause: { type: blockReason, src: srcMediaObj },
+      metadata: { errorType: blockReason, src: srcMediaObj },
     });
 
     return true;
@@ -149,8 +149,8 @@ class SrgSsr {
     SrgSsr.error(player, {
       code: 0,
       message: player.localize('UNKNOWN'),
-      cause: {
-        type: 'UNKNOWN',
+      metadata: {
+        errorType: 'UNKNOWN',
         urn: player.src(),
         status: error.status,
         statusText: error.statusText,
@@ -167,13 +167,13 @@ class SrgSsr {
    * @param {import('video.js/dist/types/player').default} player
    * @param {Object} error
    */
-  static error(player, { code, message, cause }) {
+  static error(player, { code, message, metadata }) {
     player.error(null);
 
     player.error({
       code,
       message,
-      cause,
+      metadata,
     });
   }
 

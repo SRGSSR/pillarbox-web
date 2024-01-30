@@ -70,7 +70,7 @@ describe('SrgSsr', () => {
       expect(spyOnError).toHaveBeenCalledWith(player, expect.any(Object));
       expect(spyOnPlayerError.mock.calls[1]).toEqual(
         expect.arrayContaining([
-          expect.objectContaining({ cause: { type: 'STARTDATE', src: {}}})
+          expect.objectContaining({ metadata: { errorType: 'STARTDATE', src: {}}})
         ])
       );
     });
@@ -349,7 +349,7 @@ describe('SrgSsr', () => {
       const error = {
         code: 1,
         message: 'error message',
-        cause: 'error cause',
+        metadata: { errorType: 'error metadata' },
       };
 
       SrgSsr.error(player, error);
