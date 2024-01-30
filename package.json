@@ -109,7 +109,7 @@
     "stylelint-order": "^6.0.4"
   },
   "dependencies": {
-    "video.js": "^8.10.0",
+    "video.js": "^8.11.1",
     "videojs-contrib-eme": "^3.11.1"
   }
 }
