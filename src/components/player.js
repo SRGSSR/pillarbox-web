@@ -1,5 +1,8 @@
 import videojs from 'video.js';
 
+/**
+ * @class Player
+ */
 class Player extends videojs.getComponent('player') {
   /**
    * A getter/setter for the media's audio track.
@@ -108,5 +111,15 @@ class Player extends videojs.getComponent('player') {
   }
 }
 
+/**
+ * @type {Player & import('video.js/dist/types/player').default}
+ */
 // Overrides the default video.js player component
 export default videojs.registerComponent('player', Player);
+
+/**
+ * @typedef {Object} TrackSelector The track to select
+ *
+ * @property {String} language The track language
+ * @property {String} kind The track kind
+ */

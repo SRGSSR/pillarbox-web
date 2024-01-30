@@ -2,63 +2,36 @@
   "name": "@srgssr/pillarbox-web",
   "description": "Pillarbox is the modern SRG SSR player",
   "version": "0.6.9",
-  "pillarbox-core": "dist/pillarbox.core.js",
-  "pillarbox": "dist/pillarbox.js",
-  "pillarbox-css": "dist/pillarbox.css",
-  "targets": {
-    "github-page": {
-      "publicUrl": "./",
-      "source": [
-        "demo/index.html",
-        "demo/player.html",
-        "demo/404.html"
-      ],
-      "distDir": "./dist",
-      "isLibrary": false,
-      "outputFormat": "esmodule"
-    },
-    "pillarbox-core": {
-      "source": "src/pillarbox.js",
-      "distDir": "./dist",
-      "outputFormat": "esmodule",
-      "includeNodeModules": false,
-      "isLibrary": true,
-      "optimize": true
-    },
-    "pillarbox": {
-      "source": "build.js",
-      "distDir": "./dist",
-      "includeNodeModules": false,
-      "isLibrary": true,
-      "outputFormat": "esmodule",
-      "optimize": true
-    },
-    "pillarbox-css": {
-      "source": "node_modules/video.js/dist/video-js.css",
-      "distDir": "./dist",
-      "isLibrary": false,
-      "optimize": true
-    }
-  },
+  "type": "module",
+  "main": "dist/pillarbox.es.js",
+  "browser": "dist/pillarbox.umd.js",
   "files": [
     "dist/*",
-    "docs/*"
+    "docs/*",
+    "scss/*"
   ],
   "directories": {
     "doc": "docs"
   },
+  "targets": {
+    "main": false,
+    "github-page": {
+      "isLibrary": false,
+      "outputFormat": "esmodule"
+    }
+  },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "npm run build:css && npm run build:pillarbox && npm run build:pillarbox-core",
-    "build:css": "parcel build --target pillarbox-css",
-    "build:pillarbox": "parcel build --target pillarbox",
-    "build:pillarbox-core": "parcel build --target pillarbox-core",
-    "eslint": "eslint --ext .js src demo",
-    "github:page": "parcel build --target github-page",
+    "build": "npm run build:lib && npm run build:typings && npm run build:css",
+    "build:lib": "rollup -c",
+    "build:typings": "npx -p typescript tsc",
+    "build:css": "sass ./scss/pillarbox.scss:dist/video-js.min.css --style compressed --source-map --load-path node_modules",
+    "eslint": "eslint --ext .js src",
+    "github:page": "parcel build index.html --target github-page",
     "outdated": "npm outdated",
     "release:ci": "semantic-release",
-    "start": "parcel -p 6969 demo/*.html",
-    "stylelint": "stylelint **/*.scss --custom-syntax",
+    "start": "parcel -p 6969 index.html",
+    "stylelint": "stylelint **/*.scss --custom-syntax --allow-empty-input",
     "stylelint:fix": "stylelint **/*.scss --fix",
     "test": "jest --verbose",
     "test:watch": "jest --watch --verbose"
@@ -82,8 +55,11 @@
     "@babel/preset-env": "^7.23.6",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
-    "@parcel/transformer-inline-string": "^2.10.3",
-    "@parcel/transformer-sass": "^2.10.3",
+    "@parcel/transformer-sass": "^2.11.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^ 9.2.5",
@@ -93,20 +69,19 @@
     "buffer": "^6.0.3",
     "eslint": "^8.55.0",
     "eslint-plugin-jest": "^27.2.2",
-    "highlight.js": "^11.9.0",
     "husky": "^8.0.3",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.6.1",
-    "lit": "^3.1.0",
-    "material-icons": "^1.13.12",
-    "minimatch": "^9.0.3",
-    "open-props": "^1.6.16",
-    "parcel": "^2.10.3",
+    "parcel": "^2.11.0",
     "rimraf": "^5.0.5",
+    "rollup": "^4.9.6",
+    "rollup-plugin-filesize": "^10.0.0",
+    "sass": "^1.70.0",
     "semantic-release": "^22.0.10",
     "stylelint": "^16.0.2",
     "stylelint-config-rational-order": "^0.1.2",
-    "stylelint-order": "^6.0.4"
+    "stylelint-order": "^6.0.4",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "video.js": "^8.11.1",
