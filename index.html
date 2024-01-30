@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pillarbox - Development Page</title>
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-  <link rel="stylesheet" href="../scss/pillarbox.scss" />
+  <link rel="stylesheet" href="./scss/pillarbox.scss" />
 
   <style>
     body {
@@ -21,8 +21,8 @@
   <video id="player" class="video-js pillarbox-js" controls muted></video>
 
   <script type="module">
-    import Pillarbox from "../src/pillarbox.js";
-    import "../src/middleware/srgssr.js";
+    import Pillarbox from "./src/pillarbox.js";
+    import "./src/middleware/srgssr.js";
 
     // Handle URL parameters
     const searchParams = new URLSearchParams(location.search);
