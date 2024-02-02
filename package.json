@@ -16,6 +16,7 @@
   "targets": {
     "main": false,
     "github-page": {
+      "publicUrl": "./",
       "isLibrary": false,
       "outputFormat": "esmodule"
     }
