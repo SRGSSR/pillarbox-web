@@ -86,6 +86,6 @@
   },
   "dependencies": {
     "video.js": "^8.11.1",
-    "videojs-contrib-eme": "^3.11.1"
+    "videojs-contrib-eme": "^3.11.2"
   }
 }
