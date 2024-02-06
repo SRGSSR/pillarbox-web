@@ -2,57 +2,82 @@
 
 [![Pillarbox logo](README-images/logo.jpg)](https://github.com/SRGSSR/pillarbox-web)
 
-## Table of Contents
-
-- [About](#about)
-- [Quick Start](#quick-start)
-- [Contributing](#contributing)
-- [Documentation](#documentation)
-- [License](#license)
-
 ## About
 
-The Pillarbox Web Player is a web-based video player that extends Video.js to enable playback of SRGSSR content through
-a custom data provider. This player is designed to enhance the viewing experience of SRGSSR content, making it more
-accessible and feature-rich.
+The Pillarbox Web Player is a web-based video player that extends Video.js to enable playback of
+SRGSSR content through a custom data provider. This player is designed to enhance the viewing
+experience of SRGSSR content, making it more accessible and feature-rich.
 
 ## Quick Start
 
-To get started you'll need Node.js and npm installed on your system. Follow these steps to set up and run the player.
-
-First add the player to your project dependencies:
-
-```shell
-npm install @srgssr/pillarbox-web --save
-```
-
-Then add a `video-js` tag in your page :
-
-```html
-<video-js id="player" controls crossorigin="anonymous"></video-js>
-```
-
-Initialize the video using the Pillarbox constructor and specify the source and its type :
-
-```js
-const player = new Pillarbox('player', {/* Options go here */ });
-player.src({ src: 'urn:rts:video:6820736', type: 'srgssr/urn' });
-```
-
-## Contributing
-
-If you want to contribute to the project have a look at our [contributing guide](CONTRIBUTING.md).
-
-Make sur you enable pre-commit checks through Husky before sharing your code, to do so execute the following command:
+To get started with Pillarbox, you can install it through `npm` using the following command:
 
 ```bash
-npx husky install
+npm install --save @srgssr/pillarbox
+```
+
+In your HTML file, add the following code to initialize Pillarbox:
+
+```html
+
+<video-js id="my-player" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+```
+
+Import the CSS file in your HTML to apply Pillarbox default theme:
+
+```html
+
+<link rel="stylesheet" href="node_modules/pillarbox/pillarbox.min.css">
+```
+
+Finally, import Pillarbox and set up the player:
+
+```javascript
+import Pillarbox from 'pillarbox';
+
+const player = new Pillarbox('my-player', {// Options... });
+  player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
 ```
 
 ## Documentation
 
-For detailed information on how to use the Pillarbox Web Player, please refer to the documentation included with the
-project (**To be defined**).
+For detailed information on how to use the Pillarbox Web Player, checkout
+the [API Documentation](https://srgssr.github.io/pillarbox-web/api). A live demo of the player is
+available here: [Pillarbox Web Demo](https://srgssr.github.io/pillarbox-web-demo/)
+
+## Contributing
+
+If you want to contribute to this project, you are welcome to do so. Please follow the code style
+and linting rules defined in this project. You can use the following commands to check and fix your
+code:
+
+Check your javascript code:
+
+```shell
+npm run eslint
+```
+
+Check your CSS and SCSS code:
+
+```shell
+npm run stylelint
+```
+
+Fix your CSS and SCSS code:
+
+```shell
+npm run stylelint:fix
+```
+
+This project also has a pre-commit hook that runs the linting check automatically before you commit
+your changes. You can enable this hook by running the `prepare` script: `npm run prepare`.
+
+Before submitting a pull request, please make sure that your code builds successfully. You can use
+the following commands to build the project:
+
+```shell
+npm run build
+```
 
 ## License
 
