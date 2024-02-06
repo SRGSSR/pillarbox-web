@@ -4,30 +4,28 @@ import 'videojs-contrib-eme';
 import './components/player.js';
 
 /**
+ * Pillarbox is an alias for the video.js namespace with additional options.
+ *
  * @namespace
- * @class Pillarbox
- *
- * @extends import('video.js').VideoJsPlayer
- *
+ * @see https://docs.videojs.com/module-videojs-videojs
+ * @type {videojs}
  */
-class Pillarbox extends videojs {
-  static get VERSION() {
-    return {
-      pillarbox: version,
-      videojs: videojs.VERSION,
-      [videojs.VhsSourceHandler.name]: videojs.VhsSourceHandler.VERSION,
-      eme: videojs.getPlugin('eme').VERSION,
-    };
-  }
-}
+const pillarbox = videojs;
 
+pillarbox.VERSION = {
+  pillarbox: version,
+  videojs: videojs.VERSION,
+  [videojs.VhsSourceHandler.name]: videojs.VhsSourceHandler.VERSION,
+  eme: videojs.getPlugin('eme').VERSION,
+};
 /**
  * Enable smooth seeking for Pillarbox.
  *
  * @see [Video.js enableSmoothSeeking Option]{@link https://videojs.com/guides/options/#enablesmoothseeking}
  * @type {boolean}
+ * @default true
  */
-Pillarbox.options.enableSmoothSeeking = true;
+pillarbox.options.enableSmoothSeeking = true;
 /**
  * Configuration options for HTML5 settings in Pillarbox.
  *
@@ -39,7 +37,7 @@ Pillarbox.options.enableSmoothSeeking = true;
  * is selected. They are used to clarify dialogue, provide alternate languages, display texted graphics,
  * or present location/person IDs that are not otherwise covered in the dubbed/localized audio.
  */
-Pillarbox.options.html5 = {
+pillarbox.options.html5 = {
   vhs: { useForcedSubtitles: true }
 };
 /**
@@ -50,7 +48,7 @@ Pillarbox.options.html5 = {
  * @property {number} trackingThreshold - A threshold that controls when the liveui should be shown.
  * @property {number} liveTolerance - An option that controls how far from the seekable end should be considered live playback.
  */
-Pillarbox.options.liveTracker = {
+pillarbox.options.liveTracker = {
   trackingThreshold: 120,
   liveTolerance: 15,
 };
@@ -63,14 +61,14 @@ Pillarbox.options.liveTracker = {
  * @see [Video.js liveui Option]{@link https://videojs.com/guides/options/#liveui}
  * @type {boolean}
  */
-Pillarbox.options.liveui = true;
+pillarbox.options.liveui = true;
 /**
  * Indicates that the video is to be played "inline", that is within the element's playback area.
  *
  * @see [Video element playsinline attribute]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#playsinline}
  * @type {boolean}
  */
-Pillarbox.options.playsinline = true;
+pillarbox.options.playsinline = true;
 /**
  * Configuration for plugins.
  *
@@ -78,19 +76,19 @@ Pillarbox.options.playsinline = true;
  * @type {Object}
  * @property {boolean} eme - Enable the EME (Encrypted Media Extensions) plugin.
  */
-Pillarbox.options.plugins = { eme: true };
+pillarbox.options.plugins = { eme: true };
 /**
  * Enable responsive mode, this will cause the player to customize itself based on responsive breakpoints.
  *
  * @see [Video.js Responsive Option]{@link https://videojs.com/guides/options/#responsive}
  * @type {boolean}
  */
-Pillarbox.options.responsive = true;
-Pillarbox.options.srgOptions = {
+pillarbox.options.responsive = true;
+pillarbox.options.srgOptions = {
   dataProviderHost: undefined,
   tagCommanderScriptURL: undefined,
 };
-Pillarbox.options.trackers = {};
+pillarbox.options.trackers = {};
 
 
-export default Pillarbox;
+export default pillarbox;
