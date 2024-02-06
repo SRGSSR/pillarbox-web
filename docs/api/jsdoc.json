@@ -1,0 +1,48 @@
+{
+  "source": {
+    "include": ["src/components/player.js", "src/middleware/srgssr.js", "src/pillarbox.js", "src/typedefs.js"],
+    "includePattern": ".js$"
+  },
+  "plugins": [
+    "node_modules/jsdoc-tsimport-plugin/index.js",
+    "docs/api/jsodc-typeof-plugin.cjs",
+    "plugins/markdown"
+  ],
+  "opts": {
+    "readme": "./docs/api/index.md",
+    "destination": "dist/api",
+    "recurse": true,
+    "template": "node_modules/clean-jsdoc-theme",
+    "tutorials": "docs/api//tutorials",
+    "theme_opts": {
+      "favicon": "img/favicon.ico",
+      "default_theme": "fallback-dark",
+      "homepageTitle": "pillarbox-web API",
+      "title": "<a href=\"/pillarbox-web/dist/api/\" class=\"sidebar-title sidebar-title-anchor\"><img src=\"./docs/api/img/pillarbox-logo.webp\" height=\"40px\">pillarbox-web</a>",
+      "static_dir": ["docs/api/img"],
+      "include_css":["docs/api/docs.css"],
+      "footer": "<a href=\"https://www.srgssr.ch/en\" target=\"_blank\"><img alt=\"SRG SSR\" src=\"./docs/api/img/srgssr-logo.png\" height=\"18px\"></a><span>Swiss Broadcasting Corporation</span>\n",
+      "menu": [
+        {
+          "title": "Showcase",
+          "link": "https://srgssr.github.io/pillarbox-web-demo/showcase",
+          "target": "_blank"
+        },
+        {
+          "title": "Known Issues",
+          "link": "./tutorial-Known%20Issues.html",
+          "target": "_blank"
+        },
+        {
+          "title": "Source Code",
+          "link": "https://github.com/SRGSSR/pillarbox-web",
+          "target": "_blank"
+        }
+      ]
+    }
+  },
+  "markdown": {
+    "hardwrap": false,
+    "idInHeadings": true
+  }
+}

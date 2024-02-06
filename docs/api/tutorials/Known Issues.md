@@ -1,35 +1,24 @@
-# Known Issue
-
 This section aims to provide insights into specific challenges integrators may encounter and offers
 solutions or workarounds to address them.
 
-* [Calling `player.reset()` disables DRM for Safari](#calling-playerreset-disables-drm-for-safari)
-  * [Issue Details](#issue-details)
-  * [Solutions](#solutions)
-    * [Dispose of the player](#dispose-of-the-player)
-    * [Reset the `videojs-contrib-eme` plugin](#reset-the-videojs-contrib-eme-plugin)
-* [Setting start position on iOS safari](#setting-start-position-on-ios-safari)
-  * [Issue Details](#issue-details-1)
-  * [Workaround](#workaround)
-
-## Calling `player.reset()` disables DRM for Safari
+### Calling `player.reset()` disables DRM for Safari
 
 Attempts to load DRM (Digital Rights Management) protected content after calling `player.reset()`
 may not trigger the `webkitneedkey` event. This prevents the initiation of the certificate retrieval
 process in Safari, resulting in the inability to play DRM protected content.
 
-### Issue Details
+#### Issue Details
 
 - **Scenario:** Calling `player.reset()` before loading a new DRM protected source.
 - **Affected Browser:** Safari
 - **Symptoms:** `webkitneedkey` event not fired, leading to video playback issues with DRM-protected
   content.
 
-### Solutions
+#### Solutions
 
 To address this issue:
 
-#### Dispose of the player
+##### Dispose of the player
 
 Instead of calling `player.reset()` you can use the following approach to dispose of a player and
 reuse the DOM element further down the line :
@@ -47,7 +36,7 @@ reuse the DOM element further down the line :
 2. **Dispose of the player** : When you no longer need the player : `player.dispose()`.
 3. **Recreate the player** : Now you can initialise the player again like in step 1.
 
-#### Reset the `videojs-contrib-eme` plugin
+##### Reset the `videojs-contrib-eme` plugin
 
 If you *must* call `player.reset()` then you'll have to manually restart the `videojs-contrib-eme`
 plugin:
@@ -64,7 +53,7 @@ plugin:
     });
     ```
 
-## Setting start position on iOS safari
+### Setting start position on iOS safari
 
 On iOS Safari, there is a bug with the `loadedmetadata` event when attempting to set the start
 position of a video. This event, commonly used for this purpose on other browsers, may lead to
@@ -73,13 +62,13 @@ unexpected behavior on iOS devices.
 For more details
 see [Bug 261512: Changing the currentTime at loadedmetadata breaks the player][ios-bug].
 
-### Issue Details
+#### Issue Details
 
-- **Scenario:**Calling `player.on('loadedmetadata', () => player.currentTime(startPosition))`.
+- **Scenario:** Calling `player.on('loadedmetadata', () => player.currentTime(startPosition))`.
 - **Affected Browser:** Safari for iOS.
 - **Symptoms:** The video doesn't seek to the starting position and the seeking bar becomes stuck.
 
-### Workaround
+#### Workaround
 
 To address this issue on iOS Safari, it is recommended to use the `loadeddata`event instead
 of `loadedmetadata`. The `loadeddata` event is triggered when the frame at the current playback
