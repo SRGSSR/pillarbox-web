@@ -14,6 +14,9 @@ const FORMAT = {
 
 const IMAGE_SERVICE_URL = 'https://il.srgssr.ch/images/';
 
+/**
+ * @class Image
+ */
 class Image {
   /**
    * Generates the image scaling URL.

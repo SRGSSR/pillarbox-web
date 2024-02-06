@@ -5,6 +5,7 @@ import Pillarbox from '../pillarbox.js';
 /* eslint complexity: ["error", 10]*/
 /**
  * SRG analytics
+ * @class SRGAnalytics
  * @ignore
  *
  * ### Script URL
