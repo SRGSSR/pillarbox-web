@@ -5,7 +5,13 @@ Video.js.
 
 ## Quick Guide
 
-To get started with Pillarbox, you can install it through `npm` using the following command:
+To get started with Pillarbox, add the `@srgssr` registry in the `.npmrc` file of your project:
+
+```text
+@srgssr:registry=https://npm.pkg.github.com
+```
+
+You can now install it through `npm` the following command:
 
 ```bash
 npm install --save @srgssr/pillarbox
@@ -20,13 +26,13 @@ In your HTML file, add the following code to initialize Pillarbox:
 Import the CSS file in your HTML to apply Pillarbox default theme:
 
 ```html
-<link rel="stylesheet" href="node_modules/pillarbox/pillarbox.min.css">
+<link rel="stylesheet" href="node_modules/@srgssr/pillarbox-web/dist/pillarbox.min.css">
 ```
 
 Finally, import Pillarbox and set up the player:
 
 ```javascript
-import Pillarbox from 'pillarbox';
+import Pillarbox from '@srgssr/pillarbox-web';
 
 const player = new Pillarbox('my-player', {// Options... });
 player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });

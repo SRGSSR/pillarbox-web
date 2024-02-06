@@ -3,11 +3,11 @@
   "description": "Pillarbox is the modern SRG SSR player",
   "version": "0.6.9",
   "type": "module",
-  "main": "dist/pillarbox.es.js",
-  "browser": "dist/pillarbox.umd.js",
+  "module": "dist/pillarbox.es.js",
+  "style": "./dist/pillarbox.min.css",
+  "types": "./dist/types/pillarbox.d.ts",
   "files": [
     "dist/*",
-    "docs/*",
     "scss/*"
   ],
   "directories": {
@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "npm run build:lib && npm run build:typings && npm run build:css",
-    "build:css": "sass ./scss/pillarbox.scss:dist/video-js.min.css --style compressed --source-map --load-path node_modules",
+    "build:css": "sass ./scss/pillarbox.scss:dist/pillarbox.min.css --style compressed --source-map --load-path node_modules",
     "build:lib": "rollup -c",
     "build:typings": "npx -p typescript tsc",
     "eslint": "eslint --ext .js src",
