@@ -1,9 +1,18 @@
 import videojs from 'video.js';
 
 /**
+ * @ignore
+ * @type {typeof import('video.js/dist/types/player').default}
+ */
+const vjsPlayer = videojs.getComponent('player');
+
+/**
+ * This class extends {@link VideoJsPlayer}.
+ *
  * @class Player
  */
-class Player extends videojs.getComponent('player') {
+class Player extends vjsPlayer {
+
   /**
    * A getter/setter for the media's audio track.
    * Activates the audio track according to the language and kind properties.
@@ -26,7 +35,7 @@ class Player extends videojs.getComponent('player') {
    * // Activate first audio track found corresponding to language
    * player.audioTrack({language:'fr'});
    *
-   * @return { import('video.js/dist/types/tracks/audio-track').default|undefined }
+   * @return {AudioTrack|undefined}
    */
   audioTrack(trackSelector) {
     const audioTracks = Array.from(this.player().audioTracks());
@@ -77,7 +86,7 @@ class Player extends videojs.getComponent('player') {
    * // Activate first text track found corresponding to language
    * player.textTrack({language:'fr'});
    *
-   * @return { import('video.js/dist/types/tracks/audio-track').default|undefined }
+   * @return {VideojsTextTrack|undefined}
    */
   textTrack(trackSelector) {
     const textTracks = Array.from(this.player().textTracks()).filter(
@@ -112,14 +121,7 @@ class Player extends videojs.getComponent('player') {
 }
 
 /**
- * @type {Player & import('video.js/dist/types/player').default}
+ * @type {Player}
  */
 // Overrides the default video.js player component
 export default videojs.registerComponent('player', Player);
-
-/**
- * @typedef {Object} TrackSelector The track to select
- *
- * @property {String} language The track language
- * @property {String} kind The track kind
- */

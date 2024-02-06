@@ -12,6 +12,9 @@ import '../lang/fr.js';
 import '../lang/it.js';
 import '../lang/rm.js';
 
+/**
+ * @class SrgSsr
+ */
 class SrgSsr {
   /**
    * Set a blocking reason according to the block reason returned

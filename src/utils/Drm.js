@@ -4,6 +4,9 @@ const DRM_VENDORS = {
   PLAYREADY: 'com.microsoft.playready',
 };
 
+/**
+ * @class Drm
+ */
 class Drm {
   /**
    * Build the keySystems object according to the DRM vendor.

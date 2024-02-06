@@ -3,6 +3,9 @@ const TOKEN_TYPES = {
   NONE: 'NONE',
 };
 
+/**
+ * @class AkamaiTokenService
+ */
 class AkamaiTokenService {
   /**
    * Get the acl path.
