@@ -32,13 +32,20 @@ const player = new Pillarbox('my-player', {// Options... });
 player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
 ```
 
+## Player workflows
+
+For a comprehensive guide on player workflows, refer to the
+official [Video.js Player Workflows Guide](https://videojs.com/guides/player-workflows/). More
+showcases and examples ara available in
+the [Pillarbox Demo Application](https://srgssr.github.io/pillarbox-web-demo/showcase).
 
 ## Further Reading
 
-The most useful doc tu start is the [Player](./Player.html) class.
+Pillarbox serves as a superset of video.js, making all the available API features from video.js
+accessible without any modification. The most useful doc tu start is the [Player](./Player.html)
+class.
 
-To learn more about Pillarbox, you can check out
-our [Demo Application](https://srgssr.github.io/pillarbox-web/showcase). To learn more about
-video.js, you can visit the [Video.js Guides](https://videojs.com/guides) and
-the [API docs](https://docs.videojs.com/). Keep track of
-our [Known Issues](./tutorial-Known%20Issues.html) section.
+To learn more about video.js, you can visit the [Video.js Guides](https://videojs.com/guides) and
+the [Video.js API docs](https://docs.videojs.com/).
+
+Keep track of our [Known Issues](./tutorial-Known%20Issues.html) section.
