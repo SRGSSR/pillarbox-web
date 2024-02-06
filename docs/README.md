@@ -19,14 +19,12 @@ npm install --save @srgssr/pillarbox
 In your HTML file, add the following code to initialize Pillarbox:
 
 ```html
-
 <video-js id="my-player" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
 ```
 
 Import the CSS file in your HTML to apply Pillarbox default theme:
 
 ```html
-
 <link rel="stylesheet" href="node_modules/pillarbox/pillarbox.min.css">
 ```
 
@@ -36,7 +34,7 @@ Finally, import Pillarbox and set up the player:
 import Pillarbox from 'pillarbox';
 
 const player = new Pillarbox('my-player', {// Options... });
-  player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
+player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
 ```
 
 ## Documentation
@@ -44,6 +42,24 @@ const player = new Pillarbox('my-player', {// Options... });
 For detailed information on how to use the Pillarbox Web Player, checkout
 the [API Documentation](https://srgssr.github.io/pillarbox-web/api). A live demo of the player is
 available here: [Pillarbox Web Demo](https://srgssr.github.io/pillarbox-web-demo/)
+
+## Pillarbox flavours
+
+Pillarbox comes in two variants:
+
+- `pillarbox-core`: is the core library that provides a rich set of features on top of the Video.js
+  API. It does not include any SRGSSR-specific business logic, so it can be used by any developer
+  who wants to customize their own video player.
+- `pillarbox` is the complete package that includes the core library as well as the SRGSSR data
+  provider and analytics. It is designed for SRGSSR applications that need to integrate with the
+  SRGSSR media platform and tracking behavior.
+
+## TypeScript Support
+
+TypeScript is a language that extends JavaScript with static types and other features. It helps to
+write more reliable and maintainable code. `Pillarbox` is written in plain JavaScript, but it
+provides type declarations for TypeScript users. These declarations are carefully generated and
+included in the bundled package.
 
 ## Contributing
 
