@@ -5,11 +5,15 @@ Video.js.
 
 ## Quick Guide
 
-To get started with Pillarbox, add the `@srgssr` registry in the `.npmrc` file of your project:
+To get started with Pillarbox, add the `@srgssr` registry in your `.npmrc` file:
 
 ```text
+//npm.pkg.github.com/:_authToken=TOKEN
 @srgssr:registry=https://npm.pkg.github.com
 ```
+
+To generate an authentication token follow this
+guide: [Authenticating with a personal access token](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token)
 
 You can now install it through `npm` the following command:
 

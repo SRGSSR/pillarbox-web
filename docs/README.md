@@ -10,11 +10,15 @@ experience of SRGSSR content, making it more accessible and feature-rich.
 
 ## Quick Start
 
-To get started with Pillarbox, add the `@srgssr` registry in the `.npmrc` file of your project: 
+To get started with Pillarbox, add the `@srgssr` registry in your `.npmrc` file:
 
 ```text
+//npm.pkg.github.com/:_authToken=TOKEN
 @srgssr:registry=https://npm.pkg.github.com
 ```
+
+To generate an authentication token follow this
+guide: [Authenticating with a personal access token](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token)
 
 You can now install it through `npm` the following command:
 
@@ -25,12 +29,14 @@ npm install --save @srgssr/pillarbox
 In your HTML file, add the following code to initialize Pillarbox:
 
 ```html
+
 <video-js id="my-player" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
 ```
 
 Import the CSS file in your HTML to apply Pillarbox default theme:
 
 ```html
+
 <link rel="stylesheet" href="node_modules/@srgssr/pillarbox-web/dist/pillarbox.min.css">
 ```
 
@@ -40,7 +46,7 @@ Finally, import Pillarbox and set up the player:
 import Pillarbox from '@srgssr/pillarbox-web';
 
 const player = new Pillarbox('my-player', {// Options... });
-player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
+  player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
 ```
 
 ## Documentation
