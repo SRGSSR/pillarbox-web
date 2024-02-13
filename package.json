@@ -5,7 +5,7 @@
   "type": "module",
   "module": "dist/pillarbox.es.js",
   "style": "./dist/pillarbox.min.css",
-  "types": "./dist/types/pillarbox.d.ts",
+  "types": "./dist/types/build.es.d.ts",
   "files": [
     "dist/*",
     "scss/*"
