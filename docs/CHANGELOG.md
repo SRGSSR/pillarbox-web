@@ -1,3 +1,16 @@
+## [1.0.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.0.0...v1.0.1) (2024-02-13)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **css:** bundle videojs css in pillarbox theme ([4b60c6d](https://github.com/SRGSSR/pillarbox-web/commit/4b60c6d0c007b51df472c3b79fbe171ed49072f5)), closes [#202](https://github.com/SRGSSR/pillarbox-web/issues/202)
+* **types:** export player class in main typings entry point ([b7d91a7](https://github.com/SRGSSR/pillarbox-web/commit/b7d91a7803fb9ef219da2ae86cfdb786497892b2)), closes [#205](https://github.com/SRGSSR/pillarbox-web/issues/205)
+
+
+### Docs 📖
+
+* update quick start guide ([8353dd8](https://github.com/SRGSSR/pillarbox-web/commit/8353dd8e7d7943d3a9f3ea5b171ac71c31f59116))
+
 ## 1.0.0 (2024-02-09)
 
 
