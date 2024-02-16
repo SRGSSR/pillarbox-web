@@ -18,6 +18,7 @@ pillarbox.VERSION = {
   [videojs.VhsSourceHandler.name]: videojs.VhsSourceHandler.VERSION,
   eme: videojs.getPlugin('eme').VERSION,
 };
+
 /**
  * Enable smooth seeking for Pillarbox.
  *
@@ -84,11 +85,11 @@ pillarbox.options.plugins = { eme: true };
  * @type {boolean}
  */
 pillarbox.options.responsive = true;
-pillarbox.options.srgOptions = {
-  dataProviderHost: undefined,
-  tagCommanderScriptURL: undefined,
-};
+/**
+ * A placeholder for accessing trackers directly from the player.
+ *
+ * @type {Object}
+ */
 pillarbox.options.trackers = {};
-
 
 export default pillarbox;
