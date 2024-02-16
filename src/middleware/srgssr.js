@@ -319,4 +319,10 @@ class SrgSsr {
 
 Pillarbox.use('srgssr/urn', SrgSsr.middleware);
 
+// Add Middleware specific options
+Pillarbox.options.srgOptions = {
+  dataProviderHost: undefined,
+  tagCommanderScriptURL: undefined,
+};
+
 export default SrgSsr;
