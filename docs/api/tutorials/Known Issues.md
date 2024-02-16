@@ -46,12 +46,12 @@ plugin:
 2. **Reinitialize `videojs-contrib-eme` After `player.reset()`:** If you must call `player.reset()`,
    reinitialize the `videojs-contrib-eme` plugin afterward to ensure proper handling of
    DRM-protected content. Example:
-    ```javascript
-    // Reinitialize videojs-contrib-eme after calling player.reset() and before loading a new source
-    player.eme({
-        // Add your plugin configuration here
-    });
-    ```
+   ```javascript
+   // Reinitialize videojs-contrib-eme after calling player.reset() and before loading a new source
+   player.eme({
+     // Add your plugin configuration here
+   });
+   ```
 
 ### Setting start position on iOS safari
 
@@ -81,5 +81,59 @@ player.on('loadeddata', () => {
   player.currentTime(startTime);
 });
 ```
+
+### Analytics Tracking Limitation
+
+> This issue is limited to the SRG SSR Analytics module.
+
+There is a limitation related to analytics tracking when attempting to load multiple players on the
+same page.
+
+The current implementation of TagComander uses a global variable to persist labels needed
+for tracking, loading multiple players overrides labels with those from the latest loaded source.
+
+#### Issue Details
+
+- **Scenario:** Instantiating multiple players on the same page.
+- **Symptoms:** Only the latest loaded source labels are sent.
+
+#### Workaround
+
+To address this limitation, only one player should have tracking enabled at a time, while all other
+players need to disable it using the `disableTrackers` property during source loading:
+
+```javascript
+const player = pillarbox('my-player');
+player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn', disableTrackers: true });
+```
+
+> 🚨 **DO NOT toggle this flag again if tracking has been disabled this way.**
+>
+> Since labels are set on the `loadstart` event, disabling the tracking this way prevents any label
+> conflicts. However, Re-enabling tracking for the same source after the player is ready will not
+> update labels.
+
+##### Additional Considerations
+
+1. To check if any player is already tracking analytics, use the following code:
+   ```javascript
+   pillarbox.getAllPlayers().some(player => player.currentSource().disableTrackers)
+   ```
+
+2. Before tracking a new player, disable tracking on the currently tracking player:
+   ```javascript
+   const newPlayer = pillarbox('new-player');
+   // Find the currently tracking player
+   const trackedPlayer = pillarbox.getAllPlayers().find(player => player.currentSource().disableTrackers);
+
+   // If the ready event has already been fired, this callback is triggered immediately.
+   // Otherwise, it acts like an event listener.
+   trackedPlayer.ready(() => {
+     trackedPlayer.currentSource().disableTrackers = true;
+     // Tracking has been disabled for the previous player; it is safe to switch the tracking now.
+     newPlayer.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
+   });
+   ```
+   Again, in this scenario you MUST NOT re-enable the tracking for `trackedPlayer`.
 
 [ios-bug]: https://bugs.webkit.org/show_bug.cgi?id=261512
