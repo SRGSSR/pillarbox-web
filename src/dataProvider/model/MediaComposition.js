@@ -202,6 +202,7 @@ class MediaComposition {
       streamOffset: resource.streamOffset,
       tokenType: resource.tokenType,
       url: resource.url,
+      urn: this.chapterUrn
     }));
   }
 

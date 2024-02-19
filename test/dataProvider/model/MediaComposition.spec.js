@@ -519,6 +519,7 @@ describe('MediaComposition', () => {
       expect(resource).toHaveProperty('streamOffset');
       expect(resource).toHaveProperty('tokenType');
       expect(resource).toHaveProperty('url');
+      expect(resource).toHaveProperty('urn');
     });
 
     it('should return the main resources for an on demand video', () => {
