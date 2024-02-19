@@ -517,6 +517,7 @@ describe('MediaComposition', () => {
       expect(resource).toHaveProperty('quality');
       expect(resource).toHaveProperty('streaming');
       expect(resource).toHaveProperty('streamOffset');
+      expect(resource).toHaveProperty('subtitles');
       expect(resource).toHaveProperty('tokenType');
       expect(resource).toHaveProperty('url');
       expect(resource).toHaveProperty('urn');
