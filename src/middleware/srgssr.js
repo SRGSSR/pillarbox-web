@@ -41,6 +41,42 @@ class SrgSsr {
   }
 
   /**
+   * Adds chapters to the player.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {string} chapterUrn The URN of the main chapter.
+   * @param {Array} [chapters=[]]
+   */
+  static addChapters(player, chapterUrn, chapters = []) {
+    const trackId = 'srgssr-chapters';
+    const removeTrack = player.textTracks().getTrackById(trackId);
+
+    if (removeTrack) {
+      player.textTracks().removeTrack(removeTrack);
+    }
+
+    if (!Array.isArray(chapters) || !chapters.length) return;
+
+    const chapterTrack = new Pillarbox.TextTrack({
+      tech: player.tech(true),
+      kind: 'metadata',
+      id: trackId
+    });
+
+    chapters.forEach(chapter => {
+      if (chapterUrn !== chapter.fullLengthUrn) return;
+
+      chapterTrack.addCue({
+        startTime: chapter.fullLengthMarkIn / 1_000,
+        endTime: chapter.fullLengthMarkOut / 1_000,
+        text: JSON.stringify(chapter)
+      });
+    });
+
+    player.textTracks().addTrack(chapterTrack);
+  }
+
+  /**
    * Set a blocking reason according to the block reason returned
    * by mediaData.
    *
@@ -331,6 +367,7 @@ class SrgSsr {
             return;
 
           SrgSsr.addRemoteTextTracks(player, mediaData.subtitles);
+          SrgSsr.addChapters(player, mediaData.urn, mediaData.chapters);
 
           return next(null, srcMediaObj);
         } catch (error) {

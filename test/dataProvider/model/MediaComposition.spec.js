@@ -504,6 +504,7 @@ describe('MediaComposition', () => {
 
       expect(resource).toHaveProperty('analyticsData');
       expect(resource).toHaveProperty('analyticsMetadata');
+      expect(resource).toHaveProperty('chapters');
       expect(resource).toHaveProperty('vendor');
       expect(resource).toHaveProperty('dvr');
       expect(resource).toHaveProperty('drmList');

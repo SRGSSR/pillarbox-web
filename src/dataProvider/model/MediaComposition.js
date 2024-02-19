@@ -187,6 +187,7 @@ class MediaComposition {
         resource.analyticsMetadata
       ),
       blockReason: this.getMainChapter().blockReason,
+      chapters: this.getChapters(),
       vendor: this.getMainChapter().vendor,
       drmList: resource.drmList,
       dvr: resource.dvr,

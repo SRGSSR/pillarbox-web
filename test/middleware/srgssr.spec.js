@@ -42,10 +42,81 @@ describe('SrgSsr', () => {
       options: jest.fn().mockReturnValue({ srgOptions: {}, trackers: {}}),
       poster: (url) => url,
       src: jest.fn(),
+      tech: jest.fn(),
+      textTracks: jest.fn().mockReturnValue({ getTrackById: jest.fn(), removeTrack: jest.fn(), addTrack: jest.fn() }),
       titleBar: {
         update: ({ title, description }) => ({ title, description }),
       },
     };
+  });
+
+  /**
+   *****************************************************************************
+   * addChapters ***************************************************************
+   *****************************************************************************
+   */
+  describe('addChapters', () => {
+    it('should not call addChapters if the chapters parameter is not an array or if the array is empty', async () => {
+      const spyOnPillarboxTextTrack = jest.spyOn(Pillarbox, 'TextTrack');
+
+      SrgSsr.addChapters(player, true);
+      SrgSsr.addChapters(player, null);
+      SrgSsr.addChapters(player, '');
+      SrgSsr.addChapters(player, undefined);
+
+      expect(spyOnPillarboxTextTrack).not.toHaveBeenCalled();
+    });
+
+    it('should remove chapters track if any', async () => {
+      const spyOnRemoveTrack = jest.spyOn(player.textTracks(), 'removeTrack');
+
+      player.textTracks().getTrackById.mockReturnValueOnce({});
+      SrgSsr.addChapters(player);
+
+      expect(spyOnRemoveTrack).toHaveBeenCalled();
+    });
+
+    it('should not add the chapter if the only available chapter is the main chapter', async () => {
+      const chapterUrn = 'urn:full:length';
+      const result = [];
+
+      Pillarbox.TextTrack
+        .prototype
+        .addCue
+        .mockImplementation((cue) => result.push(cue));
+
+      SrgSsr.addChapters(player, chapterUrn, [{
+        fullLengthMarkIn: 0,
+        fullLengthMarkOut: 10000
+      }]);
+
+      expect(result).toHaveLength(0);
+    });
+
+    it('should add all chapters that are not the main chapter', async () => {
+      const chapterUrn = 'urn:full:length';
+      const result = [];
+
+      Pillarbox.TextTrack
+        .prototype
+        .addCue
+        .mockImplementation((cue) => result.push(cue));
+
+      SrgSsr.addChapters(player, chapterUrn, [{
+        fullLengthMarkIn: 0,
+        fullLengthMarkOut: 10000
+      }, {
+        fullLengthUrn: chapterUrn,
+        fullLengthMarkIn: 2500,
+        fullLengthMarkOut: 5000
+      }, {
+        fullLengthUrn: chapterUrn,
+        fullLengthMarkIn: 6000,
+        fullLengthMarkOut: 9500
+      }]);
+
+      expect(result).toHaveLength(2);
+    });
   });
 
   /**
