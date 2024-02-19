@@ -34,6 +34,15 @@
     const resize = searchParams.has("resize");
     const urn = searchParams.get("urn") || "urn:swi:video:48864812";
 
+    // Media examples
+    window.mediaExamples = {
+      _blockedSegmentAndChapters: {
+        label: 'Blocked segment at 761 (12:42) and chapters',
+        src: 'urn:rts:video:10894383',
+        type: 'srgssr/urn'
+      },
+    };
+
     // Expose Pillarbox and player in the window object for debugging
     window.pillarbox = Pillarbox;
 
