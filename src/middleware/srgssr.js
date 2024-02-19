@@ -17,6 +17,30 @@ import '../lang/rm.js';
  */
 class SrgSsr {
   /**
+   * Adds remote text tracks from an array of subtitles.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {Array} [subtitles=[]]
+   */
+  static addRemoteTextTracks(player, subtitles = []) {
+    if (!Array.isArray(subtitles)) return;
+
+    subtitles.forEach(({
+      type,
+      language: label,
+      locale: language,
+      url: src
+    }) => {
+      player.addRemoteTextTrack({
+        kind: type === 'SDH' ? 'captions' : 'subtitles',
+        label,
+        language,
+        src
+      });
+    });
+  }
+
+  /**
    * Set a blocking reason according to the block reason returned
    * by mediaData.
    *
@@ -305,6 +329,8 @@ class SrgSsr {
 
           if (SrgSsr.blockingReason(player, mediaData.blockReason, srcMediaObj))
             return;
+
+          SrgSsr.addRemoteTextTracks(player, mediaData.subtitles);
 
           return next(null, srcMediaObj);
         } catch (error) {

@@ -33,6 +33,7 @@ describe('SrgSsr', () => {
     Image.scale = jest.fn(({ url }) => `https://mock-scale.ch/${url}`);
 
     player = {
+      addRemoteTextTrack: jest.fn(),
       debug: jest.fn(),
       error: jest.fn(),
       localize: jest.fn(),
@@ -45,6 +46,60 @@ describe('SrgSsr', () => {
         update: ({ title, description }) => ({ title, description }),
       },
     };
+  });
+
+  /**
+   *****************************************************************************
+   * addRemoteTextTracks *******************************************************
+   *****************************************************************************
+   */
+  describe('addRemoteTextTracks', () => {
+    it('should not call addRemoteTextTracks if subtitles variable is not an array or if the array is empty', async () => {
+      const spyOnAddRemoteTextTracks = jest.spyOn(player, 'addRemoteTextTrack');
+
+      SrgSsr.addRemoteTextTracks(player, true);
+      SrgSsr.addRemoteTextTracks(player, null);
+      SrgSsr.addRemoteTextTracks(player, '');
+      SrgSsr.addRemoteTextTracks(player, undefined);
+
+      expect(spyOnAddRemoteTextTracks).not.toHaveBeenCalled();
+    });
+
+    it('should add a captions-type text track', async () => {
+      const spyOnAddRemoteTextTracks = jest.spyOn(player, 'addRemoteTextTrack');
+
+      SrgSsr.addRemoteTextTracks(player, [{
+        type: 'SDH',
+        language: 'English',
+        locale: 'EN',
+        url: 'https://url.com/en.vtt'
+      }]);
+
+      expect(spyOnAddRemoteTextTracks).toHaveBeenCalledWith({
+        kind: 'captions',
+        label: 'English',
+        language: 'EN',
+        src: 'https://url.com/en.vtt'
+      });
+    });
+
+    it('should add a subtitles text track if the type is different from SDH', async () => {
+      const spyOnAddRemoteTextTracks = jest.spyOn(player, 'addRemoteTextTrack');
+
+      SrgSsr.addRemoteTextTracks(player, [{
+        type: 'something-else',
+        language: 'English',
+        locale: 'EN',
+        url: 'https://url.com/en.vtt'
+      }]);
+
+      expect(spyOnAddRemoteTextTracks).toHaveBeenCalledWith({
+        kind: 'subtitles',
+        label: 'English',
+        language: 'EN',
+        src: 'https://url.com/en.vtt'
+      });
+    });
   });
 
   /**

@@ -200,6 +200,7 @@ class MediaComposition {
       quality: resource.quality,
       streaming: resource.streaming,
       streamOffset: resource.streamOffset,
+      subtitles: this.getFilteredExternalSubtitles(),
       tokenType: resource.tokenType,
       url: resource.url,
       urn: this.chapterUrn
