@@ -30,8 +30,10 @@ jobs:
           npm run github:page
 
       - name: Deploy GitHub Page 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
+          branch: gh-pages
+          folder: dist
+          force: false
+          clean-exclude: pr-preview/
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: dist
