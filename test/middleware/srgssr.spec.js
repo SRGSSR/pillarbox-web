@@ -121,6 +121,54 @@ describe('SrgSsr', () => {
 
   /**
    *****************************************************************************
+   * addIntervals **************************************************************
+   *****************************************************************************
+   */
+  describe('addIntervals', () => {
+    it('should not create an interval track if the intervals parameter is not an array or if the array is empty', async () => {
+      const spyOnPillarboxTextTrack = jest.spyOn(Pillarbox, 'TextTrack');
+
+      SrgSsr.addIntervals(player, true);
+      SrgSsr.addIntervals(player, null);
+      SrgSsr.addIntervals(player, '');
+      SrgSsr.addIntervals(player, undefined);
+
+      expect(spyOnPillarboxTextTrack).not.toHaveBeenCalled();
+    });
+
+    it('should remove intervals track if any', async () => {
+      const spyOnRemoveTrack = jest.spyOn(player.textTracks(), 'removeTrack');
+
+      player.textTracks().getTrackById.mockReturnValueOnce({});
+      SrgSsr.addIntervals(player);
+
+      expect(spyOnRemoveTrack).toHaveBeenCalled();
+    });
+
+    it('should add intervals to the player', async () => {
+      const result = [];
+
+      Pillarbox.TextTrack
+        .prototype
+        .addCue
+        .mockImplementation((cue) => result.push(cue));
+
+      SrgSsr.addIntervals(player, [{
+        markIn: 1_000,
+        markOut: 2_000,
+        type: 'OPENING_CREDITS'
+      }, {
+        markIn: 10_000,
+        markOut: 15_000,
+        type: 'CLOSING_CREDITS'
+      }]);
+
+      expect(result).toHaveLength(2);
+    });
+  });
+
+  /**
+   *****************************************************************************
    * addRemoteTextTracks *******************************************************
    *****************************************************************************
    */

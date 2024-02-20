@@ -77,6 +77,39 @@ class SrgSsr {
   }
 
   /**
+   * Adds intervals to the player.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {Array} [intervals=[]]
+   */
+  static addIntervals(player, intervals = []) {
+    const trackId = 'srgssr-intervals';
+    const removeTrack = player.textTracks().getTrackById(trackId);
+
+    if (removeTrack) {
+      player.textTracks().removeTrack(removeTrack);
+    }
+
+    if (!Array.isArray(intervals) || !intervals.length) return;
+
+    const intervalTrack = new Pillarbox.TextTrack({
+      tech: player.tech(true),
+      kind: 'metadata',
+      id: trackId
+    });
+
+    intervals.forEach(interval => {
+      intervalTrack.addCue({
+        startTime: interval.markIn / 1_000,
+        endTime: interval.markOut / 1_000,
+        text: JSON.stringify(interval)
+      });
+    });
+
+    player.textTracks().addTrack(intervalTrack);
+  }
+
+  /**
    * Set a blocking reason according to the block reason returned
    * by mediaData.
    *
@@ -368,6 +401,7 @@ class SrgSsr {
 
           SrgSsr.addRemoteTextTracks(player, mediaData.subtitles);
           SrgSsr.addChapters(player, mediaData.urn, mediaData.chapters);
+          SrgSsr.addIntervals(player, mediaData.intervals);
 
           return next(null, srcMediaObj);
         } catch (error) {

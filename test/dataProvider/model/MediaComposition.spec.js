@@ -22,6 +22,7 @@ import * as urnInternalSubtitles from '../../__mocks__/urn:srf:only:internal:sub
 import * as urnMultipleExternalSubtitles from '../../__mocks__/urn:swi:multiple:external:subtitles.json';
 import * as urnMixedInternalExternalSubtitles from '../../__mocks__/urn:mixed:internal:external:subtitles.json';
 import * as urnUndefinedResourcelist from '../../__mocks__/urn:undefined:resourcelist.json';
+import * as urnTimeIntervalList from '../../__mocks__/urn:rts:video:10313496-credits.json';
 
 describe('MediaComposition', () => {
   const mediaCompositionUrnAnalyticsData = Object.assign(
@@ -148,6 +149,11 @@ describe('MediaComposition', () => {
   const mediaCompositionUrnUndefinedResourcelist = Object.assign(
     new MediaComposition(),
     urnUndefinedResourcelist
+  );
+
+  const mediaCompositionUrnTimeIntervalList = Object.assign(
+    new MediaComposition(),
+    urnTimeIntervalList
   );
 
   const DRMLIST = {
@@ -511,6 +517,7 @@ describe('MediaComposition', () => {
       expect(resource).toHaveProperty('eventData');
       expect(resource).toHaveProperty('id');
       expect(resource).toHaveProperty('imageCopyright');
+      expect(resource).toHaveProperty('intervals');
       expect(resource).toHaveProperty('live');
       expect(resource).toHaveProperty('mediaType');
       expect(resource).toHaveProperty('mimeType');
@@ -611,6 +618,39 @@ describe('MediaComposition', () => {
     it('should return an empty array when segmentList is undefined', () => {
       expect(mediaCompositionUrnChapterBadOrder.getMainSegments()).toBeTruthy();
       expect(mediaCompositionUrnChapterBadOrder.getMainSegments()).toHaveLength(
+        0
+      );
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * getMainTimeIntervals ******************************************************
+   *****************************************************************************
+   */
+  describe('getMainTimeIntervals', ()=> {
+    it('should return all time intervals', () => {
+      const jsonIntervals = mediaCompositionUrnTimeIntervalList.chapterList[0].timeIntervalList;
+      const intervals = mediaCompositionUrnTimeIntervalList.getMainTimeIntervals();
+
+      expect(intervals).toBeTruthy();
+      expect(intervals).toHaveLength(2);
+      expect(intervals).toEqual(expect.arrayContaining(jsonIntervals));
+      expect(mediaCompositionUrnTimeIntervalList.getMainTimeIntervals()).toEqual(
+        jsonIntervals
+      );
+    });
+
+    it('should return an empty array when timeIntervalList is undefined', () => {
+      expect(mediaCompositionUrnOnlyOneChapter.getMainTimeIntervals()).toBeTruthy();
+      expect(mediaCompositionUrnOnlyOneChapter.getMainTimeIntervals()).toHaveLength(
+        0
+      );
+    });
+
+    it('should return an empty array when the mediaComposition does not have a main chapter', () => {
+      expect(mediaCompositionUrnEmptyChapters.getMainTimeIntervals()).toBeTruthy();
+      expect(mediaCompositionUrnEmptyChapters.getMainTimeIntervals()).toHaveLength(
         0
       );
     });
