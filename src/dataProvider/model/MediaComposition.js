@@ -202,6 +202,7 @@ class MediaComposition {
       streaming: resource.streaming,
       streamOffset: resource.streamOffset,
       subtitles: this.getFilteredExternalSubtitles(),
+      intervals: this.getMainTimeIntervals(),
       tokenType: resource.tokenType,
       url: resource.url,
       urn: this.chapterUrn
@@ -221,6 +222,19 @@ class MediaComposition {
     }
 
     return this.mainSegments || [];
+  }
+
+  /**
+   * Get time intervals from the main chapter.
+   *
+   * @returns {Array} of time intervals
+   */
+  getMainTimeIntervals() {
+    const {
+      timeIntervalList = []
+    } = this.getMainChapter() || {};
+
+    return timeIntervalList;
   }
 
   /**
