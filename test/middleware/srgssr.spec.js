@@ -34,6 +34,7 @@ describe('SrgSsr', () => {
 
     player = {
       addRemoteTextTrack: jest.fn(),
+      currentTime: jest.fn(),
       debug: jest.fn(),
       error: jest.fn(),
       localize: jest.fn(),
@@ -48,6 +49,74 @@ describe('SrgSsr', () => {
         update: ({ title, description }) => ({ title, description }),
       },
     };
+  });
+
+  /**
+   *****************************************************************************
+   * addBlockedSegments ********************************************************
+   *****************************************************************************
+   */
+  describe('addBlockedSegments', () => {
+    it('should not create an blocked segments track if the segments parameter is not an array or if the array is empty', async () => {
+      const spyOnPillarboxTextTrack = jest.spyOn(Pillarbox, 'TextTrack');
+
+      SrgSsr.addBlockedSegments(player, true);
+      SrgSsr.addBlockedSegments(player, null);
+      SrgSsr.addBlockedSegments(player, '');
+      SrgSsr.addBlockedSegments(player, undefined);
+
+      expect(spyOnPillarboxTextTrack).not.toHaveBeenCalled();
+    });
+
+    it('should remove blocked segments track if any', async () => {
+      const spyOnRemoveTrack = jest.spyOn(player.textTracks(), 'removeTrack');
+
+      player.textTracks().getTrackById.mockReturnValueOnce({});
+      SrgSsr.addBlockedSegments(player);
+
+      expect(spyOnRemoveTrack).toHaveBeenCalled();
+    });
+
+    it('Should not add blocked segments if none exist', async () => {
+      const result = [];
+
+      Pillarbox.TextTrack
+        .prototype
+        .addCue
+        .mockImplementation((cue) => result.push(cue));
+
+      SrgSsr.addBlockedSegments(player, [{}, {}]);
+
+      expect(result).toHaveLength(0);
+    });
+
+    it('Should add 2 blocked segments', async () => {
+      const result = [];
+
+      Pillarbox.TextTrack
+        .prototype
+        .addCue
+        .mockImplementation((cue) => result.push(cue));
+
+      SrgSsr.addBlockedSegments(player, [{
+        blockReason: 'GEOBLOCK',
+        markIn: 10_0000,
+        markOut: 25_0000
+      }, {
+        markIn: 25_0000,
+        markOut: 50_0000
+      }, {
+
+        blockReason: 'ENDDATE',
+        markIn: 50_0000,
+        markOut: 60_0000
+      }, {
+        markIn: 60_0000,
+        markOut: 70_0000
+      }]);
+
+      expect(result).toHaveLength(2);
+    });
   });
 
   /**
@@ -430,6 +499,95 @@ describe('SrgSsr', () => {
 
   /**
    *****************************************************************************
+   * getBlockedSegment *********************************************************
+   *****************************************************************************
+   */
+  describe('getBlockedSegment', () => {
+    it('should return undefined if not blocked segments track is found', () => {
+      player.textTracks().getTrackById.mockReturnValueOnce(undefined);
+
+      expect(SrgSsr.getBlockedSegment(player)).toBeUndefined();
+    });
+
+    it('should return undefined if activeCues_ is an empty array', () => {
+      player.textTracks().getTrackById.mockReturnValueOnce({
+        activeCues_: []
+      });
+
+      expect(SrgSsr.getBlockedSegment(player)).toBeUndefined();
+    });
+
+    it('should return a blocked segment', () => {
+      const blockedSegmentCue = {
+        startTime: 10,
+        endTime: 20
+      };
+
+      player.textTracks().getTrackById.mockReturnValueOnce({
+        activeCues_: [blockedSegmentCue]
+      });
+
+      expect(SrgSsr.getBlockedSegment(player)).toEqual(blockedSegmentCue);
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * getBlockedSegmentEndTime **************************************************
+   *****************************************************************************
+   */
+  describe('getBlockedSegmentEndTime', () => {
+    it('should return undefined if there is no blocked segment', () => {
+      const currentTime = 10;
+
+      expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBeUndefined();
+    });
+
+    it('should return undefined if the current time is smaller than the start time of a blocked segment', () => {
+      const currentTime = 9;
+      const blockedSegmentCue = {
+        startTime: 10,
+        endTime: 20
+      };
+
+      player.textTracks().getTrackById.mockReturnValueOnce({
+        activeCues_: [blockedSegmentCue]
+      });
+
+      expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBeUndefined();
+    });
+
+    it('should return undefined if the current time is greater than the end time of a blocked segment', () => {
+      const currentTime = 21;
+      const blockedSegmentCue = {
+        startTime: 10,
+        endTime: 20
+      };
+
+      player.textTracks().getTrackById.mockReturnValueOnce({
+        activeCues_: [blockedSegmentCue]
+      });
+
+      expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBeUndefined();
+    });
+
+    it('should return the blocked segment end time if the current time lies between the start and end of a blocked segment', () => {
+      const currentTime = 13;
+      const blockedSegmentCue = {
+        startTime: 10,
+        endTime: 20
+      };
+
+      player.textTracks().getTrackById.mockReturnValueOnce({
+        activeCues_: [blockedSegmentCue]
+      });
+
+      expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBe(blockedSegmentCue.endTime);
+    });
+  });
+
+  /**
+   *****************************************************************************
    * getMediaComposition *******************************************************
    *****************************************************************************
    */
@@ -644,184 +802,236 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('middleware', () => {
-    it('Should use the default Image class', async () => {
-      const spyOnComposeAkamaiResources = jest.spyOn(
-        SrgSsr,
-        'composeAkamaiResources'
-      );
-      const spyOnComposeKeySystemsResources = jest.spyOn(
-        SrgSsr,
-        'composeKeySystemsResources'
-      );
-      const spyOnGetMediaComposition = jest.spyOn(
-        SrgSsr,
-        'getMediaComposition'
-      );
-      const spyOnGetMediaData = jest.spyOn(SrgSsr, 'getMediaData');
-      const spyOnComposeSrcMediaData = jest.spyOn(
-        SrgSsr,
-        'composeSrcMediaData'
-      );
-      const spyOnSrgAnalytics = jest.spyOn(SrgSsr, 'srgAnalytics');
-      const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
-      const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
-      const middleware = SrgSsr.middleware(player);
+    describe('currentTime', () => {
+      it('should return the same value if there is no blocked segment', () => {
+        const middleware = SrgSsr.middleware(player);
+        const currentTime = 10;
 
-      await middleware.setSource({ src: 'urn:fake' }, async (err, srcObj) => {
-        expect(err).toBeNull();
-        expect(srcObj).toEqual(expect.any(Object));
+        expect(middleware.currentTime(currentTime)).toBe(currentTime);
       });
 
-      expect(middleware).toMatchObject({
-        setSource: expect.any(Function),
-      });
-      expect(spyOnGetMediaComposition).toHaveBeenCalled();
-      expect(spyOnComposeKeySystemsResources).toHaveBeenCalled();
-      expect(spyOnComposeAkamaiResources).toHaveBeenCalled();
-      expect(spyOnGetMediaData).toHaveBeenCalled();
-      expect(spyOnComposeSrcMediaData).toHaveBeenCalled();
-      expect(spyOnSrgAnalytics).toHaveBeenCalled();
-      expect(spyOnUpdateTitleBar).toHaveBeenCalled();
-      expect(spyOnUpdatePoster).toHaveBeenCalled();
-    });
+      it('should return the blocked segment end time', () => {
+        const spyOnPlayerCurrentTime = jest.spyOn(player, 'currentTime');
+        const middleware = SrgSsr.middleware(player);
+        const currentTime = 13;
+        const blockedSegmentCue = {
+          startTime: 10,
+          endTime: 20
+        };
 
-    it('Should call the next middleware without error', async () => {
-      const spyOnComposeAkamaiResources = jest.spyOn(
-        SrgSsr,
-        'composeAkamaiResources'
-      );
-      const spyOnComposeKeySystemsResources = jest.spyOn(
-        SrgSsr,
-        'composeKeySystemsResources'
-      );
-      const spyOnGetMediaComposition = jest.spyOn(
-        SrgSsr,
-        'getMediaComposition'
-      );
-      const spyOnGetMediaData = jest.spyOn(SrgSsr, 'getMediaData');
-      const spyOnComposeSrcMediaData = jest.spyOn(
-        SrgSsr,
-        'composeSrcMediaData'
-      );
-      const spyOnSrgAnalytics = jest.spyOn(SrgSsr, 'srgAnalytics');
-      const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
-      const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
-      const middleware = SrgSsr.middleware(player, Image);
-
-      await middleware.setSource({ src: 'urn:fake' }, async (err, srcObj) => {
-        expect(err).toBeNull();
-        expect(srcObj).toEqual(expect.any(Object));
-      });
-
-      expect(middleware).toMatchObject({
-        setSource: expect.any(Function),
-      });
-      expect(spyOnGetMediaComposition).toHaveBeenCalled();
-      expect(spyOnComposeKeySystemsResources).toHaveBeenCalled();
-      expect(spyOnComposeAkamaiResources).toHaveBeenCalled();
-      expect(spyOnGetMediaData).toHaveBeenCalled();
-      expect(spyOnComposeSrcMediaData).toHaveBeenCalled();
-      expect(spyOnSrgAnalytics).toHaveBeenCalled();
-      expect(spyOnUpdateTitleBar).toHaveBeenCalled();
-      expect(spyOnUpdatePoster).toHaveBeenCalled();
-    });
-
-    it('Should catch and error if the source is not defined', async () => {
-      const spyOnComposeAkamaiResources = jest.spyOn(
-        SrgSsr,
-        'composeAkamaiResources'
-      );
-      const spyOnComposeKeySystemsResources = jest.spyOn(
-        SrgSsr,
-        'composeKeySystemsResources'
-      );
-      const spyOnGetMediaComposition = jest.spyOn(
-        SrgSsr,
-        'getMediaComposition'
-      );
-      const spyOnGetMediaData = jest.spyOn(SrgSsr, 'getMediaData');
-      const spyOnComposeSrcMediaData = jest.spyOn(
-        SrgSsr,
-        'composeSrcMediaData'
-      );
-      const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
-      const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
-      const middleware = SrgSsr.middleware(player, Image);
-
-      await middleware.setSource(undefined, async (err) => {
-        expect(err).toEqual(expect.any(Error));
-      });
-
-      expect(middleware).toMatchObject({
-        setSource: expect.any(Function),
-      });
-      expect(spyOnGetMediaComposition).not.toHaveBeenCalled();
-      expect(spyOnComposeKeySystemsResources).not.toHaveBeenCalled();
-      expect(spyOnComposeAkamaiResources).not.toHaveBeenCalled();
-      expect(spyOnGetMediaData).not.toHaveBeenCalled();
-      expect(spyOnComposeSrcMediaData).not.toHaveBeenCalled();
-      expect(spyOnUpdateTitleBar).not.toHaveBeenCalled();
-      expect(spyOnUpdatePoster).not.toHaveBeenCalled();
-    });
-
-    it('Should return undefined and generate an error if the media has a block reason', async () => {
-      jest.spyOn(SrgSsr, 'getMediaData').mockReturnValueOnce({
-        analyticsData: {},
-        analyticsMetadata: {},
-        blockReason: 'STARTDATE',
-        vendor: 'SRF',
-        dvr: true,
-        eventData: '',
-        id: '',
-        imageCopyright: '',
-        live: true,
-        mediaType: 'VIDEO',
-        mimeType: 'application/x-mpegURL',
-        presentation: '',
-        quality: '',
-        streaming: '',
-        url: 'https://fake.stream.url.ch/',
-      });
-
-      const spyOnBlockingReason = jest.spyOn(SrgSsr, 'blockingReason');
-      const result = await SrgSsr.middleware(player).setSource(
-        { src: 'urn:fake' },
-        jest.fn().mockResolvedValue(true)
-      );
-
-      expect(result).toBeUndefined();
-      expect(spyOnBlockingReason).toHaveBeenCalledWith(
-        player,
-        'STARTDATE',
-        expect.any(Object)
-      );
-    });
-
-    it('Should return undefined and generate an error the URN doest not exist', async () => {
-      const spyOnDataProvider = jest
-        .spyOn(SrgSsr, 'dataProvider')
-        .mockReturnValue({
-          baseUrl: 'http://mock.url.ch',
+        player.textTracks().getTrackById.mockReturnValueOnce({
+          activeCues_: [blockedSegmentCue]
         });
-      const spyOnError = jest.spyOn(SrgSsr, 'error');
-      const spyOnDataProviderError = jest.spyOn(SrgSsr, 'dataProviderError');
 
-      jest.spyOn(SrgSsr, 'getMediaComposition').mockRejectedValueOnce({
-        status: '404',
-        statusText: 'Not Found',
-        url: 'http://mock.url.ch',
+        expect(middleware.currentTime(currentTime)).toBe(blockedSegmentCue.endTime);
+        expect(spyOnPlayerCurrentTime).toHaveBeenCalledWith(blockedSegmentCue.endTime);
+      });
+    });
+
+    describe('setCurrentTime', () => {
+      it('should return the same value if there is no blocked segment', () => {
+        const middleware = SrgSsr.middleware(player);
+        const currentTime = 10;
+
+        expect(middleware.setCurrentTime(currentTime)).toBe(currentTime);
       });
 
-      const result = await SrgSsr.middleware(player).setSource(
-        { src: 'urn:fake' },
-        jest.fn().mockResolvedValue(true)
-      );
+      it('should return the blocked segment end time', () => {
+        const middleware = SrgSsr.middleware(player);
+        const currentTime = 13;
+        const blockedSegmentCue = {
+          startTime: 10,
+          endTime: 20
+        };
 
-      expect(result).toBeUndefined();
-      expect(spyOnDataProviderError.mock.results[0].value).toBe(true);
-      expect(spyOnError).toHaveBeenCalledWith(player, expect.any(Object));
+        player.textTracks().getTrackById.mockReturnValueOnce({
+          activeCues_: [blockedSegmentCue]
+        });
 
-      spyOnDataProvider.mockReset();
+        expect(middleware.setCurrentTime(currentTime)).toBe(blockedSegmentCue.endTime);
+      });
+    });
+
+    describe('setSource', () => {
+      it('Should use the default Image class', async () => {
+        const spyOnComposeAkamaiResources = jest.spyOn(
+          SrgSsr,
+          'composeAkamaiResources'
+        );
+        const spyOnComposeKeySystemsResources = jest.spyOn(
+          SrgSsr,
+          'composeKeySystemsResources'
+        );
+        const spyOnGetMediaComposition = jest.spyOn(
+          SrgSsr,
+          'getMediaComposition'
+        );
+        const spyOnGetMediaData = jest.spyOn(SrgSsr, 'getMediaData');
+        const spyOnComposeSrcMediaData = jest.spyOn(
+          SrgSsr,
+          'composeSrcMediaData'
+        );
+        const spyOnSrgAnalytics = jest.spyOn(SrgSsr, 'srgAnalytics');
+        const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
+        const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
+        const middleware = SrgSsr.middleware(player);
+
+        await middleware.setSource({ src: 'urn:fake' }, async (err, srcObj) => {
+          expect(err).toBeNull();
+          expect(srcObj).toEqual(expect.any(Object));
+        });
+
+        expect(middleware).toMatchObject({
+          setSource: expect.any(Function),
+        });
+        expect(spyOnGetMediaComposition).toHaveBeenCalled();
+        expect(spyOnComposeKeySystemsResources).toHaveBeenCalled();
+        expect(spyOnComposeAkamaiResources).toHaveBeenCalled();
+        expect(spyOnGetMediaData).toHaveBeenCalled();
+        expect(spyOnComposeSrcMediaData).toHaveBeenCalled();
+        expect(spyOnSrgAnalytics).toHaveBeenCalled();
+        expect(spyOnUpdateTitleBar).toHaveBeenCalled();
+        expect(spyOnUpdatePoster).toHaveBeenCalled();
+      });
+
+      it('Should call the next middleware without error', async () => {
+        const spyOnComposeAkamaiResources = jest.spyOn(
+          SrgSsr,
+          'composeAkamaiResources'
+        );
+        const spyOnComposeKeySystemsResources = jest.spyOn(
+          SrgSsr,
+          'composeKeySystemsResources'
+        );
+        const spyOnGetMediaComposition = jest.spyOn(
+          SrgSsr,
+          'getMediaComposition'
+        );
+        const spyOnGetMediaData = jest.spyOn(SrgSsr, 'getMediaData');
+        const spyOnComposeSrcMediaData = jest.spyOn(
+          SrgSsr,
+          'composeSrcMediaData'
+        );
+        const spyOnSrgAnalytics = jest.spyOn(SrgSsr, 'srgAnalytics');
+        const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
+        const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
+        const middleware = SrgSsr.middleware(player, Image);
+
+        await middleware.setSource({ src: 'urn:fake' }, async (err, srcObj) => {
+          expect(err).toBeNull();
+          expect(srcObj).toEqual(expect.any(Object));
+        });
+
+        expect(middleware).toMatchObject({
+          setSource: expect.any(Function),
+        });
+        expect(spyOnGetMediaComposition).toHaveBeenCalled();
+        expect(spyOnComposeKeySystemsResources).toHaveBeenCalled();
+        expect(spyOnComposeAkamaiResources).toHaveBeenCalled();
+        expect(spyOnGetMediaData).toHaveBeenCalled();
+        expect(spyOnComposeSrcMediaData).toHaveBeenCalled();
+        expect(spyOnSrgAnalytics).toHaveBeenCalled();
+        expect(spyOnUpdateTitleBar).toHaveBeenCalled();
+        expect(spyOnUpdatePoster).toHaveBeenCalled();
+      });
+
+      it('Should catch and error if the source is not defined', async () => {
+        const spyOnComposeAkamaiResources = jest.spyOn(
+          SrgSsr,
+          'composeAkamaiResources'
+        );
+        const spyOnComposeKeySystemsResources = jest.spyOn(
+          SrgSsr,
+          'composeKeySystemsResources'
+        );
+        const spyOnGetMediaComposition = jest.spyOn(
+          SrgSsr,
+          'getMediaComposition'
+        );
+        const spyOnGetMediaData = jest.spyOn(SrgSsr, 'getMediaData');
+        const spyOnComposeSrcMediaData = jest.spyOn(
+          SrgSsr,
+          'composeSrcMediaData'
+        );
+        const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
+        const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
+        const middleware = SrgSsr.middleware(player, Image);
+
+        await middleware.setSource(undefined, async (err) => {
+          expect(err).toEqual(expect.any(Error));
+        });
+
+        expect(middleware).toMatchObject({
+          setSource: expect.any(Function),
+        });
+        expect(spyOnGetMediaComposition).not.toHaveBeenCalled();
+        expect(spyOnComposeKeySystemsResources).not.toHaveBeenCalled();
+        expect(spyOnComposeAkamaiResources).not.toHaveBeenCalled();
+        expect(spyOnGetMediaData).not.toHaveBeenCalled();
+        expect(spyOnComposeSrcMediaData).not.toHaveBeenCalled();
+        expect(spyOnUpdateTitleBar).not.toHaveBeenCalled();
+        expect(spyOnUpdatePoster).not.toHaveBeenCalled();
+      });
+
+      it('Should return undefined and generate an error if the media has a block reason', async () => {
+        jest.spyOn(SrgSsr, 'getMediaData').mockReturnValueOnce({
+          analyticsData: {},
+          analyticsMetadata: {},
+          blockReason: 'STARTDATE',
+          vendor: 'SRF',
+          dvr: true,
+          eventData: '',
+          id: '',
+          imageCopyright: '',
+          live: true,
+          mediaType: 'VIDEO',
+          mimeType: 'application/x-mpegURL',
+          presentation: '',
+          quality: '',
+          streaming: '',
+          url: 'https://fake.stream.url.ch/',
+        });
+
+        const spyOnBlockingReason = jest.spyOn(SrgSsr, 'blockingReason');
+        const result = await SrgSsr.middleware(player).setSource(
+          { src: 'urn:fake' },
+          jest.fn().mockResolvedValue(true)
+        );
+
+        expect(result).toBeUndefined();
+        expect(spyOnBlockingReason).toHaveBeenCalledWith(
+          player,
+          'STARTDATE',
+          expect.any(Object)
+        );
+      });
+
+      it('Should return undefined and generate an error the URN doest not exist', async () => {
+        const spyOnDataProvider = jest
+          .spyOn(SrgSsr, 'dataProvider')
+          .mockReturnValue({
+            baseUrl: 'http://mock.url.ch',
+          });
+        const spyOnError = jest.spyOn(SrgSsr, 'error');
+        const spyOnDataProviderError = jest.spyOn(SrgSsr, 'dataProviderError');
+
+        jest.spyOn(SrgSsr, 'getMediaComposition').mockRejectedValueOnce({
+          status: '404',
+          statusText: 'Not Found',
+          url: 'http://mock.url.ch',
+        });
+
+        const result = await SrgSsr.middleware(player).setSource(
+          { src: 'urn:fake' },
+          jest.fn().mockResolvedValue(true)
+        );
+
+        expect(result).toBeUndefined();
+        expect(spyOnDataProviderError.mock.results[0].value).toBe(true);
+        expect(spyOnError).toHaveBeenCalledWith(player, expect.any(Object));
+
+        spyOnDataProvider.mockReset();
+      });
     });
   });
 });
