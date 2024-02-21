@@ -138,6 +138,15 @@ class MediaComposition {
   }
 
   /**
+   * Get blocked segments from the main chapter.
+   *
+   * @returns {Array} of blocked segments
+   */
+  getMainBlockedSegments() {
+    return this.getMainSegments().filter(segment => segment.blockReason);
+  }
+
+  /**
    * Get the mediaComposition's main chapter.
    *
    * @returns {Object}
@@ -187,6 +196,7 @@ class MediaComposition {
         resource.analyticsMetadata
       ),
       blockReason: this.getMainChapter().blockReason,
+      blockedSegments: this.getMainBlockedSegments(),
       chapters: this.getChapters(),
       vendor: this.getMainChapter().vendor,
       drmList: resource.drmList,

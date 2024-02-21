@@ -17,6 +17,43 @@ import '../lang/rm.js';
  */
 class SrgSsr {
   /**
+   * Adds blocked segments to the player.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {Array} [segments=[]]
+   */
+  static addBlockedSegments(player, segments = []) {
+    const trackId = 'srgssr-blocked-segments';
+    const removeTrack = player.textTracks().getTrackById(trackId);
+
+    if (removeTrack) {
+      player.textTracks().removeTrack(removeTrack);
+    }
+
+    if (!Array.isArray(segments) || !segments.length) return;
+
+    const blockedSegments = segments.filter(segment => segment.blockReason);
+
+    if (!blockedSegments.length) return;
+
+    const segmentTrack = new Pillarbox.TextTrack({
+      tech: player.tech(true),
+      kind: 'metadata',
+      id: trackId
+    });
+
+    blockedSegments.forEach(segment => {
+      segmentTrack.addCue({
+        startTime: segment.markIn / 1_000,
+        endTime: segment.markOut / 1_000,
+        text: JSON.stringify(segment)
+      });
+    });
+
+    player.textTracks().addTrack(segmentTrack);
+  }
+
+  /**
    * Adds remote text tracks from an array of subtitles.
    *
    * @param {import('video.js/dist/types/player').default} player
@@ -287,6 +324,44 @@ class SrgSsr {
   }
 
   /**
+   * Get the current blocked segment from the player.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   *
+   * @returns {VTTCue|undefined} The blocked segment cue object, or undefined
+   */
+  static getBlockedSegment(player) {
+    const trackId = 'srgssr-blocked-segments';
+    const blockedSegmentsTrack = player.textTracks().getTrackById(trackId);
+
+    if (!blockedSegmentsTrack) return;
+
+    /** @type {[VTTCue]} */
+    const [blockedCue] = blockedSegmentsTrack.activeCues_;
+
+    return blockedCue;
+  }
+
+  /**
+   * Get the end time of a blocked segment.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {Number} currentTime
+   *
+   * @returns {Number|undefined} The end time of a blocked segment, or undefined
+   */
+  static getBlockedSegmentEndTime(player, currentTime) {
+    const blockedSegment = SrgSsr.getBlockedSegment(player);
+
+    if (!blockedSegment) return;
+
+    const isBlocked = currentTime >= blockedSegment.startTime &&
+      currentTime < blockedSegment.endTime;
+
+    return isBlocked ? blockedSegment.endTime : undefined;
+  }
+
+  /**
    * Get mediaComposition from an URN.
    *
    * @param {String} urn
@@ -378,6 +453,20 @@ class SrgSsr {
    */
   static middleware(player, imageService = Image) {
     return {
+      currentTime: (currentTime) => {
+        const blockedSegmentEndTime = SrgSsr
+          .getBlockedSegmentEndTime(player, currentTime);
+
+        if (Number.isFinite(blockedSegmentEndTime)) {
+          player.currentTime(blockedSegmentEndTime);
+        }
+
+        return blockedSegmentEndTime ?? currentTime;
+      },
+      setCurrentTime: (currentTime) => {
+        return SrgSsr
+          .getBlockedSegmentEndTime(player, currentTime) ?? currentTime;
+      },
       /* eslint max-statements: ["error", 15]*/
       setSource: async (srcObj, next) => {
         try {
@@ -401,6 +490,7 @@ class SrgSsr {
 
           SrgSsr.addRemoteTextTracks(player, mediaData.subtitles);
           SrgSsr.addChapters(player, mediaData.urn, mediaData.chapters);
+          SrgSsr.addBlockedSegments(player, mediaData.blockedSegments);
           SrgSsr.addIntervals(player, mediaData.intervals);
 
           return next(null, srcMediaObj);
