@@ -1,3 +1,30 @@
+## [1.1.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.0.1...v1.1.0) (2024-02-23)
+
+
+### Refactor 🔩
+
+* **srgssr-middleware:** move srgssr specific options declaration ([1138f89](https://github.com/SRGSSR/pillarbox-web/commit/1138f8928193f7c748824c3c3d6e68127aaeba4c))
+* **srgssrg-middleware:** extraction of duplicated code in text tracks ([4ff0bc8](https://github.com/SRGSSR/pillarbox-web/commit/4ff0bc838c759cf89de1e688b854d334292c8cb5))
+
+
+### New Features 🚀
+
+* **mediaComposition:** exposes the media URN through the main resources ([4b4c5a5](https://github.com/SRGSSR/pillarbox-web/commit/4b4c5a50d2504b44c9b39d411b182e72ee62c565))
+* **srgssr-middleware:** add blocked segments support ([ad4e906](https://github.com/SRGSSR/pillarbox-web/commit/ad4e906b1f286488ab3aa0562f8716b9c2c63f25)), closes [#211](https://github.com/SRGSSR/pillarbox-web/issues/211)
+* **srgssr-middleware:** add chapters support ([62ff02a](https://github.com/SRGSSR/pillarbox-web/commit/62ff02a4cbf29ff9ba857efcc27f3e3e1c6c9832)), closes [#204](https://github.com/SRGSSR/pillarbox-web/issues/204)
+* **srgssr-middleware:** add intervals support ([00ad42c](https://github.com/SRGSSR/pillarbox-web/commit/00ad42c1fd6672baf93116ffec857dab6ad7adac)), closes [#212](https://github.com/SRGSSR/pillarbox-web/issues/212)
+* **srgssr-middleware:** add support for remote subtitles ([dbe9eb4](https://github.com/SRGSSR/pillarbox-web/commit/dbe9eb4a6be49919fc1181aa971078e21f7f8295)), closes [#203](https://github.com/SRGSSR/pillarbox-web/issues/203)
+
+
+### CI 🔁
+
+* add pull request previews ([a50f20d](https://github.com/SRGSSR/pillarbox-web/commit/a50f20d746a0999870b324c69ff92facf56f4d4d)), closes [#196](https://github.com/SRGSSR/pillarbox-web/issues/196)
+
+
+### Docs 📖
+
+* **analytics:** add tracking limitations section to known issues ([a69c916](https://github.com/SRGSSR/pillarbox-web/commit/a69c916934b3c0f1be2735f2668a4610a45f2431)), closes [#208](https://github.com/SRGSSR/pillarbox-web/issues/208)
+
 ## [1.0.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.0.0...v1.0.1) (2024-02-13)
 
 
