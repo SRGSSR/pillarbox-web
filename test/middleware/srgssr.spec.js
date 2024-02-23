@@ -185,6 +185,10 @@ describe('SrgSsr', () => {
       }]);
 
       expect(result).toHaveLength(2);
+      expect(result[0].startTime).toBe(2.5);
+      expect(result[0].endTime).toBe(5);
+      expect(result[1].startTime).toBe(6);
+      expect(result[1].endTime).toBe(9.5);
     });
   });
 
@@ -233,6 +237,8 @@ describe('SrgSsr', () => {
       }]);
 
       expect(result).toHaveLength(2);
+      expect(JSON.parse(result[0].text).type).toBe('OPENING_CREDITS');
+      expect(JSON.parse(result[1].text).type).toBe('CLOSING_CREDITS');
     });
   });
 

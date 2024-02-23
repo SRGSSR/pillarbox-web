@@ -36,18 +36,10 @@ class SrgSsr {
 
     if (!blockedSegments.length) return;
 
-    const segmentTrack = new Pillarbox.TextTrack({
-      tech: player.tech(true),
-      kind: 'metadata',
-      id: trackId
-    });
+    const segmentTrack = SrgSsr.createTextTrack(player, trackId);
 
     blockedSegments.forEach(segment => {
-      segmentTrack.addCue({
-        startTime: segment.markIn / 1_000,
-        endTime: segment.markOut / 1_000,
-        text: JSON.stringify(segment)
-      });
+      SrgSsr.addTextTrackCue(segmentTrack, segment);
     });
 
     player.textTracks().addTrack(segmentTrack);
@@ -78,6 +70,40 @@ class SrgSsr {
   }
 
   /**
+   * Add a new cue to a text track with the given data.
+   *
+   * @param {TextTrack} textTrack
+   * @param {Object} data SRG SSR's cue-like representation
+   * @param {number} data.markIn The start time in milliseconds
+   * @param {number} data.fullLengthMarkIn Alternative start time in milliseconds
+   * @param {number} data.markOut The end time in milliseconds
+   * @param {number} data.fullLengthMarkOut The alternative end time in milliseconds
+   */
+  static addTextTrackCue(textTrack, data) {
+    const startTime = (data.markIn ?? data.fullLengthMarkIn) / 1_000;
+    const endTime = (data.markOut ?? data.fullLengthMarkOut) / 1_000;
+
+    textTrack.addCue({
+      startTime,
+      endTime,
+      text: JSON.stringify(data)
+    });
+  }
+
+  /**
+   * Add multiple text tracks to the player.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {Object} mediaData
+   */
+  static addTextTracks(player, { mediaData }) {
+    SrgSsr.addRemoteTextTracks(player, mediaData.subtitles);
+    SrgSsr.addChapters(player, mediaData.urn, mediaData.chapters);
+    SrgSsr.addBlockedSegments(player, mediaData.blockedSegments);
+    SrgSsr.addIntervals(player, mediaData.intervals);
+  }
+
+  /**
    * Adds chapters to the player.
    *
    * @param {import('video.js/dist/types/player').default} player
@@ -94,20 +120,12 @@ class SrgSsr {
 
     if (!Array.isArray(chapters) || !chapters.length) return;
 
-    const chapterTrack = new Pillarbox.TextTrack({
-      tech: player.tech(true),
-      kind: 'metadata',
-      id: trackId
-    });
+    const chapterTrack = SrgSsr.createTextTrack(player, trackId);
 
     chapters.forEach(chapter => {
       if (chapterUrn !== chapter.fullLengthUrn) return;
 
-      chapterTrack.addCue({
-        startTime: chapter.fullLengthMarkIn / 1_000,
-        endTime: chapter.fullLengthMarkOut / 1_000,
-        text: JSON.stringify(chapter)
-      });
+      SrgSsr.addTextTrackCue(chapterTrack, chapter);
     });
 
     player.textTracks().addTrack(chapterTrack);
@@ -129,18 +147,10 @@ class SrgSsr {
 
     if (!Array.isArray(intervals) || !intervals.length) return;
 
-    const intervalTrack = new Pillarbox.TextTrack({
-      tech: player.tech(true),
-      kind: 'metadata',
-      id: trackId
-    });
+    const intervalTrack = SrgSsr.createTextTrack(player, trackId);
 
     intervals.forEach(interval => {
-      intervalTrack.addCue({
-        startTime: interval.markIn / 1_000,
-        endTime: interval.markOut / 1_000,
-        text: JSON.stringify(interval)
-      });
+      SrgSsr.addTextTrackCue(intervalTrack, interval);
     });
 
     player.textTracks().addTrack(intervalTrack);
@@ -244,6 +254,23 @@ class SrgSsr {
   }
 
   /**
+   * Create a new metadata text track.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {String} trackId Text track unique ID
+   *
+   * @returns {TextTrack}
+   */
+  static createTextTrack(player, trackId) {
+    return new Pillarbox.TextTrack({
+      id: trackId,
+      kind: 'metadata',
+      label: trackId,
+      tech: player.tech(true),
+    });
+  }
+
+  /**
    * SRG SSR data provider singleton.
    *
    * @param {import('video.js/dist/types/player').default} player
@@ -336,7 +363,7 @@ class SrgSsr {
 
     if (!blockedSegmentsTrack) return;
 
-    /** @type {[VTTCue]} */
+    /** @type {VTTCue} */
     const [blockedCue] = blockedSegmentsTrack.activeCues_;
 
     return blockedCue;
@@ -451,6 +478,7 @@ class SrgSsr {
    *
    * @returns {Object}
    */
+  /* eslint-disable max-lines-per-function */
   static middleware(player, imageService = Image) {
     return {
       currentTime: (currentTime) => {
@@ -467,7 +495,7 @@ class SrgSsr {
         return SrgSsr
           .getBlockedSegmentEndTime(player, currentTime) ?? currentTime;
       },
-      /* eslint max-statements: ["error", 15]*/
+      /* eslint max-statements: ["error", 20]*/
       setSource: async (srcObj, next) => {
         try {
           const { src: urn, ...srcOptions } = srcObj;
