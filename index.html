@@ -46,6 +46,16 @@
         src: 'urn:rts:video:14683290',
         type: 'srgssr/urn'
       },
+      _endDate: {
+        label: 'Block reason end date',
+        src: 'urn:rts:video:10894367',
+        type: 'srgssr/urn'
+      },
+      _externalSubtitles: {
+        label: 'Remote text tracks',
+        src: 'urn:swi:video:48864812',
+        type: 'srgssr/urn'
+      },
     };
 
     // Expose Pillarbox and player in the window object for debugging
@@ -82,6 +92,35 @@
     player.src({
       src: urn,
       type: "srgssr/urn",
+    });
+
+    player.on('loadeddata', () => {
+      player?.textTracks()?.getTrackById('srgssr-chapters')?.addEventListener("cuechange", () => {
+        const [cue] = Array.from(player?.textTracks()?.getTrackById('srgssr-chapters')?.activeCues);
+        if (!cue) return;
+
+        console.log('%cChapter', 'background-color: blue', JSON.parse(cue.text).title);
+
+        const chapter = JSON.parse(cue.text);
+        player.titleBar.update({
+          title: chapter.title,
+          description: chapter.description
+        });
+      });
+
+      player?.textTracks()?.getTrackById('srgssr-blocked-segments')?.addEventListener("cuechange", () => {
+        const [cue] = Array.from(player?.textTracks()?.getTrackById('srgssr-blocked-segments')?.activeCues);
+        if (!cue) return;
+
+        console.log('%cBlock reason', 'background-color: red', JSON.parse(cue.text).blockReason);
+      });
+
+      player?.textTracks()?.getTrackById('srgssr-intervals')?.addEventListener("cuechange", () => {
+        const [cue] = Array.from(player?.textTracks()?.getTrackById('srgssr-intervals')?.activeCues);
+        if (!cue) return;
+
+        console.log('%cInterval', 'background-color: green', JSON.parse(cue.text).type);
+      });
     });
   </script>
 </body>

@@ -4,6 +4,7 @@ import Image from '../../src/utils/Image.js';
 import MediaComposition from '../../src/dataProvider/model/MediaComposition.js';
 import urnCredits from '../__mocks__/urn:rts:video:10313496-credits.json';
 import urnRtsAudio from '../__mocks__/urn:rts:audio:3262320.json';
+import srcMediaObj from '../__mocks__/srcMediaObj.json';
 import Pillarbox from '../../src/pillarbox.js';
 import AkamaiTokenService from '../../src/utils/AkamaiTokenService.js';
 
@@ -305,7 +306,7 @@ describe('SrgSsr', () => {
     it('should return undefined if the block reason is undefined', async () => {
       const spyOnLocalize = jest.spyOn(player, 'localize');
 
-      expect(SrgSsr.blockingReason(player, undefined, {})).toBeUndefined();
+      expect(SrgSsr.blockingReason(player, { mediaData: {}})).toBeUndefined();
       expect(spyOnLocalize).not.toHaveBeenCalled();
     });
 
@@ -314,12 +315,12 @@ describe('SrgSsr', () => {
       const spyOnPlayerError = jest.spyOn(player, 'error');
       const spyOnError = jest.spyOn(SrgSsr, 'error');
 
-      expect(SrgSsr.blockingReason(player, 'STARTDATE', {})).toBe(true);
+      expect(SrgSsr.blockingReason(player, { mediaData: { blockReason: 'STARTDATE' }})).toBe(true);
       expect(spyOnLocalize).toHaveBeenCalled();
       expect(spyOnError).toHaveBeenCalledWith(player, expect.any(Object));
       expect(spyOnPlayerError.mock.calls[1]).toEqual(
         expect.arrayContaining([
-          expect.objectContaining({ metadata: { errorType: 'STARTDATE', src: {}}})
+          expect.objectContaining({ metadata: { errorType: 'STARTDATE', src: expect.any(Object) }})
         ])
       );
     });
@@ -470,6 +471,31 @@ describe('SrgSsr', () => {
         disableTrackers: undefined,
         mediaData: undefined,
       });
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * dataProvider **************************************************************
+   *****************************************************************************
+   */
+  describe('dataProvider', () => {
+    it('should return the dataProvider if the property is not undefined', () => {
+      player.options().srgOptions = {
+        dataProvider: Function
+      };
+
+      const dataProvider = SrgSsr.dataProvider(player);
+
+      expect(dataProvider).toBe(Function);
+
+      player.options().srgOptions = {};
+    });
+
+    it('should instantiate the dataProvider if it is undefined', () => {
+      SrgSsr.dataProvider(player);
+
+      expect(DataProvider).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -677,6 +703,18 @@ describe('SrgSsr', () => {
 
   /**
    *****************************************************************************
+   * getSrcMediaObj ************************************************************
+   *****************************************************************************
+   */
+  describe('getSrcMediaObj', () => {
+    it('should do something', async () => {
+      const result = await SrgSsr.getSrcMediaObj(player, { src: 'urn:fake' });
+
+      expect(result).toEqual(expect.any(Object));
+    });
+  });
+  /**
+   *****************************************************************************
    * error *************************************************************
    *****************************************************************************
    */
@@ -730,21 +768,50 @@ describe('SrgSsr', () => {
 
   /**
    *****************************************************************************
+   * srgAnalytics **************************************************************
+   *****************************************************************************
+   */
+  describe('srgAnalytics', () => {
+    it('should not initialize the srgAnalytics', () => {
+      player.options().trackers.srgAnalytics = false;
+
+      const spyOnOptions = jest.spyOn(player, 'options');
+
+      SrgSsr.srgAnalytics(player);
+
+      expect(player.options().trackers.srgAnalytics).toBe(false);
+      expect(spyOnOptions).not.toHaveBeenLastCalledWith(expect.objectContaining({ trackers: { srgAnalytics: expect.any(Object) }}));
+    });
+
+    it('should initialize the srgAnalytics', () => {
+      player.options().trackers.srgAnalytics = undefined;
+
+      const spyOnOptions = jest.spyOn(player, 'options');
+
+      SrgSsr.srgAnalytics(player);
+
+      expect(spyOnOptions).toHaveBeenLastCalledWith(expect.objectContaining({ trackers: { srgAnalytics: expect.any(Object) }}));
+    });
+  });
+
+  /**
+   *****************************************************************************
    * updatePoster **************************************************************
    *****************************************************************************
    */
   describe('updatePoster', () => {
     it('should use the default Image class', async () => {
-      const mockDataProvider = new DataProvider();
-      const { mediaComposition } =
-        await mockDataProvider.getMediaCompositionByUrn('urn:fake');
-      const imageUrl = mediaComposition.getMainChapterImageUrl();
+      const imageUrl = 'https://image.to.scale.ch/chapter.jpg';
       const imageUrlResult = `https://mock-scale.ch/${imageUrl}`;
 
       const spyOnScale = jest.spyOn(Image, 'scale');
       const spyOnPoster = jest.spyOn(player, 'poster');
 
-      SrgSsr.updatePoster(player, mediaComposition);
+      SrgSsr.updatePoster(player, {
+        mediaData: {
+          chapterImageUrl: imageUrl
+        }
+      });
 
       // Image
       expect(spyOnScale).toHaveBeenCalledWith({ url: imageUrl });
@@ -756,16 +823,17 @@ describe('SrgSsr', () => {
     });
 
     it('should update the player\'s poster', async () => {
-      const mockDataProvider = new DataProvider();
-      const { mediaComposition } =
-        await mockDataProvider.getMediaCompositionByUrn('urn:fake');
-      const imageUrl = mediaComposition.getMainChapterImageUrl();
+      const imageUrl = 'https://image.to.scale.ch/chapter.jpg';
       const imageUrlResult = `https://mock-scale.ch/${imageUrl}`;
 
       const spyOnScale = jest.spyOn(Image, 'scale');
       const spyOnPoster = jest.spyOn(player, 'poster');
 
-      SrgSsr.updatePoster(player, mediaComposition, Image);
+      SrgSsr.updatePoster(player, {
+        mediaData: {
+          chapterImageUrl: imageUrl
+        }
+      }, Image);
 
       // Image
       expect(spyOnScale).toHaveBeenCalledWith({ url: imageUrl });
@@ -783,19 +851,38 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('updateTitleBar', () => {
-    it('should update the player\'s title bar', async () => {
-      const mockDataProvider = new DataProvider();
-      const { mediaComposition } =
-        await mockDataProvider.getMediaCompositionByUrn('urn:fake');
+    it('should do nothing if titleBar is undefined', async () => {
+      const srcObj = {
+        mediaData: {
+          vendor: 'BU',
+          title: 'Media Title'
+        }
+      };
+      const cacheTitleBar = player.titleBar;
 
+      delete player.titleBar;
+
+      SrgSsr.updateTitleBar(player, srcObj);
+
+      expect(player).not.toHaveProperty('titleBar');
+
+      player.titleBar = cacheTitleBar;
+    });
+
+    it('should update the player\'s title bar', async () => {
+      const srcObj = {
+        mediaData: {
+          vendor: 'BU',
+          title: 'Media Title'
+        }
+      };
+      const result = {
+        title: srcObj.mediaData.vendor,
+        description: srcObj.mediaData.title
+      };
       const spyOnUpate = jest.spyOn(player.titleBar, 'update');
 
-      SrgSsr.updateTitleBar(player, mediaComposition);
-
-      const result = {
-        title: mediaComposition.getMainChapter().vendor,
-        description: mediaComposition.getMainChapter().title,
-      };
+      SrgSsr.updateTitleBar(player, srcObj);
 
       expect(spyOnUpate).toHaveBeenCalledWith(result);
       expect(spyOnUpate.mock.results[0].value).toMatchObject(result);
@@ -859,27 +946,31 @@ describe('SrgSsr', () => {
     });
 
     describe('setSource', () => {
-      it('Should use the default Image class', async () => {
-        const spyOnComposeAkamaiResources = jest.spyOn(
+      it('Should call handle set source', async () => {
+        const spyOnHandleSetSource = jest.spyOn(
           SrgSsr,
-          'composeAkamaiResources'
+          'handleSetSource'
         );
-        const spyOnComposeKeySystemsResources = jest.spyOn(
+
+        jest.spyOn(
           SrgSsr,
-          'composeKeySystemsResources'
-        );
-        const spyOnGetMediaComposition = jest.spyOn(
+          'getSrcMediaObj'
+        ).mockResolvedValueOnce(srcMediaObj);
+        const middleware = SrgSsr.middleware(player);
+        const srcObj = { src: 'urn:fake' };
+        const next = async (_err, _srcObj) => { };
+
+        await middleware.setSource({ src: 'urn:fake' }, next);
+
+        expect(spyOnHandleSetSource).toHaveBeenCalledWith(player, srcObj, next);
+      });
+
+      it('Should call the next middleware without error', async () => {
+        jest.spyOn(
           SrgSsr,
-          'getMediaComposition'
-        );
-        const spyOnGetMediaData = jest.spyOn(SrgSsr, 'getMediaData');
-        const spyOnComposeSrcMediaData = jest.spyOn(
-          SrgSsr,
-          'composeSrcMediaData'
-        );
-        const spyOnSrgAnalytics = jest.spyOn(SrgSsr, 'srgAnalytics');
-        const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
-        const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
+          'getSrcMediaObj'
+        ).mockResolvedValueOnce(srcMediaObj);
+
         const middleware = SrgSsr.middleware(player);
 
         await middleware.setSource({ src: 'urn:fake' }, async (err, srcObj) => {
@@ -890,55 +981,6 @@ describe('SrgSsr', () => {
         expect(middleware).toMatchObject({
           setSource: expect.any(Function),
         });
-        expect(spyOnGetMediaComposition).toHaveBeenCalled();
-        expect(spyOnComposeKeySystemsResources).toHaveBeenCalled();
-        expect(spyOnComposeAkamaiResources).toHaveBeenCalled();
-        expect(spyOnGetMediaData).toHaveBeenCalled();
-        expect(spyOnComposeSrcMediaData).toHaveBeenCalled();
-        expect(spyOnSrgAnalytics).toHaveBeenCalled();
-        expect(spyOnUpdateTitleBar).toHaveBeenCalled();
-        expect(spyOnUpdatePoster).toHaveBeenCalled();
-      });
-
-      it('Should call the next middleware without error', async () => {
-        const spyOnComposeAkamaiResources = jest.spyOn(
-          SrgSsr,
-          'composeAkamaiResources'
-        );
-        const spyOnComposeKeySystemsResources = jest.spyOn(
-          SrgSsr,
-          'composeKeySystemsResources'
-        );
-        const spyOnGetMediaComposition = jest.spyOn(
-          SrgSsr,
-          'getMediaComposition'
-        );
-        const spyOnGetMediaData = jest.spyOn(SrgSsr, 'getMediaData');
-        const spyOnComposeSrcMediaData = jest.spyOn(
-          SrgSsr,
-          'composeSrcMediaData'
-        );
-        const spyOnSrgAnalytics = jest.spyOn(SrgSsr, 'srgAnalytics');
-        const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
-        const spyOnUpdatePoster = jest.spyOn(SrgSsr, 'updatePoster');
-        const middleware = SrgSsr.middleware(player, Image);
-
-        await middleware.setSource({ src: 'urn:fake' }, async (err, srcObj) => {
-          expect(err).toBeNull();
-          expect(srcObj).toEqual(expect.any(Object));
-        });
-
-        expect(middleware).toMatchObject({
-          setSource: expect.any(Function),
-        });
-        expect(spyOnGetMediaComposition).toHaveBeenCalled();
-        expect(spyOnComposeKeySystemsResources).toHaveBeenCalled();
-        expect(spyOnComposeAkamaiResources).toHaveBeenCalled();
-        expect(spyOnGetMediaData).toHaveBeenCalled();
-        expect(spyOnComposeSrcMediaData).toHaveBeenCalled();
-        expect(spyOnSrgAnalytics).toHaveBeenCalled();
-        expect(spyOnUpdateTitleBar).toHaveBeenCalled();
-        expect(spyOnUpdatePoster).toHaveBeenCalled();
       });
 
       it('Should catch and error if the source is not defined', async () => {
@@ -980,23 +1022,12 @@ describe('SrgSsr', () => {
       });
 
       it('Should return undefined and generate an error if the media has a block reason', async () => {
-        jest.spyOn(SrgSsr, 'getMediaData').mockReturnValueOnce({
-          analyticsData: {},
-          analyticsMetadata: {},
-          blockReason: 'STARTDATE',
-          vendor: 'SRF',
-          dvr: true,
-          eventData: '',
-          id: '',
-          imageCopyright: '',
-          live: true,
-          mediaType: 'VIDEO',
-          mimeType: 'application/x-mpegURL',
-          presentation: '',
-          quality: '',
-          streaming: '',
-          url: 'https://fake.stream.url.ch/',
-        });
+        srcMediaObj.mediaData.blockReason = 'STARTDATE';
+
+        jest.spyOn(
+          SrgSsr,
+          'getSrcMediaObj'
+        ).mockResolvedValueOnce(srcMediaObj);
 
         const spyOnBlockingReason = jest.spyOn(SrgSsr, 'blockingReason');
         const result = await SrgSsr.middleware(player).setSource(
@@ -1007,8 +1038,7 @@ describe('SrgSsr', () => {
         expect(result).toBeUndefined();
         expect(spyOnBlockingReason).toHaveBeenCalledWith(
           player,
-          'STARTDATE',
-          expect.any(Object)
+          srcMediaObj
         );
       });
 

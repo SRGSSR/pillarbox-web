@@ -510,11 +510,12 @@ describe('MediaComposition', () => {
 
       expect(resource).toHaveProperty('analyticsData');
       expect(resource).toHaveProperty('analyticsMetadata');
+      expect(resource).toHaveProperty('blockReason');
       expect(resource).toHaveProperty('blockedSegments');
+      expect(resource).toHaveProperty('chapterImageUrl');
       expect(resource).toHaveProperty('chapters');
-      expect(resource).toHaveProperty('vendor');
-      expect(resource).toHaveProperty('dvr');
       expect(resource).toHaveProperty('drmList');
+      expect(resource).toHaveProperty('dvr');
       expect(resource).toHaveProperty('eventData');
       expect(resource).toHaveProperty('id');
       expect(resource).toHaveProperty('imageCopyright');
@@ -527,9 +528,11 @@ describe('MediaComposition', () => {
       expect(resource).toHaveProperty('streaming');
       expect(resource).toHaveProperty('streamOffset');
       expect(resource).toHaveProperty('subtitles');
+      expect(resource).toHaveProperty('title');
       expect(resource).toHaveProperty('tokenType');
       expect(resource).toHaveProperty('url');
       expect(resource).toHaveProperty('urn');
+      expect(resource).toHaveProperty('vendor');
     });
 
     it('should return the main resources for an on demand video', () => {

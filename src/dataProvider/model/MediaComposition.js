@@ -183,6 +183,7 @@ class MediaComposition {
    *
    * @returns {Array} array of sources
    */
+  // eslint-disable-next-line max-lines-per-function
   getMainResources() {
     const resourceList = this.getResourceList();
 
@@ -197,13 +198,14 @@ class MediaComposition {
       ),
       blockReason: this.getMainChapter().blockReason,
       blockedSegments: this.getMainBlockedSegments(),
+      chapterImageUrl: this.getMainChapterImageUrl(),
       chapters: this.getChapters(),
-      vendor: this.getMainChapter().vendor,
       drmList: resource.drmList,
       dvr: resource.dvr,
       eventData: this.getMainChapter().eventData,
       id: this.getMainChapter().id,
       imageCopyright: this.getMainChapter().imageCopyright,
+      intervals: this.getMainTimeIntervals(),
       live: resource.live,
       mediaType: this.getMainChapter().mediaType,
       mimeType: resource.mimeType,
@@ -212,10 +214,11 @@ class MediaComposition {
       streaming: resource.streaming,
       streamOffset: resource.streamOffset,
       subtitles: this.getFilteredExternalSubtitles(),
-      intervals: this.getMainTimeIntervals(),
+      title: this.getMainChapter().title,
       tokenType: resource.tokenType,
       url: resource.url,
-      urn: this.chapterUrn
+      urn: this.chapterUrn,
+      vendor: this.getMainChapter().vendor,
     }));
   }
 
