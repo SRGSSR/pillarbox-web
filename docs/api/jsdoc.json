@@ -1,6 +1,6 @@
 {
   "source": {
-    "include": ["src/components/player.js", "src/middleware/srgssr.js", "src/pillarbox.js", "src/typedefs.js"],
+    "include": ["src/components/player.js", "src/middleware/srgssr.js", "src/pillarbox.js"],
     "includePattern": ".js$"
   },
   "plugins": [
