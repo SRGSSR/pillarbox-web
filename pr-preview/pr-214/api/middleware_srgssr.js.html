@@ -421,6 +421,14 @@ class SrgSsr {
     return resource || resources[0];
   }
 
+  /**
+   * Get the source media object.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {Object} srcObj
+   *
+   * @returns {Promise&lt;Object>} - The composed source media data.
+   */
   static async getSrcMediaObj(player, srcObj) {
     const { src: urn, ...srcOptions } = srcObj;
     const { mediaComposition } = await SrgSsr.getMediaComposition(
@@ -435,23 +443,68 @@ class SrgSsr {
     return SrgSsr.composeSrcMediaData(srcOptions, mediaData);
   }
 
+  /**
+   * Handles the middleware's current time function.
+   * - If the current time is between the start and end of a blocked segment,
+   *   the blocked portion will be skipped.
+   *
+   * _Note_: This function should disappear as soon as this behavior is
+   *         supported on the packaging side.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {number} currentTime
+   *
+   * @returns {number}
+   */
   static handleCurrentTime(player, currentTime) {
     const blockedSegmentEndTime = SrgSsr
       .getBlockedSegmentEndTime(player, currentTime);
 
     if (Number.isFinite(blockedSegmentEndTime)) {
       player.currentTime(blockedSegmentEndTime);
+
+      return blockedSegmentEndTime;
     }
 
-    return blockedSegmentEndTime ?? currentTime;
-
+    return currentTime;
   }
 
+  /**
+   * Handles the middleware's set current time function.
+   * - Modify the current time if the value is between the start and end of a
+   *   blocked segment.
+   *
+   * _Note_: This function should disappear as soon as this behavior is
+   *         supported on the packaging side.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {number} currentTime
+   *
+   * @returns {number}
+   */
   static handleSetCurrentTime(player, currentTime) {
-    return SrgSsr
-      .getBlockedSegmentEndTime(player, currentTime) ?? currentTime;
+    const blockedSegmentEndTime = SrgSsr
+      .getBlockedSegmentEndTime(player, currentTime);
+
+    return Number
+      .isFinite(blockedSegmentEndTime) ? blockedSegmentEndTime : currentTime;
   }
 
+  /**
+   * Handles the middleware's set set source function.
+   *
+   * This function allows to:
+   * - resolve a URN into media that can be played by the player
+   * - initialize media playback tracking
+   * - update the title bar
+   * - handle blocking reasons
+   * - add remote subtitles
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {number} currentTime
+   *
+   * @returns {number}
+   */
   static async handleSetSource(player, srcObj, next) {
     try {
       const srcMediaObj = await SrgSsr.getSrcMediaObj(player, srcObj);
