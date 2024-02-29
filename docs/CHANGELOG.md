@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.1.0...v1.1.1) (2024-02-29)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* typings generation for the player ([ea1ed09](https://github.com/SRGSSR/pillarbox-web/commit/ea1ed098ef2c9034f0d6144e729e862bad221d17))
+
 ## [1.1.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.0.1...v1.1.0) (2024-02-23)
 
 
