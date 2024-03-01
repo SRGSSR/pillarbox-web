@@ -512,7 +512,7 @@ describe('MediaComposition', () => {
       expect(resource).toHaveProperty('analyticsMetadata');
       expect(resource).toHaveProperty('blockReason');
       expect(resource).toHaveProperty('blockedSegments');
-      expect(resource).toHaveProperty('chapterImageUrl');
+      expect(resource).toHaveProperty('imageUrl');
       expect(resource).toHaveProperty('chapters');
       expect(resource).toHaveProperty('drmList');
       expect(resource).toHaveProperty('dvr');

@@ -21,18 +21,18 @@
   <video id="player" class="video-js pillarbox-js" controls muted></video>
 
   <script type="module">
-    import Pillarbox from "./src/pillarbox.js";
-    import "./src/middleware/srgssr.js";
+    import pillarbox from './src/pillarbox.js';
+    import './src/middleware/srgssr.js';
 
     // Handle URL parameters
     const searchParams = new URLSearchParams(location.search);
-    const audioOnlyMode = searchParams.has("audioOnlyMode");
-    let currentTime = searchParams.get("currentTime");
-    const debug = searchParams.has("debug");
-    const ilHost = searchParams.get("ilHost") || undefined;
-    const language = searchParams.get("language");
-    const resize = searchParams.has("resize");
-    const urn = searchParams.get("urn") || "urn:swi:video:48864812";
+    const audioOnlyMode = searchParams.has('audioOnlyMode');
+    let currentTime = searchParams.get('currentTime');
+    const debug = searchParams.has('debug');
+    const ilHost = searchParams.get('ilHost') || undefined;
+    const language = searchParams.get('language');
+    const resize = searchParams.has('resize');
+    const urn = searchParams.get('urn') || 'urn:swi:video:48864812';
 
     // Media examples
     window.mediaExamples = {
@@ -46,15 +46,25 @@
         src: 'urn:rts:video:14683290',
         type: 'srgssr/urn'
       },
+      _endDate: {
+        label: 'Block reason end date',
+        src: 'urn:rts:video:10894367',
+        type: 'srgssr/urn'
+      },
+      _externalSubtitles: {
+        label: 'Remote text tracks',
+        src: 'urn:swi:video:48864812',
+        type: 'srgssr/urn'
+      },
     };
 
     // Expose Pillarbox and player in the window object for debugging
-    window.pillarbox = Pillarbox;
+    window.pillarbox = pillarbox;
 
     // Allows to track comscore events until TC becomes Pillarbox-compatible
-    window.videojs = Pillarbox;
+    window.videojs = pillarbox;
 
-    window.player = new Pillarbox("player", {
+    window.player = new pillarbox('player', {
       audioOnlyMode,
       debug,
       fill: true,
@@ -64,24 +74,77 @@
       }
     });
 
+    player.controlBar.lockShowing();
+
     if (resize) {
       /** @type {HTMLElement} */
       const el = player.el();
 
-      el.style.resize = "both";
-      el.style.overflow = "hidden";
+      el.style.resize = 'both';
+      el.style.overflow = 'hidden';
     }
 
-    player.on("loadedmetadata", () => {
+    // Starts playback at a given position
+    player.on('loadedmetadata', () => {
       if (!currentTime) return;
 
       player.currentTime(currentTime);
       currentTime = undefined;
     });
 
+
+    player.one('loadeddata', () => {
+      setTimeout(() => {
+        const textTracks = player.textTracks();
+
+        // Listen to chapters
+        textTracks.getTrackById('srgssr-chapters').addEventListener('cuechange', () => {
+          const [cue] = Array.from(textTracks.getTrackById('srgssr-chapters').activeCues);
+
+          if (!cue) {
+            // Reset media title when no longer in a chapter
+            player.titleBar.update({
+              title: player.currentSource().mediaData.vendor,
+              description: player.currentSource().mediaData.title
+            });
+
+            return;
+          };
+
+          const chapter = JSON.parse(cue.text);
+
+          // Update the title bar with the current chapter
+          player.titleBar.update({
+            title: chapter.title,
+            description: chapter.description
+          });
+
+          console.log('%cChapter', 'background-color: blue', chapter.title);
+        });
+
+        // Listen to blocked segment
+        textTracks.getTrackById('srgssr-blocked-segments')?.addEventListener('cuechange', () => {
+          const [cue] = Array.from(textTracks.getTrackById('srgssr-blocked-segments')?.activeCues);
+
+          if (!cue) return;
+
+          console.log('%cBlock reason', 'background-color: red', JSON.parse(cue.text).blockReason);
+        });
+
+        // Listen to intervals
+        textTracks.getTrackById('srgssr-intervals')?.addEventListener('cuechange', () => {
+          const [cue] = Array.from(textTracks.getTrackById('srgssr-intervals')?.activeCues);
+
+          if (!cue) return;
+
+          console.log('%cInterval', 'background-color: green', JSON.parse(cue.text).type);
+        });
+      }, 100);
+    });
+
     player.src({
       src: urn,
-      type: "srgssr/urn",
+      type: 'srgssr/urn',
     });
   </script>
 </body>
