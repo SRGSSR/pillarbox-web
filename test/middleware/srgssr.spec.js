@@ -79,6 +79,8 @@ describe('SrgSsr', () => {
     });
 
     it('Should not add blocked segments if none exist', async () => {
+      jest.useFakeTimers();
+
       const result = [];
 
       Pillarbox.TextTrack
@@ -88,10 +90,14 @@ describe('SrgSsr', () => {
 
       SrgSsr.addBlockedSegments(player, [{}, {}]);
 
-      expect(result).toHaveLength(0);
+      jest.advanceTimersByTime(100);
+
+      expect(await result).toHaveLength(0);
     });
 
     it('Should add 2 blocked segments', async () => {
+      jest.useFakeTimers();
+
       const result = [];
 
       Pillarbox.TextTrack
@@ -116,7 +122,9 @@ describe('SrgSsr', () => {
         markOut: 70_0000
       }]);
 
-      expect(result).toHaveLength(2);
+      jest.advanceTimersByTime(100);
+
+      expect(await result).toHaveLength(2);
     });
   });
 
@@ -147,6 +155,8 @@ describe('SrgSsr', () => {
     });
 
     it('should not add the chapter if the only available chapter is the main chapter', async () => {
+      jest.useFakeTimers();
+
       const chapterUrn = 'urn:full:length';
       const result = [];
 
@@ -160,10 +170,14 @@ describe('SrgSsr', () => {
         fullLengthMarkOut: 10000
       }]);
 
-      expect(result).toHaveLength(0);
+      jest.advanceTimersByTime(100);
+
+      expect(await result).toHaveLength(0);
     });
 
     it('should add all chapters that are not the main chapter', async () => {
+      jest.useFakeTimers();
+
       const chapterUrn = 'urn:full:length';
       const result = [];
 
@@ -185,7 +199,9 @@ describe('SrgSsr', () => {
         fullLengthMarkOut: 9500
       }]);
 
-      expect(result).toHaveLength(2);
+      jest.advanceTimersByTime(100);
+
+      expect(await result).toHaveLength(2);
       expect(result[0].startTime).toBe(2.5);
       expect(result[0].endTime).toBe(5);
       expect(result[1].startTime).toBe(6);
@@ -220,6 +236,8 @@ describe('SrgSsr', () => {
     });
 
     it('should add intervals to the player', async () => {
+      jest.useFakeTimers();
+
       const result = [];
 
       Pillarbox.TextTrack
@@ -237,7 +255,9 @@ describe('SrgSsr', () => {
         type: 'CLOSING_CREDITS'
       }]);
 
-      expect(result).toHaveLength(2);
+      jest.advanceTimersByTime(100);
+
+      expect(await result).toHaveLength(2);
       expect(JSON.parse(result[0].text).type).toBe('OPENING_CREDITS');
       expect(JSON.parse(result[1].text).type).toBe('CLOSING_CREDITS');
     });
@@ -541,9 +561,9 @@ describe('SrgSsr', () => {
       expect(SrgSsr.getBlockedSegment(player)).toBeUndefined();
     });
 
-    it('should return undefined if activeCues_ is an empty array', () => {
+    it('should return undefined if activeCues is an empty array', () => {
       player.textTracks().getTrackById.mockReturnValueOnce({
-        activeCues_: []
+        activeCues: []
       });
 
       expect(SrgSsr.getBlockedSegment(player)).toBeUndefined();
@@ -556,7 +576,7 @@ describe('SrgSsr', () => {
       };
 
       player.textTracks().getTrackById.mockReturnValueOnce({
-        activeCues_: [blockedSegmentCue]
+        activeCues: [blockedSegmentCue]
       });
 
       expect(SrgSsr.getBlockedSegment(player)).toEqual(blockedSegmentCue);
@@ -583,7 +603,7 @@ describe('SrgSsr', () => {
       };
 
       player.textTracks().getTrackById.mockReturnValueOnce({
-        activeCues_: [blockedSegmentCue]
+        activeCues: [blockedSegmentCue]
       });
 
       expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBeUndefined();
@@ -597,7 +617,7 @@ describe('SrgSsr', () => {
       };
 
       player.textTracks().getTrackById.mockReturnValueOnce({
-        activeCues_: [blockedSegmentCue]
+        activeCues: [blockedSegmentCue]
       });
 
       expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBeUndefined();
@@ -611,7 +631,7 @@ describe('SrgSsr', () => {
       };
 
       player.textTracks().getTrackById.mockReturnValueOnce({
-        activeCues_: [blockedSegmentCue]
+        activeCues: [blockedSegmentCue]
       });
 
       expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBe(blockedSegmentCue.endTime);
@@ -913,7 +933,7 @@ describe('SrgSsr', () => {
         };
 
         player.textTracks().getTrackById.mockReturnValueOnce({
-          activeCues_: [blockedSegmentCue]
+          activeCues: [blockedSegmentCue]
         });
 
         expect(middleware.currentTime(currentTime)).toBe(blockedSegmentCue.endTime);
@@ -938,7 +958,7 @@ describe('SrgSsr', () => {
         };
 
         player.textTracks().getTrackById.mockReturnValueOnce({
-          activeCues_: [blockedSegmentCue]
+          activeCues: [blockedSegmentCue]
         });
 
         expect(middleware.setCurrentTime(currentTime)).toBe(blockedSegmentCue.endTime);

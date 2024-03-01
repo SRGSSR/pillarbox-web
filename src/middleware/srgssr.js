@@ -36,13 +36,13 @@ class SrgSsr {
 
     if (!blockedSegments.length) return;
 
-    const segmentTrack = SrgSsr.createTextTrack(player, trackId);
+    SrgSsr.createTextTrack(player, trackId).then(segmentTrack => {
+      blockedSegments.forEach(segment => {
+        SrgSsr.addTextTrackCue(segmentTrack, segment);
+      });
 
-    blockedSegments.forEach(segment => {
-      SrgSsr.addTextTrackCue(segmentTrack, segment);
+      player.textTracks().addTrack(segmentTrack);
     });
-
-    player.textTracks().addTrack(segmentTrack);
   }
 
   /**
@@ -83,11 +83,11 @@ class SrgSsr {
     const startTime = (data.markIn ?? data.fullLengthMarkIn) / 1_000;
     const endTime = (data.markOut ?? data.fullLengthMarkOut) / 1_000;
 
-    textTrack.addCue({
+    textTrack.addCue(new VTTCue(
       startTime,
       endTime,
-      text: JSON.stringify(data)
-    });
+      JSON.stringify(data)
+    ));
   }
 
   /**
@@ -120,15 +120,15 @@ class SrgSsr {
 
     if (!Array.isArray(chapters) || !chapters.length) return;
 
-    const chapterTrack = SrgSsr.createTextTrack(player, trackId);
+    SrgSsr.createTextTrack(player, trackId).then(chapterTrack => {
+      chapters.forEach(chapter => {
+        if (chapterUrn !== chapter.fullLengthUrn) return;
 
-    chapters.forEach(chapter => {
-      if (chapterUrn !== chapter.fullLengthUrn) return;
+        SrgSsr.addTextTrackCue(chapterTrack, chapter);
+      });
 
-      SrgSsr.addTextTrackCue(chapterTrack, chapter);
+      player.textTracks().addTrack(chapterTrack);
     });
-
-    player.textTracks().addTrack(chapterTrack);
   }
 
   /**
@@ -147,13 +147,13 @@ class SrgSsr {
 
     if (!Array.isArray(intervals) || !intervals.length) return;
 
-    const intervalTrack = SrgSsr.createTextTrack(player, trackId);
+    SrgSsr.createTextTrack(player, trackId).then(intervalTrack => {
+      intervals.forEach(interval => {
+        SrgSsr.addTextTrackCue(intervalTrack, interval);
+      });
 
-    intervals.forEach(interval => {
-      SrgSsr.addTextTrackCue(intervalTrack, interval);
+      player.textTracks().addTrack(intervalTrack);
     });
-
-    player.textTracks().addTrack(intervalTrack);
   }
 
   /**
@@ -262,14 +262,19 @@ class SrgSsr {
    * @param {import('video.js/dist/types/player').default} player
    * @param {String} trackId Text track unique ID
    *
-   * @returns {TextTrack}
+   * @returns {Promise<TextTrack>}
    */
   static createTextTrack(player, trackId) {
-    return new Pillarbox.TextTrack({
-      id: trackId,
-      kind: 'metadata',
-      label: trackId,
-      tech: player.tech(true),
+    // See https://github.com/videojs/video.js/issues/8519
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(new Pillarbox.TextTrack({
+          id: trackId,
+          kind: 'metadata',
+          label: trackId,
+          tech: player.tech(true),
+        }));
+      }, 100);
     });
   }
 
@@ -367,7 +372,7 @@ class SrgSsr {
     if (!blockedSegmentsTrack) return;
 
     /** @type {VTTCue} */
-    const [blockedCue] = blockedSegmentsTrack.activeCues_;
+    const [blockedCue] = Array.from(blockedSegmentsTrack.activeCues);
 
     return blockedCue;
   }
