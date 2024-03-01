@@ -166,15 +166,18 @@ class SrgSsr {
    *
    * @returns {undefined|Boolean}
    */
-  static blockingReason(player, blockReason, srcMediaObj) {
-    if (!blockReason) return;
+  static blockingReason(player, srcMediaObj) {
+    if (!srcMediaObj.mediaData.blockReason) return;
 
-    const message = player.localize(blockReason);
+    const message = player.localize(srcMediaObj.mediaData.blockReason);
 
     SrgSsr.error(player, {
       code: MediaError.MEDIA_ERR_ABORTED,
       message,
-      metadata: { errorType: blockReason, src: srcMediaObj },
+      metadata: {
+        errorType: srcMediaObj.mediaData.blockReason,
+        src: srcMediaObj
+      },
     });
 
     return true;
@@ -417,6 +420,110 @@ class SrgSsr {
   }
 
   /**
+   * Get the source media object.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {Object} srcObj
+   *
+   * @returns {Promise<Object>} - The composed source media data.
+   */
+  static async getSrcMediaObj(player, srcObj) {
+    const { src: urn, ...srcOptions } = srcObj;
+    const { mediaComposition } = await SrgSsr.getMediaComposition(
+      urn,
+      SrgSsr.dataProvider(player)
+    );
+    const mainResources = await SrgSsr.composeMainResources(
+      mediaComposition
+    );
+    const mediaData = SrgSsr.getMediaData(mainResources);
+
+    return SrgSsr.composeSrcMediaData(srcOptions, mediaData);
+  }
+
+  /**
+   * Handles the middleware's currentTime function.
+   * - If the current time is between the start and end of a blocked segment,
+   *   the blocked portion will be skipped.
+   *
+   * _Note_: This function should disappear as soon as this behavior is
+   *         supported on the packaging side.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {number} currentTime
+   *
+   * @returns {number}
+   */
+  static handleCurrentTime(player, currentTime) {
+    const blockedSegmentEndTime = SrgSsr
+      .getBlockedSegmentEndTime(player, currentTime);
+
+    if (Number.isFinite(blockedSegmentEndTime)) {
+      player.currentTime(blockedSegmentEndTime);
+
+      return blockedSegmentEndTime;
+    }
+
+    return currentTime;
+  }
+
+  /**
+   * Handles the middleware's setCurrentTime function.
+   * - Modify the current time if the value is between the start and end of a
+   *   blocked segment.
+   *
+   * _Note_: This function should disappear as soon as this behavior is
+   *         supported on the packaging side.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {number} currentTime
+   *
+   * @returns {number}
+   */
+  static handleSetCurrentTime(player, currentTime) {
+    const blockedSegmentEndTime = SrgSsr
+      .getBlockedSegmentEndTime(player, currentTime);
+
+    return Number
+      .isFinite(blockedSegmentEndTime) ? blockedSegmentEndTime : currentTime;
+  }
+
+  /**
+   * Handles the middleware's setSource function.
+   *
+   * This function allows to:
+   * - resolve a URN into media that can be played by the player
+   * - initialize media playback tracking
+   * - update the title bar
+   * - handle blocking reasons
+   * - add remote subtitles
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   * @param {number} currentTime
+   *
+   * @returns {number}
+   */
+  static async handleSetSource(player, srcObj, next) {
+    try {
+      const srcMediaObj = await SrgSsr.getSrcMediaObj(player, srcObj);
+
+      SrgSsr.srgAnalytics(player);
+      SrgSsr.updateTitleBar(player, srcMediaObj);
+      SrgSsr.updatePoster(player, srcMediaObj);
+
+      if (SrgSsr.blockingReason(player, srcMediaObj)) return;
+
+      SrgSsr.addTextTracks(player, srcMediaObj);
+
+      return next(null, srcMediaObj);
+    } catch (error) {
+      if (SrgSsr.dataProviderError(player, error)) return;
+
+      return next(error);
+    }
+  }
+
+  /**
    * SRG SSR analytics singleton.
    *
    * @param {import('video.js/dist/types/player').default} player
@@ -444,13 +551,13 @@ class SrgSsr {
    * Update player's poster.
    *
    * @param {import('video.js/dist/types/player').default} player
-   * @param {import('../dataProvider/model/MediaComposition.js').default} mediaComposition
+   * @param {Object} srcMediaObj
    * @param {Image} imageService
    */
-  static updatePoster(player, mediaComposition, imageService = Image) {
+  static updatePoster(player, srcMediaObj, imageService = Image) {
     player.poster(
       imageService.scale({
-        url: mediaComposition.getMainChapterImageUrl(),
+        url: srcMediaObj.mediaData.imageUrl,
       })
     );
   }
@@ -459,14 +566,14 @@ class SrgSsr {
    * Update player titleBar with title and description.
    *
    * @param {import('video.js/dist/types/player').default} player
-   * @param {import('../dataProvider/model/MediaComposition.js').default} mediaComposition
+   * @param {Object} srcMediaObj
    */
-  static updateTitleBar(player, mediaComposition) {
+  static updateTitleBar(player, srcMediaObj) {
     if (!player.titleBar) return;
 
     player.titleBar.update({
-      title: mediaComposition.getMainChapter().vendor,
-      description: mediaComposition.getMainChapter().title,
+      title: srcMediaObj.mediaData.vendor,
+      description: srcMediaObj.mediaData.title,
     });
   }
 
@@ -474,60 +581,17 @@ class SrgSsr {
    * Middleware to resolve SRG SSR URNs into playable media.
    *
    * @param {import('video.js/dist/types/player').default} player
-   * @param {Image} imageService
    *
    * @returns {Object}
    */
-  /* eslint-disable max-lines-per-function */
-  static middleware(player, imageService = Image) {
+  static middleware(player) {
     return {
-      currentTime: (currentTime) => {
-        const blockedSegmentEndTime = SrgSsr
-          .getBlockedSegmentEndTime(player, currentTime);
-
-        if (Number.isFinite(blockedSegmentEndTime)) {
-          player.currentTime(blockedSegmentEndTime);
-        }
-
-        return blockedSegmentEndTime ?? currentTime;
-      },
-      setCurrentTime: (currentTime) => {
-        return SrgSsr
-          .getBlockedSegmentEndTime(player, currentTime) ?? currentTime;
-      },
-      /* eslint max-statements: ["error", 20]*/
-      setSource: async (srcObj, next) => {
-        try {
-          const { src: urn, ...srcOptions } = srcObj;
-          const { mediaComposition } = await SrgSsr.getMediaComposition(
-            urn,
-            SrgSsr.dataProvider(player)
-          );
-          const mainResources = await SrgSsr.composeMainResources(
-            mediaComposition
-          );
-          const mediaData = SrgSsr.getMediaData(mainResources);
-          const srcMediaObj = SrgSsr.composeSrcMediaData(srcOptions, mediaData);
-
-          SrgSsr.srgAnalytics(player);
-          SrgSsr.updateTitleBar(player, mediaComposition);
-          SrgSsr.updatePoster(player, mediaComposition, imageService);
-
-          if (SrgSsr.blockingReason(player, mediaData.blockReason, srcMediaObj))
-            return;
-
-          SrgSsr.addRemoteTextTracks(player, mediaData.subtitles);
-          SrgSsr.addChapters(player, mediaData.urn, mediaData.chapters);
-          SrgSsr.addBlockedSegments(player, mediaData.blockedSegments);
-          SrgSsr.addIntervals(player, mediaData.intervals);
-
-          return next(null, srcMediaObj);
-        } catch (error) {
-          if (SrgSsr.dataProviderError(player, error)) return;
-
-          return next(error);
-        }
-      },
+      currentTime: (currentTime) =>
+        SrgSsr.handleCurrentTime(player, currentTime),
+      setCurrentTime: (currentTime) =>
+        SrgSsr.handleSetCurrentTime(player, currentTime),
+      setSource: async (srcObj, next) =>
+        SrgSsr.handleSetSource(player, srcObj, next),
     };
   }
 }

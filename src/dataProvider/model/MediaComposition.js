@@ -198,7 +198,7 @@ class MediaComposition {
       ),
       blockReason: this.getMainChapter().blockReason,
       blockedSegments: this.getMainBlockedSegments(),
-      chapterImageUrl: this.getMainChapterImageUrl(),
+      imageUrl: this.getMainChapterImageUrl(),
       chapters: this.getChapters(),
       drmList: resource.drmList,
       dvr: resource.dvr,
