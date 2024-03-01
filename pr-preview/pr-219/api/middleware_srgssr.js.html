@@ -85,11 +85,11 @@ class SrgSsr {
     const startTime = (data.markIn ?? data.fullLengthMarkIn) / 1_000;
     const endTime = (data.markOut ?? data.fullLengthMarkOut) / 1_000;
 
-    textTrack.addCue(new VTTCue({
+    textTrack.addCue(new VTTCue(
       startTime,
       endTime,
-      text: JSON.stringify(data)
-    }));
+      JSON.stringify(data)
+    ));
   }
 
   /**
