@@ -1,3 +1,15 @@
+## [1.2.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.1.1...v1.2.0) (2024-03-04)
+
+
+### Refactor 🔩
+
+* **srgssr-middleware:** simplifies middleware ([9fb933f](https://github.com/SRGSSR/pillarbox-web/commit/9fb933fe50a9ab0e18b7d997ef659b6c942b73b5)), closes [#215](https://github.com/SRGSSR/pillarbox-web/issues/215)
+
+
+### New Features 🚀
+
+* **mediaComposition:** expose media title and image url ([76ecb2b](https://github.com/SRGSSR/pillarbox-web/commit/76ecb2bc2fa18c143388ded7707d8078862f86cd))
+
 ## [1.1.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.1.0...v1.1.1) (2024-02-29)
 
 
