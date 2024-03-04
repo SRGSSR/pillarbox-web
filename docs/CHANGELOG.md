@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.2.0...v1.2.1) (2024-03-04)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **srgssr-middleware:** text tracks do not load on safari ([d136f2e](https://github.com/SRGSSR/pillarbox-web/commit/d136f2e221c3f7090625946e420f4814d71ddc31))
+
 ## [1.2.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.1.1...v1.2.0) (2024-03-04)
 
 
