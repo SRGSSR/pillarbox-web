@@ -559,7 +559,7 @@ class SrgSsr {
   static updatePoster(player, srcMediaObj, imageService = Image) {
     player.poster(
       imageService.scale({
-        url: srcMediaObj.mediaData.chapterImageUrl,
+        url: srcMediaObj.mediaData.imageUrl,
       })
     );
   }
