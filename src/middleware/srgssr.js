@@ -1,4 +1,4 @@
-import Pillarbox from '../../src/pillarbox.js';
+import pillarbox from '../../src/pillarbox.js';
 import DataProvider from '../dataProvider/services/DataProvider.js';
 import Image from '../utils/Image.js';
 import Drm from '../utils/Drm.js';
@@ -252,7 +252,7 @@ class SrgSsr {
       type: mimeType,
       keySystems,
       disableTrackers,
-      mediaData: Pillarbox.obj.merge(mediaData, srcMediaData),
+      mediaData: pillarbox.obj.merge(mediaData, srcMediaData),
     };
   }
 
@@ -268,7 +268,7 @@ class SrgSsr {
     // See https://github.com/videojs/video.js/issues/8519
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(new Pillarbox.TextTrack({
+        resolve(new pillarbox.TextTrack({
           id: trackId,
           kind: 'metadata',
           label: trackId,
@@ -418,7 +418,7 @@ class SrgSsr {
   static getMediaData(resources = []) {
     if (AkamaiTokenService.hasToken(resources)) return resources[0];
 
-    const type = Pillarbox.browser.IS_ANY_SAFARI ? 'HLS' : 'DASH';
+    const type = pillarbox.browser.IS_ANY_SAFARI ? 'HLS' : 'DASH';
     const resource = resources.find(({ streaming }) => streaming === type);
 
     return resource || resources[0];
@@ -463,13 +463,17 @@ class SrgSsr {
     const blockedSegmentEndTime = SrgSsr
       .getBlockedSegmentEndTime(player, currentTime);
 
-    if (Number.isFinite(blockedSegmentEndTime)) {
-      player.currentTime(blockedSegmentEndTime);
-
-      return blockedSegmentEndTime;
+    if (!Number.isFinite(blockedSegmentEndTime)) {
+      return currentTime;
     }
 
-    return currentTime;
+    if (!pillarbox.browser.IS_FIREFOX) {
+      player.textTracks().getTrackById('srgssr-blocked-segments').trigger('cuechange');
+    }
+
+    player.currentTime(blockedSegmentEndTime);
+
+    return blockedSegmentEndTime;
   }
 
   /**
@@ -539,7 +543,7 @@ class SrgSsr {
     if (!player.options().trackers.srgAnalytics) {
       const srgAnalytics = new SRGAnalytics(player, {
         debug: player.debug(),
-        playerVersion: Pillarbox.VERSION.pillarbox,
+        playerVersion: pillarbox.VERSION.pillarbox,
         tagCommanderScriptURL:
           player.options().srgOptions.tagCommanderScriptURL,
       });
@@ -601,10 +605,10 @@ class SrgSsr {
   }
 }
 
-Pillarbox.use('srgssr/urn', SrgSsr.middleware);
+pillarbox.use('srgssr/urn', SrgSsr.middleware);
 
 // Add Middleware specific options
-Pillarbox.options.srgOptions = {
+pillarbox.options.srgOptions = {
   dataProviderHost: undefined,
   tagCommanderScriptURL: undefined,
 };

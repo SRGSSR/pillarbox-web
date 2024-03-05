@@ -924,6 +924,8 @@ describe('SrgSsr', () => {
       });
 
       it('should return the blocked segment end time', () => {
+        expect.assertions(3);
+
         const spyOnPlayerCurrentTime = jest.spyOn(player, 'currentTime');
         const middleware = SrgSsr.middleware(player);
         const currentTime = 13;
@@ -934,6 +936,8 @@ describe('SrgSsr', () => {
 
         player.textTracks().getTrackById.mockReturnValueOnce({
           activeCues: [blockedSegmentCue]
+        }).mockReturnValueOnce({
+          trigger: jest.fn().mockImplementationOnce((e)=> expect(e).toBe('cuechange'))
         });
 
         expect(middleware.currentTime(currentTime)).toBe(blockedSegmentCue.endTime);
