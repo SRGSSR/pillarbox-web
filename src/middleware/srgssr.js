@@ -20,7 +20,7 @@ class SrgSsr {
    * Adds blocked segments to the player.
    *
    * @param {import('video.js/dist/types/player').default} player
-   * @param {Array} [segments=[]]
+   * @param {Array<import('../dataProvider/model/typedef').Segment>} [segments=[]]
    */
   static addBlockedSegments(player, segments = []) {
     const trackId = 'srgssr-blocked-segments';
@@ -49,7 +49,7 @@ class SrgSsr {
    * Adds remote text tracks from an array of subtitles.
    *
    * @param {import('video.js/dist/types/player').default} player
-   * @param {Array} [subtitles=[]]
+   * @param {Array<import('../dataProvider/model/typedef').Subtitle>} [subtitles=[]]
    */
   static addRemoteTextTracks(player, subtitles = []) {
     if (!Array.isArray(subtitles)) return;
@@ -73,11 +73,11 @@ class SrgSsr {
    * Add a new cue to a text track with the given data.
    *
    * @param {TextTrack} textTrack
-   * @param {Object} data SRG SSR's cue-like representation
-   * @param {number} data.markIn The start time in milliseconds
-   * @param {number} data.fullLengthMarkIn Alternative start time in milliseconds
-   * @param {number} data.markOut The end time in milliseconds
-   * @param {number} data.fullLengthMarkOut The alternative end time in milliseconds
+   * @param {
+   *   import('../dataProvider/model/typedef').Segment |
+   *   import('../dataProvider/model/typedef').Chapter |
+   *   import('../dataProvider/model/typedef').TimeInterval
+   * } data SRG SSR's cue-like representation
    */
   static addTextTrackCue(textTrack, data) {
     const startTime = (data.markIn ?? data.fullLengthMarkIn) / 1_000;
@@ -94,7 +94,7 @@ class SrgSsr {
    * Add multiple text tracks to the player.
    *
    * @param {import('video.js/dist/types/player').default} player
-   * @param {Object} mediaData
+   * @param {import('./typedef').ComposedSrcMediaData} srcMediaObj
    */
   static addTextTracks(player, { mediaData }) {
     SrgSsr.addRemoteTextTracks(player, mediaData.subtitles);
@@ -108,7 +108,7 @@ class SrgSsr {
    *
    * @param {import('video.js/dist/types/player').default} player
    * @param {string} chapterUrn The URN of the main chapter.
-   * @param {Array} [chapters=[]]
+   * @param {Array.<import('../dataProvider/model/typedef').Chapter>} [chapters=[]]
    */
   static addChapters(player, chapterUrn, chapters = []) {
     const trackId = 'srgssr-chapters';
@@ -135,7 +135,7 @@ class SrgSsr {
    * Adds intervals to the player.
    *
    * @param {import('video.js/dist/types/player').default} player
-   * @param {Array} [intervals=[]]
+   * @param {Array.<import('../dataProvider/model/typedef').TimeInterval>} [intervals=[]]
    */
   static addIntervals(player, intervals = []) {
     const trackId = 'srgssr-intervals';
@@ -161,8 +161,7 @@ class SrgSsr {
    * by mediaData.
    *
    * @param {import('video.js/dist/types/player').default} player
-   * @param {String} blockReason
-   * @param {Object} srcMediaObj
+   * @param {import('./typedef').ComposedSrcMediaData} srcMediaObj
    *
    * @returns {undefined|Boolean}
    */
@@ -188,9 +187,9 @@ class SrgSsr {
    * if at least one of them has tokenType
    * set to Akamai.
    *
-   * @param {Array.<Object>} resources
+   * @param {Array.<import('./typedef').MainResourceWithKeySystems>} resources
    *
-   * @returns {Promise<Array.<Object>>}
+   * @returns {Promise<Array.<import('./typedef').MainResourceWithKeySystems>>}
    */
   static async composeAkamaiResources(resources = []) {
     if (!AkamaiTokenService.hasToken(resources)) {
@@ -205,9 +204,9 @@ class SrgSsr {
    * Add the keySystems property to all resources
    * if at least one of them has DRM.
    *
-   * @param {Array.<Object>} resources
+   * @param {Array.<import('../dataProvider/model/typedef').MainResource>} resources
    *
-   * @returns {Array.<Object>}
+   * @returns {Array.<import('./typedef').MainResourceWithKeySystems>}
    */
   static composeKeySystemsResources(resources = []) {
     if (!Drm.hasDrm(resources)) resources;
@@ -222,9 +221,9 @@ class SrgSsr {
    * Get the main resources from a mediaComposition.
    * May add an Akamai token or key systems if required by the resource.
    *
-   * @param {import('../dataProvider/model/MediaComposition.js').default} mediaComposition
+   * @param {MediaComposition} mediaComposition
    *
-   * @returns {Promise<Array.<Object>>}
+   * @returns {Promise<Array.<import('./typedef').MainResourceWithKeySystems>>}
    */
   static composeMainResources(mediaComposition) {
     return SrgSsr.composeAkamaiResources(
@@ -238,10 +237,12 @@ class SrgSsr {
    * Compose source options with media data.
    * MediaData properties from source options overwrite mediaData from IL.
    *
-   * @param {Object} srcOptions - provided by player.src
-   * @param {Object} mediaData - provided by mediaComposition
+   * @param {any} srcObj
+   * @param {any} srcObj.mediaData overrides or adds metadata to the composed mediaData.
+   * @param {boolean} srcObj.disableTrackers
+   * @param {import('./typedef').MainResourceWithKeySystems} resource
    *
-   * @returns {Object}
+   * @returns {import('./typedef').ComposedSrcMediaData}
    */
   static composeSrcMediaData(
     { mediaData: srcMediaData, disableTrackers },
@@ -348,9 +349,9 @@ class SrgSsr {
   /**
    * Filter out incompatible resources such as `RTMP` and `HDS`.
    *
-   * @param {Array.<Object>} resources Resources to filter
+   * @param {Array.<import('../dataProvider/model/typedef').MainResource>} resources Resources to filter
    *
-   * @returns {Array.<Object>} The filtered resources
+   * @returns {Array.<import('../dataProvider/model/typedef').MainResource>} The filtered resources
    */
   static filterIncompatibleResources(resources = []) {
     return resources.filter(
@@ -402,7 +403,7 @@ class SrgSsr {
    * @param {String} urn
    * @param {DataProvider} dataProvider
    *
-   * @returns {Promise<{mediaComposition: import('../dataProvider/model/MediaComposition.js').default}>}
+   * @returns {Promise<{mediaComposition: MediaComposition}>}
    */
   static async getMediaComposition(urn, dataProvider = new DataProvider()) {
     return dataProvider.getMediaCompositionByUrn(urn);
@@ -411,9 +412,9 @@ class SrgSsr {
   /**
    * Get the mediaData most likely to be compatible depending on the browser.
    *
-   * @param {Array.<Object>} resources
+   * @param {Array.<import('./typedef').MainResourceWithKeySystems>} resources
    *
-   * @returns {Object} By default, the first entry is used if none is compatible.
+   * @returns {import('./typedef').MainResourceWithKeySystems} By default, the first entry is used if none is compatible.
    */
   static getMediaData(resources = []) {
     if (AkamaiTokenService.hasToken(resources)) return resources[0];
@@ -428,9 +429,9 @@ class SrgSsr {
    * Get the source media object.
    *
    * @param {import('video.js/dist/types/player').default} player
-   * @param {Object} srcObj
+   * @param {any} srcObj
    *
-   * @returns {Promise<Object>} - The composed source media data.
+   * @returns {Promise<import('./typedef').ComposedSrcMediaData>} - The composed source media data.
    */
   static async getSrcMediaObj(player, srcObj) {
     const { src: urn, ...srcOptions } = srcObj;
@@ -504,9 +505,10 @@ class SrgSsr {
    * - add remote subtitles
    *
    * @param {import('video.js/dist/types/player').default} player
-   * @param {number} currentTime
+   * @param {any} srcObj
+   * @param {function} next
    *
-   * @returns {number}
+   * @returns {Promise<any>}
    */
   static async handleSetSource(player, srcObj, next) {
     try {
@@ -541,7 +543,7 @@ class SrgSsr {
         debug: player.debug(),
         playerVersion: Pillarbox.VERSION.pillarbox,
         tagCommanderScriptURL:
-          player.options().srgOptions.tagCommanderScriptURL,
+        player.options().srgOptions.tagCommanderScriptURL,
       });
 
       player.options({
@@ -556,7 +558,7 @@ class SrgSsr {
    * Update player's poster.
    *
    * @param {import('video.js/dist/types/player').default} player
-   * @param {Object} srcMediaObj
+   * @param {import('./typedef').ComposedSrcMediaData} srcMediaObj
    * @param {Image} imageService
    */
   static updatePoster(player, srcMediaObj, imageService = Image) {
@@ -571,7 +573,7 @@ class SrgSsr {
    * Update player titleBar with title and description.
    *
    * @param {import('video.js/dist/types/player').default} player
-   * @param {Object} srcMediaObj
+   * @param {import('./typedef').ComposedSrcMediaData} srcMediaObj
    */
   static updateTitleBar(player, srcMediaObj) {
     if (!player.titleBar) return;
@@ -610,3 +612,9 @@ Pillarbox.options.srgOptions = {
 };
 
 export default SrgSsr;
+
+/**
+ * Ignored so that the link is resolved correctly in the API docs.
+ * @ignore
+ * @typedef {import('../dataProvider/model/MediaComposition.js').default} MediaComposition
+ */

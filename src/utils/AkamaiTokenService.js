@@ -31,11 +31,11 @@ class AkamaiTokenService {
 
   /**
    * Check if the resources are protected by an Akamai token.
-   * Keep in mind, as we are using the some function,
+   * Keep in mind, as we are using the 'some' function,
    * if the resources have at least one resource
    * protected by a token it returns true!
    *
-   * @param {Array.<Object>} resources
+   * @param {Array.<import('../dataProvider/model/typedef').MainResource>} resources
    *
    * @returns {Boolean}
    */
@@ -78,10 +78,10 @@ class AkamaiTokenService {
   /**
    * Generate the stream URL with the akamai token.
    *
-   * @param {String} source
+   * @param {import('../dataProvider/model/typedef').MainResource} source
    * @param {String} tokenServerUrl
    *
-   * @returns {Promise.<Object>}
+   * @returns {Promise.<import('../dataProvider/model/typedef').MainResource>}
    */
   static tokenize(source, tokenServerUrl) {
     const streamUrlToTokenize = new URL(`${source.url}`);
@@ -117,10 +117,11 @@ class AkamaiTokenService {
   /**
    * Generate a token for each source
    *
-   * @param {Array} sources
+   * @template {import('../dataProvider/model/typedef').MainResource} T
+   * @param {Array.<T>} sources
    * @param {String} tokenServerUrl
    *
-   * @returns {Promise.<Array.<Object>>}
+   * @returns {Promise.<Array.<T>>}
    */
   static tokenizeSources(
     sources,

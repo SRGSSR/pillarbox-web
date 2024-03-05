@@ -11,9 +11,9 @@ class Drm {
   /**
    * Build the keySystems object according to the DRM vendor.
    *
-   * @param {Array.<Object>} drmList
+   * @param {Array.<import('../dataProvider/model/typedef').DrmMetadata>} drmList The DRM list from the media composition.
    *
-   * @returns {Object}
+   * @returns {import('./typedef').KeySystems} The resulting keySystems.
    */
   static buildKeySystems(drmList = []) {
     const keySystems = {};
@@ -41,6 +41,10 @@ class Drm {
 
   /**
    * Check if some of the resources have DRM.
+   *
+   * @param {Array.<import('../dataProvider/model/typedef').MainResource>} resources
+   *
+   * @returns {boolean} true if some of the resources have DRM, false otherwise.
    */
   static hasDrm(resources) {
     return resources.some(({ drmList }) => drmList && drmList.length > 0);
