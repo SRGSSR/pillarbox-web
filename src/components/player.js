@@ -21,7 +21,7 @@ class Player extends vjsPlayer {
    * @see https://developer.mozilla.org/en-US/docs/Web/API/AudioTrack/kind
    * @see https://developer.mozilla.org/en-US/docs/Web/API/AudioTrack/language
    *
-   * @param {TrackSelector} [trackSelector]
+   * @param {import('./typedef').TrackSelector} [trackSelector]
    *
    * @example
    * // Get the current audio track
@@ -68,7 +68,7 @@ class Player extends vjsPlayer {
    * @see https://developer.mozilla.org/en-US/docs/Web/API/TextTrack/kind
    * @see https://developer.mozilla.org/en-US/docs/Web/API/textTrack/language
    *
-   * @param {TrackSelector} [trackSelector]
+   * @param {import('./typedef').TrackSelector} [trackSelector]
    *
    * @example
    * // Get the current text track
@@ -125,10 +125,3 @@ class Player extends vjsPlayer {
 videojs.registerComponent('player', Player);
 
 export default Player;
-
-/**
- * @typedef {Object} TrackSelector The track to select
- *
- * @property {String} language The track language
- * @property {String} kind The track kind
- */

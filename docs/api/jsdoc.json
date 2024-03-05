@@ -1,12 +1,19 @@
 {
   "source": {
-    "include": ["src/components/player.js", "src/middleware/srgssr.js", "src/pillarbox.js"],
-    "includePattern": ".js$"
+    "include": [
+      "src/components/",
+      "src/dataProvider/model",
+      "src/middleware/",
+      "src/utils/typedef.ts",
+      "src/pillarbox.js"
+    ],
+    "includePattern": "\\.(js|ts)$"
   },
   "plugins": [
     "node_modules/jsdoc-tsimport-plugin/index.js",
     "docs/api/jsodc-typeof-plugin.cjs",
-    "plugins/markdown"
+    "plugins/markdown",
+    "node_modules/better-docs/typescript"
   ],
   "opts": {
     "readme": "./docs/api/index.md",

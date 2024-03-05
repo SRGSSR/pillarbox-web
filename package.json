@@ -68,6 +68,7 @@
     "@semantic-release/npm": "^11.0.2",
     "@types/jest": "^29.5.12",
     "babel-jest": "^29.5.0",
+    "better-docs": "^2.7.3",
     "buffer": "^6.0.3",
     "clean-jsdoc-theme": "^4.2.17",
     "eslint": "^8.55.0",
