@@ -23,21 +23,19 @@ guide: [Authenticating with a personal access token](https://docs.github.com/en/
 You can now install it through `npm` the following command:
 
 ```bash
-npm install --save @srgssr/pillarbox
+npm install --save @srgssr/pillarbox-web
 ```
 
 In your HTML file, add the following code to initialize Pillarbox:
 
 ```html
-
 <video-js id="my-player" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
 ```
 
 Import the CSS file in your HTML to apply Pillarbox default theme:
 
 ```html
-
-<link rel="stylesheet" href="node_modules/@srgssr/pillarbox-web/dist/pillarbox.min.css">
+<link rel="stylesheet" href="node_modules/@srgssr/pillarbox-web/dist/pillarbox.min.css" />
 ```
 
 Finally, import Pillarbox and set up the player:
