@@ -45,10 +45,11 @@ describe('SrgSsr', () => {
       poster: (url) => url,
       src: jest.fn(),
       tech: jest.fn(),
-      textTracks: jest.fn().mockReturnValue({ getTrackById: jest.fn(), removeTrack: jest.fn(), addTrack: jest.fn() }),
+      textTracks: jest.fn().mockReturnValue({ getTrackById: jest.fn(), removeTrack: jest.fn(), addTrack: jest.fn(), on: jest.fn() }),
       titleBar: {
         update: ({ title, description }) => ({ title, description }),
       },
+      trigger: jest.fn(),
     };
   });
 
@@ -496,6 +497,100 @@ describe('SrgSsr', () => {
 
   /**
    *****************************************************************************
+   * cuechangeEventProxy *******************************************************
+   *****************************************************************************
+   */
+  describe('cuechangeEventProxy', () => {
+    it('should add an event listener to the addtrack event', async () => {
+      SrgSsr.cuechangeEventProxy(player);
+
+      player.addRemoteTextTrack({
+        type: 'SDH',
+        language: 'English',
+        locale: 'EN',
+        url: 'https://url.com/en.vtt'
+      });
+
+      expect(player.textTracks().on).toHaveBeenCalledWith('addtrack', expect.any(Function));
+    });
+
+    it('should not add a cuechange listener if the track does not match the condition', () => {
+      SrgSsr.cuechangeEventProxy(player);
+
+      const metadataCue = {
+        startTime: 10,
+        endTime: 20,
+        text: 'metadata 1',
+      };
+      const metadataTrack = {
+        id: 'metadata',
+        activeCues: [metadataCue],
+        on: jest.fn(),
+      };
+      const addTrackCallback = player.textTracks().on.mock.calls[0][1];
+
+      addTrackCallback({ track: metadataTrack });
+
+      expect(metadataTrack.on).not.toHaveBeenCalled();
+    });
+
+    it('should trigger a srgssr/chapter event when cue changes', () => {
+      SrgSsr.cuechangeEventProxy(player);
+
+      const chapterCue = {
+        startTime: 10,
+        endTime: 20,
+        text: 'chapter 1',
+      };
+      const chaptersTrack = {
+        id: 'srgssr-chapters',
+        activeCues: [chapterCue],
+        on: jest.fn(),
+      };
+      const addTrack = player.textTracks().on.mock.calls[0][1];
+
+      addTrack({ track: chaptersTrack });
+
+      const cueChange = chaptersTrack.on.mock.calls[0][1];
+
+      cueChange();
+
+      expect(player.trigger).toHaveBeenCalledWith({
+        type: 'srgssr/chapter',
+        data: chapterCue,
+      });
+    });
+
+    it('should trigger a srgssr-intervals event when cue changes', () => {
+      SrgSsr.cuechangeEventProxy(player);
+
+      const intervalCue = {
+        startTime: 10,
+        endTime: 20,
+        text: 'interval 1',
+      };
+      const intervalsTrack = {
+        id: 'srgssr-intervals',
+        activeCues: [intervalCue],
+        on: jest.fn(),
+      };
+      const addTrack = player.textTracks().on.mock.calls[0][1];
+
+      addTrack({ track: intervalsTrack });
+
+      const cueChange = intervalsTrack.on.mock.calls[0][1];
+
+      cueChange();
+
+      expect(player.trigger).toHaveBeenCalledWith({
+        type: 'srgssr/interval',
+        data: intervalCue,
+      });
+    });
+  });
+
+  /**
+   *****************************************************************************
    * dataProvider **************************************************************
    *****************************************************************************
    */
@@ -592,7 +687,7 @@ describe('SrgSsr', () => {
     it('should return undefined if there is no blocked segment', () => {
       const currentTime = 10;
 
-      expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBeUndefined();
+      expect(SrgSsr.getBlockedSegmentByTime(player, currentTime)).toBeUndefined();
     });
 
     it('should return undefined if the current time is smaller than the start time of a blocked segment', () => {
@@ -606,7 +701,7 @@ describe('SrgSsr', () => {
         activeCues: [blockedSegmentCue]
       });
 
-      expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBeUndefined();
+      expect(SrgSsr.getBlockedSegmentByTime(player, currentTime)).toBeUndefined();
     });
 
     it('should return undefined if the current time is greater than the end time of a blocked segment', () => {
@@ -620,7 +715,7 @@ describe('SrgSsr', () => {
         activeCues: [blockedSegmentCue]
       });
 
-      expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBeUndefined();
+      expect(SrgSsr.getBlockedSegmentByTime(player, currentTime)).toBeUndefined();
     });
 
     it('should return the blocked segment end time if the current time lies between the start and end of a blocked segment', () => {
@@ -634,7 +729,7 @@ describe('SrgSsr', () => {
         activeCues: [blockedSegmentCue]
       });
 
-      expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBe(blockedSegmentCue.endTime);
+      expect(SrgSsr.getBlockedSegmentByTime(player, currentTime).endTime).toBe(blockedSegmentCue.endTime);
     });
   });
 
@@ -925,11 +1020,13 @@ describe('SrgSsr', () => {
 
       it('should return the blocked segment end time', () => {
         const spyOnPlayerCurrentTime = jest.spyOn(player, 'currentTime');
+        const spyOnPlayerTrigger = jest.spyOn(player, 'trigger');
         const middleware = SrgSsr.middleware(player);
         const currentTime = 13;
         const blockedSegmentCue = {
           startTime: 10,
-          endTime: 20
+          endTime: 20,
+          text: JSON.stringify('data')
         };
 
         player.textTracks().getTrackById.mockReturnValueOnce({
@@ -938,6 +1035,7 @@ describe('SrgSsr', () => {
 
         expect(middleware.currentTime(currentTime)).toBe(blockedSegmentCue.endTime);
         expect(spyOnPlayerCurrentTime).toHaveBeenCalledWith(blockedSegmentCue.endTime);
+        expect(spyOnPlayerTrigger).toHaveBeenCalledWith({ 'data': blockedSegmentCue, 'type': 'srgssr/blocked-segment' });
       });
     });
 
