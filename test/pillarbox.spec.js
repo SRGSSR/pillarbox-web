@@ -42,8 +42,8 @@ describe('Pillarbox', () => {
       expect(pillarbox.options.playsinline).toBe(true);
     });
 
-    it('should have plugins configuration with EME set to true by default', () => {
-      expect(pillarbox.options.plugins).toEqual({ eme: true });
+    it('should have fill set to true by default', () => {
+      expect(pillarbox.options.fill).toBe(true);
     });
 
     it('should have responsive set to true by default', () => {

@@ -1,6 +1,5 @@
 import { version } from '../package.json';
 import videojs from 'video.js';
-import 'videojs-contrib-eme';
 import './components/player.js';
 
 /**
@@ -27,6 +26,14 @@ pillarbox.VERSION = {
  * @default true
  */
 pillarbox.options.enableSmoothSeeking = true;
+/**
+ * Enable fill mode for the video player, allowing it to expand to fill the container.
+ *
+ * @see [Video.js Fill Option]{@link https://videojs.com/guides/layout/#fill-mode}
+ * @type {boolean}
+ * @default true
+ */
+pillarbox.options.fill = true;
 /**
  * Configuration options for HTML5 settings in Pillarbox.
  *
@@ -70,14 +77,6 @@ pillarbox.options.liveui = true;
  * @type {boolean}
  */
 pillarbox.options.playsinline = true;
-/**
- * Configuration for plugins.
- *
- * @see [Video.js Plugins Option]{@link https://videojs.com/guides/options/#plugins}
- * @type {Object}
- * @property {boolean} eme - Enable the EME (Encrypted Media Extensions) plugin.
- */
-pillarbox.options.plugins = { eme: true };
 /**
  * Enable responsive mode, this will cause the player to customize itself based on responsive breakpoints.
  *
