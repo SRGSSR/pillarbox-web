@@ -282,6 +282,24 @@ class SrgSsr {
   }
 
   /**
+   * Proxy SRG SSR chapters and intervals cuechange events at player level.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   */
+  static cuechangeEventProxy(player) {
+    player.textTracks().on('addtrack', ({ track }) => {
+      if (!['srgssr-chapters', 'srgssr-intervals'].includes(track.id)) return;
+
+      track.on('cuechange', () => {
+        const [cue] = Array.from(track.activeCues);
+        const type = track.id.includes('srgssr-chapters') ? 'srgssr/chapter' : 'srgssr/interval';
+
+        player.trigger({ type, data: cue });
+      });
+    });
+  }
+
+  /**
    * SRG SSR data provider singleton.
    *
    * @param {import('video.js/dist/types/player').default} player
@@ -381,14 +399,14 @@ class SrgSsr {
   }
 
   /**
-   * Get the end time of a blocked segment.
+   * Get the VTT cue of a blocked segment.
    *
    * @param {import('video.js/dist/types/player').default} player
    * @param {Number} currentTime
    *
-   * @returns {Number|undefined} The end time of a blocked segment, or undefined
+   * @returns {VTTCue|undefined} The VTT cue of a blocked segment, or undefined
    */
-  static getBlockedSegmentEndTime(player, currentTime) {
+  static getBlockedSegmentByTime(player, currentTime) {
     const blockedSegment = SrgSsr.getBlockedSegment(player);
 
     if (!blockedSegment) return;
@@ -396,7 +414,7 @@ class SrgSsr {
     const isBlocked = currentTime >= blockedSegment.startTime &amp;&amp;
       currentTime &lt; blockedSegment.endTime;
 
-    return isBlocked ? blockedSegment.endTime : undefined;
+    return isBlocked ? blockedSegment : undefined;
   }
 
   /**
@@ -463,16 +481,18 @@ class SrgSsr {
    * @returns {number}
    */
   static handleCurrentTime(player, currentTime) {
-    const blockedSegmentEndTime = SrgSsr
-      .getBlockedSegmentEndTime(player, currentTime);
+    const blockedSegment = SrgSsr
+      .getBlockedSegmentByTime(player, currentTime);
 
-    if (Number.isFinite(blockedSegmentEndTime)) {
-      player.currentTime(blockedSegmentEndTime);
-
-      return blockedSegmentEndTime;
+    if (!blockedSegment || !Number.isFinite(blockedSegment.endTime)) {
+      return currentTime;
     }
 
-    return currentTime;
+    // proxy for handling cuechange events at the player level
+    player.trigger({ type: 'srgssr/blocked-segment', data: blockedSegment });
+    player.currentTime(blockedSegment.endTime);
+
+    return blockedSegment.endTime;
   }
 
   /**
@@ -489,8 +509,8 @@ class SrgSsr {
    * @returns {number}
    */
   static handleSetCurrentTime(player, currentTime) {
-    const blockedSegmentEndTime = SrgSsr
-      .getBlockedSegmentEndTime(player, currentTime);
+    const { endTime: blockedSegmentEndTime } = SrgSsr
+      .getBlockedSegmentByTime(player, currentTime) || {};
 
     return Number
       .isFinite(blockedSegmentEndTime) ? blockedSegmentEndTime : currentTime;
@@ -594,6 +614,9 @@ class SrgSsr {
    * @returns {Object}
    */
   static middleware(player) {
+
+    SrgSsr.cuechangeEventProxy(player);
+
     return {
       currentTime: (currentTime) =>
         SrgSsr.handleCurrentTime(player, currentTime),
