@@ -1,3 +1,21 @@
+## [1.3.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.2.1...v1.3.0) (2024-03-14)
+
+
+### New Features 🚀
+
+* activate fill option by default ([6ecfbe6](https://github.com/SRGSSR/pillarbox-web/commit/6ecfbe6ac56452c7f8a72479eb6b90b145ba41f8))
+
+
+### Enhancements and Bug Fixes 🐛
+
+* initialize default plugins in player.js ([eaf0d2f](https://github.com/SRGSSR/pillarbox-web/commit/eaf0d2fe25d2407ece97b0b77edb8bf160c2ae08))
+
+
+### Docs 📖
+
+* fixed npm install command in the readme ([445a2ac](https://github.com/SRGSSR/pillarbox-web/commit/445a2ac4a1064747a866379afa3736e6840c5fd6))
+* update types and documentation ([d3771b4](https://github.com/SRGSSR/pillarbox-web/commit/d3771b4a5371f2fc00b5cb0fe0510d87f741ce52)), closes [#216](https://github.com/SRGSSR/pillarbox-web/issues/216)
+
 ## [1.2.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.2.0...v1.2.1) (2024-03-04)
 
 
