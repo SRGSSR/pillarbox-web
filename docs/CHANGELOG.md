@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.3.0...v1.4.0) (2024-03-14)
+
+
+### New Features 🚀
+
+* **srgssr-middleware:** add custom text tracks cuechange event proxy ([e2d2762](https://github.com/SRGSSR/pillarbox-web/commit/e2d27624da8c5ab3e79ed2d939203cf117d65b0c))
+
 ## [1.3.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.2.1...v1.3.0) (2024-03-14)
 
 
