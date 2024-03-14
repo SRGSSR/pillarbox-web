@@ -121,4 +121,15 @@ describe('Player', () => {
       expect(player.textTracks.mock.results[0].value[1].mode).toBe('disabled');
     });
   });
+
+  describe('eme', () => {
+    const player = new Player(videoEl);
+
+    it('should have initialize eme plugin', () => {
+      expect(player.eme).toBeDefined();
+      // When a plugin is initialized its function becomes an object
+      expect(typeof player.eme).not.toBe('function');
+      expect(typeof player.eme).toBe('object');
+    });
+  });
 });
