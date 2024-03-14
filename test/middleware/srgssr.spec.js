@@ -907,6 +907,16 @@ describe('SrgSsr', () => {
 
       expect(spyOnOptions).toHaveBeenLastCalledWith(expect.objectContaining({ trackers: { srgAnalytics: expect.any(Object) }}));
     });
+
+    it('should not reinitialize the srgAnalytics', () => {
+      player.options().trackers.srgAnalytics = {};
+
+      const spyOnOptions = jest.spyOn(player, 'options');
+
+      SrgSsr.srgAnalytics(player);
+
+      expect(spyOnOptions).not.toHaveBeenLastCalledWith(expect.objectContaining({ trackers: { srgAnalytics: expect.any(Object) }}));
+    });
   });
 
   /**
@@ -1018,7 +1028,7 @@ describe('SrgSsr', () => {
         expect(middleware.currentTime(currentTime)).toBe(currentTime);
       });
 
-      it('should return the blocked segment end time', () => {
+      it('should return the blocked segment end time with a 0.1 second tolerance', () => {
         const spyOnPlayerCurrentTime = jest.spyOn(player, 'currentTime');
         const spyOnPlayerTrigger = jest.spyOn(player, 'trigger');
         const middleware = SrgSsr.middleware(player);
@@ -1028,13 +1038,14 @@ describe('SrgSsr', () => {
           endTime: 20,
           text: JSON.stringify('data')
         };
+        const endTimeWithTolerance = blockedSegmentCue.endTime + 0.1;
 
         player.textTracks().getTrackById.mockReturnValueOnce({
           activeCues: [blockedSegmentCue]
         });
 
-        expect(middleware.currentTime(currentTime)).toBe(blockedSegmentCue.endTime);
-        expect(spyOnPlayerCurrentTime).toHaveBeenCalledWith(blockedSegmentCue.endTime);
+        expect(middleware.currentTime(currentTime)).toBe(endTimeWithTolerance);
+        expect(spyOnPlayerCurrentTime).toHaveBeenCalledWith(endTimeWithTolerance);
         expect(spyOnPlayerTrigger).toHaveBeenCalledWith({ 'data': blockedSegmentCue, 'type': 'srgssr/blocked-segment' });
       });
     });
