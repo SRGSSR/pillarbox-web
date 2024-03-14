@@ -1,4 +1,5 @@
 import videojs from 'video.js';
+import 'videojs-contrib-eme';
 
 /**
  * @ignore
@@ -13,6 +14,18 @@ const vjsPlayer = videojs.getComponent('player');
  * @see https://docs.videojs.com/player
  */
 class Player extends vjsPlayer {
+  constructor(tag, options, ready) {
+    /**
+     * Configuration for plugins.
+     *
+     * @see [Video.js Plugins Option]{@link https://videojs.com/guides/options/#plugins}
+     * @type {Object}
+     * @property {boolean} eme - Enable the EME (Encrypted Media Extensions) plugin.
+     */
+    options = videojs.obj.merge(options, { plugins: { eme: true }});
+    super(tag, options, ready);
+  }
+
   /**
    * A getter/setter for the media's audio track.
    * Activates the audio track according to the language and kind properties.
