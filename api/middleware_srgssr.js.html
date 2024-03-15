@@ -488,11 +488,15 @@ class SrgSsr {
       return currentTime;
     }
 
+    // as a workaround, add 0.1 seconds to avoid getting stuck on endTime on
+    // some safaris.
+    const endTimeWithTolerance = blockedSegment.endTime + 0.1;
+
     // proxy for handling cuechange events at the player level
     player.trigger({ type: 'srgssr/blocked-segment', data: blockedSegment });
-    player.currentTime(blockedSegment.endTime);
+    player.currentTime(endTimeWithTolerance);
 
-    return blockedSegment.endTime;
+    return endTimeWithTolerance;
   }
 
   /**
@@ -565,7 +569,7 @@ class SrgSsr {
         debug: player.debug(),
         playerVersion: Pillarbox.VERSION.pillarbox,
         tagCommanderScriptURL:
-        player.options().srgOptions.tagCommanderScriptURL,
+          player.options().srgOptions.tagCommanderScriptURL,
       });
 
       player.options({
