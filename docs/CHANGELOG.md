@@ -1,3 +1,15 @@
+## [1.4.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.4.0...v1.4.1) (2024-03-15)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **srgssr-middleware:** safari stalls at end of blocked segment ([c0f5105](https://github.com/SRGSSR/pillarbox-web/commit/c0f5105a64b501919a374d757b471c9ba4000a5c))
+
+
+### Docs 📖
+
+* update known issues for yarn ([8629f66](https://github.com/SRGSSR/pillarbox-web/commit/8629f66740f7e9437e46880a5908323e64973299)), closes [#222](https://github.com/SRGSSR/pillarbox-web/issues/222)
+
 ## [1.4.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.3.0...v1.4.0) (2024-03-14)
 
 
