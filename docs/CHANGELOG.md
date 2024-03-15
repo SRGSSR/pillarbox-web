@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.4.1...v1.4.2) (2024-03-15)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **control-bar:** end value in align-items is not compatible with old Safari ([e7f7637](https://github.com/SRGSSR/pillarbox-web/commit/e7f7637cfefdb034367ae81fa334aad7fc5d6294))
+
 ## [1.4.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.4.0...v1.4.1) (2024-03-15)
 
 
