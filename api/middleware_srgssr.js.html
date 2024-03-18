@@ -82,8 +82,10 @@ class SrgSsr {
    * } data SRG SSR's cue-like representation
    */
   static addTextTrackCue(textTrack, data) {
-    const startTime = (data.markIn ?? data.fullLengthMarkIn) / 1_000;
-    const endTime = (data.markOut ?? data.fullLengthMarkOut) / 1_000;
+    const startTime = (Number.isFinite(data.markIn)
+      ? data.markIn : data.fullLengthMarkIn) / 1_000;
+    const endTime = (Number.isFinite(data.markOut)
+      ? data.markOut : data.fullLengthMarkOut) / 1_000;
 
     textTrack.addCue(new VTTCue(
       startTime,
