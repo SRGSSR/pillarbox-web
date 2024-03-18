@@ -1,3 +1,15 @@
+## [1.4.3](https://github.com/SRGSSR/pillarbox-web/compare/v1.4.2...v1.4.3) (2024-03-18)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **srgssr-middleware:** incompatibility of older browsers with nullish coalescing ([b739502](https://github.com/SRGSSR/pillarbox-web/commit/b73950201b96cdbe5480ca512a29242b83c8027b))
+
+
+### Chore 🧹
+
+* **npm:** add packge lock to semantic release config file ([0d1a1c3](https://github.com/SRGSSR/pillarbox-web/commit/0d1a1c350fd89f9690a99de7903b5e500f62dc41))
+
 ## [1.4.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.4.1...v1.4.2) (2024-03-15)
 
 
