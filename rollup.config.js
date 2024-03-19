@@ -3,6 +3,7 @@ import json from '@rollup/plugin-json';
 import terser from '@rollup/plugin-terser';
 import commonjs from '@rollup/plugin-commonjs';
 import filesize from 'rollup-plugin-filesize';
+import babel from '@rollup/plugin-babel';
 
 /**
  * Rollup build configurations for the Pillarbox library.
@@ -42,7 +43,10 @@ export default [
       }
     ],
     external: ['video.js', 'videojs-contrib-eme'],
-    plugins: [json(), resolve()]
+    plugins: [json(), resolve(), babel({
+      babelHelpers: 'bundled',
+      exclude: 'node_modules/**'
+    })]
   },
   /**
    * Rollup build configuration for the Pillarbox UMD build.
@@ -75,7 +79,10 @@ export default [
         plugins: [filesize()]
       }
     ],
-    plugins: [commonjs(), json(), resolve()]
+    plugins: [commonjs(), json(), resolve(), babel({
+      babelHelpers: 'bundled',
+      exclude: 'node_modules/**'
+    })]
   },
   /**
    * Rollup build configuration for the Pillarbox ESModule build.
@@ -105,7 +112,10 @@ export default [
       }
     ],
     external: ['video.js', 'videojs-contrib-eme'],
-    plugins: [json(), resolve()]
+    plugins: [json(), resolve(), babel({
+      babelHelpers: 'bundled',
+      exclude: 'node_modules/**'
+    })]
   },
 
   /**
@@ -140,6 +150,9 @@ export default [
         plugins: [filesize()]
       }
     ],
-    plugins: [commonjs(), json(), resolve()]
-  },
+    plugins: [commonjs(), json(), resolve(), babel({
+      babelHelpers: 'bundled',
+      exclude: 'node_modules/**'
+    })]
+  }
 ];
