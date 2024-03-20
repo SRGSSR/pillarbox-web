@@ -308,12 +308,17 @@ class SrgSsr {
    */
   static dataProvider(player) {
     if (!player.options().srgOptions.dataProvider) {
-      const { dataProviderHost } = player.options().srgOptions;
+      const {
+        dataProviderHost,
+        dataProviderUrlHandler
+      } = player.options().srgOptions;
       const dataProvider = new DataProvider(dataProviderHost);
+      const requestHandler = dataProvider
+        .handleRequest(dataProviderUrlHandler);
 
       player.options({
         srgOptions: {
-          dataProvider,
+          dataProvider: requestHandler,
         },
       });
     }
@@ -330,10 +335,9 @@ class SrgSsr {
    * @returns {undefined|true}
    */
   static dataProviderError(player, error) {
-    const hasError =
-      error.url && error.url.includes(SrgSsr.dataProvider(player).baseUrl);
+    if (!error) return;
 
-    if (!hasError) return;
+    const statusText = error.statusText ? error.statusText : error.message;
 
     SrgSsr.error(player, {
       code: 0,
@@ -342,7 +346,7 @@ class SrgSsr {
         errorType: 'UNKNOWN',
         urn: player.src(),
         status: error.status,
-        statusText: error.statusText,
+        statusText,
         url: error.url,
       },
     });
@@ -421,12 +425,15 @@ class SrgSsr {
    * Get mediaComposition from an URN.
    *
    * @param {String} urn
-   * @param {DataProvider} dataProvider
+   * @param {Function} requestHandler
    *
-   * @returns {Promise<{mediaComposition: MediaComposition}>}
+   * @returns {Promise<MediaComposition>}
    */
-  static async getMediaComposition(urn, dataProvider = new DataProvider()) {
-    return dataProvider.getMediaCompositionByUrn(urn);
+  static async getMediaComposition(
+    urn,
+    handleRequest = new DataProvider().handleRequest()
+  ) {
+    return handleRequest(urn);
   }
 
   /**
@@ -455,7 +462,7 @@ class SrgSsr {
    */
   static async getSrcMediaObj(player, srcObj) {
     const { src: urn, ...srcOptions } = srcObj;
-    const { mediaComposition } = await SrgSsr.getMediaComposition(
+    const mediaComposition = await SrgSsr.getMediaComposition(
       urn,
       SrgSsr.dataProvider(player)
     );
