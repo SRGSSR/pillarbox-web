@@ -20,12 +20,13 @@ describe('SrgSsr', () => {
   beforeAll(() => {
     DataProvider.mockImplementation(() => {
       return {
-        getMediaCompositionByUrn: (urn, _onlyChapters = false) => {
-          if (!urn) throw new Error('Error');
+        handleRequest: (fn) => {
+          return (urn) => {
+            if (fn) fn(urn);
+            if (!urn) throw new Error('Error');
 
-          return Promise.resolve({
-            mediaComposition: Object.assign(new MediaComposition(), urnCredits),
-          });
+            return Promise.resolve(Object.assign(new MediaComposition(), urnCredits));
+          };
         },
       };
     });
@@ -59,7 +60,7 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('addBlockedSegments', () => {
-    it('should not create an blocked segments track if the segments parameter is not an array or if the array is empty', async () => {
+    it('should not create a blocked segments track if the segments parameter is not an array or if the array is empty', async () => {
       const spyOnPillarboxTextTrack = jest.spyOn(Pillarbox, 'TextTrack');
 
       SrgSsr.addBlockedSegments(player, true);
@@ -481,8 +482,8 @@ describe('SrgSsr', () => {
   describe('composeSrcMediaData', () => {
     it('should return a source object', async () => {
       const mockDataProvider = new DataProvider();
-      const { mediaComposition } =
-        await mockDataProvider.getMediaCompositionByUrn('urn:fake');
+      const  mediaComposition  =
+        await mockDataProvider.handleRequest()('urn:fake');
       const [mainSource] = mediaComposition.getMainResources();
 
       expect(SrgSsr.composeSrcMediaData({}, mainSource)).toMatchObject({
@@ -620,18 +621,15 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('dataProviderError', () => {
-    it('should not generate an error if the error parameter does not contain an url property', async () => {
+    it('should not generate an error if the error parameter is undefined', async () => {
       const spyOnError = jest.spyOn(SrgSsr, 'error');
 
-      expect(SrgSsr.dataProviderError(player, {})).toBeUndefined();
+      expect(SrgSsr.dataProviderError(player, undefined)).toBeUndefined();
       expect(spyOnError).not.toHaveBeenCalled();
     });
+
     it('should generate an error', async () => {
       const spyOnError = jest.spyOn(SrgSsr, 'error');
-
-      jest.spyOn(SrgSsr, 'dataProvider').mockReturnValueOnce({
-        baseUrl: 'http://mock.url.ch',
-      });
 
       expect(
         SrgSsr.dataProviderError(player, {
@@ -739,26 +737,25 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('getMediaComposition', () => {
-    it('should use the default DataProvider', async () => {
-      const { mediaComposition } = await SrgSsr.getMediaComposition('urn:fake');
+    it('should use the default request handler', async () => {
+      const mediaComposition = await SrgSsr.getMediaComposition('urn:fake');
 
       expect(mediaComposition).toBeInstanceOf(MediaComposition);
     });
 
-    it('should return an instance of MediaComposition', async () => {
+    it('should call the request handler', async () => {
       const mockDataProvider = new DataProvider();
-      const spyOnGetMediaCompositionByUrn = jest.spyOn(
+      const spyOnHandleRequest = jest.spyOn(
         mockDataProvider,
-        'getMediaCompositionByUrn'
-      );
+        'handleRequest'
+      ).mockReturnValueOnce(jest.fn(urn => urn));
 
-      const { mediaComposition } = await SrgSsr.getMediaComposition(
+      await SrgSsr.getMediaComposition(
         'urn:fake',
-        mockDataProvider
+        spyOnHandleRequest
       );
 
-      expect(spyOnGetMediaCompositionByUrn).toHaveBeenCalledWith('urn:fake');
-      expect(mediaComposition).toBeInstanceOf(MediaComposition);
+      expect(spyOnHandleRequest).toHaveBeenCalledWith('urn:fake');
     });
   });
 

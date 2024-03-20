@@ -37,6 +37,7 @@
     const language = searchParams.get('language');
     const resize = searchParams.has('resize');
     const urn = searchParams.get('urn') || 'urn:swi:video:48864812';
+    const urlHandler = searchParams.has('urlHandler') ? url => url : undefined;
 
     // Media examples
     window.mediaExamples = {
@@ -73,7 +74,8 @@
       debug,
       language,
       srgOptions: {
-        dataProviderHost: ilHost
+        dataProviderHost: ilHost,
+        dataProviderUrlHandler: urlHandler,
       }
     });
 

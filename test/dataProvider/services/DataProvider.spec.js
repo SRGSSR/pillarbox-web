@@ -21,25 +21,25 @@ describe('DataProvider', () => {
 
   /**
    *****************************************************************************
-   * getMediaCompositionByUrn **************************************************
+   * handleRequest *************************************************************
    *****************************************************************************
    */
-  describe('getMediaCompositionByUrn', () => {
+  describe('handleRequest', () => {
     it('should return a mediaComposition object', async () => {
       const spyObject = jest.spyOn(Object, 'assign');
       const mediaComposition =
-        await dataproviderService.getMediaCompositionByUrn(urn10272382);
+        await dataproviderService.handleRequest()(urn10272382);
 
       expect(mediaComposition).toBeTruthy();
       expect(spyObject).toHaveBeenCalled();
     });
 
     it('called multiple times should return a mediaComposition object', async () => {
-      const { mediaComposition: mediaCompositionUrn10272382 } =
-        await dataproviderService.getMediaCompositionByUrn(urn10272382);
+      const mediaCompositionUrn10272382  =
+        await dataproviderService.handleRequest()(urn10272382);
 
-      const { mediaComposition: mediaCompositionUrn8414077 } =
-        await dataproviderService.getMediaCompositionByUrn(urn8414077);
+      const mediaCompositionUrn8414077  =
+        await dataproviderService.handleRequest()(urn8414077);
 
       expect(mediaCompositionUrn10272382).toBeTruthy();
       expect(mediaCompositionUrn10272382.chapterUrn).toEqual(urn10272382);
@@ -49,22 +49,23 @@ describe('DataProvider', () => {
     });
 
     it('should be an instance of MediaComposition', async () => {
-      const { mediaComposition: mediaCompositionUrn10272382 } =
-        await dataproviderService.getMediaCompositionByUrn(urn10272382);
+      const  mediaCompositionUrn10272382  =
+        await dataproviderService.handleRequest()(urn10272382);
 
       expect(mediaCompositionUrn10272382).toBeInstanceOf(MediaComposition);
     });
 
-    it('should set the param onlyChapters to false', async () => {
-      const { mediaComposition: mediaCompositionUrn10272382 } =
-        await dataproviderService.getMediaCompositionByUrn(urn10272382, false);
+    it('should use a custom URL handler', async () => {
+      const customUrlHandler = (urn)=> urn;
+      const  mediaCompositionUrn10272382  =
+        await dataproviderService.handleRequest(customUrlHandler)(urn10272382);
 
-      expect(mediaCompositionUrn10272382.onlyChapters).toBe(false);
+      expect(mediaCompositionUrn10272382).toBeInstanceOf(MediaComposition);
     });
 
     it('should be rejected if URN does not exist', async () => {
       await expect(
-        dataproviderService.getMediaCompositionByUrn(urnNotFound)
+        dataproviderService.handleRequest()(urnNotFound)
       ).rejects.not.toBeNull();
     });
   });
