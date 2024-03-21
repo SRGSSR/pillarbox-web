@@ -8,6 +8,13 @@ stutter when seeking to a different position in the video.
 
 See [Video.js enableSmoothSeeking Option](https://videojs.com/guides/options/#enablesmoothseeking).
 
+#### `fill=true`
+
+This mode allows the player to expand to fill its container.
+
+See [Video.js fill mode](https://videojs.com/guides/layout/#fill-mode).
+
+
 #### `html5.vhs.useForcedSubtitles=true`
 
 This property enables the player to display forced subtitles by default. Forced subtitles are pieces
