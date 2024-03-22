@@ -6,6 +6,7 @@
 ******************************************************************************
 */
 .pillarbox-js {
+  @extend .video-js;
   @import "components/big-play";
   @import "components/captions-settings";
   @import "components/control";
