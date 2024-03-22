@@ -1,3 +1,15 @@
+## [1.6.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.5.0...v1.6.0) (2024-03-22)
+
+
+### Docs 📖
+
+* add tutorial for middleware options ([094f51c](https://github.com/SRGSSR/pillarbox-web/commit/094f51cefe427017a92b2b0e1300f4532b17e738))
+
+
+### New Features 🚀
+
+* add URL handler ([4b1be76](https://github.com/SRGSSR/pillarbox-web/commit/4b1be76e5981c2df2006ed4126876a6a2554210d))
+
 ## [1.5.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.4.3...v1.5.0) (2024-03-22)
 
 
