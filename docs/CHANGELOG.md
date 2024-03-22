@@ -1,3 +1,21 @@
+## [1.5.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.4.3...v1.5.0) (2024-03-22)
+
+
+### New Features 🚀
+
+* add pillarbox-js css as main theme ([a18e19d](https://github.com/SRGSSR/pillarbox-web/commit/a18e19dfbdcb6e7799d302359d3ed5aeebe7354a))
+
+
+### Chore 🧹
+
+* **bundle:** add babel transpilation ([cedf945](https://github.com/SRGSSR/pillarbox-web/commit/cedf945c6f215040af2668e1ed303092f46f8795)), closes [#230](https://github.com/SRGSSR/pillarbox-web/issues/230)
+
+
+### Docs 📖
+
+* add custom events tutorial ([6243382](https://github.com/SRGSSR/pillarbox-web/commit/624338251f554c0b44d3027b2e8a859dd819b04d))
+* default fill option value ([84c1ffc](https://github.com/SRGSSR/pillarbox-web/commit/84c1ffcb07af5fae67b9de41dc6c51b5f9f015ee))
+
 ## [1.4.3](https://github.com/SRGSSR/pillarbox-web/compare/v1.4.2...v1.4.3) (2024-03-18)
 
 
