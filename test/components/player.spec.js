@@ -95,6 +95,71 @@ describe('Player', () => {
     });
   });
 
+  describe('playedPercent', () => {
+    it('should return NaN if the duration is not finite', () => {
+      const player = new Player(videoEl);
+
+      player.duration = jest.fn().mockImplementation(() => {
+        return Infinity;
+      });
+
+      expect(player.playedPercent()).toBeNaN();
+    });
+
+    it('should return the correct percentage played', () => {
+      const player = new Player(videoEl);
+
+      player.duration = jest.fn().mockImplementation(() => {
+        return 100;
+      });
+      player.played = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges([
+          [0, 5],
+          [10, 15]
+        ]);
+      });
+
+      expect(player.playedPercent()).toEqual(0.1);
+    });
+  });
+
+  describe('playedRanges', () => {
+    it('should return an empty array if there are no played ranges', () => {
+      const player = new Player(videoEl);
+
+      player.duration = jest.fn().mockImplementation(() => {
+        return 69;
+      });
+      player.played = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges();
+      });
+
+      expect(player.playedRanges()).toHaveLength(0);
+    });
+
+    it('should return an array containing two entries', () => {
+      const player = new Player(videoEl);
+
+      player.duration = jest.fn().mockImplementation(() => {
+        return 420;
+      });
+      player.played = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges([
+          [0, 10],
+          [69, 420]
+        ]);
+      });
+
+      expect(player.playedRanges()).toHaveLength(2);
+      expect(player.playedRanges()).toEqual(
+        expect.arrayContaining([
+          { 'end': 10, 'start': 0 },
+          { 'end': 420, 'start': 69 }
+        ])
+      );
+    });
+  });
+
   describe('seekableRanges', () => {
     it('should return an empty array if there are no seekable ranges', () => {
       const player = new Player(videoEl);
