@@ -95,6 +95,37 @@ describe('Player', () => {
     });
   });
 
+  describe('seekableRanges', () => {
+    it('should return an empty array if there are no seekable ranges', () => {
+      const player = new Player(videoEl);
+
+      player.seekable = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges();
+      });
+
+      expect(player.seekableRanges()).toHaveLength(0);
+    });
+
+    it('should return an array containing two entries', () => {
+      const player = new Player(videoEl);
+
+      player.seekable = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges([
+          [0, 10],
+          [11, 69]
+        ]);
+      });
+
+      expect(player.seekableRanges()).toHaveLength(2);
+      expect(player.seekableRanges()).toEqual(
+        expect.arrayContaining([
+          { 'end': 10, 'start': 0 },
+          { 'end': 69, 'start': 11 }
+        ])
+      );
+    });
+  });
+
   describe('textTrack', () => {
     const player = new Player(videoEl);
 
