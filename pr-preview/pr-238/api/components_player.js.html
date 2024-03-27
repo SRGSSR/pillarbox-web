@@ -77,7 +77,9 @@ class Player extends vjsPlayer {
   /**
    * Calculates an array of ranges based on the `seekable()` data.
    *
-   * @returns {Array} An array of objects representing start and end points of seekable ranges.
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seekable
+   *
+   * @returns {Array&lt;{start: number, end: number}>} An array of objects representing start and end points of seekable ranges.
    */
   seekableRanges() {
     const ranges = [];
