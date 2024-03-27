@@ -73,6 +73,26 @@ class Player extends vjsPlayer {
   }
 
   /**
+   * Calculates an array of ranges based on the `buffered()` data.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/buffered
+   *
+   * @returns {Array<{start: number, end: number}>} An array of objects representing start and end points of buffered ranges.
+   */
+  bufferedRanges() {
+    const ranges = [];
+
+    for (let i = 0; i < this.buffered().length; i++) {
+      const start = this.buffered().start(i);
+      const end = this.buffered().end(i);
+
+      ranges.push({ start, end });
+    }
+
+    return ranges;
+  }
+
+  /**
    * A getter/setter for the media's text track.
    * Activates the text track according to the language and kind properties.
    * Falls back on the first text track found if the kind property is not satisfied.
