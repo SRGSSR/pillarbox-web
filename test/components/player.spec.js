@@ -1,4 +1,5 @@
 import Player from '../../src/components/player.js';
+import pillarbox from '../../src/pillarbox.js';
 
 describe('Player', () => {
   const videoEl = document.createElement('video');
@@ -60,6 +61,37 @@ describe('Player', () => {
     it('should return undefined and not disable the already active audio track if the language and kind properties do not satisfy the condition', () => {
       expect(player.audioTrack({ language: 'fr' })).toBeUndefined();
       expect(player.audioTracks.mock.results[0].value[0].enabled).toBe(true);
+    });
+  });
+
+  describe('bufferedRanges', () => {
+    it('should return an empty array if there are no buffered ranges', () => {
+      const player = new Player(videoEl);
+
+      player.buffered = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges();
+      });
+
+      expect(player.bufferedRanges()).toHaveLength(0);
+    });
+
+    it('should return an array containing two entries', () => {
+      const player = new Player(videoEl);
+
+      player.buffered = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges([
+          [0, 10],
+          [11, 69]
+        ]);
+      });
+
+      expect(player.bufferedRanges()).toHaveLength(2);
+      expect(player.bufferedRanges()).toEqual(
+        expect.arrayContaining([
+          { 'end': 10, 'start': 0 },
+          { 'end': 69, 'start': 11 }
+        ])
+      );
     });
   });
 
