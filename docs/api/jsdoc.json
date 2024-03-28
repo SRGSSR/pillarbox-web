@@ -22,7 +22,7 @@
     "template": "node_modules/clean-jsdoc-theme",
     "tutorials": "docs/api//tutorials",
     "theme_opts": {
-      "favicon": "img/favicon.ico",
+      "favicon": "docs/api/img/favicon.ico",
       "default_theme": "fallback-dark",
       "homepageTitle": "pillarbox-web API",
       "title": "<a href=\"/pillarbox-web/dist/api/\" class=\"sidebar-title sidebar-title-anchor\"><img src=\"./docs/api/img/pillarbox-logo.webp\" height=\"40px\">pillarbox-web</a>",
@@ -41,7 +41,7 @@
           "target": "_blank"
         },
         {
-          "title": "Source Code",
+          "title": "Code",
           "link": "https://github.com/SRGSSR/pillarbox-web",
           "target": "_blank"
         }

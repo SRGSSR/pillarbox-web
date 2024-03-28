@@ -43,15 +43,16 @@ Finally, import Pillarbox and set up the player:
 ```javascript
 import Pillarbox from '@srgssr/pillarbox-web';
 
-const player = new Pillarbox('my-player', {// Options... });
-  player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
+const player = new Pillarbox('my-player', {/* options... */ });
+player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
 ```
 
 ## Documentation
 
 For detailed information on how to use the Pillarbox Web Player, checkout
-the [API Documentation](https://srgssr.github.io/pillarbox-web/api). A live demo of the player is
-available here: [Pillarbox Web Demo](https://srgssr.github.io/pillarbox-web-demo/)
+the [API Documentation](https://srgssr.github.io/pillarbox-web/api).
+A live demo of the player is available
+here: [Pillarbox Web Demo](https://srgssr.github.io/pillarbox-web-demo/)
 
 ## Pillarbox flavours
 
@@ -104,6 +105,9 @@ the following commands to build the project:
 ```shell
 npm run build
 ```
+
+If you want to enhance our demo application you can get involved
+here: https://github.com/SRGSSR/pillarbox-demo
 
 ## License
 
