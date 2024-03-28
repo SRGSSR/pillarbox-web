@@ -95,6 +95,26 @@ class Player extends vjsPlayer {
   }
 
   /**
+   * Calculates an array of ranges based on the `seekable()` data.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seekable
+   *
+   * @returns {Array&lt;{start: number, end: number}>} An array of objects representing start and end points of seekable ranges.
+   */
+  seekableRanges() {
+    const ranges = [];
+
+    for (let i = 0; i &lt; this.seekable().length; i++) {
+      const start = this.seekable().start(i);
+      const end = this.seekable().end(i);
+
+      ranges.push({ start, end });
+    }
+
+    return ranges;
+  }
+
+  /**
    * A getter/setter for the media's text track.
    * Activates the text track according to the language and kind properties.
    * Falls back on the first text track found if the kind property is not satisfied.
