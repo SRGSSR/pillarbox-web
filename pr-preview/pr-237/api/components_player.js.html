@@ -75,6 +75,26 @@ class Player extends vjsPlayer {
   }
 
   /**
+   * Calculates an array of ranges based on the `buffered()` data.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/buffered
+   *
+   * @returns {Array&lt;{start: number, end: number}>} An array of objects representing start and end points of buffered ranges.
+   */
+  bufferedRanges() {
+    const ranges = [];
+
+    for (let i = 0; i &lt; this.buffered().length; i++) {
+      const start = this.buffered().start(i);
+      const end = this.buffered().end(i);
+
+      ranges.push({ start, end });
+    }
+
+    return ranges;
+  }
+
+  /**
    * Get the percent (as a decimal) of the media that's been played.
    * This method is not a part of the native HTML video API.
    *
@@ -113,6 +133,26 @@ class Player extends vjsPlayer {
     for (let i = 0; i &lt; this.played().length; i++) {
       const start = this.played().start(i);
       const end = this.played().end(i);
+
+      ranges.push({ start, end });
+    }
+
+    return ranges;
+  }
+
+  /**
+   * Calculates an array of ranges based on the `seekable()` data.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seekable
+   *
+   * @returns {Array&lt;{start: number, end: number}>} An array of objects representing start and end points of seekable ranges.
+   */
+  seekableRanges() {
+    const ranges = [];
+
+    for (let i = 0; i &lt; this.seekable().length; i++) {
+      const start = this.seekable().start(i);
+      const end = this.seekable().end(i);
 
       ranges.push({ start, end });
     }
