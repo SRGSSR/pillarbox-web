@@ -61,3 +61,6 @@ To learn more about video.js, you can visit the [Video.js Guides](https://videoj
 the [Video.js API docs](https://docs.videojs.com/).
 
 Keep track of our [Known Issues](./tutorial-Known%20Issues.html) section.
+
+You can learn more about themes and create your own with
+the [Pillarbox Theme Editor](https://srgssr.github.io/pillarbox-web-theme-editor).
