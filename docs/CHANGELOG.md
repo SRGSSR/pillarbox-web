@@ -1,3 +1,10 @@
+## [1.8.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.7.0...v1.8.0) (2024-03-28)
+
+
+### New Features 🚀
+
+* **player:** add seekableRanges helper function ([5030afe](https://github.com/SRGSSR/pillarbox-web/commit/5030afefbcda1bbec4975cc2b10ed55cb775ac1b))
+
 ## [1.7.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.6.0...v1.7.0) (2024-03-28)
 
 
