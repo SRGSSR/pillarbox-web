@@ -36,6 +36,11 @@
           "target": "_blank"
         },
         {
+          "title": "Theme Editor",
+          "link": "https://srgssr.github.io/pillarbox-web-theme-editor",
+          "target": "_blank"
+        },
+        {
           "title": "Known Issues",
           "link": "./tutorial-Known%20Issues.html",
           "target": "_blank"

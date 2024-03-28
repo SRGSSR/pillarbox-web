@@ -53,6 +53,8 @@ For detailed information on how to use the Pillarbox Web Player, checkout
 the [API Documentation](https://srgssr.github.io/pillarbox-web/api).
 A live demo of the player is available
 here: [Pillarbox Web Demo](https://srgssr.github.io/pillarbox-web-demo/)
+You can create your own theme with
+the [Pillarbox Theme Editor](https://srgssr.github.io/pillarbox-web-theme-editor).
 
 ## Pillarbox flavours
 
@@ -108,6 +110,7 @@ npm run build
 
 If you want to enhance our demo application you can get involved
 here: https://github.com/SRGSSR/pillarbox-demo
+To contribute to the theme editor go to : https://github.com/SRGSSR/pillarbox-web-theme-editor
 
 ## License
 
