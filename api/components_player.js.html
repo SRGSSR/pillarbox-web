@@ -95,6 +95,52 @@ class Player extends vjsPlayer {
   }
 
   /**
+   * Get the percent (as a decimal) of the media that's been played.
+   * This method is not a part of the native HTML video API.
+   *
+   * Live streams with DVR are not currently supported.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement#htmlmediaelement.played
+   *
+   * @return {number}
+   *         A decimal between 0 and 1 representing the percent
+   *         that is played 0 being 0% and 1 being 100%
+   */
+  playedPercent() {
+    if (!Number.isFinite(this.duration())) return NaN;
+
+    let timePlayed = 0;
+
+    for (let i = 0; i != this.played().length; i++) {
+      timePlayed += this.played().end(i) - this.played().start(i);
+    }
+
+    const percentPlayed = timePlayed / this.duration();
+
+    return percentPlayed;
+  }
+
+  /**
+   * Get an array of ranges based on the `played` data.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement#htmlmediaelement.played
+   *
+   * @returns {Array&lt;{start: number, end: number}>} An array of objects representing start and end points of played ranges.
+   */
+  playedRanges() {
+    const ranges = [];
+
+    for (let i = 0; i &lt; this.played().length; i++) {
+      const start = this.played().start(i);
+      const end = this.played().end(i);
+
+      ranges.push({ start, end });
+    }
+
+    return ranges;
+  }
+
+  /**
    * Calculates an array of ranges based on the `seekable()` data.
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seekable
