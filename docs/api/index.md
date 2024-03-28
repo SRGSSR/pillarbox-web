@@ -18,7 +18,7 @@ guide: [Authenticating with a personal access token](https://docs.github.com/en/
 You can now install it through `npm` the following command:
 
 ```bash
-npm install --save @srgssr/pillarbox
+npm install --save @srgssr/pillarbox-web
 ```
 
 In your HTML file, add the following code to initialize Pillarbox:
@@ -30,7 +30,7 @@ In your HTML file, add the following code to initialize Pillarbox:
 Import the CSS file in your HTML to apply Pillarbox default theme:
 
 ```html
-<link rel="stylesheet" href="node_modules/@srgssr/pillarbox-web/dist/pillarbox.min.css">
+<link rel="stylesheet" href="node_modules/@srgssr/pillarbox-web/dist/pillarbox.min.css" />
 ```
 
 Finally, import Pillarbox and set up the player:
@@ -38,16 +38,18 @@ Finally, import Pillarbox and set up the player:
 ```javascript
 import Pillarbox from '@srgssr/pillarbox-web';
 
-const player = new Pillarbox('my-player', {// Options... });
+const player = new Pillarbox('my-player', {/* options... */ });
 player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
 ```
 
 ## Player workflows
 
 For a comprehensive guide on player workflows, refer to the
-official [Video.js Player Workflows Guide](https://videojs.com/guides/player-workflows/). More
-showcases and examples ara available in
+official [Video.js Player Workflows Guide](https://videojs.com/guides/player-workflows/).
+
+More showcases and examples ara available in
 the [Pillarbox Demo Application](https://srgssr.github.io/pillarbox-web-demo/showcase).
+
 
 ## Further Reading
 
@@ -59,3 +61,6 @@ To learn more about video.js, you can visit the [Video.js Guides](https://videoj
 the [Video.js API docs](https://docs.videojs.com/).
 
 Keep track of our [Known Issues](./tutorial-Known%20Issues.html) section.
+
+You can learn more about themes and create your own with
+the [Pillarbox Theme Editor](https://srgssr.github.io/pillarbox-web-theme-editor).
