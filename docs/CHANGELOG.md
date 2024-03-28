@@ -1,3 +1,10 @@
+## [1.9.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.8.0...v1.9.0) (2024-03-28)
+
+
+### New Features 🚀
+
+* **player:** add playedPercent and playedRanges helpers ([bbf6049](https://github.com/SRGSSR/pillarbox-web/commit/bbf60496b2a551f5b76fb4c40aa0c774d3491a67))
+
 ## [1.8.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.7.0...v1.8.0) (2024-03-28)
 
 
