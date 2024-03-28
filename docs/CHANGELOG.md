@@ -1,3 +1,10 @@
+## [1.7.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.6.0...v1.7.0) (2024-03-28)
+
+
+### New Features 🚀
+
+* **player:** add bufferedRanges helper function ([c3094c1](https://github.com/SRGSSR/pillarbox-web/commit/c3094c19dfb632ab5e987dc1936304d8332d304b)), closes [/github.com/videojs/http-streaming/issues/1369#issuecomment-1475965185](https://github.com/SRGSSR//github.com/videojs/http-streaming/issues/1369/issues/issuecomment-1475965185)
+
 ## [1.6.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.5.0...v1.6.0) (2024-03-22)
 
 
