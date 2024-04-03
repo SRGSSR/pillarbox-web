@@ -1,5 +1,3 @@
-import MediaComposition from '../model/MediaComposition.js';
-
 /**
  * Represents a data provider for constructing URLs and handling requests.
  * @class
@@ -31,7 +29,7 @@ class DataProvider {
    *
    * @param {Function} urlHandler A function that constructs the URL
    *
-   * @returns {Promise<MediaComposition>} A promise with the fetched data
+   * @returns {Promise<import('../model/MediaComposition.js').default>} A promise with the fetched data
    */
   handleRequest(urlHandler) {
     return async (urn) => {
@@ -42,9 +40,10 @@ class DataProvider {
         throw response;
       }
 
+      /** @type {import('../model/MediaComposition.js').default} */
       const data = await response.json();
 
-      return Object.assign(new MediaComposition(), data);
+      return data;
     };
   }
 

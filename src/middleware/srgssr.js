@@ -4,6 +4,7 @@ import Image from '../utils/Image.js';
 import Drm from '../utils/Drm.js';
 import AkamaiTokenService from '../utils/AkamaiTokenService.js';
 import SRGAnalytics from '../analytics/SRGAnalytics.js';
+import MediaComposition from '../dataProvider/model/MediaComposition.js';
 
 // Translations
 import '../lang/de.js';
@@ -433,7 +434,9 @@ class SrgSsr {
     urn,
     handleRequest = new DataProvider().handleRequest()
   ) {
-    return handleRequest(urn);
+    const data = await handleRequest(urn);
+
+    return Object.assign(new MediaComposition(), data);
   }
 
   /**
@@ -643,14 +646,10 @@ Pillarbox.use('srgssr/urn', SrgSsr.middleware);
 
 // Add Middleware specific options
 Pillarbox.options.srgOptions = {
+  dataProvider: undefined,
   dataProviderHost: undefined,
+  dataProviderUrlHandler: undefined,
   tagCommanderScriptURL: undefined,
 };
 
 export default SrgSsr;
-
-/**
- * Ignored so that the link is resolved correctly in the API docs.
- * @ignore
- * @typedef {import('../dataProvider/model/MediaComposition.js').default} MediaComposition
- */

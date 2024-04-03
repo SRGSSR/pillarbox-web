@@ -36,8 +36,14 @@
     const ilHost = searchParams.get('ilHost') || undefined;
     const language = searchParams.get('language');
     const resize = searchParams.has('resize');
-    const urn = searchParams.get('urn') || 'urn:swi:video:48864812';
+    let urn = searchParams.get('urn');
     const urlHandler = searchParams.has('urlHandler') ? url => url : undefined;
+
+    // Default content
+    if (!urn) {
+      urn = 'urn:rts:video:9883196';
+      currentTime = 911;
+    }
 
     // Media examples
     window.mediaExamples = {
@@ -61,6 +67,11 @@
         src: 'urn:swi:video:48864812',
         type: 'srgssr/urn'
       },
+      _pyby: {
+        label: 'Pierre-Yves joueur de badminton at 911',
+        src: 'urn:rts:video:9883196',
+        type: 'srgssr/urn'
+      }
     };
 
     // Expose Pillarbox and player in the window object for debugging
