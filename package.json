@@ -1,7 +1,7 @@
 {
   "name": "@srgssr/pillarbox-web",
   "description": "Pillarbox is the modern SRG SSR player",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "type": "module",
   "module": "dist/pillarbox.es.js",
   "style": "./dist/pillarbox.min.css",

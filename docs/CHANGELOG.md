@@ -1,3 +1,16 @@
+## [1.10.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.9.0...v1.10.0) (2024-04-03)
+
+
+### New Features 🚀
+
+* add custom data handler ([7d924a4](https://github.com/SRGSSR/pillarbox-web/commit/7d924a4be669117497e235220b5e4f8c7b07eda3)), closes [#241](https://github.com/SRGSSR/pillarbox-web/issues/241)
+
+
+### Docs 📖
+
+* improve api documentation ([cc47173](https://github.com/SRGSSR/pillarbox-web/commit/cc47173e1ef87953b2ac42573c6b451b7952cd11))
+* link theme editor in the documentation ([820b6e5](https://github.com/SRGSSR/pillarbox-web/commit/820b6e51097988b7d294b9bf1683f03cd7204f10))
+
 ## [1.9.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.8.0...v1.9.0) (2024-03-28)
 
 
