@@ -77,6 +77,38 @@ See [Video.js Responsive Option](https://videojs.com/guides/options/#responsive)
 
 The options in this section complement those of video.js, further customizing the player experience.
 
+### `srgOptions.dataProvider`
+
+***Specific to media content from SRG SSR.***
+
+Specifies a custom function returning an object representing an SRG SSR media content. This function
+takes a single parameter: the string initially passed as the player's source, and return a JSON
+object representing the mediaComposition.
+
+#### Usage
+
+```javascript
+const player = pillarbox('player', {
+  srgOptions: {
+    // Defines the custom data provider
+    dataProvider: (data) => JSON.parse(data)
+  }
+});
+
+// A stringified object representing the mediaComposition
+const mediaCompositionStringifiedObject = JSON.stringify({
+  // ...
+});
+
+// Load the source with type 'srgssr/urn'
+player.src({ src: mediaCompositionStringifiedObject, type: 'srgssr/urn' });
+```
+
+The returned object must conform to the [Media Composition](./MediaComposition.html) structure to
+ensure proper media playback.
+
+> The absence of a conforming object may lead to unexpected errors, affecting video playback.
+
 ### `srgOptions.dataProviderHost`
 
 ***Specific to media content from SRG SSR.***
