@@ -249,14 +249,21 @@ class SrgSsr {
    */
   static composeSrcMediaData(
     { mediaData: srcMediaData, disableTrackers },
-    { url, mimeType, keySystems, ...mediaData }
+    resource
   ) {
+    const {
+      url,
+      mimeType,
+      keySystems,
+      ...mediaData
+    } = Pillarbox.obj.merge(resource, srcMediaData);
+
     return {
       src: url,
       type: mimeType,
       keySystems,
       disableTrackers,
-      mediaData: Pillarbox.obj.merge(mediaData, srcMediaData),
+      mediaData,
     };
   }
 

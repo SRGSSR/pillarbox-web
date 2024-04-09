@@ -5,6 +5,7 @@ import MediaComposition from '../../src/dataProvider/model/MediaComposition.js';
 import urnCredits from '../__mocks__/urn:rts:video:10313496-credits.json';
 import urnRtsAudio from '../__mocks__/urn:rts:audio:3262320.json';
 import srcMediaObj from '../__mocks__/srcMediaObj.json';
+import mainResource from '../__mocks__/mainResource.json';
 import Pillarbox from '../../src/pillarbox.js';
 import AkamaiTokenService from '../../src/utils/AkamaiTokenService.js';
 
@@ -18,6 +19,11 @@ describe('SrgSsr', () => {
   let player;
 
   beforeAll(() => {
+    Pillarbox.obj.merge.mockImplementation((...params) => {
+      // does not handle video.js deep merge
+      return Object.assign(...params);
+    });
+
     DataProvider.mockImplementation(() => {
       return {
         handleRequest: (fn) => {
@@ -481,17 +487,28 @@ describe('SrgSsr', () => {
    */
   describe('composeSrcMediaData', () => {
     it('should return a source object', async () => {
-      const mockDataProvider = new DataProvider();
-      const  mediaComposition  =
-        await mockDataProvider.handleRequest()('urn:fake');
-      const [mainSource] = mediaComposition.getMainResources();
-
-      expect(SrgSsr.composeSrcMediaData({}, mainSource)).toMatchObject({
-        src: mainSource.url,
-        type: mainSource.mimeType,
+      expect(SrgSsr.composeSrcMediaData({}, mainResource)).toMatchObject({
+        src: mainResource.url,
+        type: mainResource.mimeType,
         keySystems: undefined,
         disableTrackers: undefined,
-        mediaData: undefined,
+        mediaData: expect.any(Object),
+      });
+    });
+
+    it('should override the resource URL', async () => {
+      const url = 'https://fake-url.com/resource.m3u8';
+
+      expect(SrgSsr.composeSrcMediaData({
+        mediaData: {
+          url
+        }
+      }, mainResource)).toMatchObject({
+        src: url,
+        type: mainResource.mimeType,
+        keySystems: undefined,
+        disableTrackers: undefined,
+        mediaData: expect.any(Object),
       });
     });
   });
@@ -819,7 +836,7 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('getSrcMediaObj', () => {
-    it('should do something', async () => {
+    it('should return a value', async () => {
       const result = await SrgSsr.getSrcMediaObj(player, { src: 'urn:fake' });
 
       expect(result).toEqual(expect.any(Object));
