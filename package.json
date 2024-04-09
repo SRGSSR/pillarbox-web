@@ -91,7 +91,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "video.js": "^8.11.1",
+    "video.js": "^8.11.8",
     "videojs-contrib-eme": "^3.11.2"
   }
 }
