@@ -1,3 +1,15 @@
+## [1.11.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.10.0...v1.11.0) (2024-04-15)
+
+
+### New Features 🚀
+
+* **srgssr-middleware:** allow overriding of resource properties ([7e12ef7](https://github.com/SRGSSR/pillarbox-web/commit/7e12ef7a6be61bd7107e33121c98e22198078e08))
+
+
+### Chore 🧹
+
+* **npm:** update video.js to v8.11.8 ([31724d7](https://github.com/SRGSSR/pillarbox-web/commit/31724d743d82988909ae56453c9918279ce6d61f))
+
 ## [1.10.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.9.0...v1.10.0) (2024-04-03)
 
 
