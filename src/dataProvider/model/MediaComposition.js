@@ -72,7 +72,11 @@ class MediaComposition {
    * @returns {Array.<Chapter>} of chapters
    */
   getChapters() {
-    return this.chapterList;
+    const AUDIO = 'AUDIO';
+
+    if (this.getMainChapter().mediaType === AUDIO) return [];
+
+    return this.chapterList.filter(({ mediaType }) => mediaType !== AUDIO);
   }
 
   /**
