@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.11.0...v1.11.1) (2024-04-24)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **media-composition:** remove audio chapters ([48e3c6d](https://github.com/SRGSSR/pillarbox-web/commit/48e3c6dfe4406fa4ecb81ac32cf1b8f4d780c915)), closes [#245](https://github.com/SRGSSR/pillarbox-web/issues/245)
+
 ## [1.11.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.10.0...v1.11.0) (2024-04-15)
 
 
