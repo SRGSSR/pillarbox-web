@@ -49,6 +49,49 @@ export default [
     })]
   },
   /**
+   * Rollup build configuration for the Pillarbox CJS build.
+   *
+   * Outputs:
+   * - 'dist/pillarbox-core.cjs.min.js': Minified UMD version with sourcemaps.
+   * - 'dist/pillarbox-core.cjs.js': Non-minified UMD.
+   *
+   * @example
+   * ```html
+   * <script src="pillarbox-core.cjs.min.js"></script>
+   * ```
+   *
+   * @type {import('rollup').RollupOptions}
+   */
+  {
+    input: 'src/pillarbox.js',
+    output: [
+      {
+        name: 'Pillarbox',
+        file: 'dist/pillarbox-core.cjs.min.js',
+        format: 'cjs',
+        sourcemap: true,
+        globals: {
+          'video.js': 'videojs'
+        },
+        plugins: [terser()]
+      },
+      {
+        name: 'Pillarbox',
+        file: 'dist/pillarbox-core.cjs.js',
+        format: 'cjs',
+        globals: {
+          'video.js': 'videojs'
+        },
+        plugins: [filesize()]
+      }
+    ],
+    external: ['video.js', 'videojs-contrib-eme'],
+    plugins: [commonjs(), json(), resolve(), babel({
+      babelHelpers: 'bundled',
+      exclude: 'node_modules/**'
+    })]
+  },
+  /**
    * Rollup build configuration for the Pillarbox UMD build.
    *
    * Outputs:
@@ -113,6 +156,51 @@ export default [
     ],
     external: ['video.js', 'videojs-contrib-eme'],
     plugins: [json(), resolve(), babel({
+      babelHelpers: 'bundled',
+      exclude: 'node_modules/**'
+    })]
+  },
+
+  /**
+   * Rollup build configuration for the Pillarbox CJS build.
+   *
+   * Outputs:
+   * - 'dist/pillarbox.cjs.min.js': Minified UMD version with sourcemaps.
+   * - 'dist/pillarbox.cjs.js': Non-minified UMD.
+   *
+   * @example
+   * ```html
+   * <script src="pillarbox.cjs.min.js"></script>
+   * <script>
+   *   // Your additional code using Pillarbox as needed
+   * </script>
+   * ```
+   */
+  {
+    input: 'build.umd.js',
+    output: [
+      {
+        name: 'Pillarbox',
+        file: 'dist/pillarbox.cjs.min.js',
+        format: 'cjs',
+        sourcemap: true,
+        globals: {
+          'video.js': 'videojs'
+        },
+        plugins: [terser()]
+      },
+      {
+        name: 'Pillarbox',
+        file: 'dist/pillarbox.cjs.js',
+        format: 'cjs',
+        globals: {
+          'video.js': 'videojs'
+        },
+        plugins: [filesize()]
+      }
+    ],
+    external: ['video.js', 'videojs-contrib-eme'],
+    plugins: [commonjs(), json(), resolve(), babel({
       babelHelpers: 'bundled',
       exclude: 'node_modules/**'
     })]

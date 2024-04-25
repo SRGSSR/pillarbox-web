@@ -4,8 +4,15 @@
   "version": "1.11.1",
   "type": "module",
   "module": "dist/pillarbox.es.js",
+  "main": "dist/pillarbox.cjs.js",
   "style": "./dist/pillarbox.min.css",
   "types": "./dist/types/build.es.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/pillarbox.es.js",
+      "require": "./dist/pillarbox.cjs.js"
+    }
+  },
   "files": [
     "dist/*",
     "scss/*"
