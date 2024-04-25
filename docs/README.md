@@ -17,8 +17,9 @@ To get started with Pillarbox, add the `@srgssr` registry in your `.npmrc` file:
 @srgssr:registry=https://npm.pkg.github.com
 ```
 
-To generate an authentication token follow this
-guide: [Authenticating with a personal access token](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token)
+Generate a personal access token on the [Personal Access Tokens page][token-settings]. For more
+information on using tokens with GitHub packages,
+visit: [Authenticating with a Personal Access Token][token-guide].
 
 You can now install it through `npm` the following command:
 
@@ -35,7 +36,7 @@ In your HTML file, add the following code to initialize Pillarbox:
 Import the CSS file in your HTML to apply Pillarbox default theme:
 
 ```html
-<link rel="stylesheet" href="node_modules/@srgssr/pillarbox-web/dist/pillarbox.min.css" />
+<link rel="stylesheet" href="node_modules/@srgssr/pillarbox-web/dist/pillarbox.min.css"/>
 ```
 
 Finally, import Pillarbox and set up the player:
@@ -51,8 +52,14 @@ player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
 
 For detailed information on how to use the Pillarbox Web Player, checkout
 the [API Documentation](https://srgssr.github.io/pillarbox-web/api).
+
 A live demo of the player is available
-here: [Pillarbox Web Demo](https://srgssr.github.io/pillarbox-web-demo/)
+here: [Pillarbox Web Demo](https://srgssr.github.io/pillarbox-web-demo/).
+
+To expand the features that Pillarbox offers out of the box, visit the [Pillarbox Web
+Suite](https://github.com/SRGSSR/pillarbox-web-suite). You are welcome to contribute and share your
+own components there.
+
 You can create your own theme with
 the [Pillarbox Theme Editor](https://srgssr.github.io/pillarbox-web-theme-editor).
 
@@ -115,3 +122,7 @@ To contribute to the theme editor go to : https://github.com/SRGSSR/pillarbox-we
 ## License
 
 See the [LICENSE](../LICENSE) file for more information.
+
+[token-settings]: https://github.com/settings/tokens
+
+[token-guide]: https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token
