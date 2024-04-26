@@ -1,3 +1,15 @@
+## [1.12.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.11.1...v1.12.0) (2024-04-26)
+
+
+### Docs 📖
+
+* link to pillarbox-web-suite ([29bd933](https://github.com/SRGSSR/pillarbox-web/commit/29bd933b6e1a7fe0a73280e29ab5fd467b752b1a))
+
+
+### New Features 🚀
+
+* add exports field to package.json ([cadf774](https://github.com/SRGSSR/pillarbox-web/commit/cadf77437eae17248aa28737eeaf8ea645135341))
+
 ## [1.11.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.11.0...v1.11.1) (2024-04-24)
 
 
