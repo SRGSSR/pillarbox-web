@@ -1,5 +1,5 @@
 import Pillarbox from '../pillarbox.js';
-import * as pillarboxLang from './rm.json';
+import pillarboxLang from './rm.json';
 
 Pillarbox.addLanguage('rm', {
   ...pillarboxLang,

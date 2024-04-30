@@ -25,26 +25,22 @@
   "directories": {
     "doc": "docs"
   },
-  "targets": {
-    "main": false,
-    "github-page": {
-      "publicUrl": "./",
-      "isLibrary": false,
-      "outputFormat": "esmodule"
-    }
-  },
   "scripts": {
     "build": "npm run build:lib && npm run build:typings && npm run build:css",
     "build:css": "sass ./scss/pillarbox.scss:dist/pillarbox.min.css --style compressed --source-map --load-path node_modules",
-    "build:lib": "rollup -c",
+    "build:lib": "npm run build:core && npm run build:es && npm run build:cjs && npm run build:umd",
+    "build:core": "vite build --config vite.config.core.js",
+    "build:es": "vite build --config vite.config.es.js",
+    "build:cjs": "vite build --config vite.config.cjs.js",
+    "build:umd": "vite build --config vite.config.umd.js",
     "build:typings": "npx -p typescript tsc",
     "eslint": "eslint --ext .js src",
     "generate:docs": "jsdoc --configure docs/api/jsdoc.json --verbose",
-    "github:page": "parcel build index.html --target github-page && npm run generate:docs",
+    "github:page": "vite build && npm run generate:docs",
     "outdated": "npm outdated",
     "prebuild": "rimraf dist",
     "release:ci": "semantic-release",
-    "start": "parcel -p 6969 index.html",
+    "start": "vite --port 6969 --open",
     "stylelint": "stylelint **/*.scss --custom-syntax --allow-empty-input",
     "stylelint:fix": "stylelint **/*.scss --fix",
     "test": "jest --verbose",
@@ -69,11 +65,7 @@
     "@babel/preset-env": "^7.24.1",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
-    "@parcel/transformer-sass": "^2.11.0",
     "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
@@ -91,16 +83,14 @@
     "jest-environment-jsdom": "^29.6.1",
     "jsdoc": "^4.0.2",
     "jsdoc-tsimport-plugin": "^1.0.5",
-    "parcel": "^2.11.0",
     "rimraf": "^5.0.5",
-    "rollup": "^4.9.6",
-    "rollup-plugin-filesize": "^10.0.0",
     "sass": "^1.70.0",
     "semantic-release": "^23.0.0",
     "stylelint": "^16.2.1",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-order": "^6.0.4",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vite": "^5.4.10"
   },
   "dependencies": {
     "video.js": "^8.11.8",
