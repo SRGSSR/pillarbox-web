@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.12.0...v1.12.1) (2024-04-30)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* add 'core' export and mapping for single files ([e8612a7](https://github.com/SRGSSR/pillarbox-web/commit/e8612a7a1d9ee7d28b6678fdedd012971c919dbc))
+
 ## [1.12.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.11.1...v1.12.0) (2024-04-26)
 
 
