@@ -4,6 +4,7 @@
   "COMMERCIAL": "This commercial content is not available.",
   "ENDDATE": "This content is not available anymore.",
   "GEOBLOCK": "This content is not available outside Switzerland.",
+  "JOURNALISTIC": "This content is temporarily unavailable for journalistic reasons.",
   "LEGAL": "This content is not available due to legal restrictions.",
   "STARTDATE": "This content is not available yet.",
   "UNKNOWN": "This content is not available."
