@@ -30,7 +30,7 @@ npm install --save @srgssr/pillarbox-web
 In your HTML file, add the following code to initialize Pillarbox:
 
 ```html
-<video-js id="my-player" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+<video-js id="my-player" class="pillarbox-js" controls></video-js>
 ```
 
 Import the CSS file in your HTML to apply Pillarbox default theme:
