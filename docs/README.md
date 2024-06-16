@@ -116,8 +116,8 @@ npm run build
 ```
 
 If you want to enhance our demo application you can get involved
-here: https://github.com/SRGSSR/pillarbox-demo
-To contribute to the theme editor go to : https://github.com/SRGSSR/pillarbox-web-theme-editor
+here: https://github.com/SRGSSR/pillarbox-web-demo
+To contribute to the theme editor go to: https://github.com/SRGSSR/pillarbox-web-theme-editor
 
 ## License
 
