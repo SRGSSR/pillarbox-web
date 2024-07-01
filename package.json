@@ -51,7 +51,7 @@
     "test:watch": "jest --watch --verbose"
   },
   "keywords": [],
-  "author": "",
+  "author": "SRG SSR",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SRGSSR/pillarbox-web/issues"
@@ -61,9 +61,9 @@
     "url": "git+https://github.com/SRGSSR/pillarbox-web.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/",
     "access": "public"
   },
+  "homepage": "https://srgssr.github.io/pillarbox-web-demo/",
   "devDependencies": {
     "@babel/core": "^7.24.1",
     "@babel/preset-env": "^7.24.1",
