@@ -1,3 +1,16 @@
+## [1.12.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.12.1...v1.12.2) (2024-07-02)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* publish pillarbox-web to npm ([895e5fd](https://github.com/SRGSSR/pillarbox-web/commit/895e5fdb6aba8cd143e89b1c44185710e5a58114)), closes [#260](https://github.com/SRGSSR/pillarbox-web/issues/260)
+
+
+### Docs 📖
+
+* fix link to `pillarbox-web-demo` in `README.md` ([72417f4](https://github.com/SRGSSR/pillarbox-web/commit/72417f43ee436ddb58f39241237248037ea90897))
+* remove crossorigin attribute from video-js tag in the examples ([25308cd](https://github.com/SRGSSR/pillarbox-web/commit/25308cd4eeb3747ec09d9193c2345f61c431c07a))
+
 ## [1.12.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.12.0...v1.12.1) (2024-04-30)
 
 
