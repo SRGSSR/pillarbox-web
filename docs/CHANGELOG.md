@@ -1,3 +1,10 @@
+## [1.13.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.12.2...v1.13.0) (2024-07-08)
+
+
+### New Features 🚀
+
+* **lang:** add journalistic blocking reason ([b6b5ada](https://github.com/SRGSSR/pillarbox-web/commit/b6b5adaab39453f9b5058b111278f5044a3b23d9)), closes [#253](https://github.com/SRGSSR/pillarbox-web/issues/253)
+
 ## [1.12.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.12.1...v1.12.2) (2024-07-02)
 
 
