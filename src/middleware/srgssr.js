@@ -3,7 +3,8 @@ import DataProvider from '../dataProvider/services/DataProvider.js';
 import Image from '../utils/Image.js';
 import Drm from '../utils/Drm.js';
 import AkamaiTokenService from '../utils/AkamaiTokenService.js';
-import SRGAnalytics from '../analytics/SRGAnalytics.js';
+import SRGAnalytics from '../trackers/SRGAnalytics.js';
+import PillarboxMonitoring from '../trackers/PillarboxMonitoring.js';
 import MediaComposition from '../dataProvider/model/MediaComposition.js';
 
 // Translations
@@ -473,6 +474,8 @@ class SrgSsr {
    * @returns {Promise<import('./typedef').ComposedSrcMediaData>} - The composed source media data.
    */
   static async getSrcMediaObj(player, srcObj) {
+    player.trigger('pillarbox-monitoring/sessionstart');
+
     const { src: urn, ...srcOptions } = srcObj;
     const mediaComposition = await SrgSsr.getMediaComposition(
       urn,
@@ -600,6 +603,33 @@ class SrgSsr {
   }
 
   /**
+   * SRG monitoring singleton.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   *
+   * @returns {PillarboxMonitoring} instance of PillarboxMonitoring
+   */
+  static srgMonitoring(player) {
+    if (player.options().trackers.srgMonitoring === false) return;
+
+    if (!player.options().trackers.srgMonitoring) {
+      const srgMonitoring = new PillarboxMonitoring(player, {
+        debug: player.debug(),
+        playerVersion: Pillarbox.VERSION.pillarbox,
+        playerName: 'Pillarbox',
+      });
+
+      player.options({
+        trackers: {
+          srgMonitoring,
+        },
+      });
+    }
+
+    return player.options().trackers.srgMonitoring;
+  }
+
+  /**
    * Update player's poster.
    *
    * @param {import('video.js/dist/types/player').default} player
@@ -637,7 +667,7 @@ class SrgSsr {
    * @returns {Object}
    */
   static middleware(player) {
-
+    SrgSsr.srgMonitoring(player);
     SrgSsr.cuechangeEventProxy(player);
 
     return {
