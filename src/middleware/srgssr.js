@@ -212,12 +212,14 @@ class SrgSsr {
    * @returns {Array.<import('./typedef').MainResourceWithKeySystems>}
    */
   static composeKeySystemsResources(resources = []) {
-    if (!Drm.hasDrm(resources)) resources;
+    if (!Drm.hasDrm(resources)) return resources;
 
-    return resources.map((resource) => ({
+    const resourcesWithKeySystems = resources.map((resource) => ({
       ...resource,
       ...Drm.buildKeySystems(resource.drmList),
     }));
+
+    return resourcesWithKeySystems;
   }
 
   /**
