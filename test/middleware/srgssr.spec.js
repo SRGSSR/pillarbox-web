@@ -405,16 +405,17 @@ describe('SrgSsr', () => {
     it('should not add the keySystems property if no resource has DRM', () => {
       const resources = [
         {
-          streaming: 'DASH',
-        },
-        {
-          streaming: 'HLS',
+          src: 'https://fake-url.com/resource.m3u8',
+          type: 'application/x-mpegURL',
+        }, {
+          src: 'https://fake-url.com/resource.mpd',
+          type: 'application/dash+xml',
         }
       ];
       const resourcesNoKeySystems =
         SrgSsr.composeKeySystemsResources(resources);
 
-      expect(resourcesNoKeySystems).toMatchObject(resources);
+      expect(resourcesNoKeySystems).toEqual(resources);
     });
 
     it('should add the keySystems property if at least one resource has DRM', () => {
