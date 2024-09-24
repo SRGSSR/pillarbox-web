@@ -731,6 +731,7 @@ class PillarboxMonitoring {
    * @property {number} bandwidth The current bandwidth
    * @property {number|undefined} bitrate The bitrate of the current resource
    * @property {number} buffered_duration The duration of the buffered content
+   * @property {number} frame_drops The number of dropped frames
    * @property {number} playback_duration The duration of the playback
    * @property {number} position The current playback position
    * @property {number} position_timestamp The timestamp of the current playback position
@@ -744,6 +745,9 @@ class PillarboxMonitoring {
     const bandwidth = this.bandwidth();
     const buffered_duration = this.bufferDuration();
     const { bitrate, url } = this.currentResource();
+    const {
+      droppedVideoFrames: frame_drops
+    } = this.player.getVideoPlaybackQuality();
     const playback_duration = this.playbackDuration();
     const { position, position_timestamp } = this.playbackPosition();
     const stream_type = isFinite(this.player.duration()) ? 'On-demand' : 'Live';
@@ -753,6 +757,7 @@ class PillarboxMonitoring {
       bandwidth,
       bitrate,
       buffered_duration,
+      frame_drops,
       playback_duration,
       position,
       position_timestamp,

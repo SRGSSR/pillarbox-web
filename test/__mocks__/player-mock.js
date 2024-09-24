@@ -27,6 +27,7 @@ let playerMock = jest.fn(() => ({
 
     return err;
   }),
+  getVideoPlaybackQuality: jest.fn().mockReturnValue({}),
   hasStarted: jest.fn(),
   muted: jest.fn(),
   play: jest.fn(() => {
