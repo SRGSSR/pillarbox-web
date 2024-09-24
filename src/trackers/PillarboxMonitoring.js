@@ -24,7 +24,7 @@ class PillarboxMonitoring {
     platform = 'web',
     schemaVersion = 1,
     heartbeatInterval = 30_000,
-    beaconUrl = 'https://zdkimhgwhh.eu-central-1.awsapprunner.com/metrics'
+    beaconUrl = 'http://sse-broker-alb-1501344577.eu-central-1.elb.amazonaws.com/api/events'
   } = {}) {
     /**
      * @type {import('video.js/dist/types/player').default}
