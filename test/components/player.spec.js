@@ -1,6 +1,13 @@
 import Player from '../../src/components/player.js';
 import pillarbox from '../../src/pillarbox.js';
 
+// jsdom doesn’t implement the HTMLMediaElement.prototype.load
+// Mainly used by the loadMedia test cases.
+Object.defineProperty(global.HTMLMediaElement.prototype, 'load', {
+  configurable: true,
+  value: () => {} // Noop function
+});
+
 describe('Player', () => {
   const videoEl = document.createElement('video');
 
@@ -258,6 +265,51 @@ describe('Player', () => {
       // When a plugin is initialized its function becomes an object
       expect(typeof player.eme).not.toBe('function');
       expect(typeof player.eme).toBe('object');
+    });
+  });
+
+  describe('src', () => {
+    const player = new Player(videoEl);
+
+    it('should not trigger the beforesourceset event when no parameter is passed to the src function', () => {
+      const handler = jest.fn();
+
+      player.on('beforesourceset', handler);
+      player.src();
+
+      expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('should trigger the beforesourceset event when a new source is passed to the src function', () => {
+      const handler = jest.fn();
+
+      player.on('beforesourceset', handler);
+      player.src('http://mock.url.ch');
+
+      expect(handler).toHaveBeenCalled();
+    });
+  });
+
+  // Ensures that the beforesourceset event also works with loadMedia
+  describe('loadMedia', () => {
+    const player = new Player(videoEl);
+
+    it('should not trigger the beforesourceset event when no parameter is passed to the loadMedia function', () => {
+      const handler = jest.fn();
+
+      player.on('beforesourceset', handler);
+      player.loadMedia();
+
+      expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('should trigger the beforesourceset event when a new source is passed to the loadMedia function', () => {
+      const handler = jest.fn();
+
+      player.on('beforesourceset', handler);
+      player.loadMedia({ src: { src: 'http://mock.url.ch' }});
+
+      expect(handler).toHaveBeenCalled();
     });
   });
 });

@@ -27,6 +27,28 @@ class Player extends vjsPlayer {
   }
 
   /**
+   * Get or set the video source.
+   *
+   * If a source is provided, it triggers the `beforesourceset` event before setting the source.
+   *
+   * @override
+   * @fires Player#beforesourceset
+   *
+   * @see https://docs.videojs.com/player#src
+   *
+   * @return {string|undefined}
+   *         If the `source` argument is missing, returns the current source
+   *         URL. Otherwise, returns nothing/undefined.
+   */
+  src(source) {
+    if (source) {
+      this.trigger('beforesourceset');
+    }
+
+    return super.src(source);
+  }
+
+  /**
    * A getter/setter for the media's audio track.
    * Activates the audio track according to the language and kind properties.
    * Falls back on the first audio track found if the kind property is not satisfied.
