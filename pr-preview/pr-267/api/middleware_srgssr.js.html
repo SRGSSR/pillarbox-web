@@ -474,7 +474,9 @@ class SrgSsr {
    * @returns {Promise&lt;import('./typedef').ComposedSrcMediaData>} - The composed source media data.
    */
   static async getSrcMediaObj(player, srcObj) {
-    player.trigger('pillarbox-monitoring/sessionstart');
+    if (SrgSsr.pillarboxMonitoring(player)) {
+      SrgSsr.pillarboxMonitoring(player).sessionStart();
+    }
 
     const { src: urn, ...srcOptions } = srcObj;
     const mediaComposition = await SrgSsr.getMediaComposition(
@@ -603,17 +605,17 @@ class SrgSsr {
   }
 
   /**
-   * SRG monitoring singleton.
+   * PillarboxMonitoring monitoring singleton.
    *
    * @param {import('video.js/dist/types/player').default} player
    *
    * @returns {PillarboxMonitoring} instance of PillarboxMonitoring
    */
-  static srgMonitoring(player) {
-    if (player.options().trackers.srgMonitoring === false) return;
+  static pillarboxMonitoring(player) {
+    if (player.options().trackers.pillarboxMonitoring === false) return;
 
-    if (!player.options().trackers.srgMonitoring) {
-      const srgMonitoring = new PillarboxMonitoring(player, {
+    if (!player.options().trackers.pillarboxMonitoring) {
+      const pillarboxMonitoring = new PillarboxMonitoring(player, {
         debug: player.debug(),
         playerVersion: Pillarbox.VERSION.pillarbox,
         playerName: 'Pillarbox',
@@ -621,12 +623,12 @@ class SrgSsr {
 
       player.options({
         trackers: {
-          srgMonitoring,
+          pillarboxMonitoring,
         },
       });
     }
 
-    return player.options().trackers.srgMonitoring;
+    return player.options().trackers.pillarboxMonitoring;
   }
 
   /**
@@ -667,7 +669,7 @@ class SrgSsr {
    * @returns {Object}
    */
   static middleware(player) {
-    SrgSsr.srgMonitoring(player);
+    SrgSsr.pillarboxMonitoring(player);
     SrgSsr.cuechangeEventProxy(player);
 
     return {
