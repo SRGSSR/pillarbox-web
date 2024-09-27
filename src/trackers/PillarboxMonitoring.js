@@ -21,7 +21,7 @@ class PillarboxMonitoring {
   constructor(player, {
     playerName = 'none',
     playerVersion = 'none',
-    platform = 'web',
+    platform = 'Web',
     schemaVersion = 1,
     heartbeatInterval = 30_000,
     beaconUrl = 'http://sse-broker-alb-1501344577.eu-central-1.elb.amazonaws.com/api/events'
@@ -114,7 +114,6 @@ class PillarboxMonitoring {
 
     this.player.on('loadstart', this.loadStart);
     this.player.on('loadeddata', this.loadedData);
-    this.player.on('pillarbox-monitoring/sessionstart', this.sessionStart);
     this.player.on('playing', this.playbackStart);
     this.player.on('pause', this.playbackStop);
     this.player.on('error', this.error);
@@ -141,13 +140,11 @@ class PillarboxMonitoring {
    * Binds the callback functions to the current instance.
    */
   bindCallBacks() {
-
     this.error = this.error.bind(this);
     this.loadedData = this.loadedData.bind(this);
     this.loadStart = this.loadStart.bind(this);
     this.playbackStart = this.playbackStart.bind(this);
     this.playbackStop = this.playbackStop.bind(this);
-    this.sessionStart = this.sessionStart.bind(this);
     this.stalled = this.stalled.bind(this);
     this.sessionStop = this.sessionStop.bind(this);
   }
@@ -246,12 +243,12 @@ class PillarboxMonitoring {
     }
 
     this.sendEvent('ERROR', {
-      log: error.metadata || JSON
-        .stringify(pillarbox.log.history().slice(-15)),
+      log: JSON
+        .stringify(error.metadata || pillarbox.log.history().slice(-15)),
       message: error.message,
       name: error.code,
       ...playbackPosition,
-      severity: 'FATAL',
+      severity: 'Fatal',
       url
     });
 
@@ -470,7 +467,7 @@ class PillarboxMonitoring {
     this.lastPlaybackDuration +=
       PillarboxMonitoring.timestamp() - this.lastPlaybackStartTimestamp;
 
-    this.lastPlaybackStartTimestamp = undefined;
+    this.lastPlaybackStartTimestamp = 0;
   }
 
   /**
@@ -553,7 +550,6 @@ class PillarboxMonitoring {
   removeListeners() {
     this.player.off('loadstart', this.loadStart);
     this.player.off('loadeddata', this.loadedData);
-    this.player.off('pillarbox-monitoring/sessionstart', this.sessionStart);
     this.player.off('playing', this.playbackStart);
     this.player.off('pause', this.playbackStop);
     this.player.off('error', this.error);
@@ -657,7 +653,7 @@ class PillarboxMonitoring {
     this.sessionStartTimestamp = PillarboxMonitoring.timestamp();
     // At this stage currentSource().src is the media identifier
     // and not the playable source.
-    this.mediaId = this.player.currentSource().src;
+    this.mediaId = this.player.currentSource().src || undefined;
   }
 
   /**
