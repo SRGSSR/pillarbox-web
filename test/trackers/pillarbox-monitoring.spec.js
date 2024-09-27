@@ -494,7 +494,7 @@ describe('PillarboxMonitoring', () => {
 
       monitoring.removeListeners();
 
-      expect(spyOnOff).toHaveBeenCalledTimes(8);
+      expect(spyOnOff).toHaveBeenCalledTimes(7);
       expect(spyOnRemoveEventListener).toHaveBeenCalledTimes(1);
     });
   });

@@ -935,6 +935,44 @@ describe('SrgSsr', () => {
 
   /**
    *****************************************************************************
+   * pillarboxMonitoring *******************************************************
+   *****************************************************************************
+   */
+  describe('pillarboxMonitoring', () => {
+    it('should not initialize the pillarboxMonitoring', () => {
+      player.options().trackers.pillarboxMonitoring = false;
+
+      const spyOnOptions = jest.spyOn(player, 'options');
+
+      SrgSsr.pillarboxMonitoring(player);
+
+      expect(player.options().trackers.pillarboxMonitoring).toBe(false);
+      expect(spyOnOptions).not.toHaveBeenLastCalledWith(expect.objectContaining({ trackers: { pillarboxMonitoring: expect.any(Object) }}));
+    });
+
+    it('should initialize the pillarboxMonitoring', () => {
+      player.options().trackers.pillarboxMonitoring = undefined;
+
+      const spyOnOptions = jest.spyOn(player, 'options');
+
+      SrgSsr.pillarboxMonitoring(player);
+
+      expect(spyOnOptions).toHaveBeenNthCalledWith(4, expect.objectContaining({ trackers: { pillarboxMonitoring: expect.any(Object) }}));
+    });
+
+    it('should not reinitialize the pillarboxMonitoring', () => {
+      player.options().trackers.pillarboxMonitoring = {};
+
+      const spyOnOptions = jest.spyOn(player, 'options');
+
+      SrgSsr.pillarboxMonitoring(player);
+
+      expect(spyOnOptions).not.toHaveBeenLastCalledWith(expect.objectContaining({ trackers: { pillarboxMonitoring: expect.any(Object) }}));
+    });
+  });
+
+  /**
+   *****************************************************************************
    * updatePoster **************************************************************
    *****************************************************************************
    */
