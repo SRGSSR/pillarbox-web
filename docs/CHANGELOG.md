@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.13.0...v1.13.1) (2024-09-30)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **srgssr-middleware:** add missing return statement for DRM check ([210bfaf](https://github.com/SRGSSR/pillarbox-web/commit/210bfafe08503872209caf79b37ee6aeafba4e3e))
+
 ## [1.13.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.12.2...v1.13.0) (2024-07-08)
 
 
