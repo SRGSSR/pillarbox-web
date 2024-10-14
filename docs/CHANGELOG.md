@@ -1,3 +1,23 @@
+## [1.14.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.13.1...v1.14.0) (2024-10-14)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **pillarbox-monitoring:** invalid service URL ([acf45d4](https://github.com/SRGSSR/pillarbox-web/commit/acf45d47a1576f880fe85cc59b07fe82cf7ba822))
+* **pillarbox-monitoring:** update endpoint url ([2b31e9b](https://github.com/SRGSSR/pillarbox-web/commit/2b31e9baab6691ca3d0dbdd81872622626d55f16))
+* **pillarbox-monitoring:** use capital case to align with spec ([4778d43](https://github.com/SRGSSR/pillarbox-web/commit/4778d432965ce38487ac4a2b7bf626fdc8f81b7e))
+
+
+### New Features 🚀
+
+* add playback monitoring ([e867456](https://github.com/SRGSSR/pillarbox-web/commit/e867456cb12cdc6c61b1395ee593056efdd839d2)), closes [#262](https://github.com/SRGSSR/pillarbox-web/issues/262)
+* **pillarbox-monitoring:** add frame drops ([ec67109](https://github.com/SRGSSR/pillarbox-web/commit/ec671098a5c4751db69d8e235643050b175356e1)), closes [#269](https://github.com/SRGSSR/pillarbox-web/issues/269)
+
+
+### Tests ✅
+
+* rename test/analytics folder to test/trackers ([d1c85c2](https://github.com/SRGSSR/pillarbox-web/commit/d1c85c2acbe7792aa86e97c0fc5498213db4b722))
+
 ## [1.13.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.13.0...v1.13.1) (2024-09-30)
 
 
