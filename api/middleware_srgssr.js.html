@@ -5,7 +5,8 @@ import DataProvider from '../dataProvider/services/DataProvider.js';
 import Image from '../utils/Image.js';
 import Drm from '../utils/Drm.js';
 import AkamaiTokenService from '../utils/AkamaiTokenService.js';
-import SRGAnalytics from '../analytics/SRGAnalytics.js';
+import SRGAnalytics from '../trackers/SRGAnalytics.js';
+import PillarboxMonitoring from '../trackers/PillarboxMonitoring.js';
 import MediaComposition from '../dataProvider/model/MediaComposition.js';
 
 // Translations
@@ -475,6 +476,10 @@ class SrgSsr {
    * @returns {Promise&lt;import('./typedef').ComposedSrcMediaData>} - The composed source media data.
    */
   static async getSrcMediaObj(player, srcObj) {
+    if (SrgSsr.pillarboxMonitoring(player)) {
+      SrgSsr.pillarboxMonitoring(player).sessionStart();
+    }
+
     const { src: urn, ...srcOptions } = srcObj;
     const mediaComposition = await SrgSsr.getMediaComposition(
       urn,
@@ -602,6 +607,33 @@ class SrgSsr {
   }
 
   /**
+   * PillarboxMonitoring monitoring singleton.
+   *
+   * @param {import('video.js/dist/types/player').default} player
+   *
+   * @returns {PillarboxMonitoring} instance of PillarboxMonitoring
+   */
+  static pillarboxMonitoring(player) {
+    if (player.options().trackers.pillarboxMonitoring === false) return;
+
+    if (!player.options().trackers.pillarboxMonitoring) {
+      const pillarboxMonitoring = new PillarboxMonitoring(player, {
+        debug: player.debug(),
+        playerVersion: Pillarbox.VERSION.pillarbox,
+        playerName: 'Pillarbox',
+      });
+
+      player.options({
+        trackers: {
+          pillarboxMonitoring,
+        },
+      });
+    }
+
+    return player.options().trackers.pillarboxMonitoring;
+  }
+
+  /**
    * Update player's poster.
    *
    * @param {import('video.js/dist/types/player').default} player
@@ -639,7 +671,7 @@ class SrgSsr {
    * @returns {Object}
    */
   static middleware(player) {
-
+    SrgSsr.pillarboxMonitoring(player);
     SrgSsr.cuechangeEventProxy(player);
 
     return {
