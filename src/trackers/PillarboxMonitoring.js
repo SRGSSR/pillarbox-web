@@ -248,7 +248,6 @@ class PillarboxMonitoring {
       message: error.message,
       name: error.code,
       ...playbackPosition,
-      severity: 'Fatal',
       url
     });
 
