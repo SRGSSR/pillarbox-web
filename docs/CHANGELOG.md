@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.14.0...v1.14.1) (2024-10-22)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **pillarbox-monitoring:** remove severity property from error event ([614ed7f](https://github.com/SRGSSR/pillarbox-web/commit/614ed7f552ed7fc7953df1bdd22dda51ded30168)), closes [#277](https://github.com/SRGSSR/pillarbox-web/issues/277)
+
 ## [1.14.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.13.1...v1.14.0) (2024-10-14)
 
 
