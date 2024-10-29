@@ -374,6 +374,7 @@ class SRGAnalytics {
 
     if (this.isAudioTrackEnabled()) {
       labels.media_audio_track = this.getCurrentAudioTrack();
+      labels.media_audiodescription_on = this.isAudioDescriptionEnabled();
     }
 
     if (this.isTextTrackEnabled()) {
@@ -526,6 +527,19 @@ class SRGAnalytics {
 
       document.body.appendChild(script);
     }
+  }
+
+  /**
+   * Check if the audio description track is enabled.
+   *
+   * @returns {Boolean} __true__ if enabled __false__ otherwise.
+   */
+  isAudioDescriptionEnabled() {
+    const currentTrack = Array
+      .from(this.player.audioTracks())
+      .find(track => track.enabled && track.kind.includes('desc'));
+
+    return Boolean(currentTrack);
   }
 
   /**
