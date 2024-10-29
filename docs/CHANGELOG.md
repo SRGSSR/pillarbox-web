@@ -1,3 +1,16 @@
+## [1.15.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.14.1...v1.15.0) (2024-10-29)
+
+
+### New Features 🚀
+
+* **analytics:** track the type of audio track ([cda0d7a](https://github.com/SRGSSR/pillarbox-web/commit/cda0d7a913c7c31852aaeb9ccd921ca3b957bc53)), closes [#265](https://github.com/SRGSSR/pillarbox-web/issues/265)
+
+
+### Chore 🧹
+
+* **build:** migrate build system from rollup and parcel to vite ([606126f](https://github.com/SRGSSR/pillarbox-web/commit/606126f7db269fdbb555a82ff9d34a53291b895b))
+* **github-actions:** add registry url to release action ([5eee634](https://github.com/SRGSSR/pillarbox-web/commit/5eee634811399565b533b7bbe240808660cd7f21))
+
 ## [1.14.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.14.0...v1.14.1) (2024-10-22)
 
 
