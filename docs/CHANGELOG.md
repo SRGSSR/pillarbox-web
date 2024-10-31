@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.15.0...v1.15.1) (2024-10-31)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* update urls for custom domain setup ([d369998](https://github.com/SRGSSR/pillarbox-web/commit/d3699985d686277b8195503e28b48287b7ce484b))
+
 ## [1.15.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.14.1...v1.15.0) (2024-10-29)
 
 
