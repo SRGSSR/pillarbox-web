@@ -32,12 +32,12 @@
       "menu": [
         {
           "title": "Showcase",
-          "link": "https://srgssr.github.io/pillarbox-web-demo/showcase",
+          "link": "https://demo.pillarbox.ch/showcase",
           "target": "_blank"
         },
         {
           "title": "Theme Editor",
-          "link": "https://srgssr.github.io/pillarbox-web-theme-editor",
+          "link": "https://editor.pillarbox.ch",
           "target": "_blank"
         },
         {

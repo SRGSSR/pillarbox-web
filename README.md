@@ -1,6 +1,6 @@
 # Pillarbox Web Player
 
-[![Pillarbox logo](README-images/logo.jpg)](https://github.com/SRGSSR/pillarbox-web)
+[![Pillarbox logo](docs/README-images/logo.jpg)](https://github.com/SRGSSR/pillarbox-web)
 
 ## About
 
@@ -40,17 +40,17 @@ player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
 ## Documentation
 
 For detailed information on how to use the Pillarbox Web Player, checkout
-the [API Documentation](https://srgssr.github.io/pillarbox-web/api).
+the [API Documentation](https://web.pillarbox.ch/api).
 
 A live demo of the player is available
-here: [Pillarbox Web Demo](https://srgssr.github.io/pillarbox-web-demo/).
+here: [Pillarbox Web Demo](https://demo.pillarbox.ch).
 
 To expand the features that Pillarbox offers out of the box, visit the [Pillarbox Web
 Suite](https://github.com/SRGSSR/pillarbox-web-suite). You are welcome to contribute and share your
 own components there.
 
 You can create your own theme with
-the [Pillarbox Theme Editor](https://srgssr.github.io/pillarbox-web-theme-editor).
+the [Pillarbox Theme Editor](https://editor.pillarbox.ch).
 
 ## Pillarbox flavours
 
@@ -110,7 +110,7 @@ To contribute to the theme editor go to: https://github.com/SRGSSR/pillarbox-web
 
 ## License
 
-See the [LICENSE](../LICENSE) file for more information.
+See the [LICENSE](LICENSE) file for more information.
 
 [token-settings]: https://github.com/settings/tokens
 

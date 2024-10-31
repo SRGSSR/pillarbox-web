@@ -59,7 +59,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://srgssr.github.io/pillarbox-web-demo/",
+  "homepage": "https://www.pillarbox.ch/",
   "devDependencies": {
     "@babel/core": "^7.24.1",
     "@babel/preset-env": "^7.24.1",
