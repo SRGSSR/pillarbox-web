@@ -77,10 +77,10 @@ player.on('srgssr/interval', function ({ data }) {
 A showcase displaying a button to skip the end credits is available
 here: [Showcase: Skip Credits][intervals]
 
-[blocked-segments]: https://srgssr.github.io/pillarbox-web-demo/static/showcases/blocked-segment.html
+[blocked-segments]: https://demo.pillarbox.ch/static/showcases/blocked-segment.html
 
-[chapters]: https://srgssr.github.io/pillarbox-web-demo/static/showcases/chapters.html
+[chapters]: https://demo.pillarbox.ch/static/showcases/chapters.html
 
-[intervals]: https://srgssr.github.io/pillarbox-web-demo/static/showcases/skip-credits.html
+[intervals]: https://demo.pillarbox.ch/static/showcases/skip-credits.html
 
 [vjs-doc]: https://docs.videojs.com/

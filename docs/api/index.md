@@ -39,7 +39,7 @@ For a comprehensive guide on player workflows, refer to the
 official [Video.js Player Workflows Guide](https://videojs.com/guides/player-workflows/).
 
 More showcases and examples ara available in
-the [Pillarbox Demo Application](https://srgssr.github.io/pillarbox-web-demo/showcase).
+the [Pillarbox Demo Application](https://demo.pillarbox.ch/showcase).
 
 ## Further Reading
 
@@ -57,7 +57,7 @@ own components there.
 Keep track of our [Known Issues](./tutorial-Known%20Issues.html) section.
 
 You can learn more about themes and create your own with
-the [Pillarbox Theme Editor](https://srgssr.github.io/pillarbox-web-theme-editor).
+the [Pillarbox Theme Editor](https://editor.pillarbox.ch).
 
 
 [token-settings]: https://github.com/settings/tokens
