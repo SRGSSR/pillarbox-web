@@ -7,6 +7,7 @@ describe('PillarboxMonitoring', () => {
   let monitoring;
 
   global.navigator.sendBeacon = jest.fn();
+  global.window.MediaError = jest.fn().mockReturnValue({  });
 
   beforeEach(() => {
     player = playerMock();

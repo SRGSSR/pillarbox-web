@@ -246,7 +246,7 @@ class PillarboxMonitoring {
       log: JSON
         .stringify(error.metadata || pillarbox.log.history().slice(-15)),
       message: error.message,
-      name: error.code,
+      name: PillarboxMonitoring.errorKeyCode(error.code),
       ...playbackPosition,
       url
     });
@@ -813,6 +813,25 @@ class PillarboxMonitoring {
       qos_timings: this.qosTimings(timeToLoadedData),
       screen: this.playerCurrentDimensions()
     };
+  }
+
+  /**
+   * Returns a string representing the error key combined with its error code.
+   *
+   * If the error code doesn't exist the error key undefined.
+   *
+   * @param {number} code The error code
+   *
+   * @returns {string} The error key combined with its error code
+   */
+  static errorKeyCode(code) {
+    const error = [
+      'MEDIA_ERR_CUSTOM',
+      ...Object.keys(window.MediaError),
+      'MEDIA_ERR_ENCRYPTED'
+    ];
+
+    return `${error[code]}: ${code}`;
   }
 
   /**
