@@ -1,3 +1,10 @@
+## [1.15.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.15.1...v1.15.2) (2024-12-16)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **pillarbox-monitoring:** inconsistent error name value ([0e311be](https://github.com/SRGSSR/pillarbox-web/commit/0e311be4eb32e65fedefbb168bab6aa87daa258b)), closes [#283](https://github.com/SRGSSR/pillarbox-web/issues/283)
+
 ## [1.15.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.15.0...v1.15.1) (2024-10-31)
 
 
