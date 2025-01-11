@@ -4,6 +4,7 @@ import Image from '../../src/utils/Image.js';
 import MediaComposition from '../../src/dataProvider/model/MediaComposition.js';
 import urnCredits from '../__mocks__/urn:rts:video:10313496-credits.json';
 import urnRtsAudio from '../__mocks__/urn:rts:audio:3262320.json';
+import urnGeoblockAndUndefinedResourceList from '../__mocks__/urn:geoblock:and:undefined:resourcelist.json';
 import srcMediaObj from '../__mocks__/srcMediaObj.json';
 import mainResource from '../__mocks__/mainResource.json';
 import Pillarbox from '../../src/pillarbox.js';
@@ -841,6 +842,31 @@ describe('SrgSsr', () => {
       const result = await SrgSsr.getSrcMediaObj(player, { src: 'urn:fake' });
 
       expect(result).toEqual(expect.any(Object));
+    });
+
+    it('should return an empty src and a mediaData containing a blocking reason and a poster when the mediaComposition does not contain a resourceList', async () => {
+      jest.spyOn(SrgSsr, 'getMediaComposition')
+        .mockResolvedValueOnce(
+          Object.assign(
+            new MediaComposition(),
+            urnGeoblockAndUndefinedResourceList
+          )
+        );
+      const result = await SrgSsr.getSrcMediaObj(
+        player,
+        { src: 'urn:geoblock:and:undefined:resourcelist' }
+      );
+
+      expect(result).toEqual({
+        src: undefined,
+        type: undefined,
+        keySystems: undefined,
+        disableTrackers: undefined,
+        mediaData: {
+          blockReason: 'GEOBLOCK',
+          imageUrl: 'https://img.rts.ch/medias/2023/image/y2zvzo-26927888.image/16x9'
+        }
+      });
     });
   });
   /**
