@@ -486,7 +486,14 @@ class SrgSsr {
     const mainResources = await SrgSsr.composeMainResources(
       mediaComposition
     );
-    const mediaData = SrgSsr.getMediaData(mainResources);
+    let mediaData = SrgSsr.getMediaData(mainResources);
+
+    if (!mediaData) {
+      mediaData = {
+        blockReason: mediaComposition.getMainChapter().blockReason,
+        imageUrl: mediaComposition.getMainChapterImageUrl(),
+      };
+    }
 
     return SrgSsr.composeSrcMediaData(srcOptions, mediaData);
   }
