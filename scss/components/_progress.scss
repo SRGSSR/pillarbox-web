@@ -23,11 +23,8 @@
   }
 }
 
-&.vjs-scrubbing,
-&.vjs-seeking {
-  .vjs-play-progress .vjs-time-tooltip {
-    display: none;
-  }
+.vjs-progress-control .vjs-play-progress .vjs-time-tooltip {
+  display: none;
 }
 
 .vjs-play-progress {
