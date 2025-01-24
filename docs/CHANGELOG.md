@@ -1,3 +1,20 @@
+## [1.16.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.15.2...v1.16.0) (2025-01-24)
+
+
+### New Features 🚀
+
+* **progress-control:** remove play progress time tooltip ([6b3c0a4](https://github.com/SRGSSR/pillarbox-web/commit/6b3c0a459b27a05160611707614213efa24ade0c))
+
+
+### Chore 🧹
+
+* **npm:** update to video.js and videojs-contrib-eme ([75d9b88](https://github.com/SRGSSR/pillarbox-web/commit/75d9b88243959f61d9df802bc3700a30e740a78d))
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **srgssr-middleware:** geoblocked mediaComposition without resourceList ([66328dc](https://github.com/SRGSSR/pillarbox-web/commit/66328dcf24b0c2819cb595dbda4d7e2754a5e3be))
+
 ## [1.15.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.15.1...v1.15.2) (2024-12-16)
 
 
