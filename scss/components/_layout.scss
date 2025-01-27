@@ -45,6 +45,15 @@
   font-weight: bold;
 }
 
+&:not(.vjs-live) {
+  &.vjs-layout-x-small .vjs-remaining-time,
+  &.vjs-layout-tiny .vjs-remaining-time {
+    display: block;
+    padding: 0;
+    font-weight: bold;
+  }
+}
+
 /*
 ******************************************************************************
 -- Progress control
