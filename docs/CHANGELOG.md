@@ -1,3 +1,10 @@
+## [1.17.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.16.0...v1.17.0) (2025-01-31)
+
+
+### New Features 🚀
+
+* **remaining-time-display:** displays remaining time in x-small or tiny ([7ccf660](https://github.com/SRGSSR/pillarbox-web/commit/7ccf6600ad1ed5af14ae0c70c0ce32d625b20857))
+
 ## [1.16.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.15.2...v1.16.0) (2025-01-24)
 
 
