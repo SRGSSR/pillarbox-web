@@ -1,5 +1,7 @@
 import pillarbox from '../pillarbox.js';
 
+/** @import Player from 'video.js/dist/types/player' */
+
 /* eslint max-statements: ["error", 25]*/
 
 /**
@@ -18,6 +20,19 @@ import pillarbox from '../pillarbox.js';
  * @see https://github.com/SRGSSR/pillarbox-documentation/blob/main/Specifications/monitoring.md
  */
 class PillarboxMonitoring {
+  /**
+   * Creates an instance of PillarboxMonitoring.
+   *
+   * @constructor
+   * @param {Player} player The player instance to be monitored
+   * @param {PillarboxMonitoringOptions} [options={}] Configuration options for the monitoring
+   * @param {string} [options.playerName='none'] The name of the player
+   * @param {string} [options.playerVersion='none'] The version of the player
+   * @param {string} [options.platform='Web'] The platform on which the player is running
+   * @param {number} [options.schemaVersion=1] The version of the schema used for monitoring
+   * @param {number} [options.heartbeatInterval=30000] The interval in milliseconds for sending heartbeat signals
+   * @param {string} [options.beaconUrl='https://monitoring.pillarbox.ch/api/events'] The URL for the monitoring beacon
+   */
   constructor(player, {
     playerName = 'none',
     playerVersion = 'none',

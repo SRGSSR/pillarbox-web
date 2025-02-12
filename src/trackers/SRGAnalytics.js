@@ -1,66 +1,65 @@
 import * as PlayerEvents from '../utils/PlayerEvents.js';
 import Pillarbox from '../pillarbox.js';
+
+/** @import Player from 'video.js/dist/types/player' */
+
 /* eslint max-lines-per-function: ["error", 200] */
 /* eslint max-statements: ["error", 20]*/
 /* eslint complexity: ["error", 10]*/
+
 /**
- * SRG analytics
- * @class SRGAnalytics
- * @ignore
+ * The SRG analytics class tracks media playback according to the standard defined by SRG SSR.
  *
- * ### Script URL
- * JS script : https://colibri-js.akamaized.net/penguin/tc_SRGGD_11.js
+ * @class SRGAnalytics
  *
  * ### Official documentation
- * Variables list
- * @see https://confluence.srg.beecollaboration.com/display/INTFORSCHUNG/Datalayer+for+media+players
  *
- * Standard event sequences
- * @see https://confluence.srg.beecollaboration.com/display/INTFORSCHUNG/standard+streaming+events%3A+sequence+of+events+for+media+player+actions
+ * - [New variable list]{@link https://srgssr-ch.atlassian.net/wiki/spaces/INTFORSCHUNG/pages/1009353309/Labels+check+for+migration+of+integration+layer+in+SAM}
+ * - [Variables list]{@link https://srgssr-ch.atlassian.net/wiki/spaces/INTFORSCHUNG/pages/795904478/Datalayer+for+media+players}
+ * - [Standard event sequences]{@link https://srgssr-ch.atlassian.net/wiki/spaces/INTFORSCHUNG/pages/795904171/standard+streaming+events+sequence+of+events+for+media+player+actions}
+ * - [Review of Standard Media Actions]{@link https://srgssr-ch.atlassian.net/wiki/spaces/INTFORSCHUNG/pages/795902249/Implementation+Concept+-+draft}
+ * - [ComScore Implementation Guide]{@link https://www.dropbox.com/sh/cdwuikq0abxi21m/AABmSyXYKUTWSAwRZgQA9Ujna/JavaScript%20Latest%20Version?dl=0&preview=Comscore_Library-JavaScript-Streaming_Tag-Implementation_Guide-International.pdf&subfolder_nav_tracking=1}
  *
- * Review of Standard Media Actions
- * @see https://confluence.srg.beecollaboration.com/display/INTFORSCHUNG/Implementation+Concept+-+draft
+ * ### Script URL
  *
- * ComScore Implementation Guide
- * @see https://www.dropbox.com/sh/cdwuikq0abxi21m/AABmSyXYKUTWSAwRZgQA9Ujna/JavaScript%20Latest%20Version?dl=0&preview=Comscore_Library-JavaScript-Streaming_Tag-Implementation_Guide-International.pdf&subfolder_nav_tracking=1
+ * JS script : https://colibri-js.akamaized.net/penguin/tc_SRGGD_11.js
  *
  * ### Variables list
- * - 'event_id', // init | play | stop | pos | pause | seek | uptime | eof
- * - 'event_timestamp', // Seems to be generated automatically from the documentation, but the TP overrides it
- * - 'event_name', // NA TP seems to not sending this variable
- * - 'event_source', // NA TP seems to not sending this variable
- * - 'event_name', // NA TP seems to not sending this variable
- * - 'event_value', // NA TP seems to not sending this variable
- * - 'navigation_environment', // prod | preprod
- * - 'media_subtitles_on', // string true | false
- * - 'media_timeshift', // need better description
- * - 'media_quality', // SD | HD ?
- * - 'media_bandwidth', // NA for the web, 64000
- * - 'media_volume', // from 0 to 100
- * - 'media_embedding_url', //
- * - 'media_player_name', // videojs | letterbox-web ?
- * - 'media_chromecast_selected', // boolean true | false
- * - 'media_player_version', // player's version
- * - 'media_player_display', // is the player mode, on the TP : inline, embed etc..
- * - 'media_audio_track', // NA
- * - 'media_position_real', // NA
- * - 'media_time_spent', // NA
- * - 'device_id', // NA
- * - 'user_id_log_in', // NA only RTS has log in today
- * - 'media_thumbnail', // Not required by the spec but sended by the TP
- * - 'media_bu_distributer', // Not required by the spec but sended by the TP
  *
+ * - event_id: init | play | stop | pos | pause | seek | uptime | eof
+ * - event_timestamp: Seems to be generated automatically from the documentation, but the TP overrides it
+ * - event_name: NA TP seems to not sending this variable
+ * - event_source: NA TP seems to not sending this variable
+ * - event_name: NA TP seems to not sending this variable
+ * - event_value: NA TP seems to not sending this variable
+ * - navigation_environment: prod | preprod
+ * - media_subtitles_on: string true | false
+ * - media_timeshift: need better description
+ * - media_quality: SD | HD ?
+ * - media_bandwidth: NA for the web, 64000
+ * - media_volume: from 0 to 100
+ * - media_embedding_url:
+ * - media_player_name: videojs | letterbox-web ?
+ * - media_chromecast_selected: boolean true | false
+ * - media_player_version: player's version
+ * - media_player_display: is the player mode, on the TP : inline, embed etc..
+ * - media_audio_track: NA
+ * - media_position_real: NA
+ * - media_time_spent: NA
+ * - device_id: NA
+ * - user_id_log_in: NA only RTS has log in today
+ * - media_thumbnail: Not required by the spec but sended by the TP
+ * - media_bu_distributer: Not required by the spec but sended by the TP
  *
  * ### Sequence stories
  *
- * __Story 1 (AoD/VOD-basics)__: A VoD is played. The user does not interact with the player. The VoD plays to its end.
+ * #### Story 1 (AoD/VOD-basics): A VoD is played. The user does not interact with the player. The VoD plays to its end.
  *
  * Hints:
  * - Media sessions always start with PLAY. They end with STOP or EOF (or with PAUSE or last POS)
  * - POS is sent ever 30s
  *
- *
- * __Story 2 (livestream-basics A)__: A Livestream is played. The user does not interact with the player. After 61 seconds, playback is paused.
+ * #### Story 2 (livestream-basics A): A Livestream is played. The user does not interact with the player. After 61 seconds, playback is paused.
  *
  * Hints:
  * - Media sessions always start with PLAY. They end with STOP (or, worse for data quailty, with PAUSE or last POS/UPTIME)
@@ -68,14 +67,12 @@ import Pillarbox from '../pillarbox.js';
  * - POS is sent ever 30s, UPTIME every 60s with inital UPTIME after 30s.
  * - This is the interval: 30s: POS + UPTIME; 60s: POS; 90s: POS + UPTIME; ...
  *
- *
- * __Story 3 (Seeking a VoD/AoD)__: A VoD is played. User seeks in the VoD/AoD.
+ * #### Story 3 (Seeking a VoD/AoD): A VoD is played. User seeks in the VoD/AoD.
  *
  * Hints:
  * - Once the Media Player slider is released (seek is over), another action to finish up the seeking is initiated. Typically this is PLAY. For that second PLAY, the media position has altered.
  *
- *
- * __Story 4 (Seeking a livestream)__: A Livestream is played. User goes back in the livestream.
+ * #### Story 4 (Seeking a livestream): A Livestream is played. User goes back in the livestream.
  *
  * Hints:
  * - Once the Media Player slider is released (seek is over), another action to finish up the seeking is initiated. Typically this is PLAY.  For that second PLAY, the a new variable, media_timeshift is passed.
@@ -84,6 +81,17 @@ import Pillarbox from '../pillarbox.js';
  *  2. The value of media_position is '1'.
  */
 class SRGAnalytics {
+  /**
+   * Creates an instance of SRGAnalytics.
+   *
+   * @constructor
+   * @param {Player} player The player instance
+   * @param {SRGAnalyticsOptions} [options={}] Configuration options
+   * @param {boolean} [options.debug=false] Enables debug mode if set to true
+   * @param {string} [options.environment='prod'] The environment in which the data is sent
+   * @param {string} [options.playerVersion='none'] The version of the player
+   * @param {string} [options.tagCommanderScriptURL='//colibri-js.akamaized.net/penguin/tc_SRGGD_11.js'] The URL for the Tag Commander script
+   */
   constructor(
     player,
     {
