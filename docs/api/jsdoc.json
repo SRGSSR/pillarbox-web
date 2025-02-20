@@ -2,8 +2,9 @@
   "source": {
     "include": [
       "src/components/",
-      "src/dataProvider/model",
+      "src/dataProvider/",
       "src/middleware/",
+      "src/trackers/",
       "src/utils/typedef.ts",
       "src/pillarbox.js"
     ],

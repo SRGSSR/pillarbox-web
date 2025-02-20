@@ -14,6 +14,10 @@ import '../lang/fr.js';
 import '../lang/it.js';
 import '../lang/rm.js';
 
+/** @import Player from 'video.js/dist/types/player' */
+/** @import {Chapter, MainResource, Segment, Subtitle, TimeInterval} from '../dataProvider/model/typedef' */
+/** @import {ComposedSrcMediaData, MainResourceWithKeySystems} from './typedef' */
+
 /**
  * @class SrgSsr
  */
@@ -21,8 +25,8 @@ class SrgSsr {
   /**
    * Adds blocked segments to the player.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {Array<import('../dataProvider/model/typedef').Segment>} [segments=[]]
+   * @param {Player} player
+   * @param {Array<Segment>} [segments=[]]
    */
   static addBlockedSegments(player, segments = []) {
     const trackId = 'srgssr-blocked-segments';
@@ -50,8 +54,8 @@ class SrgSsr {
   /**
    * Adds remote text tracks from an array of subtitles.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {Array<import('../dataProvider/model/typedef').Subtitle>} [subtitles=[]]
+   * @param {Player} player
+   * @param {Array<Subtitle>} [subtitles=[]]
    */
   static addRemoteTextTracks(player, subtitles = []) {
     if (!Array.isArray(subtitles)) return;
@@ -76,9 +80,9 @@ class SrgSsr {
    *
    * @param {TextTrack} textTrack
    * @param {
-   *   import('../dataProvider/model/typedef').Segment |
-   *   import('../dataProvider/model/typedef').Chapter |
-   *   import('../dataProvider/model/typedef').TimeInterval
+   *   Segment |
+   *   Chapter |
+   *   TimeInterval
    * } data SRG SSR's cue-like representation
    */
   static addTextTrackCue(textTrack, data) {
@@ -97,8 +101,8 @@ class SrgSsr {
   /**
    * Add multiple text tracks to the player.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {import('./typedef').ComposedSrcMediaData} srcMediaObj
+   * @param {Player} player
+   * @param {ComposedSrcMediaData} srcMediaObj
    */
   static addTextTracks(player, { mediaData }) {
     SrgSsr.addRemoteTextTracks(player, mediaData.subtitles);
@@ -110,9 +114,9 @@ class SrgSsr {
   /**
    * Adds chapters to the player.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {string} chapterUrn The URN of the main chapter.
-   * @param {Array.<import('../dataProvider/model/typedef').Chapter>} [chapters=[]]
+   * @param {Array.<Chapter>} [chapters=[]]
    */
   static addChapters(player, chapterUrn, chapters = []) {
     const trackId = 'srgssr-chapters';
@@ -138,8 +142,8 @@ class SrgSsr {
   /**
    * Adds intervals to the player.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {Array.<import('../dataProvider/model/typedef').TimeInterval>} [intervals=[]]
+   * @param {Player} player
+   * @param {Array.<TimeInterval>} [intervals=[]]
    */
   static addIntervals(player, intervals = []) {
     const trackId = 'srgssr-intervals';
@@ -164,8 +168,8 @@ class SrgSsr {
    * Set a blocking reason according to the block reason returned
    * by mediaData.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {import('./typedef').ComposedSrcMediaData} srcMediaObj
+   * @param {Player} player
+   * @param {ComposedSrcMediaData} srcMediaObj
    *
    * @returns {undefined|Boolean}
    */
@@ -191,9 +195,9 @@ class SrgSsr {
    * if at least one of them has tokenType
    * set to Akamai.
    *
-   * @param {Array.<import('./typedef').MainResourceWithKeySystems>} resources
+   * @param {Array.<MainResourceWithKeySystems>} resources
    *
-   * @returns {Promise<Array.<import('./typedef').MainResourceWithKeySystems>>}
+   * @returns {Promise<Array.<MainResourceWithKeySystems>>}
    */
   static async composeAkamaiResources(resources = []) {
     if (!AkamaiTokenService.hasToken(resources)) {
@@ -208,9 +212,9 @@ class SrgSsr {
    * Add the keySystems property to all resources
    * if at least one of them has DRM.
    *
-   * @param {Array.<import('../dataProvider/model/typedef').MainResource>} resources
+   * @param {Array.<MainResource>} resources
    *
-   * @returns {Array.<import('./typedef').MainResourceWithKeySystems>}
+   * @returns {Array.<MainResourceWithKeySystems>}
    */
   static composeKeySystemsResources(resources = []) {
     if (!Drm.hasDrm(resources)) return resources;
@@ -229,7 +233,7 @@ class SrgSsr {
    *
    * @param {MediaComposition} mediaComposition
    *
-   * @returns {Promise<Array.<import('./typedef').MainResourceWithKeySystems>>}
+   * @returns {Promise<Array.<MainResourceWithKeySystems>>}
    */
   static composeMainResources(mediaComposition) {
     return SrgSsr.composeAkamaiResources(
@@ -246,9 +250,9 @@ class SrgSsr {
    * @param {any} srcObj
    * @param {any} srcObj.mediaData overrides or adds metadata to the composed mediaData.
    * @param {boolean} srcObj.disableTrackers
-   * @param {import('./typedef').MainResourceWithKeySystems} resource
+   * @param {MainResourceWithKeySystems} resource
    *
-   * @returns {import('./typedef').ComposedSrcMediaData}
+   * @returns {ComposedSrcMediaData}
    */
   static composeSrcMediaData(
     { mediaData: srcMediaData, disableTrackers },
@@ -273,7 +277,7 @@ class SrgSsr {
   /**
    * Create a new metadata text track.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {String} trackId Text track unique ID
    *
    * @returns {Promise<TextTrack>}
@@ -295,7 +299,7 @@ class SrgSsr {
   /**
    * Proxy SRG SSR chapters and intervals cuechange events at player level.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    */
   static cuechangeEventProxy(player) {
     player.textTracks().on('addtrack', ({ track }) => {
@@ -313,7 +317,7 @@ class SrgSsr {
   /**
    * SRG SSR data provider singleton.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    *
    * @returns {DataProvider}
    */
@@ -340,7 +344,7 @@ class SrgSsr {
   /**
    * Set an error if something goes wrong with the data provider.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {Object} error
    *
    * @returns {undefined|true}
@@ -368,7 +372,7 @@ class SrgSsr {
   /**
    * Set player error.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {Object} error
    */
   static error(player, { code, message, metadata }) {
@@ -384,9 +388,9 @@ class SrgSsr {
   /**
    * Filter out incompatible resources such as `RTMP` and `HDS`.
    *
-   * @param {Array.<import('../dataProvider/model/typedef').MainResource>} resources Resources to filter
+   * @param {Array.<MainResource>} resources Resources to filter
    *
-   * @returns {Array.<import('../dataProvider/model/typedef').MainResource>} The filtered resources
+   * @returns {Array.<MainResource>} The filtered resources
    */
   static filterIncompatibleResources(resources = []) {
     return resources.filter(
@@ -397,7 +401,7 @@ class SrgSsr {
   /**
    * Get the current blocked segment from the player.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    *
    * @returns {VTTCue|undefined} The blocked segment cue object, or undefined
    */
@@ -416,7 +420,7 @@ class SrgSsr {
   /**
    * Get the VTT cue of a blocked segment.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {Number} currentTime
    *
    * @returns {VTTCue|undefined} The VTT cue of a blocked segment, or undefined
@@ -452,9 +456,9 @@ class SrgSsr {
   /**
    * Get the mediaData most likely to be compatible depending on the browser.
    *
-   * @param {Array.<import('./typedef').MainResourceWithKeySystems>} resources
+   * @param {Array.<MainResourceWithKeySystems>} resources
    *
-   * @returns {import('./typedef').MainResourceWithKeySystems} By default, the first entry is used if none is compatible.
+   * @returns {MainResourceWithKeySystems} By default, the first entry is used if none is compatible.
    */
   static getMediaData(resources = []) {
     if (AkamaiTokenService.hasToken(resources)) return resources[0];
@@ -468,10 +472,10 @@ class SrgSsr {
   /**
    * Get the source media object.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {any} srcObj
    *
-   * @returns {Promise<import('./typedef').ComposedSrcMediaData>} - The composed source media data.
+   * @returns {Promise<ComposedSrcMediaData>} - The composed source media data.
    */
   static async getSrcMediaObj(player, srcObj) {
     if (SrgSsr.pillarboxMonitoring(player)) {
@@ -506,7 +510,7 @@ class SrgSsr {
    * _Note_: This function should disappear as soon as this behavior is
    *         supported on the packaging side.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {number} currentTime
    *
    * @returns {number}
@@ -538,7 +542,7 @@ class SrgSsr {
    * _Note_: This function should disappear as soon as this behavior is
    *         supported on the packaging side.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {number} currentTime
    *
    * @returns {number}
@@ -561,7 +565,7 @@ class SrgSsr {
    * - handle blocking reasons
    * - add remote subtitles
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {any} srcObj
    * @param {function} next
    *
@@ -590,7 +594,7 @@ class SrgSsr {
   /**
    * SRG SSR analytics singleton.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    */
   static srgAnalytics(player) {
     if (player.options().trackers.srgAnalytics === false) return;
@@ -614,7 +618,7 @@ class SrgSsr {
   /**
    * PillarboxMonitoring monitoring singleton.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    *
    * @returns {PillarboxMonitoring} instance of PillarboxMonitoring
    */
@@ -641,8 +645,8 @@ class SrgSsr {
   /**
    * Update player's poster.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {import('./typedef').ComposedSrcMediaData} srcMediaObj
+   * @param {Player} player
+   * @param {ComposedSrcMediaData} srcMediaObj
    * @param {Image} imageService
    */
   static updatePoster(player, srcMediaObj, imageService = Image) {
@@ -656,8 +660,8 @@ class SrgSsr {
   /**
    * Update player titleBar with title and description.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {import('./typedef').ComposedSrcMediaData} srcMediaObj
+   * @param {Player} player
+   * @param {ComposedSrcMediaData} srcMediaObj
    */
   static updateTitleBar(player, srcMediaObj) {
     if (!player.titleBar) return;
@@ -671,7 +675,7 @@ class SrgSsr {
   /**
    * Middleware to resolve SRG SSR URNs into playable media.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    *
    * @returns {Object}
    */

@@ -1,4 +1,17 @@
 /**
+ * @typedef {import('./typedef').Channel} Channel
+ * @typedef {import('./typedef').Chapter} Chapter
+ * @typedef {import('./typedef').Episode} Episode
+ * @typedef {import('./typedef').Resource} Resource
+ * @typedef {import('./typedef').Segment} Segment
+ * @typedef {import('./typedef').Show} Show
+ * @typedef {import('./typedef').Subtitle} Subtitle
+ * @typedef {import('./typedef').TimeInterval} TimeInterval
+ * @typedef {import('./typedef').Topic} Topic
+ * @typedef {import('./typedef').MainResource} MainResource
+ */
+
+/**
  * Represents the composition of media content.
  *
  * @class MediaComposition
@@ -324,17 +337,3 @@ class MediaComposition {
 }
 
 export default MediaComposition;
-
-
-/**
- * @typedef {import('./typedef').Channel} Channel
- * @typedef {import('./typedef').Chapter} Chapter
- * @typedef {import('./typedef').Episode} Episode
- * @typedef {import('./typedef').Resource} Resource
- * @typedef {import('./typedef').Segment} Segment
- * @typedef {import('./typedef').Show} Show
- * @typedef {import('./typedef').Subtitle} Subtitle
- * @typedef {import('./typedef').TimeInterval} TimeInterval
- * @typedef {import('./typedef').Topic} Topic
- * @typedef {import('./typedef').MainResource} MainResource
- */

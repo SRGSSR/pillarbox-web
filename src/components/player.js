@@ -1,9 +1,14 @@
 import videojs from 'video.js';
 import 'videojs-contrib-eme';
 
+/** @import VJSPlayer from 'video.js/dist/types/player' */
+/** @import AudioTrack from 'video.js/dist/types/tracks/audio-track' */
+/** @import TextTrack from 'video.js/dist/types/tracks/text-track' */
+/** @import {TrackSelector} from './typedef' */
+
 /**
  * @ignore
- * @type {typeof import('video.js/dist/types/player').default}
+ * @type {typeof VJSPlayer}
  */
 const vjsPlayer = videojs.getComponent('player');
 
@@ -34,7 +39,7 @@ class Player extends vjsPlayer {
    * @see https://developer.mozilla.org/en-US/docs/Web/API/AudioTrack/kind
    * @see https://developer.mozilla.org/en-US/docs/Web/API/AudioTrack/language
    *
-   * @param {import('./typedef').TrackSelector} [trackSelector]
+   * @param {TrackSelector} [trackSelector]
    *
    * @example
    * // Get the current audio track
@@ -48,7 +53,7 @@ class Player extends vjsPlayer {
    * // Activate first audio track found corresponding to language
    * player.audioTrack({language:'fr'});
    *
-   * @return {import('video.js/dist/types/tracks/audio-track').default | undefined} The
+   * @return {AudioTrack | undefined} The
    *         currently enabled audio track. See {@link https://docs.videojs.com/audiotrack}.
    */
   audioTrack(trackSelector) {
@@ -167,7 +172,7 @@ class Player extends vjsPlayer {
    * @see https://developer.mozilla.org/en-US/docs/Web/API/TextTrack/kind
    * @see https://developer.mozilla.org/en-US/docs/Web/API/textTrack/language
    *
-   * @param {import('./typedef').TrackSelector} [trackSelector]
+   * @param {TrackSelector} [trackSelector]
    *
    * @example
    * // Get the current text track
@@ -186,7 +191,7 @@ class Player extends vjsPlayer {
    * // Activate first text track found corresponding to language
    * player.textTrack({language:'fr'});
    *
-   * @return {import('video.js/dist/types/tracks/text-track').default | undefined} The
+   * @return {TextTrack | undefined} The
    *         currently enabled text track. See {@link https://docs.videojs.com/texttrack}.
    */
   textTrack(trackSelector) {
