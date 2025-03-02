@@ -625,12 +625,14 @@ class PillarboxMonitoring {
       !this.currentSessionId
     ) return;
 
-    const payload = JSON.stringify({
+    const payload = new Blob([JSON.stringify({
       event_name: eventName,
       session_id: this.currentSessionId,
       timestamp: PillarboxMonitoring.timestamp(),
       version: this.schemaVersion,
       data
+    })], {
+      type: 'application/json'
     });
 
     navigator.sendBeacon(

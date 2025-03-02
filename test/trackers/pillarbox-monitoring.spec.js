@@ -558,7 +558,7 @@ describe('PillarboxMonitoring', () => {
         property: 'value'
       });
 
-      expect(spyOnSendBeacon).toHaveBeenCalledWith(expect.any(String), expect.any(String));
+      expect(spyOnSendBeacon).toHaveBeenCalledWith(expect.any(String), expect.any(Blob));
     });
 
     it('should only send a STOP event if there was a previous session', () => {
@@ -581,7 +581,7 @@ describe('PillarboxMonitoring', () => {
       });
 
       expect(spyOnSendBeacon).toHaveBeenCalledTimes(1);
-      expect(spyOnSendBeacon).toHaveBeenCalledWith(expect.any(String), expect.any(String));
+      expect(spyOnSendBeacon).toHaveBeenCalledWith(expect.any(String), expect.any(Blob));
 
       spyOnIsTrackerDisabled.mockRestore();
     });
