@@ -45,14 +45,26 @@ describe('SrgSsr', () => {
       addRemoteTextTrack: jest.fn(),
       currentTime: jest.fn(),
       debug: jest.fn(),
+      el() { return document.createElement('div'); },
       error: jest.fn(),
       localize: jest.fn(),
+      off: jest.fn(),
       on: jest.fn(),
       one: jest.fn(),
       options: jest.fn().mockReturnValue({ srgOptions: {}, trackers: {}}),
       poster: (url) => url,
       src: jest.fn(),
-      tech: jest.fn(),
+      tech() {
+        return {
+          el: () => {
+            const videoEl = document.createElement('video');
+
+            this.el().append(videoEl);
+
+            return videoEl;
+          }
+        };
+      },
       textTracks: jest.fn().mockReturnValue({ getTrackById: jest.fn(), removeTrack: jest.fn(), addTrack: jest.fn(), on: jest.fn() }),
       titleBar: {
         update: ({ title, description }) => ({ title, description }),
@@ -932,9 +944,11 @@ describe('SrgSsr', () => {
       player.options().trackers.srgAnalytics = false;
 
       const spyOnOptions = jest.spyOn(player, 'options');
+      const spyOnOff = jest.spyOn(player, 'off');
 
       SrgSsr.srgAnalytics(player);
 
+      expect(spyOnOff).toHaveBeenLastCalledWith('loadstart', expect.any(Function));
       expect(player.options().trackers.srgAnalytics).toBe(false);
       expect(spyOnOptions).not.toHaveBeenLastCalledWith(expect.objectContaining({ trackers: { srgAnalytics: expect.any(Object) }}));
     });
@@ -943,10 +957,14 @@ describe('SrgSsr', () => {
       player.options().trackers.srgAnalytics = undefined;
 
       const spyOnOptions = jest.spyOn(player, 'options');
+      const spyOnOff = jest.spyOn(player, 'off');
+      const spyOnOne = jest.spyOn(player, 'one');
 
       SrgSsr.srgAnalytics(player);
 
+      expect(spyOnOff).toHaveBeenLastCalledWith('loadstart', expect.any(Function));
       expect(spyOnOptions).toHaveBeenLastCalledWith(expect.objectContaining({ trackers: { srgAnalytics: expect.any(Object) }}));
+      expect(spyOnOne).toHaveBeenLastCalledWith('loadstart', expect.any(Function));
     });
 
     it('should not reinitialize the srgAnalytics', () => {
