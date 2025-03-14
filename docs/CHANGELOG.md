@@ -1,3 +1,18 @@
+## [1.18.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.17.0...v1.18.0) (2025-03-14)
+
+
+### New Features 🚀
+
+* make analytics, data source and monitoring classes public ([48a2e3f](https://github.com/SRGSSR/pillarbox-web/commit/48a2e3f20eae75d148b4129931030f2f6178831f)), closes [#297](https://github.com/SRGSSR/pillarbox-web/issues/297)
+
+
+### Styles 🎨
+
+* **data-provider:** update import statement and remove `ignore` tag ([af49990](https://github.com/SRGSSR/pillarbox-web/commit/af499903513db677cf827265e3c4188e90c8844f))
+* **media-composition:** move typedef to the beginning of the file ([9617ca6](https://github.com/SRGSSR/pillarbox-web/commit/9617ca63a587d0ff56e9baa459d2dbf4fed2ce52))
+* **player:** update import statement ([cf0f94f](https://github.com/SRGSSR/pillarbox-web/commit/cf0f94f9e802cf2ecb2c61c75b0437b730545a9b))
+* **srgssr-middleware:** update import statement ([1d511e2](https://github.com/SRGSSR/pillarbox-web/commit/1d511e269ef1a83481afea4cda953d86eaee99b9))
+
 ## [1.17.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.16.0...v1.17.0) (2025-01-31)
 
 
