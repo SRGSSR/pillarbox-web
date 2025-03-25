@@ -24,7 +24,7 @@ class PillarboxMonitoring {
    * Creates an instance of PillarboxMonitoring.
    *
    * @constructor
-   * @param {Player} player The player instance to be monitored
+   * @param {HTMLVideoElement} player The player instance to be monitored
    * @param {PillarboxMonitoringOptions} [options={}] Configuration options for the monitoring
    * @param {string} [options.playerName='none'] The name of the player
    * @param {string} [options.playerVersion='none'] The version of the player
@@ -36,13 +36,15 @@ class PillarboxMonitoring {
   constructor(player, {
     playerName = 'none',
     playerVersion = 'none',
+    playerStats = () => { },
     platform = 'Web',
     schemaVersion = 1,
+    segmentMetadata = () => { },
     heartbeatInterval = 30_000,
     beaconUrl = 'https://monitoring.pillarbox.ch/api/events'
   } = {}) {
     /**
-     * @type {import('video.js/dist/types/player').default}
+     * @type {HTMLVideoElement}
      */
     this.player = player;
     /**
@@ -53,6 +55,7 @@ class PillarboxMonitoring {
      * @type {string}
      */
     this.playerVersion = playerVersion;
+    this.playerStats = playerStats;
     /**
      * @type {string}
      */
@@ -61,6 +64,7 @@ class PillarboxMonitoring {
      * @type {string}
      */
     this.schemaVersion = schemaVersion;
+    this.segmentMetadata = segmentMetadata;
     /**
      * @type {Number}
      */
@@ -113,6 +117,7 @@ class PillarboxMonitoring {
      * @type {string}
      */
     this.mediaOrigin = undefined;
+    this.playbackData = {};
     /**
      * @type {Number}
      */
@@ -127,13 +132,16 @@ class PillarboxMonitoring {
   addListeners() {
     this.bindCallBacks();
 
-    this.player.on('loadstart', this.loadStart);
-    this.player.on('loadeddata', this.loadedData);
-    this.player.on('playing', this.playbackStart);
-    this.player.on('pause', this.playbackStop);
-    this.player.on('error', this.error);
-    this.player.on(['playerreset', 'dispose', 'ended'], this.sessionStop);
-    this.player.on(['waiting', 'stalled'], this.stalled);
+    this.player.addEventListener('loadstart', this.loadStart);
+    this.player.addEventListener('loadeddata', this.loadedData);
+    this.player.addEventListener('playing', this.playbackStart);
+    this.player.addEventListener('pause', this.playbackStop);
+    this.player.addEventListener('error', this.error);
+    this.player.addEventListener('playerreset', this.sessionStop);
+    this.player.addEventListener('dispose', this.sessionStop);
+    this.player.addEventListener('ended', this.sessionStop);
+    this.player.addEventListener('waiting', this.stalled);
+    this.player.addEventListener('stalled', this.stalled);
 
     window.addEventListener('beforeunload', this.sessionStop);
   }
@@ -145,8 +153,7 @@ class PillarboxMonitoring {
    *                             undefined otherwise.
    */
   bandwidth() {
-    const playerStats = this.player
-      .tech(true).vhs ? this.player.tech(true).vhs.stats : undefined;
+    const playerStats = this.playerStats ? this.playerStats() : undefined;
 
     return playerStats ? playerStats.bandwidth : undefined;
   }
@@ -170,7 +177,7 @@ class PillarboxMonitoring {
    * @returns {Number} The buffer duration
    */
   bufferDuration() {
-    const buffered = this.player.buffered();
+    const buffered = this.player.buffered;
     let bufferDuration = 0;
 
     for (let i = 0; i < buffered.length; i++) {
@@ -199,7 +206,7 @@ class PillarboxMonitoring {
   currentRepresentation() {
     const {
       activeCues: { cues_: [cue] } = { cues_: [] }
-    } = Array.from(this.player.textTracks())
+    } = Array.from(this.segmentMetadata)
       .find(({ label, kind }) => kind === 'metadata' && label === 'segment-metadata') || {};
 
     return cue ? cue.value : undefined;
@@ -222,7 +229,7 @@ class PillarboxMonitoring {
         .from(this.player.videoTracks()).find(track => track.selected) || {};
 
       bitrate = configuration ? configuration.bitrate : undefined;
-      url = this.player.currentSource().src;
+      url = this.playbackData.src;
     }
 
     return {
@@ -232,28 +239,40 @@ class PillarboxMonitoring {
   }
 
   /**
+   * The current source being played. If the content is HLS or Dash the current
+   * source is retrieved from the playerStats otherwise directly from the
+   * mediaElement.
+   *
+   * @returns {String} the player's current source
+   */
+  currentSource() {
+    return this.playerStats && typeof this.playerStats === 'function' ?
+      this.playerStats().main.uri : this.player.src;
+  }
+
+  /**
    * The media data of the current source.
    *
    * @returns {Object} The media data of the current source, or an empty object
    *                   if no media data is available.
    */
   currentSourceMediaData() {
-    if (!this.player.currentSource().mediaData) return {};
+    if (!this.playbackData.mediaData) return {};
 
-    return this.player.currentSource().mediaData;
+    return this.playbackData.mediaData;
   }
 
   /**
    * Handles player errors by sending an `ERROR` event, then resets the session.
    */
   error() {
-    const error = this.player.error();
+    const error = this.player.error;
     const playbackPosition = this.playbackPosition();
     const representation = this.currentRepresentation();
     const url = representation ?
-      representation.uri : this.player.currentSource().src;
+      representation.uri : this.playbackData.src;
 
-    if (!this.player.hasStarted()) {
+    if (!this.hasStarted) {
       this.sendEvent('START', this.startEventData());
     }
 
@@ -276,7 +295,7 @@ class PillarboxMonitoring {
    */
   getDrmRequestDuration() {
     const keySystems = Object
-      .values(this.player.currentSource().keySystems || {})
+      .values(this.playbackData.keySystems || {})
       .map(keySystem => keySystem.url);
 
     if (!keySystems.length) return;
@@ -350,7 +369,7 @@ class PillarboxMonitoring {
    * @returns {Boolean} __true__ if disabled __false__ otherwise.
    */
   isTrackerDisabled() {
-    const currentSource = this.player.currentSource();
+    const currentSource = this.playbackData;
 
     if (!Array.isArray(currentSource.disableTrackers)) {
       return Boolean(currentSource.disableTrackers);
@@ -380,6 +399,7 @@ class PillarboxMonitoring {
    * to calculate the media loading time.
    */
   loadStart() {
+    this.hasStarted = false;
     // if the content is a plain old URL
     if (
       !Object.keys(this.currentSourceMediaData()).length &&
@@ -443,7 +463,7 @@ class PillarboxMonitoring {
   playbackPosition() {
     const currentRepresentation = this.currentRepresentation();
     const position = PillarboxMonitoring
-      .secondsToMilliseconds(this.player.currentTime());
+      .secondsToMilliseconds(this.player.currentTime);
     let position_timestamp;
 
     // Get the position timestamp from the program date time when VHS is used
@@ -470,6 +490,10 @@ class PillarboxMonitoring {
    * Assign the timestamp each time the playback starts.
    */
   playbackStart() {
+    if (!this.hasStarted) {
+      this.hasStarted = true;
+    }
+
     this.lastPlaybackStartTimestamp = PillarboxMonitoring.timestamp();
   }
 
@@ -494,7 +518,10 @@ class PillarboxMonitoring {
    * @returns {PlayerCurrentDimensions} The current dimensions of the player object.
    */
   playerCurrentDimensions() {
-    return this.player.currentDimensions();
+    return {
+      width: this.player.clientWidth,
+      height: this.player.clientHeight,
+    };
   }
 
   /**
@@ -562,13 +589,16 @@ class PillarboxMonitoring {
    * Removes all event listeners from the player and the window.
    */
   removeListeners() {
-    this.player.off('loadstart', this.loadStart);
-    this.player.off('loadeddata', this.loadedData);
-    this.player.off('playing', this.playbackStart);
-    this.player.off('pause', this.playbackStop);
-    this.player.off('error', this.error);
-    this.player.off(['playerreset', 'dispose', 'ended'], this.sessionStop);
-    this.player.off(['waiting', 'stalled'], this.stalled);
+    this.player.removeEventListener('loadstart', this.loadStart);
+    this.player.removeEventListener('loadeddata', this.loadedData);
+    this.player.removeEventListener('playing', this.playbackStart);
+    this.player.removeEventListener('pause', this.playbackStop);
+    this.player.removeEventListener('error', this.error);
+    this.player.removeEventListener('playerreset', this.sessionStop);
+    this.player.removeEventListener('dispose', this.sessionStop);
+    this.player.removeEventListener('ended', this.sessionStop);
+    this.player.removeEventListener('waiting', this.stalled);
+    this.player.removeEventListener('stalled', this.stalled);
 
     window.removeEventListener('beforeunload', this.sessionStop);
   }
@@ -658,16 +688,16 @@ class PillarboxMonitoring {
    * Starts a new session by first stopping the previous session, then resetting
    * the session start timestamp and media ID to their new values.
    */
-  sessionStart() {
+  sessionStart(mediaId) {
     if (this.sessionStartTimestamp) {
       this.sessionStop();
     }
 
     // Reference timestamp used to calculate the different time metrics.
     this.sessionStartTimestamp = PillarboxMonitoring.timestamp();
-    // At this stage currentSource().src is the media identifier
+    // At this stage srcObj.src is the media identifier
     // and not the playable source.
-    this.mediaId = this.player.currentSource().src || undefined;
+    this.mediaId = mediaId || undefined;
   }
 
   /**
@@ -682,13 +712,17 @@ class PillarboxMonitoring {
     this.reset(event);
   }
 
+  setPlaybackData (playbackData) {
+    this.playbackData = playbackData;
+  }
+
   /**
    * Handles the stalled state of the player. Sets the stalled state and listens
    * for the event that indicates the player is no longer stalled.
    */
   stalled() {
     if (
-      !this.player.hasStarted() ||
+      !this.hasStarted ||
       this.player.seeking() ||
       this.isStalled
     ) return;
@@ -760,7 +794,8 @@ class PillarboxMonitoring {
     } = this.player.getVideoPlaybackQuality();
     const playback_duration = this.playbackDuration();
     const { position, position_timestamp } = this.playbackPosition();
-    const stream_type = isFinite(this.player.duration()) ? 'On-demand' : 'Live';
+
+    const stream_type = isFinite(this.playerStats().duration) ? 'On-demand' : 'Live';
     const stall = this.stallInfo();
 
     const data = {
@@ -810,8 +845,9 @@ class PillarboxMonitoring {
       this.currentSessionId = PillarboxMonitoring.sessionId();
     }
 
+
     this.mediaAssetUrl = this
-      .removeTokenFromAssetUrl(this.player.currentSource().src);
+      .removeTokenFromAssetUrl(this.playbackData.src);
     this.mediaMetadataUrl = this.getMetadataInfo(this.mediaId).name;
     this.metadataRequestTime = this.getMetadataInfo(this.mediaId).duration;
     this.mediaOrigin = window.location.href;

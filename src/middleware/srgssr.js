@@ -479,7 +479,7 @@ class SrgSsr {
    */
   static async getSrcMediaObj(player, srcObj) {
     if (SrgSsr.pillarboxMonitoring(player)) {
-      SrgSsr.pillarboxMonitoring(player).sessionStart();
+      SrgSsr.pillarboxMonitoring(player).sessionStart(srcObj.src);
     }
 
     const { src: urn, ...srcOptions } = srcObj;
@@ -490,16 +490,17 @@ class SrgSsr {
     const mainResources = await SrgSsr.composeMainResources(
       mediaComposition
     );
-    let mediaData = SrgSsr.getMediaData(mainResources);
+    const mediaData = SrgSsr.getMediaData(mainResources) || {
+      blockReason: mediaComposition.getMainChapter().blockReason,
+      imageUrl: mediaComposition.getMainChapterImageUrl(),
+    };
+    const composedSrcMediaData = SrgSsr
+      .composeSrcMediaData(srcOptions, mediaData);
 
-    if (!mediaData) {
-      mediaData = {
-        blockReason: mediaComposition.getMainChapter().blockReason,
-        imageUrl: mediaComposition.getMainChapterImageUrl(),
-      };
-    }
+    SrgSsr.pillarboxMonitoring(player)
+      .setPlaybackData(composedSrcMediaData);
 
-    return SrgSsr.composeSrcMediaData(srcOptions, mediaData);
+    return composedSrcMediaData;
   }
 
   /**
@@ -615,6 +616,12 @@ class SrgSsr {
     }
   }
 
+  static pillarboxMonitortingSetPlaybackData(player, playbackData) {
+    if (!SrgSsr.pillarboxMonitoring(player)) return;
+
+    SrgSsr.pillarboxMonitoring(player).setPlaybackData(playbackData);
+  }
+
   /**
    * PillarboxMonitoring monitoring singleton.
    *
@@ -626,10 +633,14 @@ class SrgSsr {
     if (player.options().trackers.pillarboxMonitoring === false) return;
 
     if (!player.options().trackers.pillarboxMonitoring) {
-      const pillarboxMonitoring = new PillarboxMonitoring(player, {
+      const pillarboxMonitoring = new PillarboxMonitoring(player
+        .tech(true).el(), {
         debug: player.debug(),
         playerVersion: Pillarbox.VERSION.pillarbox,
         playerName: 'Pillarbox',
+        playerStats: () => player
+          .tech(true).vhs ? player.tech(true).vhs.stats : undefined,
+        segmentMetaData: () => Array.from(player.textTracks()).find(track => track.label === 'segment-metadata')
       });
 
       player.options({

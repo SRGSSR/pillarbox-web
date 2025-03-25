@@ -20,7 +20,7 @@ let playerMock = jest.fn(() => ({
     }),
     seekableStart: jest.fn(),
   },
-  el: jest.fn(),
+  el() { return document.createElement('div'); },
   ended: jest.fn(),
   error: jest.fn((err) => {
     document.dispatchEvent(new Event('error'));
@@ -61,9 +61,18 @@ let playerMock = jest.fn(() => ({
   }),
   seekable: jest.fn(),
   seeking: jest.fn(),
-  tech: jest.fn().mockReturnValue({
-    isCasting: undefined,
-  }),
+  tech() {
+    return {
+      isCasting: undefined,
+      el: () => {
+        const videoEl = document.createElement('video');
+
+        this.el().append(videoEl);
+
+        return videoEl;
+      }
+    };
+  },
   textTrack: jest.fn().mockReturnValue(undefined),
   textTracks: jest.fn().mockReturnValue({}),
   trigger: jest.fn((evt) => {

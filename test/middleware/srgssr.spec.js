@@ -45,6 +45,7 @@ describe('SrgSsr', () => {
       addRemoteTextTrack: jest.fn(),
       currentTime: jest.fn(),
       debug: jest.fn(),
+      el() { return document.createElement('div'); },
       error: jest.fn(),
       localize: jest.fn(),
       on: jest.fn(),
@@ -52,7 +53,17 @@ describe('SrgSsr', () => {
       options: jest.fn().mockReturnValue({ srgOptions: {}, trackers: {}}),
       poster: (url) => url,
       src: jest.fn(),
-      tech: jest.fn(),
+      tech() {
+        return {
+          el: () => {
+            const videoEl = document.createElement('video');
+
+            this.el().append(videoEl);
+
+            return videoEl;
+          }
+        };
+      },
       textTracks: jest.fn().mockReturnValue({ getTrackById: jest.fn(), removeTrack: jest.fn(), addTrack: jest.fn(), on: jest.fn() }),
       titleBar: {
         update: ({ title, description }) => ({ title, description }),

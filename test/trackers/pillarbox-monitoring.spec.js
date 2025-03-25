@@ -11,7 +11,7 @@ describe('PillarboxMonitoring', () => {
 
   beforeEach(() => {
     player = playerMock();
-    monitoring = new PillarboxMonitoring(player);
+    monitoring = new PillarboxMonitoring(player.tech().el());
   });
 
   it('should ensure that listeners are added when a new instance is created', () => {
