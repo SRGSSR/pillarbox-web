@@ -235,6 +235,7 @@ class MediaComposition {
       imageCopyright: this.getMainChapter().imageCopyright,
       intervals: this.getMainTimeIntervals(),
       live: resource.live,
+      mediaContainer: resource.mediaContainer,
       mediaType: this.getMainChapter().mediaType,
       mimeType: resource.mimeType,
       presentation: resource.presentation,
