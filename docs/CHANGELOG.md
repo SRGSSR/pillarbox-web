@@ -1,3 +1,10 @@
+## [1.19.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.18.0...v1.19.0) (2025-04-01)
+
+
+### New Features 🚀
+
+* **media-composition:** add media container ([c55af4a](https://github.com/SRGSSR/pillarbox-web/commit/c55af4a95ade0da60c028a03efb8c4997d8aae55))
+
 ## [1.18.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.17.0...v1.18.0) (2025-03-14)
 
 
