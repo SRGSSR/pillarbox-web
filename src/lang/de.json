@@ -7,5 +7,6 @@
   "JOURNALISTIC": "Dieser Inhalt steht aus publizistischen Gründen vorübergehend nicht zur Verfügung.",
   "LEGAL": "Dieser Inhalt ist aus rechtlichen Gründen nicht verfügbar.",
   "STARTDATE": "Dieser Inhalt ist noch nicht verfügbar. Bitte probieren Sie es später noch einmal.",
+  "VPNORPROXYDETECTED": "Dieser Inhalt ist mit VPN oder Proxy nicht abspielbar.",
   "UNKNOWN": "Dieser Inhalt ist nicht verfügbar."
 }
