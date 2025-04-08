@@ -1,6 +1,7 @@
 import * as mediaData from '../__mocks__/mediaData.json';
 
 let playerMock = jest.fn(() => ({
+  audioTrack: jest.fn().mockReturnValue({}),
   audioTracks: jest.fn().mockReturnValue({}),
   buffered: jest.fn().mockReturnValue({ length: 0, start: jest.fn(), end: jest.fn() }),
   currentDimensions: jest.fn().mockReturnValue({ width: 1024, height: 768 }),
