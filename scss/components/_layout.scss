@@ -60,8 +60,10 @@
 ******************************************************************************
 */
 // Avoid hiding the progress control
-&.vjs-layout-tiny,
-&.vjs-layout-x-small {
+&.vjs-layout-tiny:not(.vjs-live),
+&.vjs-layout-x-small:not(.vjs-live),
+&.vjs-layout-tiny.vjs-liveui,
+&.vjs-layout-x-small.vjs-liveui {
   .vjs-progress-control {
     display: flex;
   }
