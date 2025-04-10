@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.19.0...v1.19.1) (2025-04-10)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **layout:** progress bar displayed in tiny/x-small on live stream without DVR ([3f6641b](https://github.com/SRGSSR/pillarbox-web/commit/3f6641b89326bfaaa01fdc1b7f8cecee94b786dc))
+
 ## [1.19.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.18.0...v1.19.0) (2025-04-01)
 
 
