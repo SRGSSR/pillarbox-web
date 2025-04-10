@@ -575,7 +575,7 @@ class SrgSsr {
     try {
       const srcMediaObj = await SrgSsr.getSrcMediaObj(player, srcObj);
 
-      SrgSsr.srgAnalytics(player);
+      SrgSsr.srgAnalytics(player, srcMediaObj);
       SrgSsr.updateTitleBar(player, srcMediaObj);
       SrgSsr.updatePoster(player, srcMediaObj);
 
@@ -592,15 +592,47 @@ class SrgSsr {
   }
 
   /**
+   * Set playback data for the SRG Analytics tracker.
+   *
+   * @param {Player} player The player instance
+   * @param {Object} data The data object containing playback information
+   * @param {MainResource} data.mediaData The media data object
+   * @param {boolean} data.disableTrackers Flag to disable trackers
+   *
+   * @returns {Function} A function that, when called, sets the playback data in the SRG Analytics tracker
+   */
+  static srgAnalyticsSetPlaybackDataHandler(player, data) {
+    return () => {
+      player.options().trackers.srgAnalytics.setPlaybackData({
+        browser: Pillarbox.browser,
+        analyticsMetadata: {
+          media_is_dvr: data.mediaData.dvr,
+          media_is_live: data.mediaData.live,
+          ...data.mediaData.analyticsMetadata
+        },
+        audioTrack: player.audioTrack.bind(player),
+        debug: player.debug.bind(player),
+        disableTrackers: data.disableTrackers,
+        textTrack: player.textTrack.bind(player),
+      });
+    };
+  }
+
+  /**
    * SRG SSR analytics singleton.
    *
    * @param {Player} player
    */
-  static srgAnalytics(player) {
+  static srgAnalytics(player, data) {
+    const setPlaybackDataHandler = SrgSsr
+      .srgAnalyticsSetPlaybackDataHandler(player, data);
+
+    player.off('loadstart', setPlaybackDataHandler);
+
     if (player.options().trackers.srgAnalytics === false) return;
 
     if (!player.options().trackers.srgAnalytics) {
-      const srgAnalytics = new SRGAnalytics(player, {
+      const srgAnalytics = new SRGAnalytics(player.tech(true).el(), {
         debug: player.debug(),
         playerVersion: Pillarbox.VERSION.pillarbox,
         tagCommanderScriptURL:
@@ -613,6 +645,8 @@ class SrgSsr {
         },
       });
     }
+
+    player.one('loadstart', setPlaybackDataHandler);
   }
 
   /**
