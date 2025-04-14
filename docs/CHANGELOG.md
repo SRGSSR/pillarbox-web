@@ -1,3 +1,10 @@
+## [1.20.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.19.1...v1.20.0) (2025-04-14)
+
+
+### New Features 🚀
+
+* **pillarbox-monitoring:** add subtitles and audio track language ([abd50ce](https://github.com/SRGSSR/pillarbox-web/commit/abd50ce64470bc69054694b2208661e8a9a5c306)), closes [#305](https://github.com/SRGSSR/pillarbox-web/issues/305)
+
 ## [1.19.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.19.0...v1.19.1) (2025-04-10)
 
 
