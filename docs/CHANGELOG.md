@@ -1,3 +1,10 @@
+## [1.21.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.20.0...v1.21.0) (2025-04-28)
+
+
+### New Features 🚀
+
+* **lang:** add VPN blocking reason ([ffc3b4d](https://github.com/SRGSSR/pillarbox-web/commit/ffc3b4d2e7b33b1e54a2ba9ba3ba189c59d676d0)), closes [#311](https://github.com/SRGSSR/pillarbox-web/issues/311)
+
 ## [1.20.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.19.1...v1.20.0) (2025-04-14)
 
 
