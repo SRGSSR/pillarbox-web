@@ -186,6 +186,19 @@ class PillarboxMonitoring {
   }
 
   /**
+   * Gets the language of the current audio track.
+   *
+   * @returns {string|undefined} The language of the current audio track, or undefined if no audio track is available or if the language is not set.
+   */
+  currentAudioTrack() {
+    const audioTrack = this.player.audioTrack();
+
+    if (!audioTrack || !audioTrack.language) return;
+
+    return audioTrack.language;
+  }
+
+  /**
    * Get the current representation when playing a Dash or Hls media.
    *
    * @typedef {Object} Representation
@@ -246,25 +259,42 @@ class PillarboxMonitoring {
   }
 
   /**
+   * Gets the language of the current text track (subtitles or captions).
+   *
+   * @returns {string|undefined} The language of the current text track, or undefined if no text track is available or if the language is not set.
+   */
+  currentTextTrack() {
+    const textTrack = this.player.textTrack();
+
+    if (!textTrack || !textTrack.language) return;
+
+    return textTrack.language;
+  }
+
+  /**
    * Handles player errors by sending an `ERROR` event, then resets the session.
    */
   error() {
+    const audio = this.currentAudioTrack();
     const error = this.player.error();
     const playbackPosition = this.playbackPosition();
     const representation = this.currentRepresentation();
     const url = representation ?
       representation.uri : this.player.currentSource().src;
+    const subtitles = this.currentTextTrack();
 
     if (!this.player.hasStarted()) {
       this.sendEvent('START', this.startEventData());
     }
 
     this.sendEvent('ERROR', {
+      audio,
       log: JSON
         .stringify(error.metadata || pillarbox.log.history().slice(-15)),
       message: error.message,
       name: PillarboxMonitoring.errorKeyCode(error.code),
       ...playbackPosition,
+      subtitles,
       url
     });
 
@@ -754,6 +784,7 @@ class PillarboxMonitoring {
    * @returns {StatusEventData} The current event data
    */
   statusEventData() {
+    const audio = this.currentAudioTrack();
     const bandwidth = this.bandwidth();
     const buffered_duration = this.bufferDuration();
     const { bitrate, url } = this.currentResource();
@@ -764,8 +795,10 @@ class PillarboxMonitoring {
     const { position, position_timestamp } = this.playbackPosition();
     const stream_type = isFinite(this.player.duration()) ? 'On-demand' : 'Live';
     const stall = this.stallInfo();
+    const subtitles = this.currentTextTrack();
 
     const data = {
+      audio,
       bandwidth,
       bitrate,
       buffered_duration,
@@ -775,6 +808,7 @@ class PillarboxMonitoring {
       position_timestamp,
       stall,
       stream_type,
+      subtitles,
       url,
     };
 
