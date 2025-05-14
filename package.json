@@ -94,6 +94,6 @@
   },
   "dependencies": {
     "video.js": "8.21.0",
-    "videojs-contrib-eme": "5.5.1"
+    "videojs-contrib-eme": "3.11.2"
   }
 }
