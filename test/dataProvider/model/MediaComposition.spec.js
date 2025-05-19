@@ -25,6 +25,8 @@ import * as urnUndefinedResourcelist from '../../__mocks__/urn:undefined:resourc
 import * as urnTimeIntervalList from '../../__mocks__/urn:rts:video:10313496-credits.json';
 import * as urnForumVideoWithAnAudioChapter from '../../__mocks__/forum:video:with:an:audio:chapter.json';
 import * as urnForumAudioWithAVideoChapter from '../../__mocks__/forum:audio:with:an:video:chapter.json';
+import * as urnScheduleLiveStreamChapters from '../../__mocks__/urn:schedule:live:stream:chapters';
+
 
 describe('MediaComposition', () => {
   const mediaCompositionUrnAnalyticsData = Object.assign(
@@ -166,6 +168,11 @@ describe('MediaComposition', () => {
   const mediaCompositionUrnForumAudioWithAVideoChapter = Object.assign(
     new MediaComposition(),
     urnForumAudioWithAVideoChapter
+  );
+
+  const mediaCompositionUrnScheduleLiveStreamChapters = Object.assign(
+    new MediaComposition(),
+    urnScheduleLiveStreamChapters
   );
 
   const DRMLIST = {
@@ -338,6 +345,10 @@ describe('MediaComposition', () => {
 
     it('should return an empty array when there is only audio chapters available', () => {
       expect(mediaCompositionUrnForumAudioWithAVideoChapter.getChapters()).toHaveLength(0);
+    });
+
+    it('should return an empty array when the chapter is not an EPISODE', () => {
+      expect(mediaCompositionUrnScheduleLiveStreamChapters.getChapters()).toHaveLength(0);
     });
   });
 
