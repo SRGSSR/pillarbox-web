@@ -1,3 +1,10 @@
+## [1.21.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.21.0...v1.21.1) (2025-05-22)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **media-composition:** remove chapters if the media is not type of EPISODE ([caafece](https://github.com/SRGSSR/pillarbox-web/commit/caafece619f210f972f27b1d679aba7b964110fb)), closes [#321](https://github.com/SRGSSR/pillarbox-web/issues/321) [#146](https://github.com/SRGSSR/pillarbox-web/issues/146) [/github.com/SRGSSR/pillarbox-documentation/issues/146#issuecomment-2883013095](https://github.com/SRGSSR//github.com/SRGSSR/pillarbox-documentation/issues/146/issues/issuecomment-2883013095)
+
 ## [1.21.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.20.0...v1.21.0) (2025-04-28)
 
 
