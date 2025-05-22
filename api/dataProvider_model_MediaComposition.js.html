@@ -88,8 +88,10 @@ class MediaComposition {
    */
   getChapters() {
     const AUDIO = 'AUDIO';
+    const EPISODE = 'EPISODE';
 
-    if (this.getMainChapter().mediaType === AUDIO) return [];
+    if (this.getMainChapter().mediaType === AUDIO ||
+    this.getMainChapter().type !== EPISODE) return [];
 
     return this.chapterList.filter(({ mediaType }) => mediaType !== AUDIO);
   }
