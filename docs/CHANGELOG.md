@@ -1,3 +1,10 @@
+## [1.21.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.21.1...v1.21.2) (2025-05-27)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **github-actions:** github page workflow ([1b6c9bb](https://github.com/SRGSSR/pillarbox-web/commit/1b6c9bb10e2d2a139b6eeed235582e5c9743d3ea)), closes [#309](https://github.com/SRGSSR/pillarbox-web/issues/309)
+
 ## [1.21.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.21.0...v1.21.1) (2025-05-22)
 
 
