@@ -1,3 +1,10 @@
+## [1.22.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.21.2...v1.22.0) (2025-07-03)
+
+
+### New Features 🚀
+
+* move video.js to peer dependencies ([b0bded8](https://github.com/SRGSSR/pillarbox-web/commit/b0bded8abf89c35ab0f1589bc5821b65ee3b43a5))
+
 ## [1.21.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.21.1...v1.21.2) (2025-05-27)
 
 
