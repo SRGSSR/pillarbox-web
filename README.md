@@ -10,11 +10,18 @@ experience of SRGSSR content, making it more accessible and feature-rich.
 
 ## Quick Start
 
-To get started with Pillarbox, install it through the following command:
+To get started with Pillarbox, install it along with `video.js` using the following command:
 
 ```bash
-npm install --save @srgssr/pillarbox-web
+npm install --save @srgssr/pillarbox-web video.js@8.21.0
 ```
+
+> [!NOTE]
+> `video.js` is now a peer dependency and must be installed by the project that bundles Pillarbox.
+> Version 8.21.0 is the version we use to test the player and is the one we recommend.
+> 
+> This approach is more flexible and consistent with the fact that integrators are responsible for 
+> providing their own UI components.
 
 In your HTML file, add the following code to initialize Pillarbox:
 
