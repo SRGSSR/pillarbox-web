@@ -9,19 +9,21 @@ export default defineConfig({
     emptyOutDir: false,
     lib: {
       name: 'pillarbox',
-      entry: './build.umd.js'
+      entry: './build.js'
     },
     rollupOptions: {
       output: [
         {
-          name: 'Pillarbox',
+          name: 'srgssr',
           entryFileNames: 'pillarbox.umd.min.js',
           format: 'umd',
+          exports: 'named',
           plugins: [terser()]
         },
         {
-          name: 'Pillarbox',
+          name: 'srgssr',
           entryFileNames: 'pillarbox.umd.js',
+          exports: 'named',
           format: 'umd',
         }
       ],

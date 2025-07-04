@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       formats: ['es'],
       name: 'pillarbox',
-      entry: './build.es.js'
+      entry: './build.js'
     },
     rollupOptions: {
       external: ['video.js', 'videojs-contrib-eme'],
