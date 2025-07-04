@@ -19,7 +19,7 @@ export default defineConfig({
         },
         {
           format: 'cjs',
-          entryFileNames: '[name]-core.cjs.js'
+          entryFileNames: '[name]-core.cjs'
         }
       ],
       plugins: [babel({

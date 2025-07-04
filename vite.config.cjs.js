@@ -9,12 +9,13 @@ export default defineConfig({
     lib: {
       formats: ['cjs'],
       name: 'pillarbox',
-      entry: './build.umd.js'
+      entry: './build.js'
     },
     rollupOptions: {
       external: ['video.js', 'videojs-contrib-eme'],
       output: {
-        entryFileNames: 'pillarbox.cjs.js'
+        entryFileNames: 'pillarbox.cjs',
+        exports: 'named'
       },
       plugins: [babel({
         babelHelpers: 'bundled',
