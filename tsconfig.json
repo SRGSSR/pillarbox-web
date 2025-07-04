@@ -7,7 +7,7 @@
    *
    * Usage: npx -p typescript tsc
    */
-  "include": ["build.es.js"],
+  "include": ["build.js"],
   "compilerOptions": {
     "allowJs": true,
     "declaration": true,

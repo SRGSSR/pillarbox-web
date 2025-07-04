@@ -38,11 +38,42 @@ Import the CSS file in your HTML to apply Pillarbox default theme:
 Finally, import Pillarbox and set up the player:
 
 ```javascript
-import Pillarbox from '@srgssr/pillarbox-web';
+import pillarbox from '@srgssr/pillarbox-web';
 
-const player = new Pillarbox('my-player', {/* options... */ });
+const player = pillarbox('my-player', {/* options... */ });
 player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
 ```
+
+## CDN Integration
+
+Pillarbox is an open-source project published as a public NPM package. You can easily include it in
+your website using a public CDN that proxies NPM packages—such as [jsDelivr][js-deliver].
+
+To integrate Pillarbox Web via CDN, you can include it in your HTML like this:
+
+```html
+<!-- It's recommended to specify an exact version in production.
+     For example: https://cdn.jsdelivr.net/npm/@srgssr/pillarbox-web@{version}/dist/pillarbox.umd.min.js
+     In this example, we use the latest version for simplicity. -->
+<script src="https://cdn.jsdelivr.net/npm/@srgssr/pillarbox-web/dist/pillarbox.umd.min.js"></script>
+<!-- Load additional plugins or extensions after Pillarbox -->
+<script>
+  // Example usage:
+  const player = pillarbox('my-player', {/* options... */ });
+  player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
+
+  // Other classes and utilities available under `window.srgssr`:
+  // DataProvider, MediaComposition, PillarboxMonitoring, Player, SRGAnalytics, SrgSsr
+</script>
+```
+
+You can also use a different CDN or host the file yourself.
+
+> [!NOTE]
+> When using the UMD build via CDN, video.js is already bundled with Pillarbox.
+> You should not include it separately.
+> The UMD bundle also exposes `video.js` as a global variable, allowing you to use both and internal
+> extensions as needed.
 
 ## Documentation
 
@@ -122,3 +153,5 @@ See the [LICENSE](LICENSE) file for more information.
 [token-settings]: https://github.com/settings/tokens
 
 [token-guide]: https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token
+
+[js-deliver]: https://www.jsdelivr.com/package/npm/@srgssr/pillarbox-web

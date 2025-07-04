@@ -4,17 +4,17 @@
   "version": "1.21.2",
   "type": "module",
   "module": "dist/pillarbox.es.js",
-  "main": "dist/pillarbox.cjs.js",
+  "main": "dist/pillarbox.cjs",
   "style": "./dist/pillarbox.min.css",
-  "types": "./dist/types/build.es.d.ts",
+  "types": "./dist/types/build.d.ts",
   "exports": {
     ".": {
       "import": "./dist/pillarbox.es.js",
-      "require": "./dist/pillarbox.cjs.js"
+      "require": "./dist/pillarbox.cjs"
     },
     "./core": {
       "import": "./dist/pillarbox-core.es.js",
-      "require": "./dist/pillarbox-core.cjs.js"
+      "require": "./dist/pillarbox-core.cjs"
     },
     "./*": "./*"
   },
