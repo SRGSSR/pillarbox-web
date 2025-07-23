@@ -1,3 +1,10 @@
+## [1.23.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.22.0...v1.23.0) (2025-07-23)
+
+
+### New Features 🚀
+
+* **build:** unify export strategy across ESM, UMD, and CJS builds ([9d49ead](https://github.com/SRGSSR/pillarbox-web/commit/9d49ead29f42c1564723d76113e7752f176541be)), closes [#310](https://github.com/SRGSSR/pillarbox-web/issues/310)
+
 ## [1.22.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.21.2...v1.22.0) (2025-07-03)
 
 
