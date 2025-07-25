@@ -700,6 +700,8 @@ describe('PillarboxMonitoring', () => {
       player.currentSource.mockReturnValue({
         src: 'https://example.com/sd/player.m3u8'
       });
+      // tries to induce the error if getVideoPlaybackQuality is undefined
+      player.getVideoPlaybackQuality.mockReturnValueOnce(undefined);
       jest.spyOn(monitoring, 'playbackPosition').mockReturnValueOnce({
         position: 10,
         position_timestamp: jest.now() + 1000

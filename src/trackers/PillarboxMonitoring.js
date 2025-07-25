@@ -788,7 +788,7 @@ class PillarboxMonitoring {
     const { bitrate, url } = this.currentResource();
     const {
       droppedVideoFrames: frame_drops
-    } = this.player.getVideoPlaybackQuality();
+    } = this.player.getVideoPlaybackQuality() || {};
     const playback_duration = this.playbackDuration();
     const { position, position_timestamp } = this.playbackPosition();
     const stream_type = isFinite(this.player.duration()) ? 'On-demand' : 'Live';
