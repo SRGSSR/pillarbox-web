@@ -1,3 +1,10 @@
+## [1.23.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.23.0...v1.23.1) (2025-07-25)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **pillarbox-monitoring:** undefined getVideoPlaybackQuality ([598639d](https://github.com/SRGSSR/pillarbox-web/commit/598639db914fb1f773abf10224d56fa55149586e))
+
 ## [1.23.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.22.0...v1.23.0) (2025-07-23)
 
 
