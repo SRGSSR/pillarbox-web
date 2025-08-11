@@ -1,10 +1,7 @@
-import * as PlayerEvents from '../utils/PlayerEvents.js';
-import Pillarbox from '../pillarbox.js';
-
-/** @import Player from 'video.js/dist/types/player' */
+/** @import { SRGAnalyticsOptions } from './typedef.ts' */
 
 /* eslint max-lines-per-function: ["error", 200] */
-/* eslint max-statements: ["error", 20]*/
+/* eslint max-statements: ["error", 30]*/
 /* eslint complexity: ["error", 10]*/
 
 /**
@@ -85,7 +82,7 @@ class SRGAnalytics {
    * Creates an instance of SRGAnalytics.
    *
    * @constructor
-   * @param {Player} player The player instance
+   * @param {HTMLVideoElement} player The player instance
    * @param {SRGAnalyticsOptions} [options={}] Configuration options
    * @param {boolean} [options.debug=false] Enables debug mode if set to true
    * @param {string} [options.environment='prod'] The environment in which the data is sent
@@ -108,14 +105,16 @@ class SRGAnalytics {
     this.heartBeatIntervalId = undefined;
     /* Set to true when 'init' event is sent or queued. */
     this.initialized = false;
+    this.initialeMediaDuration = 0;
     this.isSeeking = false;
     this.isWaiting = false;
     this.mediaSession = 0;
     this.pendingQueue = [];
     this.pendingTagCommanderReload = false;
+    this.playbackData = undefined;
+    /** @type {HTMLVideoElement} */
     this.player = player;
     this.playerVersion = playerVersion;
-    this.srcMediaData = undefined;
     this.startPlaybackSession = 0;
     this.tagCommanderScriptURL = tagCommanderScriptURL;
     this.trackedCurrentTime = 0;
@@ -123,6 +122,11 @@ class SRGAnalytics {
 
     this.initScript();
     this.initListeners();
+  }
+
+  /** Set the playback data */
+  setPlaybackData(data) {
+    this.playbackData = data;
   }
 
   /**
@@ -160,7 +164,7 @@ class SRGAnalytics {
    */
   debug(enabled) {
     if (enabled === undefined) {
-      return this.isDebugEnabled || this.player.debug();
+      return this.isDebugEnabled || this.playbackData.debug() || false;
     }
 
     this.isDebugEnabled = Boolean(enabled);
@@ -179,10 +183,11 @@ class SRGAnalytics {
     this.hasStarted = false;
     this.heartBeatIntervalId = undefined;
     this.initialized = false;
+    this.initialeMediaDuration = 0;
     this.isWaiting = false;
     this.mediaSession = 0;
     this.pendingQueue = [];
-    this.srcMediaData = undefined;
+    this.playbackData = undefined;
     this.startPlaybackSession = 0;
     this.trackedCurrentTime = 0;
     this.uptimeIntervalId = undefined;
@@ -210,16 +215,26 @@ class SRGAnalytics {
 
     window.removeEventListener('beforeunload', this.beforeunloadListener);
 
-    this.player.off(PlayerEvents.EMPTIED, this.emptiedListener);
-    this.player.off(PlayerEvents.ENDED, this.endedListener);
-    this.player.off(PlayerEvents.LOAD_START, this.loadstartListener);
-    this.player.off(PlayerEvents.LOADED_DATA, this.loadeddataListener);
-    this.player.off(PlayerEvents.PLAYING, this.playListener);
-    this.player.off(PlayerEvents.PAUSE, this.pauseListener);
-    this.player.off(PlayerEvents.RATE_CHANGE, this.rateChangeListener);
-    this.player.off(PlayerEvents.SEEKING, this.seekingListener);
-    this.player.off(PlayerEvents.TIME_UPDATE, this.timeUpdateListener);
-    this.player.off(PlayerEvents.WAITING, this.waitingListener);
+    this.player
+      .removeEventListener('emptied', this.emptiedListener);
+    this.player
+      .removeEventListener('ended', this.endedListener);
+    this.player
+      .removeEventListener('loadstart', this.loadstartListener);
+    this.player
+      .removeEventListener('loadeddata', this.loadeddataListener);
+    this.player
+      .removeEventListener('playing', this.playListener);
+    this.player
+      .removeEventListener('pause', this.pauseListener);
+    this.player
+      .removeEventListener('ratechange', this.rateChangeListener);
+    this.player
+      .removeEventListener('seeking', this.seekingListener);
+    this.player
+      .removeEventListener('timeupdate', this.timeUpdateListener);
+    this.player
+      .removeEventListener('waiting', this.waitingListener);
   }
 
   /**
@@ -228,9 +243,11 @@ class SRGAnalytics {
    * - Send a notify stop if the media is not ended and new media is about to be loaded.
    */
   emptied() {
-    if (!this.player.ended()) {
+    if (!this.player.ended) {
       this.notify('stop');
     }
+
+    this.destroy();
   }
 
   /**
@@ -260,7 +277,7 @@ class SRGAnalytics {
     if (window.tc_events_11 && this.pendingQueue.length > 0) {
       this.pendingQueue.forEach((notification) => {
         window.tc_events_11(
-          this.player.el(),
+          this.player,
           notification.action,
           notification.labels
         );
@@ -276,15 +293,9 @@ class SRGAnalytics {
    * @returns {String} empty string or uppercase language.
    */
   getCurrentAudioTrack() {
-    const currentTrack = Array.from(this.player.audioTracks()).find(
-      (track) => track.enabled
-    );
-    let language = 'und';
-
-    if (currentTrack && !!currentTrack.language) {
-      // eslint-disable-next-line prefer-destructuring
-      language = currentTrack.language;
-    }
+    const currentTrack = this.playbackData.audioTrack();
+    let language = currentTrack
+      && !!currentTrack.language ? currentTrack.language : 'und';
 
     return currentTrack ? language.toUpperCase() : '';
   }
@@ -295,7 +306,7 @@ class SRGAnalytics {
    * @returns {String} empty string or uppercase language.
    */
   getCurrentTextTrack() {
-    const currentTrack = this.player.textTrack();
+    const currentTrack = this.playbackData.textTrack();
     let language = 'und';
 
     if (currentTrack && !!currentTrack.language) {
@@ -312,9 +323,9 @@ class SRGAnalytics {
    * @return {Number} 0 or the position in milliseconds
    */
   getDvrWindowPosition() {
-    const { liveTracker } = this.player;
-    const ct = (this.currentTime() - liveTracker.seekableStart()) | 0;
-    const position = liveTracker.liveWindow() - ct;
+    const currentTime = this.player.currentTime * 1000;
+    const dvrWindowSize = this.getDvrWindowSize();
+    const position = (dvrWindowSize - currentTime) | 0;
 
     return position < 0 || position === Infinity ? 0 : position * 1000;
   }
@@ -325,10 +336,17 @@ class SRGAnalytics {
    * @return {Number} DVR window size in milliseconds
    */
   getDvrWindowSize() {
-    const isInfinity = this.player.liveTracker.liveWindow() === Infinity;
-    const windowSize = this.player.liveTracker.liveWindow() * 1000;
+    const hasSeekableRange = Boolean(this.player.seekable.length);
 
-    return isInfinity ? 0 : windowSize;
+    if (!hasSeekableRange) return 0;
+
+    const seekableEnd = this.player.seekable.end(0);
+    const dvrWindowSize = seekableEnd - (
+      seekableEnd - this.initialeMediaDuration
+    );
+    const dvrWindowSizeMS = (dvrWindowSize * 1000) | 0;
+
+    return dvrWindowSizeMS;
   }
 
   /**
@@ -368,15 +386,15 @@ class SRGAnalytics {
       event_timestamp: SRGAnalytics.now(),
       media_dvr_window_length: 0,
       media_dvr_window_offset: 0,
-      media_is_dvr: false,
-      media_is_live: false,
-      media_mute: this.player.muted() ? '1' : '0',
-      media_playback_rate: this.player.playbackRate(),
+      media_is_dvr: this.playbackData.analyticsMetadata.media_is_dvr,
+      media_is_live: this.playbackData.analyticsMetadata.media_is_live,
+      media_mute: this.player.muted ? '1' : '0',
+      media_playback_rate: this.player.playbackRate,
       media_position: this.currentTime(),
-      media_quality: this.srcMediaData.mediaData.quality,
-      // TODO use media_is_dvr, media_is_live to define peach media_stream_type
+      media_quality: this.playbackData
+        .analyticsMetadata.media_streaming_quality,
       media_subtitles_on: this.isTextTrackEnabled(),
-      media_volume: (this.player.volume() * 100).toFixed(0),
+      media_volume: (this.player.volume * 100).toFixed(0),
       navigation_environment: this.environment,
     };
 
@@ -397,12 +415,12 @@ class SRGAnalytics {
 
     // DVR related labels
     if (this.isMediaDvr()) {
-      labels.media_dvr_window_offset = this.getDvrWindowPosition() | 0;
-      labels.media_dvr_window_length = this.getDvrWindowSize() | 0;
+      labels.media_dvr_window_offset = this.getDvrWindowPosition();
+      labels.media_dvr_window_length = this.getDvrWindowSize();
 
       labels.media_is_dvr = true;
 
-      labels.media_timeshift = [PlayerEvents.PLAY, PlayerEvents.PAUSE].includes(
+      labels.media_timeshift = ['play', 'pause'].includes(
         eventName
       )
         ? this.timeShifted()
@@ -417,16 +435,18 @@ class SRGAnalytics {
    */
   getInternalLabels() {
     const data = {
-      media_bu_distributer: this.srcMediaData.mediaData.vendor,
-      media_chromecast_selected: Boolean(this.player.tech(true).isCasting),
+      // media_bu_distributer: this.srcMediaData.mediaData.vendor,
+      media_bu_distributer: this.playbackData
+        .analyticsMetadata.media_enterprise_units,
+      // media_chromecast_selected: Boolean(this.player.tech(true).isCasting),
+      media_chromecast_selected: Boolean(false),
       media_embedding_url: document.referrer,
       media_player_display: 'default', // TODO implement if it still relevant
       media_player_name: 'pillarbox-web', // TODO add a property playerName in the constructor with a default value ?
       media_player_version: this.playerVersion,
-      media_url: this.srcMediaData.src,
+      // media_url: this.srcMediaData.src, // provided by the media composition
     };
-    const analyticsMetadata =
-      this.srcMediaData.mediaData.analyticsMetadata || {};
+    const analyticsMetadata = this.playbackData.analyticsMetadata || {};
 
     window.tc_vars = Object.assign({}, window.tc_vars, data, analyticsMetadata);
   }
@@ -445,7 +465,7 @@ class SRGAnalytics {
   heartBeat() {
     this.heartBeatIntervalId = setInterval(() => {
       // Send only when playing
-      if (!this.player.paused()) {
+      if (!this.player.paused) {
         this.notify('pos');
       }
     }, 30000);
@@ -501,17 +521,36 @@ class SRGAnalytics {
 
     window.addEventListener('beforeunload', this.beforeunloadListener);
 
-    this.player.on(PlayerEvents.EMPTIED, this.emptiedListener);
-    this.player.on(PlayerEvents.ENDED, this.endedListener);
-    this.player.on(PlayerEvents.LOAD_START, this.loadstartListener);
-    this.player.on(PlayerEvents.LOADED_DATA, this.loadeddataListener);
-    this.player.on(PlayerEvents.PLAYING, this.playListener);
-    this.player.on(PlayerEvents.PAUSE, this.pauseListener);
-    this.player.on(PlayerEvents.RATE_CHANGE, this.rateChangeListener);
-    this.player.on(PlayerEvents.SEEKING, this.seekingListener);
-    this.player.on(PlayerEvents.TIME_UPDATE, this.timeUpdateListener);
-    this.player.on(PlayerEvents.WAITING, this.waitingListener);
-    this.player.one('dispose', this.dispose.bind(this));
+    this.player
+      .addEventListener('emptied', this.emptiedListener);
+    this.player
+      .addEventListener('ended', this.endedListener);
+    this.player
+      .addEventListener('loadstart', this.loadstartListener);
+    this.player
+      .addEventListener('loadeddata', this.loadeddataListener);
+    this.player
+      .addEventListener('playing', this.playListener);
+    this.player
+      .addEventListener('pause', this.pauseListener);
+    this.player
+      .addEventListener('ratechange', this.rateChangeListener);
+    this.player
+      .addEventListener('seeking', this.seekingListener);
+    this.player
+      .addEventListener('timeupdate', this.timeUpdateListener);
+    this.player
+      .addEventListener('waiting', this.waitingListener);
+
+    const playerDisposeObserver = new MutationObserver(() => {
+      this.dispose();
+      playerDisposeObserver.disconnect();
+    });
+
+    playerDisposeObserver.observe(
+      this.player.parentElement,
+      { childList: true }
+    );
   }
 
   /**
@@ -544,7 +583,7 @@ class SRGAnalytics {
    */
   isAudioDescriptionEnabled() {
     const currentTrack = Array
-      .from(this.player.audioTracks())
+      .from(this.player.audioTracks || {})
       .find(track => track.enabled && track.kind.includes('desc'));
 
     return Boolean(currentTrack);
@@ -565,26 +604,26 @@ class SRGAnalytics {
    * @returns {Boolean} __true__ if it DVR __false__ otherwise.
    */
   isMediaDvr() {
-    const { trackingThreshold } = this.player.liveTracker.options();
+    const {
+      media_is_dvr,
+      media_is_live
+    } = this.playbackData.analyticsMetadata;
 
-    return (
-      !this.isMediaOnDemand() &&
-      trackingThreshold < this.player.liveTracker.liveWindow()
-    );
+    return media_is_dvr && media_is_live;
   }
 
   /**
-   * Check if the media is a live.
+   * Check if the media is a live. If
    *
    * @returns {Boolean} __true__ if live __false__ otherwise.
    */
   isMediaLive() {
-    const { trackingThreshold } = this.player.liveTracker.options();
+    const {
+      media_is_dvr,
+      media_is_live
+    } = this.playbackData.analyticsMetadata;
 
-    return (
-      !this.isMediaOnDemand() &&
-      trackingThreshold > this.player.liveTracker.liveWindow()
-    );
+    return media_is_live && !media_is_dvr;
   }
 
   /**
@@ -593,7 +632,12 @@ class SRGAnalytics {
    * @returns {Boolean} __true__ if on demand __false__ otherwise.
    */
   isMediaOnDemand() {
-    return Number.isFinite(this.player.duration());
+    const {
+      media_is_dvr,
+      media_is_live
+    } = this.playbackData.analyticsMetadata;
+
+    return !media_is_dvr && !media_is_live;
   }
 
   /**
@@ -611,15 +655,15 @@ class SRGAnalytics {
    * @returns {Boolean} __true__ if disabled __false__ otherwise.
    */
   isTrackerDisabled() {
-    if (!this.srcMediaData || !this.srcMediaData.mediaData)
+    if (!this.playbackData || !this.playbackData.analyticsMetadata)
       return true;
 
-    if (!Array.isArray(this.srcMediaData.disableTrackers)) {
-      return Boolean(this.srcMediaData.disableTrackers);
+    if (!Array.isArray(this.playbackData.disableTrackers)) {
+      return Boolean(this.playbackData.disableTrackers);
     }
 
     return Boolean(
-      this.srcMediaData.disableTrackers.find(
+      this.playbackData.disableTrackers.find(
         (tracker) => tracker.toLowerCase() === SRGAnalytics.name.toLowerCase()
       )
     );
@@ -631,9 +675,6 @@ class SRGAnalytics {
    * @see https://docs.videojs.com/player#event:loadstart
    */
   loadstart() {
-    this.destroy();
-    this.updateSrcMediaData(this.player.currentSource());
-
     if (this.isTrackerDisabled()) return;
 
     this.getInternalLabels();
@@ -652,6 +693,8 @@ class SRGAnalytics {
   loadeddata() {
     this.notify('init');
     this.initialized = true;
+    this.initialeMediaDuration = this.player
+      .seekable.length ? this.player.seekable.end(0) : 0;
 
     this.notify('buffer_stop');
   }
@@ -698,7 +741,7 @@ class SRGAnalytics {
 
     try {
       if (window.tc_events_11) {
-        window.tc_events_11(this.player.el(), eventName, labels);
+        window.tc_events_11(this.player, eventName, labels);
       } else {
         this.pendingQueue.push({
           action: eventName,
@@ -760,9 +803,9 @@ class SRGAnalytics {
     }
 
     if (
-      !this.player.seeking() &&
+      !this.player.seeking &&
       !this.isMediaLive() &&
-      this.player.currentTime() < this.player.duration()
+      this.player.currentTime < this.player.duration
     ) {
       this.notify('pause');
 
@@ -803,7 +846,7 @@ class SRGAnalytics {
    * @see https://docs.videojs.com/player#event:seeking
    */
   seeking() {
-    if (this.hasStarted && !this.player.paused() && !this.isSeeking) {
+    if (this.hasStarted && !this.player.paused && !this.isSeeking) {
       this.notify('seek');
       this.isSeeking = true;
     }
@@ -815,8 +858,8 @@ class SRGAnalytics {
    * @see https://docs.videojs.com/player#event:timeupdate
    */
   timeUpdate() {
-    if (!this.player.paused()) {
-      this.trackedCurrentTime = this.player.currentTime();
+    if (!this.player.paused) {
+      this.trackedCurrentTime = this.player.currentTime;
     }
   }
 
@@ -826,9 +869,12 @@ class SRGAnalytics {
    * @returns {String}
    */
   timeShifted() {
-    const isAtLiveEdge = this.player.liveTracker.atLiveEdge();
-    const liveCurrentTime = this.player.liveTracker.liveCurrentTime();
-    const currentTime = this.player.currentTime();
+    const liveEdgeThreshold = 120;
+    const isAtLiveEdge = this.player.currentTime >= (
+      this.player.duration - liveEdgeThreshold
+    );
+    const liveCurrentTime = this.player.duration;
+    const currentTime = this.player.currentTime;
     const timeShifted = isAtLiveEdge
       ? 0
       : (liveCurrentTime - currentTime).toFixed(0);
@@ -853,7 +899,7 @@ class SRGAnalytics {
    */
   uptime() {
     const notifyUptime = () => {
-      if (!this.player.paused() && !this.isMediaOnDemand()) {
+      if (!this.player.paused && !this.isMediaOnDemand()) {
         this.notify('uptime');
       }
     };
@@ -897,12 +943,20 @@ class SRGAnalytics {
     this.notify('buffer_start');
 
     // As Safari is not consistent with its playing event, it is better to use the timeupdate event.
-    if (Pillarbox.browser.IS_ANY_SAFARI) {
-      this.player.one(PlayerEvents.TIME_UPDATE, bufferStop);
+    if (this.playbackData.browser.IS_ANY_SAFARI) {
+      this.player.addEventListener(
+        'timeupdate',
+        bufferStop,
+        { once: true }
+      );
     } else {
       // As Chromium-based browsers are not consistent with their timeupdate event, it is better to use the playing event.
       // Firefox is consistent with its playing event.
-      this.player.one(PlayerEvents.PLAYING, bufferStop);
+      this.player.addEventListener(
+        'playing',
+        bufferStop,
+        { once: true }
+      );
     }
   }
 }
