@@ -1,9 +1,11 @@
-/*
-******************************************************************************
--- Title bar: Displays the title and/or description of the current media
-******************************************************************************
-*/
-.vjs-title-bar {
-  padding-bottom: 2em;
-  background: linear-gradient(rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+@mixin title-bar {
+  /*
+  ******************************************************************************
+  -- Title bar: Displays the title and/or description of the current media
+  ******************************************************************************
+  */
+  .vjs-title-bar {
+    padding-bottom: 2em;
+    background: linear-gradient(rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  }
 }
