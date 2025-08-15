@@ -136,31 +136,4 @@ player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn', disableTrackers:
    ```
    Again, in this scenario you MUST NOT re-enable the tracking for `trackedPlayer`.
 
-### Yarn Deduplication Issue
-
-This section highlights a known issue with Yarn leading to multiple versions of `video.js` being
-installed in a project, contrary to npm's deduplication to a single version.
-
-#### Issue Details
-
-- **Scenario**: Cyclic dependencies involving `video.js` result in conflicting versions being
-  installed via Yarn.
-- **Symptoms**: This causes compatibility issues, such as the `eme` plugin loading in only
-  one `video.js` instance, leading to errors.
-
-#### Workaround
-
-To mitigate this issue, force Yarn to resolve `video.js` to a single version (`8.11.8`) by adding
-the following to your project's `package.json`:
-
-```json
-"resolutions": {
-  "video.js": "8.11.8"
-}
-```
-
-See [Yarn's Manifest Resolutions][yarn-resolutions].
-
-[yarn-resolutions]: https://yarnpkg.com/configuration/manifest#resolutions
-
 [ios-bug]: https://bugs.webkit.org/show_bug.cgi?id=261512
