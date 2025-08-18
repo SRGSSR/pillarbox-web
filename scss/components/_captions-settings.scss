@@ -1,71 +1,74 @@
-/*
-******************************************************************************
--- Text track settings: Displayed when editing text track parameters
-******************************************************************************
-*/
-.vjs-modal-dialog.vjs-text-track-settings {
-  top: 50%;
-  left: 50%;
-  max-width: 25em;
-  max-height: 50em;
-  background: rgba(22,22,22,.95);
-  border-radius: 0.5em;
-  box-shadow: 2px 2px 3px #0005;
-  transform: translate(-50%, -50%);
-  overscroll-behavior: contain;
-}
+@mixin captions-settings {
 
-.vjs-text-track-settings .vjs-modal-dialog-content {
-  display: flex;
-  flex-direction: column;
-  padding: 1em 1.5em 0;
-}
-
-.vjs-text-track-settings legend {
-  font-size: 1em;
-}
-
-.vjs-text-track-settings fieldset span {
-  padding-inline: 0;
-}
-
-.vjs-text-track-settings fieldset {
-  display: flex;
-  margin: 0 0 1em 0;
-  padding: 0;
-}
-
-&.video-js .vjs-text-track-settings select {
-  margin: 0.25em 0 0 0;
-  padding: 0.5em;
-  color: #fff;
-  background: #3f3f3f;
-  border: none;
-  appearance: auto;
-
-  &:focus-within {
-    outline: solid;
+  /*
+  ******************************************************************************
+  -- Text track settings: Displayed when editing text track parameters
+  ******************************************************************************
+  */
+  .vjs-modal-dialog.vjs-text-track-settings {
+    top: 50%;
+    left: 50%;
+    max-width: 25em;
+    max-height: 50em;
+    background: rgba(22, 22, 22, .95);
+    border-radius: 0.5em;
+    box-shadow: 2px 2px 3px #0005;
+    transform: translate(-50%, -50%);
+    overscroll-behavior: contain;
   }
-}
 
-.vjs-track-settings-controls {
+  .vjs-text-track-settings .vjs-modal-dialog-content {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 1.5em 0;
+  }
+
+  .vjs-text-track-settings legend {
+    font-size: 1em;
+  }
+
+  .vjs-text-track-settings fieldset span {
+    padding-inline: 0;
+  }
+
+  .vjs-text-track-settings fieldset {
+    display: flex;
+    margin: 0 0 1em 0;
+    padding: 0;
+  }
+
+  &.video-js .vjs-text-track-settings select {
+    margin: 0.25em 0 0 0;
+    padding: 0.5em;
+    color: #fff;
+    background: #3f3f3f;
+    border: none;
+    appearance: auto;
+
+    &:focus-within {
+      outline: solid;
+    }
+  }
+
+  .vjs-track-settings-controls {
     display: flex;
     flex-direction: row;
     gap: 1em;
     justify-content: end;
 
     button {
-    margin-block: 1em;
-    padding: .25em .5em;
-    color: #fff;
-    background: #3f3f3f;
+      margin-block: 1em;
+      padding: .25em .5em;
+      color: #fff;
+      background: #3f3f3f;
 
-    &:hover {
-      background: #5c5c5c;
+      &:hover {
+        background: #5c5c5c;
+      }
     }
-  }
 
-  .vjs-default-button {
-    margin-right: 0;
+    .vjs-default-button {
+      margin-right: 0;
+    }
   }
 }
