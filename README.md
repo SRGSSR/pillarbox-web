@@ -19,13 +19,14 @@ npm install --save @srgssr/pillarbox-web video.js@8.21.0
 > [!NOTE]
 > `video.js` is now a peer dependency and must be installed by the project that bundles Pillarbox.
 > Version 8.21.0 is the version we use to test the player and is the one we recommend.
-> 
-> This approach is more flexible and consistent with the fact that integrators are responsible for 
+>
+> This approach is more flexible and consistent with the fact that integrators are responsible for
 > providing their own UI components.
 
 In your HTML file, add the following code to initialize Pillarbox:
 
 ```html
+
 <video-js id="my-player" class="pillarbox-js" controls></video-js>
 ```
 
@@ -43,6 +44,9 @@ import pillarbox from '@srgssr/pillarbox-web';
 const player = pillarbox('my-player', {/* options... */ });
 player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn' });
 ```
+
+For examples of integrating Pillarbox with popular frameworks, check out this collection of
+[samples][pillarbox-samples].
 
 ## CDN Integration
 
@@ -67,6 +71,8 @@ To integrate Pillarbox Web via CDN, you can include it in your HTML like this:
 </script>
 ```
 
+Try the sample live on StackBlitz: [Open in StackBlitz][stackblitz-umd]
+
 You can also use a different CDN or host the file yourself.
 
 > [!NOTE]
@@ -74,6 +80,11 @@ You can also use a different CDN or host the file yourself.
 > You should not include it separately.
 > The UMD bundle also exposes `video.js` as a global variable, allowing you to use both and internal
 > extensions as needed.
+
+### ESM integration from a CDN
+
+If you’d like to load Pillarbox from a CDN while taking advantage of modern ES module packages,
+check out this tutorial: [ESM and import maps][esm-tutorial]
 
 ## Documentation
 
@@ -150,8 +161,7 @@ To contribute to the theme editor go to: https://github.com/SRGSSR/pillarbox-web
 
 See the [LICENSE](LICENSE) file for more information.
 
-[token-settings]: https://github.com/settings/tokens
-
-[token-guide]: https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token
-
 [js-deliver]: https://www.jsdelivr.com/package/npm/@srgssr/pillarbox-web
+[stackblitz-umd]: https://stackblitz.com/github/srgssr/pillarbox-web-demo/tree/main/samples/umd
+[esm-tutorial]: https://web.pillarbox.ch/api/tutorial-ESM%20and%20import%20maps.html
+[pillarbox-samples]: https://github.com/SRGSSR/pillarbox-web-demo/tree/main/samples

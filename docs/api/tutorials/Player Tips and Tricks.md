@@ -22,7 +22,7 @@ const player = pillarbox('player');
 // overrides the URL and adds a blocking reason
 player.src({
   src: 'urn:bu:media:id',
-  type:'srgssr/urn'
+  type: 'srgssr/urn',
   mediaData: {
     // override the media URL
     url: 'https://fake-url.com/new-media.m3u8',
