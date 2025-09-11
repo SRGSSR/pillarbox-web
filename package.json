@@ -10,7 +10,8 @@
   "exports": {
     ".": {
       "import": "./dist/pillarbox.es.js",
-      "require": "./dist/pillarbox.cjs"
+      "require": "./dist/pillarbox.cjs",
+      "types": "./dist/types/build.d.ts"
     },
     "./core": {
       "import": "./dist/pillarbox-core.es.js",
