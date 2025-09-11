@@ -1,0 +1,152 @@
+{
+  "chapterUrn": "urn:rts:video:15375817",
+  "episode": {
+    "publishedDate": "2025-01-28T00:10:00+01:00",
+    "seasonNumber": 1,
+    "imageTitle": "Minx",
+    "title": "Minx (Episode 7 - Saison 1)",
+    "lead": "Que Dieu prothge la reine des connes\nGod Save the Queen of Dicks",
+    "imageUrl": "https://img.rts.ch/medias/2023/image/y2zvzo-26927888.image/16x9",
+    "id": "495182bb-df85-3d3d-b157-96f74d9ef2e3",
+    "number": 7,
+    "description": "Alors que la controverse s'intensifie autour du magazine, Minx commence ` se vendre, d'abord ` Los Angeles, puis dans tout le pays. Mais ce que Doug voit comme une occasion de faire la fjte, Joyce le considhre comme une chute en disgrbce - jusqu'` ce qu'une offre d'une source improbable aide ` remettre les pendules ` l'heure. Pendant ce temps, Bambi aide Richie ` faire ses premiers pas sur la schne artistique de Los Angeles."
+  },
+  "show": {
+    "id": "13342276",
+    "vendor": "RTS",
+    "transmission": "TV",
+    "urn": "urn:rts:show:tv:13342276",
+    "title": "Minx",
+    "lead": "Los Angeles, années 1970. Une jeune militante féministe s'associe à un éditeur véreux pour créer le premier magazine érotique à destination d'un public féminin.\n\nSaison 1 (10 épisodes) dès le 8 décembre 2024, les dimanches dès 01h00 sur Play RTS. Disponible en intégralité du 5 janvier au 28 février.\nSaison 2 dès le 12 janvier sur PlayRTS.\n\n\"Au-delà des pénis qui s’affichent plein cadre lors des séances photo (une quasi-nouveauté à l’écran après tant de nudité au féminin), cette fringante comédie, signée Ellen Rapoport, participe à revitaliser l’histoire des luttes féministes.\" - Telerama\n\n\"Avec le duo gagnant, Jake Johnson et Ophelia Lovibond en tête d'affiche, \"Minx\" est une comédie romantique sur les différentes formes de liberté et d'égalité, ainsi qu'une aventure légère, marquée par plus de nudité masculine que vous n'en trouverez sur Pornhub.\" - The Daily Beast\n\n\"En osant tout et en ne se refusant rien, \"Minx\" est une véritable bouffée d’air frais.\" - Le Parisien\n\n\"Savoureux mélange entre \"Fleabag\" et \"Sex Education\", la comédie convoque aussi une audace que l’on n’avait plus vraiment vu sur le petit écran depuis \"Sex and the City\".\" - Numerama",
+    "description": "Los Angeles, annies 1970. Une jeune militante fiministe s'associe ` un iditeur vireux pour crier le premier magazine irotique ` destination d'un public fiminin.",
+    "imageUrl": "https://img.rts.ch/articles/2023/image/rygyos-27462291.image/16x9",
+    "imageTitle": "Minx",
+    "posterImageUrl": "https://img.rts.ch/articles/2023/image/b2b6gs-27462293.image",
+    "posterImageIsFallbackUrl": false,
+    "podcastImageUrl": "https://il.srgssr.ch/image-service/dynamic/8278255.jpg",
+    "podcastImageIsFallbackUrl": true,
+    "numberOfEpisodes": 10,
+    "audioDescriptionAvailable": false,
+    "subtitlesAvailable": false,
+    "multiAudioLanguagesAvailable": false,
+    "topicList": [
+      {
+        "id": "1353",
+        "vendor": "RTS",
+        "transmission": "TV",
+        "urn": "urn:rts:topic:tv:1353",
+        "title": "Siries et Films",
+        "imageUrl": "https://img.rts.ch/articles/2023/image/4e2no1-28403268.image",
+        "imageTitle": "Siries et Films"
+      }
+    ],
+    "allowIndexing": true
+  },
+  "chapterList": [
+    {
+      "id": "15375817",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:15375817",
+      "title": "Que Dieu prothge la reine des connes (Episode 7 - Saison 1)",
+      "description": "Doug fjte le succhs de Minx et Joyce souffre de la cilibriti. La conseillhre Westbury redouble d'efforts contre Bottom Dollar, et Richie entre sur la schne artistique de Los Angeles.",
+      "imageUrl": "https://img.rts.ch/medias/2023/image/y2zvzo-26927888.image/16x9",
+      "imageTitle": "Que Dieu prothge la reine des connes",
+      "blockReason": "GEOBLOCK",
+      "youthProtectionColor": "RED",
+      "type": "EPISODE",
+      "date": "2025-01-28T00:14:07+01:00",
+      "duration": 1664800,
+      "validFrom": "2024-12-29T00:44:51+01:00",
+      "validTo": "2025-02-28T23:59:00+01:00",
+      "playableAbroad": false,
+      "displayable": true,
+      "position": 0,
+      "noEmbed": true,
+      "analyticsData": {
+        "ns_st_ep": "Que Dieu prothge la reine des connes",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "15375817",
+        "ns_st_cl": "1664800",
+        "ns_st_ct": "vc12"
+      },
+      "analyticsMetadata": {
+        "media_tv_id": "*null",
+        "media_urn": "urn:rts:video:15375817",
+        "media_segment_length": "1665",
+        "media_episode_length": "1665",
+        "media_segment_id": "15375817",
+        "media_type": "Video",
+        "media_duration_category": "long",
+        "media_segment": "Que Dieu prothge la reine des connes",
+        "media_number_of_segment_selected": "1",
+        "media_number_of_segments_total": "1",
+        "media_is_geoblocked": "true",
+        "media_assigned_tags": "media_tv:series",
+        "media_channel_cs": "*null",
+        "media_joker1": "RTS1",
+        "media_joker2": "series",
+        "media_sub_set_id": "EPISODE",
+        "media_topic_list": "urn:rts:topic:tv:1353"
+      },
+      "eventData": "$7cd253c97e8689c6$a1ce01c1ddbf6c8d4f018bb2fd897487a2318348694e4abf01bca7b0786cca587f48dbd55eb260bd8c0e1f00f48b19b20751c1bf25e241a36600b66eefcc4469ba17f4a9311fbab838d827f6b32627ab25f47162588b8a06b92a82dfd0bc571736b8f11703aa2ae0ff504388152409fe66225bcf34b0755f8acd0c69f8f19a858907ba18d4dcab99bf5ab800dcf2dfeabf218a0625058dd3fc11b57989d9c82f8b9b69ed8251c98b9551cc84dc397aacfd430824a67b9a13a08c5a160be1b770efef91588bb45506008ccceed41073aff3d8e0d29acf21bc37fd904fc4bbbce1064036bdcdf5165a21baa7f6c2c6e3996aebfa00cb3cd5ab565f9e8b22a364817fdb3452a06e6f8b600a3ad635fbd51140e2374aa5592c041155aa0732f5935c4f4c73aa83980a32e53b35903f22c435bac0970d6e7c23bb43590c43f6917129ecdcf728d85d0db6c908a97de08696210780134e6cae59d4c88dd66884a717b4",
+      "tagList": [
+        "media_tv:series"
+      ],
+      "aspectRatio": "16:9",
+      "spriteSheet": {
+        "urn": "urn:rts:video:15375817",
+        "rows": 28,
+        "columns": 20,
+        "thumbnailHeight": 84,
+        "thumbnailWidth": 150,
+        "interval": 3000,
+        "url": "https://il.srgssr.ch/spritesheet/urn/rts/video/15375817/sprite-15375817.jpeg"
+      }
+    }
+  ],
+  "topicList": [
+    {
+      "id": "1353",
+      "vendor": "RTS",
+      "transmission": "TV",
+      "urn": "urn:rts:topic:tv:1353",
+      "title": "Siries et Films",
+      "imageUrl": "https://img.rts.ch/articles/2023/image/4e2no1-28403268.image",
+      "imageTitle": "Siries et Films"
+    }
+  ],
+  "analyticsData": {
+    "ns_st_pr": "Minx du 27.01.2025",
+    "ns_st_ddt": "2024-12-29",
+    "ns_st_tdt": "2024-12-29",
+    "ns_st_tm": "00:44",
+    "ns_st_tep": "500416779",
+    "ns_st_stc": "8002",
+    "ns_st_st": "RTS 1",
+    "ns_st_tpr": "13342276"
+  },
+  "analyticsMetadata": {
+    "media_episode_id": "495182bb-df85-3d3d-b157-96f74d9ef2e3",
+    "media_tv_id": "500416779",
+    "media_show_id": "13342276",
+    "media_show": "Minx",
+    "media_episode": "Minx du 27.01.2025",
+    "media_is_livestream": "false",
+    "media_full_length": "full",
+    "media_enterprise_units": "RTS",
+    "media_content_group": "Siries et Films",
+    "media_since_publication_d": "-16",
+    "media_since_publication_h": "-389",
+    "media_thumbnail": "https://img.rts.ch/medias/2023/image/y2zvzo-26927888.image/16x9",
+    "media_publication_date": "2024-12-29",
+    "media_publication_time": "00:44:51",
+    "media_publication_datetime": "2024-12-29T00:44:51+01:00",
+    "media_channel_cs": "8002",
+    "media_tv_date": "2024-12-29",
+    "media_tv_time": "00:44:51",
+    "media_is_web_only": "false",
+    "media_joker1": "RTS1",
+    "media_joker2": "series"
+  }
+}

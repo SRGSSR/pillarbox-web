@@ -1,42 +1,62 @@
-import MediaComposition from '../model/MediaComposition.js';
+/** @import MediaComposition from '../model/MediaComposition.js' */
 
 /**
- * @ignore
+ * Represents a data provider for constructing URLs and handling requests.
+ * @class
  */
 class DataProvider {
+  /**
+   * Creates an instance of DataProvider.
+   *
+   * @param {string} [hostName='il.srgssr.ch'] The base host name for constructing URLs
+   */
   constructor(hostName = 'il.srgssr.ch') {
     this.setIlHost(hostName);
   }
 
+  /**
+   * Sets the integration layer host name.
+   *
+   * @param {string} hostName The host name to set
+   */
   setIlHost(hostName) {
     this.baseUrl = `${hostName}/integrationlayer/2.1/`;
   }
 
   /**
-   * Get media composition by URN.
+   * Handles requests by constructing URLs and fetching data.
    *
-   * @param {String} urn URN of the media composition.
-   * @param {Boolean} [onlyChapters=true] Whether to retrieve only chapters or not.
+   * This provides unified error handling, regardless of the urlHandler used.
    *
-   * @returns {Promise<{mediaComposition: MediaComposition}>} Promise that resolves with the `mediaComposition` object.
-   * @throws {Promise<Response>} If the response is not ok.
+   * @param {Function} urlHandler A function that constructs the URL
+   *
+   * @returns {Promise<MediaComposition>} A promise with the fetched data
    */
-  async getMediaCompositionByUrn(urn, onlyChapters = true) {
-    const url = `https://${this.baseUrl}mediaComposition/byUrn/${urn}?onlyChapters=${onlyChapters}&vector=portalplay`;
-    const response = await fetch(url);
+  handleRequest(urlHandler) {
+    return async (urn) => {
+      const url = typeof urlHandler === 'function' ? urlHandler(urn) : this.mediaCompositionUrlHandler(urn);
+      const response = await fetch(url);
 
-    if (!response.ok) {
-      throw response;
-    }
+      if (!response.ok) {
+        throw response;
+      }
 
-    const data = await response.json();
-    const mediaComposition = Object.assign(new MediaComposition(), data, {
-      onlyChapters,
-    });
+      /** @type {MediaComposition} */
+      const data = await response.json();
 
-    return {
-      mediaComposition,
+      return data;
     };
+  }
+
+  /**
+   * Gets the media composition URL by URN.
+   *
+   * @param {string} urn The URN for the media composition
+   *
+   * @returns {string} The constructed URL
+   */
+  mediaCompositionUrlHandler(urn) {
+    return `https://${this.baseUrl}mediaComposition/byUrn/${urn}?onlyChapters=true&vector=portalplay`;
   }
 }
 

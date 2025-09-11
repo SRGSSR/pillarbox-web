@@ -23,6 +23,10 @@ import * as urnMultipleExternalSubtitles from '../../__mocks__/urn:swi:multiple:
 import * as urnMixedInternalExternalSubtitles from '../../__mocks__/urn:mixed:internal:external:subtitles.json';
 import * as urnUndefinedResourcelist from '../../__mocks__/urn:undefined:resourcelist.json';
 import * as urnTimeIntervalList from '../../__mocks__/urn:rts:video:10313496-credits.json';
+import * as urnForumVideoWithAnAudioChapter from '../../__mocks__/forum:video:with:an:audio:chapter.json';
+import * as urnForumAudioWithAVideoChapter from '../../__mocks__/forum:audio:with:an:video:chapter.json';
+import * as urnScheduleLiveStreamChapters from '../../__mocks__/urn:schedule:live:stream:chapters';
+
 
 describe('MediaComposition', () => {
   const mediaCompositionUrnAnalyticsData = Object.assign(
@@ -154,6 +158,21 @@ describe('MediaComposition', () => {
   const mediaCompositionUrnTimeIntervalList = Object.assign(
     new MediaComposition(),
     urnTimeIntervalList
+  );
+
+  const mediaCompositionUrnForumVideoWithAnAudioChapter = Object.assign(
+    new MediaComposition(),
+    urnForumVideoWithAnAudioChapter
+  );
+
+  const mediaCompositionUrnForumAudioWithAVideoChapter = Object.assign(
+    new MediaComposition(),
+    urnForumAudioWithAVideoChapter
+  );
+
+  const mediaCompositionUrnScheduleLiveStreamChapters = Object.assign(
+    new MediaComposition(),
+    urnScheduleLiveStreamChapters
   );
 
   const DRMLIST = {
@@ -320,9 +339,16 @@ describe('MediaComposition', () => {
       );
     });
 
-    it('should return an empty array', () => {
-      expect(mediaCompositionUrnEmptyChapters.getChapters()).toBeTruthy();
-      expect(mediaCompositionUrnEmptyChapters.getChapters()).toHaveLength(0);
+    it('should only return the video chapters', () => {
+      expect(mediaCompositionUrnForumVideoWithAnAudioChapter.getChapters()).not.toHaveLength(mediaCompositionUrnForumVideoWithAnAudioChapter.chapterList.length);
+    });
+
+    it('should return an empty array when there is only audio chapters available', () => {
+      expect(mediaCompositionUrnForumAudioWithAVideoChapter.getChapters()).toHaveLength(0);
+    });
+
+    it('should return an empty array when the chapter is not an EPISODE', () => {
+      expect(mediaCompositionUrnScheduleLiveStreamChapters.getChapters()).toHaveLength(0);
     });
   });
 
@@ -632,7 +658,7 @@ describe('MediaComposition', () => {
    * getMainTimeIntervals ******************************************************
    *****************************************************************************
    */
-  describe('getMainTimeIntervals', ()=> {
+  describe('getMainTimeIntervals', () => {
     it('should return all time intervals', () => {
       const jsonIntervals = mediaCompositionUrnTimeIntervalList.chapterList[0].timeIntervalList;
       const intervals = mediaCompositionUrnTimeIntervalList.getMainTimeIntervals();

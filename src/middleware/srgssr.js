@@ -3,7 +3,9 @@ import DataProvider from '../dataProvider/services/DataProvider.js';
 import Image from '../utils/Image.js';
 import Drm from '../utils/Drm.js';
 import AkamaiTokenService from '../utils/AkamaiTokenService.js';
-import SRGAnalytics from '../analytics/SRGAnalytics.js';
+import SRGAnalytics from '../trackers/SRGAnalytics.js';
+import PillarboxMonitoring from '../trackers/PillarboxMonitoring.js';
+import MediaComposition from '../dataProvider/model/MediaComposition.js';
 
 // Translations
 import '../lang/de.js';
@@ -12,6 +14,10 @@ import '../lang/fr.js';
 import '../lang/it.js';
 import '../lang/rm.js';
 
+/** @import Player from 'video.js/dist/types/player' */
+/** @import {Chapter, MainResource, Segment, Subtitle, TimeInterval} from '../dataProvider/model/typedef' */
+/** @import {ComposedSrcMediaData, MainResourceWithKeySystems} from './typedef' */
+
 /**
  * @class SrgSsr
  */
@@ -19,8 +25,8 @@ class SrgSsr {
   /**
    * Adds blocked segments to the player.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {Array<import('../dataProvider/model/typedef').Segment>} [segments=[]]
+   * @param {Player} player
+   * @param {Array<Segment>} [segments=[]]
    */
   static addBlockedSegments(player, segments = []) {
     const trackId = 'srgssr-blocked-segments';
@@ -48,8 +54,8 @@ class SrgSsr {
   /**
    * Adds remote text tracks from an array of subtitles.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {Array<import('../dataProvider/model/typedef').Subtitle>} [subtitles=[]]
+   * @param {Player} player
+   * @param {Array<Subtitle>} [subtitles=[]]
    */
   static addRemoteTextTracks(player, subtitles = []) {
     if (!Array.isArray(subtitles)) return;
@@ -74,14 +80,16 @@ class SrgSsr {
    *
    * @param {TextTrack} textTrack
    * @param {
-   *   import('../dataProvider/model/typedef').Segment |
-   *   import('../dataProvider/model/typedef').Chapter |
-   *   import('../dataProvider/model/typedef').TimeInterval
+   *   Segment |
+   *   Chapter |
+   *   TimeInterval
    * } data SRG SSR's cue-like representation
    */
   static addTextTrackCue(textTrack, data) {
-    const startTime = (data.markIn ?? data.fullLengthMarkIn) / 1_000;
-    const endTime = (data.markOut ?? data.fullLengthMarkOut) / 1_000;
+    const startTime = (Number.isFinite(data.markIn)
+      ? data.markIn : data.fullLengthMarkIn) / 1_000;
+    const endTime = (Number.isFinite(data.markOut)
+      ? data.markOut : data.fullLengthMarkOut) / 1_000;
 
     textTrack.addCue(new VTTCue(
       startTime,
@@ -93,8 +101,8 @@ class SrgSsr {
   /**
    * Add multiple text tracks to the player.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {import('./typedef').ComposedSrcMediaData} srcMediaObj
+   * @param {Player} player
+   * @param {ComposedSrcMediaData} srcMediaObj
    */
   static addTextTracks(player, { mediaData }) {
     SrgSsr.addRemoteTextTracks(player, mediaData.subtitles);
@@ -106,9 +114,9 @@ class SrgSsr {
   /**
    * Adds chapters to the player.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {string} chapterUrn The URN of the main chapter.
-   * @param {Array.<import('../dataProvider/model/typedef').Chapter>} [chapters=[]]
+   * @param {Array.<Chapter>} [chapters=[]]
    */
   static addChapters(player, chapterUrn, chapters = []) {
     const trackId = 'srgssr-chapters';
@@ -134,8 +142,8 @@ class SrgSsr {
   /**
    * Adds intervals to the player.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {Array.<import('../dataProvider/model/typedef').TimeInterval>} [intervals=[]]
+   * @param {Player} player
+   * @param {Array.<TimeInterval>} [intervals=[]]
    */
   static addIntervals(player, intervals = []) {
     const trackId = 'srgssr-intervals';
@@ -160,8 +168,8 @@ class SrgSsr {
    * Set a blocking reason according to the block reason returned
    * by mediaData.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {import('./typedef').ComposedSrcMediaData} srcMediaObj
+   * @param {Player} player
+   * @param {ComposedSrcMediaData} srcMediaObj
    *
    * @returns {undefined|Boolean}
    */
@@ -187,9 +195,9 @@ class SrgSsr {
    * if at least one of them has tokenType
    * set to Akamai.
    *
-   * @param {Array.<import('./typedef').MainResourceWithKeySystems>} resources
+   * @param {Array.<MainResourceWithKeySystems>} resources
    *
-   * @returns {Promise<Array.<import('./typedef').MainResourceWithKeySystems>>}
+   * @returns {Promise<Array.<MainResourceWithKeySystems>>}
    */
   static async composeAkamaiResources(resources = []) {
     if (!AkamaiTokenService.hasToken(resources)) {
@@ -204,17 +212,19 @@ class SrgSsr {
    * Add the keySystems property to all resources
    * if at least one of them has DRM.
    *
-   * @param {Array.<import('../dataProvider/model/typedef').MainResource>} resources
+   * @param {Array.<MainResource>} resources
    *
-   * @returns {Array.<import('./typedef').MainResourceWithKeySystems>}
+   * @returns {Array.<MainResourceWithKeySystems>}
    */
   static composeKeySystemsResources(resources = []) {
-    if (!Drm.hasDrm(resources)) resources;
+    if (!Drm.hasDrm(resources)) return resources;
 
-    return resources.map((resource) => ({
+    const resourcesWithKeySystems = resources.map((resource) => ({
       ...resource,
       ...Drm.buildKeySystems(resource.drmList),
     }));
+
+    return resourcesWithKeySystems;
   }
 
   /**
@@ -223,7 +233,7 @@ class SrgSsr {
    *
    * @param {MediaComposition} mediaComposition
    *
-   * @returns {Promise<Array.<import('./typedef').MainResourceWithKeySystems>>}
+   * @returns {Promise<Array.<MainResourceWithKeySystems>>}
    */
   static composeMainResources(mediaComposition) {
     return SrgSsr.composeAkamaiResources(
@@ -240,27 +250,34 @@ class SrgSsr {
    * @param {any} srcObj
    * @param {any} srcObj.mediaData overrides or adds metadata to the composed mediaData.
    * @param {boolean} srcObj.disableTrackers
-   * @param {import('./typedef').MainResourceWithKeySystems} resource
+   * @param {MainResourceWithKeySystems} resource
    *
-   * @returns {import('./typedef').ComposedSrcMediaData}
+   * @returns {ComposedSrcMediaData}
    */
   static composeSrcMediaData(
     { mediaData: srcMediaData, disableTrackers },
-    { url, mimeType, keySystems, ...mediaData }
+    resource
   ) {
+    const {
+      url,
+      mimeType,
+      keySystems,
+      ...mediaData
+    } = Pillarbox.obj.merge(resource, srcMediaData);
+
     return {
       src: url,
       type: mimeType,
       keySystems,
       disableTrackers,
-      mediaData: Pillarbox.obj.merge(mediaData, srcMediaData),
+      mediaData,
     };
   }
 
   /**
    * Create a new metadata text track.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {String} trackId Text track unique ID
    *
    * @returns {Promise<TextTrack>}
@@ -280,20 +297,43 @@ class SrgSsr {
   }
 
   /**
+   * Proxy SRG SSR chapters and intervals cuechange events at player level.
+   *
+   * @param {Player} player
+   */
+  static cuechangeEventProxy(player) {
+    player.textTracks().on('addtrack', ({ track }) => {
+      if (!['srgssr-chapters', 'srgssr-intervals'].includes(track.id)) return;
+
+      track.on('cuechange', () => {
+        const [cue] = Array.from(track.activeCues);
+        const type = track.id.includes('srgssr-chapters') ? 'srgssr/chapter' : 'srgssr/interval';
+
+        player.trigger({ type, data: cue });
+      });
+    });
+  }
+
+  /**
    * SRG SSR data provider singleton.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    *
    * @returns {DataProvider}
    */
   static dataProvider(player) {
     if (!player.options().srgOptions.dataProvider) {
-      const { dataProviderHost } = player.options().srgOptions;
+      const {
+        dataProviderHost,
+        dataProviderUrlHandler
+      } = player.options().srgOptions;
       const dataProvider = new DataProvider(dataProviderHost);
+      const requestHandler = dataProvider
+        .handleRequest(dataProviderUrlHandler);
 
       player.options({
         srgOptions: {
-          dataProvider,
+          dataProvider: requestHandler,
         },
       });
     }
@@ -304,16 +344,15 @@ class SrgSsr {
   /**
    * Set an error if something goes wrong with the data provider.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {Object} error
    *
    * @returns {undefined|true}
    */
   static dataProviderError(player, error) {
-    const hasError =
-      error.url && error.url.includes(SrgSsr.dataProvider(player).baseUrl);
+    if (!error) return;
 
-    if (!hasError) return;
+    const statusText = error.statusText ? error.statusText : error.message;
 
     SrgSsr.error(player, {
       code: 0,
@@ -322,7 +361,7 @@ class SrgSsr {
         errorType: 'UNKNOWN',
         urn: player.src(),
         status: error.status,
-        statusText: error.statusText,
+        statusText,
         url: error.url,
       },
     });
@@ -333,7 +372,7 @@ class SrgSsr {
   /**
    * Set player error.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {Object} error
    */
   static error(player, { code, message, metadata }) {
@@ -349,9 +388,9 @@ class SrgSsr {
   /**
    * Filter out incompatible resources such as `RTMP` and `HDS`.
    *
-   * @param {Array.<import('../dataProvider/model/typedef').MainResource>} resources Resources to filter
+   * @param {Array.<MainResource>} resources Resources to filter
    *
-   * @returns {Array.<import('../dataProvider/model/typedef').MainResource>} The filtered resources
+   * @returns {Array.<MainResource>} The filtered resources
    */
   static filterIncompatibleResources(resources = []) {
     return resources.filter(
@@ -362,7 +401,7 @@ class SrgSsr {
   /**
    * Get the current blocked segment from the player.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    *
    * @returns {VTTCue|undefined} The blocked segment cue object, or undefined
    */
@@ -379,14 +418,14 @@ class SrgSsr {
   }
 
   /**
-   * Get the end time of a blocked segment.
+   * Get the VTT cue of a blocked segment.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {Number} currentTime
    *
-   * @returns {Number|undefined} The end time of a blocked segment, or undefined
+   * @returns {VTTCue|undefined} The VTT cue of a blocked segment, or undefined
    */
-  static getBlockedSegmentEndTime(player, currentTime) {
+  static getBlockedSegmentByTime(player, currentTime) {
     const blockedSegment = SrgSsr.getBlockedSegment(player);
 
     if (!blockedSegment) return;
@@ -394,27 +433,32 @@ class SrgSsr {
     const isBlocked = currentTime >= blockedSegment.startTime &&
       currentTime < blockedSegment.endTime;
 
-    return isBlocked ? blockedSegment.endTime : undefined;
+    return isBlocked ? blockedSegment : undefined;
   }
 
   /**
    * Get mediaComposition from an URN.
    *
    * @param {String} urn
-   * @param {DataProvider} dataProvider
+   * @param {Function} requestHandler
    *
-   * @returns {Promise<{mediaComposition: MediaComposition}>}
+   * @returns {Promise<MediaComposition>}
    */
-  static async getMediaComposition(urn, dataProvider = new DataProvider()) {
-    return dataProvider.getMediaCompositionByUrn(urn);
+  static async getMediaComposition(
+    urn,
+    handleRequest = new DataProvider().handleRequest()
+  ) {
+    const data = await handleRequest(urn);
+
+    return Object.assign(new MediaComposition(), data);
   }
 
   /**
    * Get the mediaData most likely to be compatible depending on the browser.
    *
-   * @param {Array.<import('./typedef').MainResourceWithKeySystems>} resources
+   * @param {Array.<MainResourceWithKeySystems>} resources
    *
-   * @returns {import('./typedef').MainResourceWithKeySystems} By default, the first entry is used if none is compatible.
+   * @returns {MainResourceWithKeySystems} By default, the first entry is used if none is compatible.
    */
   static getMediaData(resources = []) {
     if (AkamaiTokenService.hasToken(resources)) return resources[0];
@@ -428,21 +472,32 @@ class SrgSsr {
   /**
    * Get the source media object.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {any} srcObj
    *
-   * @returns {Promise<import('./typedef').ComposedSrcMediaData>} - The composed source media data.
+   * @returns {Promise<ComposedSrcMediaData>} - The composed source media data.
    */
   static async getSrcMediaObj(player, srcObj) {
+    if (SrgSsr.pillarboxMonitoring(player)) {
+      SrgSsr.pillarboxMonitoring(player).sessionStart();
+    }
+
     const { src: urn, ...srcOptions } = srcObj;
-    const { mediaComposition } = await SrgSsr.getMediaComposition(
+    const mediaComposition = await SrgSsr.getMediaComposition(
       urn,
       SrgSsr.dataProvider(player)
     );
     const mainResources = await SrgSsr.composeMainResources(
       mediaComposition
     );
-    const mediaData = SrgSsr.getMediaData(mainResources);
+    let mediaData = SrgSsr.getMediaData(mainResources);
+
+    if (!mediaData) {
+      mediaData = {
+        blockReason: mediaComposition.getMainChapter().blockReason,
+        imageUrl: mediaComposition.getMainChapterImageUrl(),
+      };
+    }
 
     return SrgSsr.composeSrcMediaData(srcOptions, mediaData);
   }
@@ -455,22 +510,28 @@ class SrgSsr {
    * _Note_: This function should disappear as soon as this behavior is
    *         supported on the packaging side.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {number} currentTime
    *
    * @returns {number}
    */
   static handleCurrentTime(player, currentTime) {
-    const blockedSegmentEndTime = SrgSsr
-      .getBlockedSegmentEndTime(player, currentTime);
+    const blockedSegment = SrgSsr
+      .getBlockedSegmentByTime(player, currentTime);
 
-    if (Number.isFinite(blockedSegmentEndTime)) {
-      player.currentTime(blockedSegmentEndTime);
-
-      return blockedSegmentEndTime;
+    if (!blockedSegment || !Number.isFinite(blockedSegment.endTime)) {
+      return currentTime;
     }
 
-    return currentTime;
+    // as a workaround, add 0.1 seconds to avoid getting stuck on endTime on
+    // some safaris.
+    const endTimeWithTolerance = blockedSegment.endTime + 0.1;
+
+    // proxy for handling cuechange events at the player level
+    player.trigger({ type: 'srgssr/blocked-segment', data: blockedSegment });
+    player.currentTime(endTimeWithTolerance);
+
+    return endTimeWithTolerance;
   }
 
   /**
@@ -481,14 +542,14 @@ class SrgSsr {
    * _Note_: This function should disappear as soon as this behavior is
    *         supported on the packaging side.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {number} currentTime
    *
    * @returns {number}
    */
   static handleSetCurrentTime(player, currentTime) {
-    const blockedSegmentEndTime = SrgSsr
-      .getBlockedSegmentEndTime(player, currentTime);
+    const { endTime: blockedSegmentEndTime } = SrgSsr
+      .getBlockedSegmentByTime(player, currentTime) || {};
 
     return Number
       .isFinite(blockedSegmentEndTime) ? blockedSegmentEndTime : currentTime;
@@ -504,7 +565,7 @@ class SrgSsr {
    * - handle blocking reasons
    * - add remote subtitles
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    * @param {any} srcObj
    * @param {function} next
    *
@@ -533,7 +594,7 @@ class SrgSsr {
   /**
    * SRG SSR analytics singleton.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    */
   static srgAnalytics(player) {
     if (player.options().trackers.srgAnalytics === false) return;
@@ -543,7 +604,7 @@ class SrgSsr {
         debug: player.debug(),
         playerVersion: Pillarbox.VERSION.pillarbox,
         tagCommanderScriptURL:
-        player.options().srgOptions.tagCommanderScriptURL,
+          player.options().srgOptions.tagCommanderScriptURL,
       });
 
       player.options({
@@ -555,10 +616,37 @@ class SrgSsr {
   }
 
   /**
+   * PillarboxMonitoring monitoring singleton.
+   *
+   * @param {Player} player
+   *
+   * @returns {PillarboxMonitoring} instance of PillarboxMonitoring
+   */
+  static pillarboxMonitoring(player) {
+    if (player.options().trackers.pillarboxMonitoring === false) return;
+
+    if (!player.options().trackers.pillarboxMonitoring) {
+      const pillarboxMonitoring = new PillarboxMonitoring(player, {
+        debug: player.debug(),
+        playerVersion: Pillarbox.VERSION.pillarbox,
+        playerName: 'Pillarbox',
+      });
+
+      player.options({
+        trackers: {
+          pillarboxMonitoring,
+        },
+      });
+    }
+
+    return player.options().trackers.pillarboxMonitoring;
+  }
+
+  /**
    * Update player's poster.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {import('./typedef').ComposedSrcMediaData} srcMediaObj
+   * @param {Player} player
+   * @param {ComposedSrcMediaData} srcMediaObj
    * @param {Image} imageService
    */
   static updatePoster(player, srcMediaObj, imageService = Image) {
@@ -572,8 +660,8 @@ class SrgSsr {
   /**
    * Update player titleBar with title and description.
    *
-   * @param {import('video.js/dist/types/player').default} player
-   * @param {import('./typedef').ComposedSrcMediaData} srcMediaObj
+   * @param {Player} player
+   * @param {ComposedSrcMediaData} srcMediaObj
    */
   static updateTitleBar(player, srcMediaObj) {
     if (!player.titleBar) return;
@@ -587,11 +675,14 @@ class SrgSsr {
   /**
    * Middleware to resolve SRG SSR URNs into playable media.
    *
-   * @param {import('video.js/dist/types/player').default} player
+   * @param {Player} player
    *
    * @returns {Object}
    */
   static middleware(player) {
+    SrgSsr.pillarboxMonitoring(player);
+    SrgSsr.cuechangeEventProxy(player);
+
     return {
       currentTime: (currentTime) =>
         SrgSsr.handleCurrentTime(player, currentTime),
@@ -607,14 +698,10 @@ Pillarbox.use('srgssr/urn', SrgSsr.middleware);
 
 // Add Middleware specific options
 Pillarbox.options.srgOptions = {
+  dataProvider: undefined,
   dataProviderHost: undefined,
+  dataProviderUrlHandler: undefined,
   tagCommanderScriptURL: undefined,
 };
 
 export default SrgSsr;
-
-/**
- * Ignored so that the link is resolved correctly in the API docs.
- * @ignore
- * @typedef {import('../dataProvider/model/MediaComposition.js').default} MediaComposition
- */

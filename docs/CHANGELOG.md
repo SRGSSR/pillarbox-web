@@ -1,3 +1,344 @@
+## [1.23.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.23.0...v1.23.1) (2025-07-25)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **pillarbox-monitoring:** undefined getVideoPlaybackQuality ([598639d](https://github.com/SRGSSR/pillarbox-web/commit/598639db914fb1f773abf10224d56fa55149586e))
+
+## [1.23.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.22.0...v1.23.0) (2025-07-23)
+
+
+### New Features 🚀
+
+* **build:** unify export strategy across ESM, UMD, and CJS builds ([9d49ead](https://github.com/SRGSSR/pillarbox-web/commit/9d49ead29f42c1564723d76113e7752f176541be)), closes [#310](https://github.com/SRGSSR/pillarbox-web/issues/310)
+
+## [1.22.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.21.2...v1.22.0) (2025-07-03)
+
+
+### New Features 🚀
+
+* move video.js to peer dependencies ([b0bded8](https://github.com/SRGSSR/pillarbox-web/commit/b0bded8abf89c35ab0f1589bc5821b65ee3b43a5))
+
+## [1.21.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.21.1...v1.21.2) (2025-05-27)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **github-actions:** github page workflow ([1b6c9bb](https://github.com/SRGSSR/pillarbox-web/commit/1b6c9bb10e2d2a139b6eeed235582e5c9743d3ea)), closes [#309](https://github.com/SRGSSR/pillarbox-web/issues/309)
+
+## [1.21.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.21.0...v1.21.1) (2025-05-22)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **media-composition:** remove chapters if the media is not type of EPISODE ([caafece](https://github.com/SRGSSR/pillarbox-web/commit/caafece619f210f972f27b1d679aba7b964110fb)), closes [#321](https://github.com/SRGSSR/pillarbox-web/issues/321) [#146](https://github.com/SRGSSR/pillarbox-web/issues/146) [/github.com/SRGSSR/pillarbox-documentation/issues/146#issuecomment-2883013095](https://github.com/SRGSSR//github.com/SRGSSR/pillarbox-documentation/issues/146/issues/issuecomment-2883013095)
+
+## [1.21.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.20.0...v1.21.0) (2025-04-28)
+
+
+### New Features 🚀
+
+* **lang:** add VPN blocking reason ([ffc3b4d](https://github.com/SRGSSR/pillarbox-web/commit/ffc3b4d2e7b33b1e54a2ba9ba3ba189c59d676d0)), closes [#311](https://github.com/SRGSSR/pillarbox-web/issues/311)
+
+## [1.20.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.19.1...v1.20.0) (2025-04-14)
+
+
+### New Features 🚀
+
+* **pillarbox-monitoring:** add subtitles and audio track language ([abd50ce](https://github.com/SRGSSR/pillarbox-web/commit/abd50ce64470bc69054694b2208661e8a9a5c306)), closes [#305](https://github.com/SRGSSR/pillarbox-web/issues/305)
+
+## [1.19.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.19.0...v1.19.1) (2025-04-10)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **layout:** progress bar displayed in tiny/x-small on live stream without DVR ([3f6641b](https://github.com/SRGSSR/pillarbox-web/commit/3f6641b89326bfaaa01fdc1b7f8cecee94b786dc))
+
+## [1.19.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.18.0...v1.19.0) (2025-04-01)
+
+
+### New Features 🚀
+
+* **media-composition:** add media container ([c55af4a](https://github.com/SRGSSR/pillarbox-web/commit/c55af4a95ade0da60c028a03efb8c4997d8aae55))
+
+## [1.18.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.17.0...v1.18.0) (2025-03-14)
+
+
+### New Features 🚀
+
+* make analytics, data source and monitoring classes public ([48a2e3f](https://github.com/SRGSSR/pillarbox-web/commit/48a2e3f20eae75d148b4129931030f2f6178831f)), closes [#297](https://github.com/SRGSSR/pillarbox-web/issues/297)
+
+
+### Styles 🎨
+
+* **data-provider:** update import statement and remove `ignore` tag ([af49990](https://github.com/SRGSSR/pillarbox-web/commit/af499903513db677cf827265e3c4188e90c8844f))
+* **media-composition:** move typedef to the beginning of the file ([9617ca6](https://github.com/SRGSSR/pillarbox-web/commit/9617ca63a587d0ff56e9baa459d2dbf4fed2ce52))
+* **player:** update import statement ([cf0f94f](https://github.com/SRGSSR/pillarbox-web/commit/cf0f94f9e802cf2ecb2c61c75b0437b730545a9b))
+* **srgssr-middleware:** update import statement ([1d511e2](https://github.com/SRGSSR/pillarbox-web/commit/1d511e269ef1a83481afea4cda953d86eaee99b9))
+
+## [1.17.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.16.0...v1.17.0) (2025-01-31)
+
+
+### New Features 🚀
+
+* **remaining-time-display:** displays remaining time in x-small or tiny ([7ccf660](https://github.com/SRGSSR/pillarbox-web/commit/7ccf6600ad1ed5af14ae0c70c0ce32d625b20857))
+
+## [1.16.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.15.2...v1.16.0) (2025-01-24)
+
+
+### New Features 🚀
+
+* **progress-control:** remove play progress time tooltip ([6b3c0a4](https://github.com/SRGSSR/pillarbox-web/commit/6b3c0a459b27a05160611707614213efa24ade0c))
+
+
+### Chore 🧹
+
+* **npm:** update to video.js and videojs-contrib-eme ([75d9b88](https://github.com/SRGSSR/pillarbox-web/commit/75d9b88243959f61d9df802bc3700a30e740a78d))
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **srgssr-middleware:** geoblocked mediaComposition without resourceList ([66328dc](https://github.com/SRGSSR/pillarbox-web/commit/66328dcf24b0c2819cb595dbda4d7e2754a5e3be))
+
+## [1.15.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.15.1...v1.15.2) (2024-12-16)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **pillarbox-monitoring:** inconsistent error name value ([0e311be](https://github.com/SRGSSR/pillarbox-web/commit/0e311be4eb32e65fedefbb168bab6aa87daa258b)), closes [#283](https://github.com/SRGSSR/pillarbox-web/issues/283)
+
+## [1.15.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.15.0...v1.15.1) (2024-10-31)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* update urls for custom domain setup ([d369998](https://github.com/SRGSSR/pillarbox-web/commit/d3699985d686277b8195503e28b48287b7ce484b))
+
+## [1.15.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.14.1...v1.15.0) (2024-10-29)
+
+
+### New Features 🚀
+
+* **analytics:** track the type of audio track ([cda0d7a](https://github.com/SRGSSR/pillarbox-web/commit/cda0d7a913c7c31852aaeb9ccd921ca3b957bc53)), closes [#265](https://github.com/SRGSSR/pillarbox-web/issues/265)
+
+
+### Chore 🧹
+
+* **build:** migrate build system from rollup and parcel to vite ([606126f](https://github.com/SRGSSR/pillarbox-web/commit/606126f7db269fdbb555a82ff9d34a53291b895b))
+* **github-actions:** add registry url to release action ([5eee634](https://github.com/SRGSSR/pillarbox-web/commit/5eee634811399565b533b7bbe240808660cd7f21))
+
+## [1.14.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.14.0...v1.14.1) (2024-10-22)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **pillarbox-monitoring:** remove severity property from error event ([614ed7f](https://github.com/SRGSSR/pillarbox-web/commit/614ed7f552ed7fc7953df1bdd22dda51ded30168)), closes [#277](https://github.com/SRGSSR/pillarbox-web/issues/277)
+
+## [1.14.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.13.1...v1.14.0) (2024-10-14)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **pillarbox-monitoring:** invalid service URL ([acf45d4](https://github.com/SRGSSR/pillarbox-web/commit/acf45d47a1576f880fe85cc59b07fe82cf7ba822))
+* **pillarbox-monitoring:** update endpoint url ([2b31e9b](https://github.com/SRGSSR/pillarbox-web/commit/2b31e9baab6691ca3d0dbdd81872622626d55f16))
+* **pillarbox-monitoring:** use capital case to align with spec ([4778d43](https://github.com/SRGSSR/pillarbox-web/commit/4778d432965ce38487ac4a2b7bf626fdc8f81b7e))
+
+
+### New Features 🚀
+
+* add playback monitoring ([e867456](https://github.com/SRGSSR/pillarbox-web/commit/e867456cb12cdc6c61b1395ee593056efdd839d2)), closes [#262](https://github.com/SRGSSR/pillarbox-web/issues/262)
+* **pillarbox-monitoring:** add frame drops ([ec67109](https://github.com/SRGSSR/pillarbox-web/commit/ec671098a5c4751db69d8e235643050b175356e1)), closes [#269](https://github.com/SRGSSR/pillarbox-web/issues/269)
+
+
+### Tests ✅
+
+* rename test/analytics folder to test/trackers ([d1c85c2](https://github.com/SRGSSR/pillarbox-web/commit/d1c85c2acbe7792aa86e97c0fc5498213db4b722))
+
+## [1.13.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.13.0...v1.13.1) (2024-09-30)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **srgssr-middleware:** add missing return statement for DRM check ([210bfaf](https://github.com/SRGSSR/pillarbox-web/commit/210bfafe08503872209caf79b37ee6aeafba4e3e))
+
+## [1.13.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.12.2...v1.13.0) (2024-07-08)
+
+
+### New Features 🚀
+
+* **lang:** add journalistic blocking reason ([b6b5ada](https://github.com/SRGSSR/pillarbox-web/commit/b6b5adaab39453f9b5058b111278f5044a3b23d9)), closes [#253](https://github.com/SRGSSR/pillarbox-web/issues/253)
+
+## [1.12.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.12.1...v1.12.2) (2024-07-02)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* publish pillarbox-web to npm ([895e5fd](https://github.com/SRGSSR/pillarbox-web/commit/895e5fdb6aba8cd143e89b1c44185710e5a58114)), closes [#260](https://github.com/SRGSSR/pillarbox-web/issues/260)
+
+
+### Docs 📖
+
+* fix link to `pillarbox-web-demo` in `README.md` ([72417f4](https://github.com/SRGSSR/pillarbox-web/commit/72417f43ee436ddb58f39241237248037ea90897))
+* remove crossorigin attribute from video-js tag in the examples ([25308cd](https://github.com/SRGSSR/pillarbox-web/commit/25308cd4eeb3747ec09d9193c2345f61c431c07a))
+
+## [1.12.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.12.0...v1.12.1) (2024-04-30)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* add 'core' export and mapping for single files ([e8612a7](https://github.com/SRGSSR/pillarbox-web/commit/e8612a7a1d9ee7d28b6678fdedd012971c919dbc))
+
+## [1.12.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.11.1...v1.12.0) (2024-04-26)
+
+
+### Docs 📖
+
+* link to pillarbox-web-suite ([29bd933](https://github.com/SRGSSR/pillarbox-web/commit/29bd933b6e1a7fe0a73280e29ab5fd467b752b1a))
+
+
+### New Features 🚀
+
+* add exports field to package.json ([cadf774](https://github.com/SRGSSR/pillarbox-web/commit/cadf77437eae17248aa28737eeaf8ea645135341))
+
+## [1.11.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.11.0...v1.11.1) (2024-04-24)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **media-composition:** remove audio chapters ([48e3c6d](https://github.com/SRGSSR/pillarbox-web/commit/48e3c6dfe4406fa4ecb81ac32cf1b8f4d780c915)), closes [#245](https://github.com/SRGSSR/pillarbox-web/issues/245)
+
+## [1.11.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.10.0...v1.11.0) (2024-04-15)
+
+
+### New Features 🚀
+
+* **srgssr-middleware:** allow overriding of resource properties ([7e12ef7](https://github.com/SRGSSR/pillarbox-web/commit/7e12ef7a6be61bd7107e33121c98e22198078e08))
+
+
+### Chore 🧹
+
+* **npm:** update video.js to v8.11.8 ([31724d7](https://github.com/SRGSSR/pillarbox-web/commit/31724d743d82988909ae56453c9918279ce6d61f))
+
+## [1.10.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.9.0...v1.10.0) (2024-04-03)
+
+
+### New Features 🚀
+
+* add custom data handler ([7d924a4](https://github.com/SRGSSR/pillarbox-web/commit/7d924a4be669117497e235220b5e4f8c7b07eda3)), closes [#241](https://github.com/SRGSSR/pillarbox-web/issues/241)
+
+
+### Docs 📖
+
+* improve api documentation ([cc47173](https://github.com/SRGSSR/pillarbox-web/commit/cc47173e1ef87953b2ac42573c6b451b7952cd11))
+* link theme editor in the documentation ([820b6e5](https://github.com/SRGSSR/pillarbox-web/commit/820b6e51097988b7d294b9bf1683f03cd7204f10))
+
+## [1.9.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.8.0...v1.9.0) (2024-03-28)
+
+
+### New Features 🚀
+
+* **player:** add playedPercent and playedRanges helpers ([bbf6049](https://github.com/SRGSSR/pillarbox-web/commit/bbf60496b2a551f5b76fb4c40aa0c774d3491a67))
+
+## [1.8.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.7.0...v1.8.0) (2024-03-28)
+
+
+### New Features 🚀
+
+* **player:** add seekableRanges helper function ([5030afe](https://github.com/SRGSSR/pillarbox-web/commit/5030afefbcda1bbec4975cc2b10ed55cb775ac1b))
+
+## [1.7.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.6.0...v1.7.0) (2024-03-28)
+
+
+### New Features 🚀
+
+* **player:** add bufferedRanges helper function ([c3094c1](https://github.com/SRGSSR/pillarbox-web/commit/c3094c19dfb632ab5e987dc1936304d8332d304b)), closes [/github.com/videojs/http-streaming/issues/1369#issuecomment-1475965185](https://github.com/SRGSSR//github.com/videojs/http-streaming/issues/1369/issues/issuecomment-1475965185)
+
+## [1.6.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.5.0...v1.6.0) (2024-03-22)
+
+
+### Docs 📖
+
+* add tutorial for middleware options ([094f51c](https://github.com/SRGSSR/pillarbox-web/commit/094f51cefe427017a92b2b0e1300f4532b17e738))
+
+
+### New Features 🚀
+
+* add URL handler ([4b1be76](https://github.com/SRGSSR/pillarbox-web/commit/4b1be76e5981c2df2006ed4126876a6a2554210d))
+
+## [1.5.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.4.3...v1.5.0) (2024-03-22)
+
+
+### New Features 🚀
+
+* add pillarbox-js css as main theme ([a18e19d](https://github.com/SRGSSR/pillarbox-web/commit/a18e19dfbdcb6e7799d302359d3ed5aeebe7354a))
+
+
+### Chore 🧹
+
+* **bundle:** add babel transpilation ([cedf945](https://github.com/SRGSSR/pillarbox-web/commit/cedf945c6f215040af2668e1ed303092f46f8795)), closes [#230](https://github.com/SRGSSR/pillarbox-web/issues/230)
+
+
+### Docs 📖
+
+* add custom events tutorial ([6243382](https://github.com/SRGSSR/pillarbox-web/commit/624338251f554c0b44d3027b2e8a859dd819b04d))
+* default fill option value ([84c1ffc](https://github.com/SRGSSR/pillarbox-web/commit/84c1ffcb07af5fae67b9de41dc6c51b5f9f015ee))
+
+## [1.4.3](https://github.com/SRGSSR/pillarbox-web/compare/v1.4.2...v1.4.3) (2024-03-18)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **srgssr-middleware:** incompatibility of older browsers with nullish coalescing ([b739502](https://github.com/SRGSSR/pillarbox-web/commit/b73950201b96cdbe5480ca512a29242b83c8027b))
+
+
+### Chore 🧹
+
+* **npm:** add packge lock to semantic release config file ([0d1a1c3](https://github.com/SRGSSR/pillarbox-web/commit/0d1a1c350fd89f9690a99de7903b5e500f62dc41))
+
+## [1.4.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.4.1...v1.4.2) (2024-03-15)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **control-bar:** end value in align-items is not compatible with old Safari ([e7f7637](https://github.com/SRGSSR/pillarbox-web/commit/e7f7637cfefdb034367ae81fa334aad7fc5d6294))
+
+## [1.4.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.4.0...v1.4.1) (2024-03-15)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **srgssr-middleware:** safari stalls at end of blocked segment ([c0f5105](https://github.com/SRGSSR/pillarbox-web/commit/c0f5105a64b501919a374d757b471c9ba4000a5c))
+
+
+### Docs 📖
+
+* update known issues for yarn ([8629f66](https://github.com/SRGSSR/pillarbox-web/commit/8629f66740f7e9437e46880a5908323e64973299)), closes [#222](https://github.com/SRGSSR/pillarbox-web/issues/222)
+
+## [1.4.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.3.0...v1.4.0) (2024-03-14)
+
+
+### New Features 🚀
+
+* **srgssr-middleware:** add custom text tracks cuechange event proxy ([e2d2762](https://github.com/SRGSSR/pillarbox-web/commit/e2d27624da8c5ab3e79ed2d939203cf117d65b0c))
+
+## [1.3.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.2.1...v1.3.0) (2024-03-14)
+
+
+### New Features 🚀
+
+* activate fill option by default ([6ecfbe6](https://github.com/SRGSSR/pillarbox-web/commit/6ecfbe6ac56452c7f8a72479eb6b90b145ba41f8))
+
+
+### Enhancements and Bug Fixes 🐛
+
+* initialize default plugins in player.js ([eaf0d2f](https://github.com/SRGSSR/pillarbox-web/commit/eaf0d2fe25d2407ece97b0b77edb8bf160c2ae08))
+
+
+### Docs 📖
+
+* fixed npm install command in the readme ([445a2ac](https://github.com/SRGSSR/pillarbox-web/commit/445a2ac4a1064747a866379afa3736e6840c5fd6))
+* update types and documentation ([d3771b4](https://github.com/SRGSSR/pillarbox-web/commit/d3771b4a5371f2fc00b5cb0fe0510d87f741ce52)), closes [#216](https://github.com/SRGSSR/pillarbox-web/issues/216)
+
 ## [1.2.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.2.0...v1.2.1) (2024-03-04)
 
 

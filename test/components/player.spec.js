@@ -1,4 +1,5 @@
 import Player from '../../src/components/player.js';
+import pillarbox from '../../src/pillarbox.js';
 
 describe('Player', () => {
   const videoEl = document.createElement('video');
@@ -63,6 +64,133 @@ describe('Player', () => {
     });
   });
 
+  describe('bufferedRanges', () => {
+    it('should return an empty array if there are no buffered ranges', () => {
+      const player = new Player(videoEl);
+
+      player.buffered = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges();
+      });
+
+      expect(player.bufferedRanges()).toHaveLength(0);
+    });
+
+    it('should return an array containing two entries', () => {
+      const player = new Player(videoEl);
+
+      player.buffered = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges([
+          [0, 10],
+          [11, 69]
+        ]);
+      });
+
+      expect(player.bufferedRanges()).toHaveLength(2);
+      expect(player.bufferedRanges()).toEqual(
+        expect.arrayContaining([
+          { 'end': 10, 'start': 0 },
+          { 'end': 69, 'start': 11 }
+        ])
+      );
+    });
+  });
+
+  describe('playedPercent', () => {
+    it('should return NaN if the duration is not finite', () => {
+      const player = new Player(videoEl);
+
+      player.duration = jest.fn().mockImplementation(() => {
+        return Infinity;
+      });
+
+      expect(player.playedPercent()).toBeNaN();
+    });
+
+    it('should return the correct percentage played', () => {
+      const player = new Player(videoEl);
+
+      player.duration = jest.fn().mockImplementation(() => {
+        return 100;
+      });
+      player.played = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges([
+          [0, 5],
+          [10, 15]
+        ]);
+      });
+
+      expect(player.playedPercent()).toEqual(0.1);
+    });
+  });
+
+  describe('playedRanges', () => {
+    it('should return an empty array if there are no played ranges', () => {
+      const player = new Player(videoEl);
+
+      player.duration = jest.fn().mockImplementation(() => {
+        return 69;
+      });
+      player.played = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges();
+      });
+
+      expect(player.playedRanges()).toHaveLength(0);
+    });
+
+    it('should return an array containing two entries', () => {
+      const player = new Player(videoEl);
+
+      player.duration = jest.fn().mockImplementation(() => {
+        return 420;
+      });
+      player.played = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges([
+          [0, 10],
+          [69, 420]
+        ]);
+      });
+
+      expect(player.playedRanges()).toHaveLength(2);
+      expect(player.playedRanges()).toEqual(
+        expect.arrayContaining([
+          { 'end': 10, 'start': 0 },
+          { 'end': 420, 'start': 69 }
+        ])
+      );
+    });
+  });
+
+  describe('seekableRanges', () => {
+    it('should return an empty array if there are no seekable ranges', () => {
+      const player = new Player(videoEl);
+
+      player.seekable = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges();
+      });
+
+      expect(player.seekableRanges()).toHaveLength(0);
+    });
+
+    it('should return an array containing two entries', () => {
+      const player = new Player(videoEl);
+
+      player.seekable = jest.fn().mockImplementation(() => {
+        return pillarbox.time.createTimeRanges([
+          [0, 10],
+          [11, 69]
+        ]);
+      });
+
+      expect(player.seekableRanges()).toHaveLength(2);
+      expect(player.seekableRanges()).toEqual(
+        expect.arrayContaining([
+          { 'end': 10, 'start': 0 },
+          { 'end': 69, 'start': 11 }
+        ])
+      );
+    });
+  });
+
   describe('textTrack', () => {
     const player = new Player(videoEl);
 
@@ -119,6 +247,17 @@ describe('Player', () => {
       expect(player.textTrack({ language: 'fr' })).toBeUndefined();
       expect(player.textTracks.mock.results[0].value[0].mode).toBe('disabled');
       expect(player.textTracks.mock.results[0].value[1].mode).toBe('disabled');
+    });
+  });
+
+  describe('eme', () => {
+    const player = new Player(videoEl);
+
+    it('should have initialize eme plugin', () => {
+      expect(player.eme).toBeDefined();
+      // When a plugin is initialized its function becomes an object
+      expect(typeof player.eme).not.toBe('function');
+      expect(typeof player.eme).toBe('object');
     });
   });
 });

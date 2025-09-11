@@ -15,13 +15,11 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
           always-auth: true
-          registry-url: https://npm.pkg.github.com/
-          scope: '@srgssr'
       - run: |
           npm dist-tag add @srgssr/pillarbox-web@$(echo "${{github.ref_name}}" | cut -c 2-) latest
           exit 0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

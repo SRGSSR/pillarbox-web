@@ -4,7 +4,9 @@
   "COMMERCIAL":"Questo contenuto commerciale non è disponibile.",
   "ENDDATE":"Questo media non è più disponibile.",
   "GEOBLOCK":"Questo media non è disponibile fuori dalla Svizzera.",
+  "JOURNALISTIC": "Questo contenuto è temporaneamente non disponibile per motivi editoriali.",
   "LEGAL":"Il contenuto non è fruibile a causa di restrizioni legali.",
   "STARTDATE":"Il contenuto non è ancora disponibile. Per cortesia prova più tardi.",
+  "VPNORPROXYDETECTED": "Questo contenuto non può essere riprodotto con VPN o proxy.",
   "UNKNOWN":"Questo media non è disponibile."
 }

@@ -9,8 +9,12 @@
   <link rel="stylesheet" href="./scss/pillarbox.scss" />
 
   <style>
+    html,
     body {
-      height: 100dvh;
+      height: 100%;
+    }
+
+    body {
       margin: 0;
       overflow: hidden;
     }
@@ -18,7 +22,7 @@
 </head>
 
 <body>
-  <video id="player" class="video-js pillarbox-js" controls muted></video>
+  <video id="player" class="pillarbox-js" controls muted></video>
 
   <script type="module">
     import pillarbox from './src/pillarbox.js';
@@ -32,7 +36,14 @@
     const ilHost = searchParams.get('ilHost') || undefined;
     const language = searchParams.get('language');
     const resize = searchParams.has('resize');
-    const urn = searchParams.get('urn') || 'urn:swi:video:48864812';
+    let urn = searchParams.get('urn');
+    const urlHandler = searchParams.has('urlHandler') ? url => url : undefined;
+
+    // Default content
+    if (!urn) {
+      urn = 'urn:rts:video:9883196';
+      currentTime = 911;
+    }
 
     // Media examples
     window.mediaExamples = {
@@ -56,6 +67,11 @@
         src: 'urn:swi:video:48864812',
         type: 'srgssr/urn'
       },
+      _pyby: {
+        label: 'Pierre-Yves joueur de badminton at 911',
+        src: 'urn:rts:video:9883196',
+        type: 'srgssr/urn'
+      }
     };
 
     // Expose Pillarbox and player in the window object for debugging
@@ -67,10 +83,10 @@
     window.player = new pillarbox('player', {
       audioOnlyMode,
       debug,
-      fill: true,
       language,
       srgOptions: {
-        dataProviderHost: ilHost
+        dataProviderHost: ilHost,
+        dataProviderUrlHandler: urlHandler,
       }
     });
 
@@ -92,52 +108,43 @@
       currentTime = undefined;
     });
 
-
-    player.on('loadeddata', () => {
-      const textTracks = player.textTracks();
-
-      // Listen to chapters
-      textTracks.getTrackById('srgssr-chapters').addEventListener('cuechange', () => {
-        const [cue] = Array.from(textTracks.getTrackById('srgssr-chapters').activeCues);
-
-        if (!cue) {
-          // Reset media title when no longer in a chapter
-          player.titleBar.update({
-            title: player.currentSource().mediaData.vendor,
-            description: player.currentSource().mediaData.title
-          });
-
-          return;
-        };
-
-        const chapter = JSON.parse(cue.text);
-
-        // Update the title bar with the current chapter
+    // Listen blocked segments, chapters and intervals
+    player.on(['srgssr/blocked-segment', 'srgssr/chapter', 'srgssr/interval'], ({ type, data }) => {
+      // Title bar reset when outside a chapter
+      if ('srgssr/chapter' === type && !data) {
         player.titleBar.update({
-          title: chapter.title,
-          description: chapter.description
+          title: player.currentSource().mediaData.vendor,
+          description: player.currentSource().mediaData.title
         });
 
-        console.log('%cChapter', 'background-color: blue', chapter.title);
-      });
+        return;
+      }
 
-      // Listen to blocked segment
-      textTracks.getTrackById('srgssr-blocked-segments')?.on('cuechange', () => {
-        const [cue] = Array.from(textTracks.getTrackById('srgssr-blocked-segments')?.activeCues);
+      if (!data) return;
 
-        if (!cue) return;
+      const cueContent = JSON.parse(data.text);
 
-        console.log('%cBlock reason', 'background-color: red', JSON.parse(cue.text).blockReason);
-      });
+      // Blocked segment
+      if ('srgssr/blocked-segment' === type) {
 
-      // Listen to intervals
-      textTracks.getTrackById('srgssr-intervals')?.addEventListener('cuechange', () => {
-        const [cue] = Array.from(textTracks.getTrackById('srgssr-intervals')?.activeCues);
+        console.log('%cBlock reason', 'background-color: red', cueContent.blockReason);
+        return;
+      }
 
-        if (!cue) return;
+      // Chapter
+      if ('srgssr/chapter' === type) {
+        // Update the title bar with the current chapter
+        player.titleBar.update({
+          title: cueContent.title,
+          description: cueContent.description
+        });
 
-        console.log('%cInterval', 'background-color: green', JSON.parse(cue.text).type);
-      });
+        console.log('%cChapter', 'background-color: blue', cueContent.title);
+        return;
+      }
+
+      // Interval
+      console.log('%cInterval', 'background-color: green', cueContent.type);
     });
 
     player.src({

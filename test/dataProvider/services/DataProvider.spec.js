@@ -1,11 +1,9 @@
-import fetch from '../../__mocks__/fetch.js';
+import '../../__mocks__/fetch.js';
 
-import MediaComposition from '../../../src/dataProvider/model/MediaComposition.js';
 import DataProvider from '../../../src/dataProvider/services/DataProvider.js';
 
 describe('DataProvider', () => {
   const urn10272382 = 'urn:rts:video:10272382';
-  const urn8414077 = 'urn:rts:video:8414077';
   const urnNotFound = 'urn:not:found';
   const dataproviderService = new DataProvider();
 
@@ -21,55 +19,33 @@ describe('DataProvider', () => {
 
   /**
    *****************************************************************************
-   * getMediaCompositionByUrn **************************************************
+   * handleRequest *************************************************************
    *****************************************************************************
    */
-  describe('getMediaCompositionByUrn', () => {
-    it('should return a mediaComposition object', async () => {
-      const spyObject = jest.spyOn(Object, 'assign');
-      const mediaComposition =
-        await dataproviderService.getMediaCompositionByUrn(urn10272382);
+  describe('handleRequest', () => {
+    it('should use the default URL handler when the urlHandler is undefined', () => {
+      const spyOnMediaCompositionUrlHandler = jest.spyOn(dataproviderService, 'mediaCompositionUrlHandler');
 
-      expect(mediaComposition).toBeTruthy();
-      expect(spyObject).toHaveBeenCalled();
+      const defaultRequestHandler = dataproviderService.handleRequest();
+
+      defaultRequestHandler(urn10272382);
+
+      expect(spyOnMediaCompositionUrlHandler).toHaveBeenCalledWith(urn10272382);
     });
 
-    it('called multiple times should return a mediaComposition object', async () => {
-      const { mediaComposition: mediaCompositionUrn10272382 } =
-        await dataproviderService.getMediaCompositionByUrn(urn10272382);
+    it('should not use the default URL handler if urlHandler is defined', () => {
+      const spyOnMediaCompositionUrlHandler = jest.spyOn(dataproviderService, 'mediaCompositionUrlHandler');
+      const defaultRequestHandler = dataproviderService.handleRequest((urn)=> urn);
 
-      const { mediaComposition: mediaCompositionUrn8414077 } =
-        await dataproviderService.getMediaCompositionByUrn(urn8414077);
+      defaultRequestHandler(urn10272382);
 
-      expect(mediaCompositionUrn10272382).toBeTruthy();
-      expect(mediaCompositionUrn10272382.chapterUrn).toEqual(urn10272382);
-
-      expect(mediaCompositionUrn8414077).toBeTruthy();
-      expect(mediaCompositionUrn8414077.chapterUrn).toEqual(urn8414077);
+      expect(spyOnMediaCompositionUrlHandler).not.toHaveBeenCalled();
     });
 
-    it('should be an instance of MediaComposition', async () => {
-      const { mediaComposition: mediaCompositionUrn10272382 } =
-        await dataproviderService.getMediaCompositionByUrn(urn10272382);
+    it('should throw an error if the urn does not exist', async () => {
+      const requestHandler = dataproviderService.handleRequest();
 
-      expect(mediaCompositionUrn10272382).toBeInstanceOf(MediaComposition);
+      await expect(requestHandler(urnNotFound)).rejects.not.toBeNull();
     });
-
-    it('should set the param onlyChapters to false', async () => {
-      const { mediaComposition: mediaCompositionUrn10272382 } =
-        await dataproviderService.getMediaCompositionByUrn(urn10272382, false);
-
-      expect(mediaCompositionUrn10272382.onlyChapters).toBe(false);
-    });
-
-    it('should be rejected if URN does not exist', async () => {
-      await expect(
-        dataproviderService.getMediaCompositionByUrn(urnNotFound)
-      ).rejects.not.toBeNull();
-    });
-  });
-
-  it('should satisfy eslint', async () => {
-    expect(fetch(urn10272382)).toBeTruthy();
   });
 });

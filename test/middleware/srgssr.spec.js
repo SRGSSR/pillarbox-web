@@ -4,7 +4,9 @@ import Image from '../../src/utils/Image.js';
 import MediaComposition from '../../src/dataProvider/model/MediaComposition.js';
 import urnCredits from '../__mocks__/urn:rts:video:10313496-credits.json';
 import urnRtsAudio from '../__mocks__/urn:rts:audio:3262320.json';
+import urnGeoblockAndUndefinedResourceList from '../__mocks__/urn:geoblock:and:undefined:resourcelist.json';
 import srcMediaObj from '../__mocks__/srcMediaObj.json';
+import mainResource from '../__mocks__/mainResource.json';
 import Pillarbox from '../../src/pillarbox.js';
 import AkamaiTokenService from '../../src/utils/AkamaiTokenService.js';
 
@@ -18,14 +20,20 @@ describe('SrgSsr', () => {
   let player;
 
   beforeAll(() => {
+    Pillarbox.obj.merge.mockImplementation((...params) => {
+      // does not handle video.js deep merge
+      return Object.assign(...params);
+    });
+
     DataProvider.mockImplementation(() => {
       return {
-        getMediaCompositionByUrn: (urn, _onlyChapters = false) => {
-          if (!urn) throw new Error('Error');
+        handleRequest: (fn) => {
+          return (urn) => {
+            if (fn) fn(urn);
+            if (!urn) throw new Error('Error');
 
-          return Promise.resolve({
-            mediaComposition: Object.assign(new MediaComposition(), urnCredits),
-          });
+            return Promise.resolve(Object.assign(new MediaComposition(), urnCredits));
+          };
         },
       };
     });
@@ -45,10 +53,11 @@ describe('SrgSsr', () => {
       poster: (url) => url,
       src: jest.fn(),
       tech: jest.fn(),
-      textTracks: jest.fn().mockReturnValue({ getTrackById: jest.fn(), removeTrack: jest.fn(), addTrack: jest.fn() }),
+      textTracks: jest.fn().mockReturnValue({ getTrackById: jest.fn(), removeTrack: jest.fn(), addTrack: jest.fn(), on: jest.fn() }),
       titleBar: {
         update: ({ title, description }) => ({ title, description }),
       },
+      trigger: jest.fn(),
     };
   });
 
@@ -58,7 +67,7 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('addBlockedSegments', () => {
-    it('should not create an blocked segments track if the segments parameter is not an array or if the array is empty', async () => {
+    it('should not create a blocked segments track if the segments parameter is not an array or if the array is empty', async () => {
       const spyOnPillarboxTextTrack = jest.spyOn(Pillarbox, 'TextTrack');
 
       SrgSsr.addBlockedSegments(player, true);
@@ -397,16 +406,17 @@ describe('SrgSsr', () => {
     it('should not add the keySystems property if no resource has DRM', () => {
       const resources = [
         {
-          streaming: 'DASH',
-        },
-        {
-          streaming: 'HLS',
+          src: 'https://fake-url.com/resource.m3u8',
+          type: 'application/x-mpegURL',
+        }, {
+          src: 'https://fake-url.com/resource.mpd',
+          type: 'application/dash+xml',
         }
       ];
       const resourcesNoKeySystems =
         SrgSsr.composeKeySystemsResources(resources);
 
-      expect(resourcesNoKeySystems).toMatchObject(resources);
+      expect(resourcesNoKeySystems).toEqual(resources);
     });
 
     it('should add the keySystems property if at least one resource has DRM', () => {
@@ -479,17 +489,122 @@ describe('SrgSsr', () => {
    */
   describe('composeSrcMediaData', () => {
     it('should return a source object', async () => {
-      const mockDataProvider = new DataProvider();
-      const { mediaComposition } =
-        await mockDataProvider.getMediaCompositionByUrn('urn:fake');
-      const [mainSource] = mediaComposition.getMainResources();
-
-      expect(SrgSsr.composeSrcMediaData({}, mainSource)).toMatchObject({
-        src: mainSource.url,
-        type: mainSource.mimeType,
+      expect(SrgSsr.composeSrcMediaData({}, mainResource)).toMatchObject({
+        src: mainResource.url,
+        type: mainResource.mimeType,
         keySystems: undefined,
         disableTrackers: undefined,
-        mediaData: undefined,
+        mediaData: expect.any(Object),
+      });
+    });
+
+    it('should override the resource URL', async () => {
+      const url = 'https://fake-url.com/resource.m3u8';
+
+      expect(SrgSsr.composeSrcMediaData({
+        mediaData: {
+          url
+        }
+      }, mainResource)).toMatchObject({
+        src: url,
+        type: mainResource.mimeType,
+        keySystems: undefined,
+        disableTrackers: undefined,
+        mediaData: expect.any(Object),
+      });
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * cuechangeEventProxy *******************************************************
+   *****************************************************************************
+   */
+  describe('cuechangeEventProxy', () => {
+    it('should add an event listener to the addtrack event', async () => {
+      SrgSsr.cuechangeEventProxy(player);
+
+      player.addRemoteTextTrack({
+        type: 'SDH',
+        language: 'English',
+        locale: 'EN',
+        url: 'https://url.com/en.vtt'
+      });
+
+      expect(player.textTracks().on).toHaveBeenCalledWith('addtrack', expect.any(Function));
+    });
+
+    it('should not add a cuechange listener if the track does not match the condition', () => {
+      SrgSsr.cuechangeEventProxy(player);
+
+      const metadataCue = {
+        startTime: 10,
+        endTime: 20,
+        text: 'metadata 1',
+      };
+      const metadataTrack = {
+        id: 'metadata',
+        activeCues: [metadataCue],
+        on: jest.fn(),
+      };
+      const addTrackCallback = player.textTracks().on.mock.calls[0][1];
+
+      addTrackCallback({ track: metadataTrack });
+
+      expect(metadataTrack.on).not.toHaveBeenCalled();
+    });
+
+    it('should trigger a srgssr/chapter event when cue changes', () => {
+      SrgSsr.cuechangeEventProxy(player);
+
+      const chapterCue = {
+        startTime: 10,
+        endTime: 20,
+        text: 'chapter 1',
+      };
+      const chaptersTrack = {
+        id: 'srgssr-chapters',
+        activeCues: [chapterCue],
+        on: jest.fn(),
+      };
+      const addTrack = player.textTracks().on.mock.calls[0][1];
+
+      addTrack({ track: chaptersTrack });
+
+      const cueChange = chaptersTrack.on.mock.calls[0][1];
+
+      cueChange();
+
+      expect(player.trigger).toHaveBeenCalledWith({
+        type: 'srgssr/chapter',
+        data: chapterCue,
+      });
+    });
+
+    it('should trigger a srgssr-intervals event when cue changes', () => {
+      SrgSsr.cuechangeEventProxy(player);
+
+      const intervalCue = {
+        startTime: 10,
+        endTime: 20,
+        text: 'interval 1',
+      };
+      const intervalsTrack = {
+        id: 'srgssr-intervals',
+        activeCues: [intervalCue],
+        on: jest.fn(),
+      };
+      const addTrack = player.textTracks().on.mock.calls[0][1];
+
+      addTrack({ track: intervalsTrack });
+
+      const cueChange = intervalsTrack.on.mock.calls[0][1];
+
+      cueChange();
+
+      expect(player.trigger).toHaveBeenCalledWith({
+        type: 'srgssr/interval',
+        data: intervalCue,
       });
     });
   });
@@ -525,18 +640,15 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('dataProviderError', () => {
-    it('should not generate an error if the error parameter does not contain an url property', async () => {
+    it('should not generate an error if the error parameter is undefined', async () => {
       const spyOnError = jest.spyOn(SrgSsr, 'error');
 
-      expect(SrgSsr.dataProviderError(player, {})).toBeUndefined();
+      expect(SrgSsr.dataProviderError(player, undefined)).toBeUndefined();
       expect(spyOnError).not.toHaveBeenCalled();
     });
+
     it('should generate an error', async () => {
       const spyOnError = jest.spyOn(SrgSsr, 'error');
-
-      jest.spyOn(SrgSsr, 'dataProvider').mockReturnValueOnce({
-        baseUrl: 'http://mock.url.ch',
-      });
 
       expect(
         SrgSsr.dataProviderError(player, {
@@ -592,7 +704,7 @@ describe('SrgSsr', () => {
     it('should return undefined if there is no blocked segment', () => {
       const currentTime = 10;
 
-      expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBeUndefined();
+      expect(SrgSsr.getBlockedSegmentByTime(player, currentTime)).toBeUndefined();
     });
 
     it('should return undefined if the current time is smaller than the start time of a blocked segment', () => {
@@ -606,7 +718,7 @@ describe('SrgSsr', () => {
         activeCues: [blockedSegmentCue]
       });
 
-      expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBeUndefined();
+      expect(SrgSsr.getBlockedSegmentByTime(player, currentTime)).toBeUndefined();
     });
 
     it('should return undefined if the current time is greater than the end time of a blocked segment', () => {
@@ -620,7 +732,7 @@ describe('SrgSsr', () => {
         activeCues: [blockedSegmentCue]
       });
 
-      expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBeUndefined();
+      expect(SrgSsr.getBlockedSegmentByTime(player, currentTime)).toBeUndefined();
     });
 
     it('should return the blocked segment end time if the current time lies between the start and end of a blocked segment', () => {
@@ -634,7 +746,7 @@ describe('SrgSsr', () => {
         activeCues: [blockedSegmentCue]
       });
 
-      expect(SrgSsr.getBlockedSegmentEndTime(player, currentTime)).toBe(blockedSegmentCue.endTime);
+      expect(SrgSsr.getBlockedSegmentByTime(player, currentTime).endTime).toBe(blockedSegmentCue.endTime);
     });
   });
 
@@ -644,26 +756,25 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('getMediaComposition', () => {
-    it('should use the default DataProvider', async () => {
-      const { mediaComposition } = await SrgSsr.getMediaComposition('urn:fake');
+    it('should use the default request handler', async () => {
+      const mediaComposition = await SrgSsr.getMediaComposition('urn:fake');
 
       expect(mediaComposition).toBeInstanceOf(MediaComposition);
     });
 
-    it('should return an instance of MediaComposition', async () => {
+    it('should call the request handler', async () => {
       const mockDataProvider = new DataProvider();
-      const spyOnGetMediaCompositionByUrn = jest.spyOn(
+      const spyOnHandleRequest = jest.spyOn(
         mockDataProvider,
-        'getMediaCompositionByUrn'
-      );
+        'handleRequest'
+      ).mockReturnValueOnce(jest.fn(urn => urn));
 
-      const { mediaComposition } = await SrgSsr.getMediaComposition(
+      await SrgSsr.getMediaComposition(
         'urn:fake',
-        mockDataProvider
+        spyOnHandleRequest
       );
 
-      expect(spyOnGetMediaCompositionByUrn).toHaveBeenCalledWith('urn:fake');
-      expect(mediaComposition).toBeInstanceOf(MediaComposition);
+      expect(spyOnHandleRequest).toHaveBeenCalledWith('urn:fake');
     });
   });
 
@@ -727,10 +838,35 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('getSrcMediaObj', () => {
-    it('should do something', async () => {
+    it('should return a value', async () => {
       const result = await SrgSsr.getSrcMediaObj(player, { src: 'urn:fake' });
 
       expect(result).toEqual(expect.any(Object));
+    });
+
+    it('should return an empty src and a mediaData containing a blocking reason and a poster when the mediaComposition does not contain a resourceList', async () => {
+      jest.spyOn(SrgSsr, 'getMediaComposition')
+        .mockResolvedValueOnce(
+          Object.assign(
+            new MediaComposition(),
+            urnGeoblockAndUndefinedResourceList
+          )
+        );
+      const result = await SrgSsr.getSrcMediaObj(
+        player,
+        { src: 'urn:geoblock:and:undefined:resourcelist' }
+      );
+
+      expect(result).toEqual({
+        src: undefined,
+        type: undefined,
+        keySystems: undefined,
+        disableTrackers: undefined,
+        mediaData: {
+          blockReason: 'GEOBLOCK',
+          imageUrl: 'https://img.rts.ch/medias/2023/image/y2zvzo-26927888.image/16x9'
+        }
+      });
     });
   });
   /**
@@ -811,6 +947,54 @@ describe('SrgSsr', () => {
       SrgSsr.srgAnalytics(player);
 
       expect(spyOnOptions).toHaveBeenLastCalledWith(expect.objectContaining({ trackers: { srgAnalytics: expect.any(Object) }}));
+    });
+
+    it('should not reinitialize the srgAnalytics', () => {
+      player.options().trackers.srgAnalytics = {};
+
+      const spyOnOptions = jest.spyOn(player, 'options');
+
+      SrgSsr.srgAnalytics(player);
+
+      expect(spyOnOptions).not.toHaveBeenLastCalledWith(expect.objectContaining({ trackers: { srgAnalytics: expect.any(Object) }}));
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * pillarboxMonitoring *******************************************************
+   *****************************************************************************
+   */
+  describe('pillarboxMonitoring', () => {
+    it('should not initialize the pillarboxMonitoring', () => {
+      player.options().trackers.pillarboxMonitoring = false;
+
+      const spyOnOptions = jest.spyOn(player, 'options');
+
+      SrgSsr.pillarboxMonitoring(player);
+
+      expect(player.options().trackers.pillarboxMonitoring).toBe(false);
+      expect(spyOnOptions).not.toHaveBeenLastCalledWith(expect.objectContaining({ trackers: { pillarboxMonitoring: expect.any(Object) }}));
+    });
+
+    it('should initialize the pillarboxMonitoring', () => {
+      player.options().trackers.pillarboxMonitoring = undefined;
+
+      const spyOnOptions = jest.spyOn(player, 'options');
+
+      SrgSsr.pillarboxMonitoring(player);
+
+      expect(spyOnOptions).toHaveBeenNthCalledWith(4, expect.objectContaining({ trackers: { pillarboxMonitoring: expect.any(Object) }}));
+    });
+
+    it('should not reinitialize the pillarboxMonitoring', () => {
+      player.options().trackers.pillarboxMonitoring = {};
+
+      const spyOnOptions = jest.spyOn(player, 'options');
+
+      SrgSsr.pillarboxMonitoring(player);
+
+      expect(spyOnOptions).not.toHaveBeenLastCalledWith(expect.objectContaining({ trackers: { pillarboxMonitoring: expect.any(Object) }}));
     });
   });
 
@@ -923,21 +1107,25 @@ describe('SrgSsr', () => {
         expect(middleware.currentTime(currentTime)).toBe(currentTime);
       });
 
-      it('should return the blocked segment end time', () => {
+      it('should return the blocked segment end time with a 0.1 second tolerance', () => {
         const spyOnPlayerCurrentTime = jest.spyOn(player, 'currentTime');
+        const spyOnPlayerTrigger = jest.spyOn(player, 'trigger');
         const middleware = SrgSsr.middleware(player);
         const currentTime = 13;
         const blockedSegmentCue = {
           startTime: 10,
-          endTime: 20
+          endTime: 20,
+          text: JSON.stringify('data')
         };
+        const endTimeWithTolerance = blockedSegmentCue.endTime + 0.1;
 
         player.textTracks().getTrackById.mockReturnValueOnce({
           activeCues: [blockedSegmentCue]
         });
 
-        expect(middleware.currentTime(currentTime)).toBe(blockedSegmentCue.endTime);
-        expect(spyOnPlayerCurrentTime).toHaveBeenCalledWith(blockedSegmentCue.endTime);
+        expect(middleware.currentTime(currentTime)).toBe(endTimeWithTolerance);
+        expect(spyOnPlayerCurrentTime).toHaveBeenCalledWith(endTimeWithTolerance);
+        expect(spyOnPlayerTrigger).toHaveBeenCalledWith({ 'data': blockedSegmentCue, 'type': 'srgssr/blocked-segment' });
       });
     });
 

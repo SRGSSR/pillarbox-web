@@ -1,4 +1,17 @@
 /**
+ * @typedef {import('./typedef').Channel} Channel
+ * @typedef {import('./typedef').Chapter} Chapter
+ * @typedef {import('./typedef').Episode} Episode
+ * @typedef {import('./typedef').Resource} Resource
+ * @typedef {import('./typedef').Segment} Segment
+ * @typedef {import('./typedef').Show} Show
+ * @typedef {import('./typedef').Subtitle} Subtitle
+ * @typedef {import('./typedef').TimeInterval} TimeInterval
+ * @typedef {import('./typedef').Topic} Topic
+ * @typedef {import('./typedef').MainResource} MainResource
+ */
+
+/**
  * Represents the composition of media content.
  *
  * @class MediaComposition
@@ -72,7 +85,13 @@ class MediaComposition {
    * @returns {Array.<Chapter>} of chapters
    */
   getChapters() {
-    return this.chapterList;
+    const AUDIO = 'AUDIO';
+    const EPISODE = 'EPISODE';
+
+    if (this.getMainChapter().mediaType === AUDIO ||
+    this.getMainChapter().type !== EPISODE) return [];
+
+    return this.chapterList.filter(({ mediaType }) => mediaType !== AUDIO);
   }
 
   /**
@@ -218,6 +237,7 @@ class MediaComposition {
       imageCopyright: this.getMainChapter().imageCopyright,
       intervals: this.getMainTimeIntervals(),
       live: resource.live,
+      mediaContainer: resource.mediaContainer,
       mediaType: this.getMainChapter().mediaType,
       mimeType: resource.mimeType,
       presentation: resource.presentation,
@@ -320,17 +340,3 @@ class MediaComposition {
 }
 
 export default MediaComposition;
-
-
-/**
- * @typedef {import('./typedef').Channel} Channel
- * @typedef {import('./typedef').Chapter} Chapter
- * @typedef {import('./typedef').Episode} Episode
- * @typedef {import('./typedef').Resource} Resource
- * @typedef {import('./typedef').Segment} Segment
- * @typedef {import('./typedef').Show} Show
- * @typedef {import('./typedef').Subtitle} Subtitle
- * @typedef {import('./typedef').TimeInterval} TimeInterval
- * @typedef {import('./typedef').Topic} Topic
- * @typedef {import('./typedef').MainResource} MainResource
- */

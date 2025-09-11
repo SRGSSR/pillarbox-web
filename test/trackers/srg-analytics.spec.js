@@ -1,6 +1,6 @@
-import SRGAnalytics from '../../src/analytics/SRGAnalytics.js';
+import SRGAnalytics from '../../src/trackers/SRGAnalytics.js';
 import Pillarbox from '../../src/pillarbox.js';
-import * as mediaData from '../__mocks__/mediaData.json';
+import playerMock from '../__mocks__/player-mock.js';
 
 jest.mock('../../src/pillarbox.js', () => ({
   browser: {
@@ -43,60 +43,6 @@ const playbackSequences = (player, timeRanges = [[]]) => {
 };
 
 describe('SRGAnalytics', () => {
-  let playerMock = jest.fn(() => ({
-    audioTracks: jest.fn().mockReturnValue({}),
-    currentSource: jest.fn().mockReturnValue(mediaData),
-    currentTime: jest.fn().mockReturnValue(0),
-    debug: jest.fn().mockReturnValue(false),
-    duration: jest.fn().mockReturnValue(0),
-    liveTracker: {
-      atLiveEdge: jest.fn(),
-      liveCurrentTime: jest.fn(),
-      liveWindow: jest.fn(),
-      options: jest.fn().mockReturnValue({
-        trackingThreshold: 100,
-      }),
-      seekableStart: jest.fn(),
-    },
-    el: jest.fn(),
-    ended: jest.fn(),
-    muted: jest.fn(),
-    play: jest.fn(() => {
-      document.dispatchEvent(new Event('play'));
-      document.dispatchEvent(new Event('playing'));
-    }),
-    pause: jest.fn(() => {
-      document.dispatchEvent(new Event('pause'));
-    }),
-    paused: jest.fn(),
-    playbackRate: jest.fn().mockReturnValue(1),
-    on: jest.fn((evt, fn) => {
-      document.addEventListener(evt, fn);
-    }),
-    off: jest.fn((evt, fn) => {
-      document.removeEventListener(evt, fn);
-    }),
-    one: jest.fn((evt, fn) => {
-      document.addEventListener(evt, fn, { once: true });
-    }),
-    seekable: jest.fn(),
-    seeking: jest.fn(),
-    tech: jest.fn().mockReturnValue({
-      isCasting: undefined,
-    }),
-    textTrack: jest.fn().mockReturnValue(undefined),
-    trigger: jest.fn((evt) => {
-      document.dispatchEvent(new Event(evt));
-    }),
-    scrubbing: jest.fn(),
-    src: jest.fn(() => {
-      document.dispatchEvent(new Event('emptied'));
-    }),
-    volume: jest.fn().mockReturnValue(1),
-    eventBusEl_: true,
-    options_: {},
-  }));
-
   let player;
   let analytics;
 

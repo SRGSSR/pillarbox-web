@@ -1,0 +1,130 @@
+{
+  "chapterUrn": "urn:rts:video:_rts_info_fulldvr",
+  "chapterList": [
+    {
+      "id": "_rts_info_fulldvr",
+      "mediaType": "VIDEO",
+      "vendor": "RTS",
+      "urn": "urn:rts:video:_rts_info_fulldvr",
+      "title": "⚽️ LiveCenter FullDVR (live for 76 seconds)",
+      "description": "⚽️ LiveCenter FullDVR",
+      "imageUrl": "https://www.rts.ch/2017/08/28/11/22/8872025.image/16x9",
+      "type": "SCHEDULED_LIVESTREAM",
+      "date": "2025-05-19T08:47:00Z",
+      "duration": 120030,
+      "validFrom": "2025-05-19T08:47:00Z",
+      "validTo": "2025-05-19T08:49:00Z",
+      "position": 0,
+      "noEmbed": false,
+      "playableAbroad": false,
+      "displayable": true,
+      "markIn": 0,
+      "markOut": 1,
+      "aspectRatio": "16:9",
+      "resourceList": [
+        {
+          "url": "https://srgssrch.akamaized.net/hls/live/2022077/srgssr-hls-stream20-ch-dvr/master.m3u8?dw=7200?start=1747644390",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "presentation": "DEFAULT",
+          "streaming": "HLS",
+          "dvr": true,
+          "live": true,
+          "mediaContainer": "UNKNOWN",
+          "audioCodec": "AAC",
+          "tokenType": "AKAMAI",
+          "videoCodec": "H264",
+          "audioTrackList": [
+            { "locale": "mis", "language": "Uncoded language", "source": "HLS" }
+          ],
+          "analyticsData": { "srg_mqual": "HD", "srg_mpres": "DEFAULT" },
+          "analyticsMetadata": {
+            "media_streaming_quality": "HD",
+            "media_special_format": "DEFAULT"
+          }
+        }
+      ],
+      "analyticsData": {
+        "ns_st_ep": "\uD83C\uDDE8\uD83C\uDDED RTSInfo (live with DVR)",
+        "ns_st_ty": "Video",
+        "ns_st_ci": "_rts_info"
+      },
+      "analyticsMetadata": {
+        "media_segment": "\uD83C\uDDE8\uD83C\uDDED RTSInfo (live with DVR)",
+        "media_type": "Video",
+        "media_segment_id": "_rts_info",
+        "media_urn": "urn:rts:video:_rts_info"
+      }
+    },
+    {
+      "id": "_rts_info_fulldvr_segment1",
+      "mediaType": "VIDEO",
+      "urn": "urn:rts:video:_rts_info_fulldvr_segment1",
+      "title": "Highlight 1",
+      "imageUrl": "https://www.rts.ch/2017/08/28/11/22/8872025.image/16x9",
+      "type": "CLIP",
+      "duration": 10000,
+      "validFrom": "2025-05-19T08:47:00Z",
+      "validTo": "2025-05-19T08:50:00Z",
+      "fullLengthUrn": "urn:rts:video:_rts_info_fulldvr",
+      "position": 0,
+      "noEmbed": false,
+      "playableAbroad": false,
+      "displayable": true,
+      "markIn": -10000,
+      "markOut": 0,
+      "resourceList": [
+        {
+          "url": "https://srgssrch.akamaized.net/hls/live/2022077/srgssr-hls-stream20-ch-dvr/master.m3u8?dw=7200?start=1747644390?start=1747644410&end=1747644420",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "tokenType": "AKAMAI"
+        }
+      ]
+    },
+    {
+      "id": "_rts_info_fulldvr_segment2",
+      "mediaType": "VIDEO",
+      "urn": "urn:rts:video:_rts_info_fulldvr_segment2",
+      "title": "Highlight 2",
+      "imageUrl": "https://www.rts.ch/2017/08/28/11/22/8872025.image/16x9",
+      "type": "CLIP",
+      "duration": 10000,
+      "validFrom": "2025-05-19T08:47:00Z",
+      "validTo": "2025-05-19T08:50:00Z",
+      "fullLengthUrn": "urn:rts:video:_rts_info_fulldvr",
+      "position": 1,
+      "noEmbed": false,
+      "playableAbroad": false,
+      "displayable": true,
+      "markIn": 10000,
+      "markOut": 20000,
+      "resourceList": [
+        {
+          "url": "https://srgssrch.akamaized.net/hls/live/2022077/srgssr-hls-stream20-ch-dvr/master.m3u8?dw=7200?start=1747644390?start=1747644430&end=1747644440",
+          "quality": "HD",
+          "protocol": "HLS",
+          "encoding": "H264",
+          "mimeType": "application/x-mpegURL",
+          "streaming": "HLS",
+          "dvr": false,
+          "live": false,
+          "tokenType": "AKAMAI"
+        }
+      ]
+    }
+  ],
+  "analyticsData": {
+    "ns_st_pr": "\uD83C\uDDE8\uD83C\uDDED RTSInfo (live with DVR)"
+  },
+  "analyticsMetadata": {
+    "media_episode": "\uD83C\uDDE8\uD83C\uDDED RTSInfo (live with DVR)"
+  }
+}

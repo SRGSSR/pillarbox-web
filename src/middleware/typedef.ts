@@ -1,5 +1,5 @@
-import {MainResource} from '../dataProvider/model/typedef';
-import {KeySystems} from '../utils/typedef';
+import { MainResource } from '../dataProvider/model/typedef';
+import { KeySystems } from '../utils/typedef';
 
 
 /**
@@ -34,3 +34,38 @@ export type ComposedSrcMediaData = {
    */
   mediaData: MainResource;
 };
+
+/**
+ * Represents a set of options specific to the SRG SSR.
+ *
+ * __Note__:
+ *
+ * - All these options have a default value and can therefore be undefined.
+ * - DataProvider options cannot be combined with each other.
+ */
+export type SrgOptions = {
+  /**
+   * A function returning an object representing a mediaComposition.
+   *
+   * @example
+   * // Must match the following signature
+   * (data: string) => any
+   */
+  dataProvider: undefined | Function;
+  /**
+   * A specific host for a different IL environment.
+   */
+  dataProviderHost: undefined | string;
+  /**
+   * A function for handling a custom data source.
+   *
+   * @example
+   * // Must match the following signature
+   * (contentId: string) => string
+   */
+  dataProviderUrlHandler: undefined | Function;
+  /**
+   * The URL of the TagCommander script.
+   */
+  tagCommanderScriptURL: undefined | string;
+}

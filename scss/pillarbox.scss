@@ -1,4 +1,4 @@
-@import '../node_modules/video.js/dist/video-js';
+@import 'video.js/dist/video-js';
 
 /*
 ******************************************************************************
@@ -6,6 +6,7 @@
 ******************************************************************************
 */
 .pillarbox-js {
+  @extend .video-js;
   @import "components/big-play";
   @import "components/captions-settings";
   @import "components/control";

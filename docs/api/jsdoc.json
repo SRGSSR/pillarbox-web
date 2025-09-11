@@ -2,8 +2,9 @@
   "source": {
     "include": [
       "src/components/",
-      "src/dataProvider/model",
+      "src/dataProvider/",
       "src/middleware/",
+      "src/trackers/",
       "src/utils/typedef.ts",
       "src/pillarbox.js"
     ],
@@ -22,7 +23,7 @@
     "template": "node_modules/clean-jsdoc-theme",
     "tutorials": "docs/api//tutorials",
     "theme_opts": {
-      "favicon": "img/favicon.ico",
+      "favicon": "docs/api/img/favicon.ico",
       "default_theme": "fallback-dark",
       "homepageTitle": "pillarbox-web API",
       "title": "<a href=\"/pillarbox-web/dist/api/\" class=\"sidebar-title sidebar-title-anchor\"><img src=\"./docs/api/img/pillarbox-logo.webp\" height=\"40px\">pillarbox-web</a>",
@@ -32,7 +33,12 @@
       "menu": [
         {
           "title": "Showcase",
-          "link": "https://srgssr.github.io/pillarbox-web-demo/showcase",
+          "link": "https://demo.pillarbox.ch/showcase",
+          "target": "_blank"
+        },
+        {
+          "title": "Theme Editor",
+          "link": "https://editor.pillarbox.ch",
           "target": "_blank"
         },
         {
@@ -41,7 +47,7 @@
           "target": "_blank"
         },
         {
-          "title": "Source Code",
+          "title": "Code",
           "link": "https://github.com/SRGSSR/pillarbox-web",
           "target": "_blank"
         }
