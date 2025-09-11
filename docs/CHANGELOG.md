@@ -1,3 +1,21 @@
+## [1.23.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.23.1...v1.23.2) (2025-09-11)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* exports.types in package.json for correct typescript entry point ([2bdc2fd](https://github.com/SRGSSR/pillarbox-web/commit/2bdc2fd5d4fc573c47987f4bab1c3ce427627d08))
+
+
+### Docs 📖
+
+* adds a tutorial on how to integrate ecma scripts modules through a CDN ([faad1f9](https://github.com/SRGSSR/pillarbox-web/commit/faad1f9bbc44775ac21f43f586c5029eb703aea1)), closes [#333](https://github.com/SRGSSR/pillarbox-web/issues/333) [#331](https://github.com/SRGSSR/pillarbox-web/issues/331)
+* remove note about yarn deduplication issue with video.js ([d23c1cb](https://github.com/SRGSSR/pillarbox-web/commit/d23c1cb7363460d0c06d02dfd5507abc08e6d3b4)), closes [#222](https://github.com/SRGSSR/pillarbox-web/issues/222)
+
+
+### CI 🔁
+
+* upgrade node version to 22 in ci workflow ([209577d](https://github.com/SRGSSR/pillarbox-web/commit/209577d7a35f259d29370b20e283ad9ae6ba8d3d))
+
 ## [1.23.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.23.0...v1.23.1) (2025-07-25)
 
 
