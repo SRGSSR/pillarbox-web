@@ -1,10 +1,12 @@
-/*
-******************************************************************************
--- Error: Displayed when an error occurs
-******************************************************************************
-*/
-.vjs-error-display .vjs-modal-dialog-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@mixin error {
+  /*
+  ******************************************************************************
+  -- Error: Displayed when an error occurs
+  ******************************************************************************
+  */
+  .vjs-error-display .vjs-modal-dialog-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

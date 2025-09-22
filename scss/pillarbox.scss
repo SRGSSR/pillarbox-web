@@ -1,4 +1,20 @@
-@import 'video.js/dist/video-js';
+@use "components/big-play";
+@use "components/captions-settings";
+@use "components/control";
+@use "components/control-bar";
+@use "components/control-spacer";
+@use "components/error";
+@use 'components/layout';
+@use "components/loading";
+@use "components/menu/menu";
+@use "components/menu/menu-popup";
+@use "components/slider";
+@use "components/text-track";
+@use "components/time";
+@use "components/title-bar";
+@use "components/progress";
+@use "components/volume";
+@use 'video.js/dist/video-js.css';
 
 /*
 ******************************************************************************
@@ -7,20 +23,21 @@
 */
 .pillarbox-js {
   @extend .video-js;
-  @import "components/big-play";
-  @import "components/captions-settings";
-  @import "components/control";
-  @import "components/control-bar";
-  @import "components/control-spacer";
-  @import "components/error";
-  @import 'components/layout';
-  @import "components/loading";
-  @import "components/menu/menu";
-  @import "components/menu/menu-popup";
-  @import "components/slider";
-  @import "components/text-track";
-  @import "components/time";
-  @import "components/title-bar";
-  @import "components/progress";
-  @import "components/volume";
+
+  @include big-play.big-play;
+  @include captions-settings.captions-settings;
+  @include control.control;
+  @include control-bar.control-bar;
+  @include control-spacer.control-spacer;
+  @include error.error;
+  @include layout.layout;
+  @include loading.loading;
+  @include menu.menu;
+  @include menu-popup.menu-popup;
+  @include slider.slider;
+  @include text-track.text-track;
+  @include time.time;
+  @include title-bar.title-bar;
+  @include progress.progress;
+  @include volume.volume;
 }
