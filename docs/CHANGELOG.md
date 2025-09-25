@@ -1,3 +1,10 @@
+## [1.23.3](https://github.com/SRGSSR/pillarbox-web/compare/v1.23.2...v1.23.3) (2025-09-25)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **npm:** drm playback on safari ([3d71a55](https://github.com/SRGSSR/pillarbox-web/commit/3d71a555d74779a8d4e7008fee84036c20aa0cbe))
+
 ## [1.23.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.23.1...v1.23.2) (2025-09-11)
 
 
