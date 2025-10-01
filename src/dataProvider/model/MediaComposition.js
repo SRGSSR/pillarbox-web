@@ -242,6 +242,7 @@ class MediaComposition {
       mimeType: resource.mimeType,
       presentation: resource.presentation,
       quality: resource.quality,
+      spriteSheet: this.getMainChapter().spriteSheet,
       streaming: resource.streaming,
       streamOffset: resource.streamOffset,
       subtitles: this.getFilteredExternalSubtitles(),
