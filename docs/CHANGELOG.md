@@ -1,3 +1,10 @@
+## [1.24.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.23.3...v1.24.0) (2025-10-03)
+
+
+### New Features 🚀
+
+* **media-composition:** expose spriteSheet property ([47a8a0c](https://github.com/SRGSSR/pillarbox-web/commit/47a8a0c04df045dced27e643e232db2c84c377cd)), closes [#339](https://github.com/SRGSSR/pillarbox-web/issues/339)
+
 ## [1.23.3](https://github.com/SRGSSR/pillarbox-web/compare/v1.23.2...v1.23.3) (2025-09-25)
 
 
