@@ -1,9 +1,11 @@
-/*
-******************************************************************************
--- Spacer control: Spacer used as an insertion point
-******************************************************************************
-*/
-&:not(.vjs-audio-only-mode) .vjs-custom-control-spacer {
-  display: block;
-  flex: auto;
+@mixin control-spacer {
+  /*
+  ******************************************************************************
+  -- Spacer control: Spacer used as an insertion point
+  ******************************************************************************
+  */
+  &:not(.vjs-audio-only-mode) .vjs-custom-control-spacer {
+    display: block;
+    flex: auto;
+  }
 }
