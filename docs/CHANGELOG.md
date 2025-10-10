@@ -1,3 +1,10 @@
+## [1.24.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.24.0...v1.24.1) (2025-10-10)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* text track display issue in minified builds ([73748af](https://github.com/SRGSSR/pillarbox-web/commit/73748af31b2323d09f9d90edf50eb56f573e2e8c)), closes [#341](https://github.com/SRGSSR/pillarbox-web/issues/341)
+
 ## [1.24.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.23.3...v1.24.0) (2025-10-03)
 
 
