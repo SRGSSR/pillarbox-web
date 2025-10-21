@@ -98,7 +98,7 @@ class SRGAnalytics {
       debug = false,
       environment = 'prod',
       playerVersion = 'none',
-      tagCommanderScriptURL = '//colibri-js.akamaized.net/penguin/tc_SRGGD_11.js',
+      tagCommanderScriptURL = './commandersact/tc.js',
     } = {}
   ) {
     this.isDebugEnabled = debug;
@@ -257,13 +257,10 @@ class SRGAnalytics {
       this.pendingTagCommanderReload = false;
     }
 
-    if (window.tc_events_11 && this.pendingQueue.length > 0) {
+    // (window.tC3666_59 && window.cact
+    if (window.cact && this.pendingQueue.length > 0) {
       this.pendingQueue.forEach((notification) => {
-        window.tc_events_11(
-          this.player.el(),
-          notification.action,
-          notification.labels
-        );
+        window.cact('emit', 'notify', notification.labels);
       });
 
       this.pendingQueue = [];
@@ -364,6 +361,8 @@ class SRGAnalytics {
    */
   getEventLabels(eventName) {
     const labels = {
+      media_player_id: this.player.id(),
+      event_name: eventName,
       event_id: eventName,
       event_timestamp: SRGAnalytics.now(),
       media_dvr_window_length: 0,
@@ -378,6 +377,15 @@ class SRGAnalytics {
       media_subtitles_on: this.isTextTrackEnabled(),
       media_volume: (this.player.volume() * 100).toFixed(0),
       navigation_environment: this.environment,
+
+      ...this.srcMediaData.mediaData.analyticsMetadata,
+      media_bu_distributer: this.srcMediaData.mediaData.vendor,
+      media_chromecast_selected: Boolean(this.player.tech(true).isCasting),
+      media_embedding_url: document.referrer,
+      media_player_display: 'default', // TODO implement if it still relevant
+      media_player_name: 'pillarbox-web', // TODO add a property playerName in the constructor with a default value ?
+      media_player_version: this.playerVersion,
+      media_url: this.srcMediaData.src,
     };
 
     if (this.isAudioTrackEnabled()) {
@@ -640,6 +648,7 @@ class SRGAnalytics {
     // Set ComScore labels
     this.reloadTagCommanderContainer();
 
+    this.notify('init');
     this.notify('buffer_start');
     this.hasStarted = false;
   }
@@ -650,7 +659,6 @@ class SRGAnalytics {
    * @see https://docs.videojs.com/player#event:loadeddata
    */
   loadeddata() {
-    this.notify('init');
     this.initialized = true;
 
     this.notify('buffer_stop');
@@ -697,8 +705,9 @@ class SRGAnalytics {
     this.log(eventName, labels);
 
     try {
-      if (window.tc_events_11) {
-        window.tc_events_11(this.player.el(), eventName, labels);
+      // window.tC3666_59 && window.cact
+      if (window.cact) {
+        window.cact('emit', 'notify', labels);
       } else {
         this.pendingQueue.push({
           action: eventName,
