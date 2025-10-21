@@ -1,6 +1,12 @@
 import Player from '../../src/components/player.js';
 import pillarbox from '../../src/pillarbox.js';
 
+// Object.defineProperty(window, 'CSS', {
+//   configurable: true,
+//   writable: true,
+//   value: { supports: jest.fn() },
+// });
+
 describe('Player', () => {
   const videoEl = document.createElement('video');
 
