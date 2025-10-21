@@ -82,8 +82,8 @@ describe('SRGAnalytics', () => {
 
       playbackSequences(player, [[0, 60]]);
 
-      expect(spyNotify).toHaveBeenNthCalledWith(1, 'buffer_start');
-      expect(spyNotify).toHaveBeenNthCalledWith(2, 'init');
+      expect(spyNotify).toHaveBeenNthCalledWith(1, 'init');
+      expect(spyNotify).toHaveBeenNthCalledWith(2, 'buffer_start');
       expect(spyNotify).toHaveBeenNthCalledWith(3, 'buffer_stop');
       expect(spyNotify).toHaveBeenNthCalledWith(4, 'play');
       expect(spyNotify).toHaveBeenNthCalledWith(5, 'pos');
@@ -110,8 +110,8 @@ describe('SRGAnalytics', () => {
       player.pause();
       player.paused.mockReturnValue(true);
 
-      expect(spyNotify).toHaveBeenNthCalledWith(1, 'buffer_start');
-      expect(spyNotify).toHaveBeenNthCalledWith(2, 'init');
+      expect(spyNotify).toHaveBeenNthCalledWith(1, 'init');
+      expect(spyNotify).toHaveBeenNthCalledWith(2, 'buffer_start');
       expect(spyNotify).toHaveBeenNthCalledWith(3, 'buffer_stop');
       expect(spyNotify).toHaveBeenNthCalledWith(4, 'play');
       expect(spyNotify).toHaveBeenNthCalledWith(5, 'pos');
@@ -139,8 +139,8 @@ describe('SRGAnalytics', () => {
         [600, 720]
       ]);
 
-      expect(spyNotify).toHaveBeenNthCalledWith(1, 'buffer_start');
-      expect(spyNotify).toHaveBeenNthCalledWith(2, 'init');
+      expect(spyNotify).toHaveBeenNthCalledWith(1, 'init');
+      expect(spyNotify).toHaveBeenNthCalledWith(2, 'buffer_start');
       expect(spyNotify).toHaveBeenNthCalledWith(3, 'buffer_stop');
       expect(spyNotify).toHaveBeenNthCalledWith(4, 'play');
       expect(spyNotify).toHaveBeenNthCalledWith(5, 'seek');
@@ -169,8 +169,8 @@ describe('SRGAnalytics', () => {
         [600, 720]
       ]);
 
-      expect(spyNotify).toHaveBeenNthCalledWith(1, 'buffer_start');
-      expect(spyNotify).toHaveBeenNthCalledWith(2, 'init');
+      expect(spyNotify).toHaveBeenNthCalledWith(1, 'init');
+      expect(spyNotify).toHaveBeenNthCalledWith(2, 'buffer_start');
       expect(spyNotify).toHaveBeenNthCalledWith(3, 'buffer_stop');
       expect(spyNotify).toHaveBeenNthCalledWith(4, 'play');
       expect(spyNotify).toHaveBeenNthCalledWith(5, 'seek');
@@ -292,7 +292,7 @@ describe('SRGAnalytics', () => {
 
       expect(analytics.pendingQueue).toHaveLength(3);
 
-      window.tc_events_11 = jest.fn();
+      window.cact = jest.fn();
 
       analytics.flush();
 
@@ -505,8 +505,8 @@ describe('SRGAnalytics', () => {
       player.trigger('loadeddata');
       player.trigger('ratechange');
 
-      expect(spyNotify).toHaveBeenNthCalledWith(1, 'buffer_start');
-      expect(spyNotify).toHaveBeenNthCalledWith(2, 'init');
+      expect(spyNotify).toHaveBeenNthCalledWith(1, 'init');
+      expect(spyNotify).toHaveBeenNthCalledWith(2, 'buffer_start');
       expect(spyNotify).toHaveBeenNthCalledWith(3, 'buffer_stop');
       expect(spyNotify).toHaveBeenNthCalledWith(4, 'change_playback_rate');
     });
