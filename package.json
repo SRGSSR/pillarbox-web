@@ -40,6 +40,7 @@
     "github:page": "vite build && npm run generate:docs",
     "outdated": "npm outdated",
     "prebuild": "rimraf dist",
+    "prepare": "husky install",
     "release:ci": "semantic-release",
     "start": "vite --port 6969 --open",
     "stylelint": "stylelint **/*.scss --custom-syntax --allow-empty-input",
