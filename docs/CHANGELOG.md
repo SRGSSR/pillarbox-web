@@ -1,3 +1,15 @@
+## [1.25.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.24.1...v1.25.0) (2025-11-21)
+
+
+### New Features 🚀
+
+* **media-composition:** add description to main resources ([430cc1f](https://github.com/SRGSSR/pillarbox-web/commit/430cc1f9f15ba981040d8b345891c4400a29551f))
+
+
+### Tests ✅
+
+* **player:** mock undefined window.CSS.supports ([ef1dfcf](https://github.com/SRGSSR/pillarbox-web/commit/ef1dfcfc62b637395198c1c19b839c13a4828784))
+
 ## [1.24.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.24.0...v1.24.1) (2025-10-10)
 
 
