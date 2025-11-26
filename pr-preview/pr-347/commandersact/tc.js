@@ -1,10 +1,10 @@
 /*
- * tagContainer Generator v99.5
+ * tagContainer Generator v100.1
  * Copyright Commanders Act
  * https://www.commandersact.com/fr/
- * Generated: 2025-10-22 12:40:39 Europe/Paris
+ * Generated: 2025-11-26 11:59:51 Europe/Paris
  * ---
- * Version	: 20.05
+ * Version	: 20.06
  * IDTC 	: 59
  * IDS		: 3666
  */
@@ -346,8 +346,8 @@ if(typeof tC == 'undefined'){
         id_container           : String(59),
         id_site                : String(3666),
         frequency              : String(1000),
-        containerVersion       : String(20.05),
-        generatorVersion       : String('99.5'),
+        containerVersion       : String(20.06),
+        generatorVersion       : String('100.1'),
         containerStart         : Date.now(),
         sourceKey              : String('40b13c0d-80e8-4805-83fe-ade8adaa2917'),
         defaultCdnDomain       : String('cdn.trustcommander.net'),
@@ -406,7 +406,7 @@ if(typeof tC == 'undefined'){
     tC.containersLaunched[currentContainer.id_site][currentContainer.id_container] = {v:currentContainer.containerVersion, t:[], g:currentContainer.generatorVersion};
 
     /*extends*/
-
+    
 tC.coreReadyStandalone = true;
 if (tC.isDOMReady) {
     tC.coreReadyStandalone = false;
@@ -1386,7 +1386,7 @@ tC.xhr = tC.xhr || function (reqOptions) {
     };
 
     if (tC.track == null) {
-        tC._trackVersion = 4;
+        tC._trackVersion = 5;
     }
     tC.track = tC.track || function(options) {
         options = options || {};
@@ -1397,21 +1397,6 @@ tC.xhr = tC.xhr || function (reqOptions) {
             return null;
         }
 
-        var queryParams = {};
-        if (route.siteQueryArg && siteId) {
-            queryParams[route.siteQueryArg] = siteId;
-        }
-        Object.assign(queryParams, options.queryParams);
-
-        var queryString = Object.keys(queryParams).reduce(function(qs, key) {
-            var value = queryParams[key];
-            qs.push(key + '=' + value);
-            return qs;
-        }, []);
-        queryString = queryString.join('&');
-        if (queryString) {
-            queryString = '?' + queryString;
-        }
         var eventData = JSON.stringify(options.body || {});
 
         var defaultDomain = '' || route.defaultDomain;
@@ -1421,9 +1406,32 @@ tC.xhr = tC.xhr || function (reqOptions) {
             collectionDomain = collectionDomain.slice(0, -1);
         }
 
-        var isFirstParty = tC.isCustomDns(collectionDomain);
-        var isCookieless = (route.cookielessDomains || []).includes(collectionDomain);
-        var serverId = isFirstParty && !isCookieless ? '/' + route.serverId : '';
+        var isFirstParty = tC.isCustomDns(collectionDomain) && !(route.cookielessDomains || []).includes(collectionDomain);
+        var isCookieless = options.isCookieless || (route.cookielessDomains || []).includes(collectionDomain);
+        var queryParams = {};
+        if (isCookieless) {
+            queryParams.tc_do_not_track = isCookieless;
+        }
+
+        var byPassCookieExtension = 0;
+        if (byPassCookieExtension) {
+            queryParams.force_rewrite_cookie = byPassCookieExtension;
+        }
+        if (route.siteQueryArg && siteId) {
+            queryParams[route.siteQueryArg] = siteId;
+        }
+        Object.assign(queryParams, options.queryParams);
+        var queryString = Object.keys(queryParams).reduce(function(qs, key) {
+            var value = queryParams[key];
+            qs.push(key + '=' + value);
+            return qs;
+        }, []);
+        queryString = queryString.join('&');
+        if (queryString) {
+            queryString = '?' + queryString;
+        }
+
+        var serverId = isFirstParty ? '/' + route.serverId : '';
         var collectionUrl = 'https://' + collectionDomain + serverId + '/' + route.path + queryString;
 
         var cookieName = '' || 'CAID';
@@ -1435,11 +1443,6 @@ tC.xhr = tC.xhr || function (reqOptions) {
         }
         var hasMissingCaid = isFirstParty && !isCookieless && !cookieValue;
         if (hasMissingCaid) {
-            var byPassCookieExtension = 0;
-            if (byPassCookieExtension) {
-                var alreadyContainQueryParams = collectionUrl.indexOf('?') > -1;
-                collectionUrl = collectionUrl + (alreadyContainQueryParams ? '&' : '?') + 'force_rewrite_cookie=true';
-            }
             if (caidSync) {
                 var syncDomain = '' || route.syncDomain || defaultDomain;
                 tC.getCrossDomainCookie({ name: 'TCID', siteId: siteId, domain: syncDomain }, function(tcid) {
@@ -1905,7 +1908,7 @@ tC.extend({
 
 		return ret;
 	},
-
+	
 	merge: function( first, second ) {
 		var l = second.length,
 			i = first.length,
@@ -1926,7 +1929,7 @@ tC.extend({
 
 		return first;
 	}/*,
-
+	
 	trim: core_trim && !core_trim.call("\uFEFF\xA0") ?
 		function( text ) {
 			return text == null ?
@@ -1976,91 +1979,91 @@ tC.event.notifyListIdTags = tC.event.notifyListIdTags || [];
 if (tC.event.notifyListIdTags.indexOf("503")==-1){
     tC.event.notifyListIdTags.push("503");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag503_3666_59(el, p);
         tC.launchTag(503, 'Commanders Act - Event QA', 1377, 3666, 59, 77);});
 }
 if (tC.event.notifyListIdTags.indexOf("507")==-1){
     tC.event.notifyListIdTags.push("507");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag507_3666_59(el, p);
         tC.launchTag(507, 'UDP', 26, 3666, 59, 77);});
 }
 if (tC.event.notifyListIdTags.indexOf("509")==-1){
     tC.event.notifyListIdTags.push("509");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag509_3666_59(el, p);
         tC.launchTag(509, 'Comscore - Create playback session', 26, 3666, 59, 77);});
 }
 if (tC.event.notifyListIdTags.indexOf("515")==-1){
     tC.event.notifyListIdTags.push("515");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag515_3666_59(el, p);
         tC.launchTag(515, 'comScore - notifyPlay', 2381, 3666, 59, 77);});
 }
 if (tC.event.notifyListIdTags.indexOf("516")==-1){
     tC.event.notifyListIdTags.push("516");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag516_3666_59(el, p);
         tC.launchTag(516, 'comScore - notifyPause', 2383, 3666, 59, 77);});
 }
 if (tC.event.notifyListIdTags.indexOf("517")==-1){
     tC.event.notifyListIdTags.push("517");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag517_3666_59(el, p);
         tC.launchTag(517, 'comScore - notifyBufferStart', 2377, 3666, 59, 77);});
 }
 if (tC.event.notifyListIdTags.indexOf("518")==-1){
     tC.event.notifyListIdTags.push("518");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag518_3666_59(el, p);
         tC.launchTag(518, 'comScore - notifyBufferStop', 2379, 3666, 59, 77);});
 }
 if (tC.event.notifyListIdTags.indexOf("519")==-1){
     tC.event.notifyListIdTags.push("519");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag519_3666_59(el, p);
         tC.launchTag(519, 'comScore - notifySeekStart', 2387, 3666, 59, 77);});
 }
 if (tC.event.notifyListIdTags.indexOf("521")==-1){
     tC.event.notifyListIdTags.push("521");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag521_3666_59(el, p);
         tC.launchTag(521, 'comScore - notifyChangePlaybackRate', 2381, 3666, 59, 77);});
 }
 if (tC.event.notifyListIdTags.indexOf("522")==-1){
     tC.event.notifyListIdTags.push("522");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag522_3666_59(el, p);
         tC.launchTag(522, 'comScore - notifyEnd', 2385, 3666, 59, 77);});
 }
 if (tC.event.notifyListIdTags.indexOf("526")==-1){
     tC.event.notifyListIdTags.push("526");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag526_3666_59(el, p);
         tC.launchTag(526, 'webtrekk - play', 26, 3666, 59, 77);});
 }
 if (tC.event.notifyListIdTags.indexOf("527")==-1){
     tC.event.notifyListIdTags.push("527");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag527_3666_59(el, p);
         tC.launchTag(527, ' webtrekk - pause, seek, pos, uptime, stop, eof', 26, 3666, 59, 77);});
 }
 if (tC.event.notifyListIdTags.indexOf("532")==-1){
     tC.event.notifyListIdTags.push("532");
     tC.event.notifyListFunctions.push(function(el, p){
-
+    
         tC.executeTag532_3666_59(el, p);
         tC.launchTag(532, 'Chartbeat - init', 26, 3666, 59, 77);});
 }
@@ -2400,15 +2403,15 @@ return decodedValue;}
 return'';};}
 tC.internalvars_3666.initiators.var676();tC.internalvars_3666_59.listVar.push(676);tC.internalvars_3666.initiators.var623=function(){tC.internalvars.udp_cookie_id=(function(cookieName){var cookieId=tC.storage.get(cookieName)||tC.internalFunctions.getCookie(cookieName);if(!cookieId){cookieId=crypto.randomUUID?crypto.randomUUID():('10000000-1000-4000-8000-100000000000'.replace(/[018]/g,function(c){return(+c^crypto.getRandomValues(new Uint8Array(1))[0]&15>>+c/4).toString(16)}));tC.storage.set(cookieName,cookieId);}
 tC.setCookie(cookieName,cookieId,730);return cookieId||null;})(tC.internalvars.udp_cookie_name||'srf:analytics:uuid');}
-tC.internalvars_3666.initiators.var623();tC.internalvars_3666_59.listVar.push(623);tC.internalvars_3666.initiators.var626=function(){tC.internalvars.pbwInitComscore=function(player_id){if(ns_.analytics.configuration.getPublisherConfigurations().length)return;ns_.analytics.PlatformApi.setPlatformAPI(ns_.analytics.PlatformAPIs.WebBrowser);ns_.analytics.configuration.addClient(new ns_.analytics.configuration.PublisherConfiguration({'publisherId':'6036016','persistentLabels':{'cs_fpid':tC.getCookie('cs_fpid'),'mp_login':3}}));ns_.analytics.start();};}
-tC.internalvars_3666.initiators.var626();tC.internalvars_3666_59.listVar.push(626);tC.internalvars_3666.initiators.var627=function(){tC.internalvars.pbwInitMetaData=function(player_id){var analytics=ns_.analytics;window.pbw_comscore=window.pbw_comscore||{sa:{},cm:{}};if(!pbw_comscore.sa[player_id]){pbw_comscore.sa[player_id]=new analytics.StreamingAnalytics();pbw_comscore.sa[player_id].createPlaybackSession();pbw_comscore.cm[player_id]=new analytics.StreamingAnalytics.ContentMetadata();}
-var mediaType="*null";if(tc_array_events["media_duration_category"]=="short"){mediaType=analytics.StreamingAnalytics.ContentMetadata.ContentType.SHORT_FORM_ON_DEMAND;}else if(tc_array_events["media_duration_category"]=="long"){mediaType=analytics.StreamingAnalytics.ContentMetadata.ContentType.LONG_FORM_ON_DEMAND}else if(tc_array_events["media_duration_category"]=="infinit.livestream"){mediaType=analytics.StreamingAnalytics.ContentMetadata.ContentType.LIVE;}
-pbw_comscore.cm[player_id].setUniqueId(tc_array_events["media_segment_id"]||"*null");var mediaLength=tC.isNumeric(tc_array_events["media_segment_length"])?tc_array_events["media_segment_length"]*1000:"*null";pbw_comscore.cm[player_id].setLength(mediaLength);pbw_comscore.cm[player_id].setMediaType(mediaType);var dateOfDigitalAiring=new Date(tc_array_events["media_publication_date"]);pbw_comscore.cm[player_id].setDateOfDigitalAiring(dateOfDigitalAiring.getFullYear()||0,dateOfDigitalAiring.getMonth()?dateOfDigitalAiring.getMonth()+1:0,dateOfDigitalAiring.getDate()||0);pbw_comscore.cm[player_id].setEpisodeTitle(tc_array_events["media_segment"]||"*null");pbw_comscore.cm[player_id].setStationTitle(tc_array_events['media_channel_cs']);pbw_comscore.cm[player_id].setStationCode(tc_array_events["media_channel_cs"]||"*null");if(tc_array_events['media_tv_date']!==''){var dateOfTvAiring=new Date(tc_array_events["media_publication_date"]);pbw_comscore.cm[player_id].setDateOfTvAiring(dateOfTvAiring.getFullYear()||0,dateOfTvAiring.getMonth()?dateOfTvAiring.getMonth()+1:0,dateOfTvAiring.getDate()||0);}
-pbw_comscore.cm[player_id].setEpisodeId(tc_array_events['media_tv_id']);var timeOfProduction=new Date('0000-01-01 '+tc_array_events["media_tv_time"]);pbw_comscore.cm[player_id].setTimeOfProduction(timeOfProduction.getHours()||0,timeOfProduction.getMinutes()||0);var programId=tc_array_events["media_show_id"]||"*null";pbw_comscore.cm[player_id].setProgramId(tc_array_events["media_is_live"]?"1":programId);pbw_comscore.cm[player_id].setProgramTitle(tc_array_events["media_episode"]||"*null");pbw_comscore.cm[player_id].setPublisherName('SRG');pbw_comscore.cm[player_id].setTotalSegments('1');pbw_comscore.cm[player_id].setDictionaryClassificationC3('srg');pbw_comscore.cm[player_id].setDictionaryClassificationC4(tc_array_events['media_enterprise_units']);pbw_comscore.cm[player_id].setDictionaryClassificationC6('');pbw_comscore.cm[player_id].carryTvAdvertisementLoad('*null');pbw_comscore.cm[player_id].setEpisodeNumber(tc_array_events["media_episode_id"]||"*null");pbw_comscore.cm[player_id].setGenreName(tc_array_events["media_content_group"]||"*null");pbw_comscore.cm[player_id].carryTvAdvertisementLoad('*null');pbw_comscore.sa[player_id].setMediaPlayerName(tc_array_events['media_player_name']);pbw_comscore.sa[player_id].setMediaPlayerVersion(tc_array_events['media_player_version']);pbw_comscore.sa[player_id].setMetadata(pbw_comscore.cm[player_id]);};}
+tC.internalvars_3666.initiators.var623();tC.internalvars_3666_59.listVar.push(623);tC.internalvars_3666.initiators.var626=function(){tC.internalvars.mediaPlayerInitComscore=function(){if(ns_.analytics.configuration.getPublisherConfigurations().length)return;ns_.analytics.PlatformApi.setPlatformAPI(ns_.analytics.PlatformAPIs.WebBrowser);ns_.analytics.configuration.addClient(new ns_.analytics.configuration.PublisherConfiguration({'publisherId':'6036016','persistentLabels':{'cs_fpid':tC.getCookie('cs_fpid'),'mp_login':3}}));ns_.analytics.start();};}
+tC.internalvars_3666.initiators.var626();tC.internalvars_3666_59.listVar.push(626);tC.internalvars_3666.initiators.var627=function(){tC.internalvars.mediaPlayerInitComscoreMetaData=function(player_id){var analytics=ns_.analytics;window.media_player_comscore=window.media_player_comscore||{sa:{},cm:{}};if(!media_player_comscore.sa[player_id]){media_player_comscore.sa[player_id]=new analytics.StreamingAnalytics();}
+media_player_comscore.sa[player_id].createPlaybackSession();media_player_comscore.cm[player_id]=new analytics.StreamingAnalytics.ContentMetadata();var mediaType="*null";switch(tc_array_events["media_duration_category"]){case"short":mediaType=analytics.StreamingAnalytics.ContentMetadata.ContentType.SHORT_FORM_ON_DEMAND;break;case"long":mediaType=analytics.StreamingAnalytics.ContentMetadata.ContentType.LONG_FORM_ON_DEMAND;break;case"infinit.livestream":mediaType=analytics.StreamingAnalytics.ContentMetadata.ContentType.LIVE;break;}
+media_player_comscore.cm[player_id].setUniqueId(tc_array_events["media_segment_id"]||"*null");var mediaLength=tC.isNumeric(tc_array_events["media_segment_length"])?tc_array_events["media_segment_length"]*1000:"*null";media_player_comscore.cm[player_id].setLength(mediaLength);media_player_comscore.cm[player_id].setMediaType(mediaType);var dateOfDigitalAiring=new Date(tc_array_events["media_publication_date"]);media_player_comscore.cm[player_id].setDateOfDigitalAiring(dateOfDigitalAiring.getFullYear()||0,dateOfDigitalAiring.getMonth()?dateOfDigitalAiring.getMonth()+1:0,dateOfDigitalAiring.getDate()||0);media_player_comscore.cm[player_id].setEpisodeTitle(tc_array_events["media_segment"]||"*null");media_player_comscore.cm[player_id].setStationTitle(tc_array_events['media_channel_cs']);media_player_comscore.cm[player_id].setStationCode(tc_array_events["media_channel_cs"]||"*null");if(tc_array_events['media_tv_date']!==''){var dateOfTvAiring=new Date(tc_array_events["media_publication_date"]);media_player_comscore.cm[player_id].setDateOfTvAiring(dateOfTvAiring.getFullYear()||0,dateOfTvAiring.getMonth()?dateOfTvAiring.getMonth()+1:0,dateOfTvAiring.getDate()||0);}
+media_player_comscore.cm[player_id].setEpisodeId(tc_array_events['media_tv_id']);var timeOfProduction=new Date('0000-01-01 '+tc_array_events["media_tv_time"]);media_player_comscore.cm[player_id].setTimeOfProduction(timeOfProduction.getHours()||0,timeOfProduction.getMinutes()||0);var programId=tc_array_events["media_show_id"]||"*null";media_player_comscore.cm[player_id].setProgramId(tc_array_events["media_is_live"]?"1":programId);media_player_comscore.cm[player_id].setProgramTitle(tc_array_events["media_episode"]||"*null");media_player_comscore.cm[player_id].setPublisherName('SRG');media_player_comscore.cm[player_id].setTotalSegments('1');media_player_comscore.cm[player_id].setDictionaryClassificationC3('srg');media_player_comscore.cm[player_id].setDictionaryClassificationC4(tc_array_events['media_enterprise_units']);media_player_comscore.cm[player_id].setDictionaryClassificationC6('');media_player_comscore.cm[player_id].carryTvAdvertisementLoad('*null');media_player_comscore.cm[player_id].setEpisodeNumber(tc_array_events["media_episode_id"]||"*null");media_player_comscore.cm[player_id].setGenreName(tc_array_events["media_content_group"]||"*null");media_player_comscore.cm[player_id].carryTvAdvertisementLoad('*null');media_player_comscore.sa[player_id].setMediaPlayerName(tc_array_events['media_player_name']);media_player_comscore.sa[player_id].setMediaPlayerVersion(tc_array_events['media_player_version']);media_player_comscore.sa[player_id].setMetadata(media_player_comscore.cm[player_id]);};}
 tC.internalvars_3666.initiators.var627();tC.internalvars_3666_59.listVar.push(627);tC.internalvars_3666.initiators.var678=function(){tC.internalvars.rsi_risultati=function setInternalVariable(){var internalVariable="";if(dataLayer.tc_vars&&dataLayer.tc_vars.content_title&&dataLayer.tc_vars.content_title.includes("Risultati")){internalVariable="Risultati";}};}
 tC.internalvars_3666.initiators.var678();tC.internalvars_3666_59.listVar.push(678);tC.internalvars_3666.initiators.var679=typeof tC.internalvars_3666.initiators.var679=="function"?tC.internalvars_3666.initiators.var679:function(){tC.internalvars.pagenotfound_url=tC.internalvars.pagenotfound_url?tC.internalvars.pagenotfound_url:"";}
 tC.internalvars_3666.initiators.var679();tC.internalvars_3666_59.listVar.push(679);tC.internalvars_3666.initiators.var680=function(){tC.internalvars.media_tv_id=(function(){if(tc_vars["media_is_livestream"]==="false"){return tc_vars["media_tv_id"];}
-tc_vars["media_joker1"]="";tc_vars["media_joker2"]="";tc_vars["media_joker3"]="";tc_vars["media_tv_id"]="";return tc_vars["media_tv_id"];})();}
+tc_vars["media_joker1"]="";tc_vars["media_joker2"]="";tc_vars["media_joker3"]="";tc_vars["media_tv_id"]="";tc_vars['media_assigned_tags']="";return tc_vars["media_tv_id"];})();}
 tC.internalvars_3666.initiators.var680();tC.internalvars_3666_59.listVar.push(680);tC.internalvars_3666.initiators.var681=function(){tC.internalvars.languageFormat=function(lang){var language={"de":"de","deu":"de","allemand":"de","deutsch":"de","tedesco":"de","hkk":"de_ad","it":"it","ita":"it","italiano":"it","italienisch":"it","italien":"it","hnn":"it_ad","fr":"fr","fra":"fr","français":"fr","französisch":"fr","teo":"fr_ad","rm":"rm","hak":"rm_ad","eng":"en","en":"en"};var langLowerCase=(lang||"und").toLowerCase();return language[langLowerCase]||langLowerCase;};}
 tC.internalvars_3666.initiators.var681();tC.internalvars_3666_59.listVar.push(681);tC.internalvars_3666.initiators.var682=function(){tC.internalvars.SRGChartbeatStrategy=function(player){this._player=player;this._viewStartTime=Date.now();this._videoStartTime=undefined;this._player.one('playing',function(){this._videoStartTime=Date.now();}.bind(this));};tC.internalvars.SRGChartbeatStrategy.prototype._timeElapsed=function(timestamp){if(timestamp===undefined){return 0;}
 return Date.now()-timestamp;};tC.internalvars.SRGChartbeatStrategy.ContentType={AD:"ad",CONTENT:"ct"};tC.internalvars.SRGChartbeatStrategy.AdPosition={PREROLL:"a1",MIDROLL:"a2",POSTROLL:"a3",OVERLAY:"a4",SPECIAL:"a5"};tC.internalvars.SRGChartbeatStrategy.VideoState={UNPLAYED:"s1",PLAYED:"s2",STOPPED:"s3",COMPLETED:"s4"};tC.internalvars.SRGChartbeatStrategy.prototype.isReady=function(){return Boolean(this._player)?this._player.isReady_:false;};tC.internalvars.SRGChartbeatStrategy.prototype.getTitle=function(){return tc_array_events['media_episode'];};tC.internalvars.SRGChartbeatStrategy.prototype.getVideoPath=function(){return tc_array_events['media_url'];};tC.internalvars.SRGChartbeatStrategy.prototype.getContentType=function(){return SRGChartbeatStrategy.ContentType.CONTENT;};tC.internalvars.SRGChartbeatStrategy.prototype.getAdPosition=function(){};tC.internalvars.SRGChartbeatStrategy.prototype.getTotalDuration=function(){var mediaEpisodeLength=tc_array_events['media_episode_length'];return mediaEpisodeLength!==''?Number(mediaEpisodeLength)*1000:0;};tC.internalvars.SRGChartbeatStrategy.prototype.getState=function(){if(!this._player.hasStarted()){return SRGChartbeatStrategy.VideoState.UNPLAYED;}
@@ -2450,7 +2453,7 @@ tC.container_3666_59.datastorage();tC.inclusion_file_1="!function(n,t){\"object\
 tC.extend({executeTag503_3666_59:function(el,p){if(!el||!el.target){el={type:"no_event",target:{}}};if(typeof p=="undefined"){p={};}
 tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.container_3666_59.cact||window.cact;var cact_container=window.tC_3666_59;var cact_event=el||{};var cact_event_vars=Object.assign({},tc_array_events);var cact_event_attrs=cact_event.target||{};}});tC.extend({executeTag507_3666_59:function(el,p){if(!el||!el.target){el={type:"no_event",target:{}}};if(typeof p=="undefined"){p={};}
 tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.container_3666_59.cact||window.cact;var cact_container=window.tC_3666_59;var cact_event=el||{};var cact_event_vars=Object.assign({},tc_array_events);var cact_event_attrs=cact_event.target||{};var is_event_allowed=tC.inArray(tc_array_events["event_name"],["eof","seek","pos","play","pause","stop"])>-1;var cookieID=tC.internalvars.udp_cookie_id;if(is_event_allowed&&cookieID!==null){var endpointURL=tC.internalvars.udp_uievent_url;var pageUrn=((document.querySelector('meta[name="srf:urn"]'))?(document.querySelector('meta[name="srf:urn"]').getAttribute('content')):null);var ui_event={"schema_version":"0.1.0","type":"media_event","product":"web","backend_system":"pillarbox","business_unit":tc_array_events["media_bu_distributer"].toLowerCase(),"timestamp":Date.now(),"cookie_id":cookieID,"url":window.location.href,"page_urn":pageUrn,"item_urn":tc_array_events["media_urn"],"content_title_pretty":tc_array_events["media_segment"],"content_publication_datetime":tc_array_events["media_publication_datetime"],"content_category_1":tc_vars["content_category_1"],"show_name":tc_array_events["media_show"],"episode_name":tc_array_events["media_episode"],"action_source":tc_array_events["media_type"],"action_name":tc_array_events["event_name"],"action_value":tc_array_events["media_position"],"action_location":"player","media_segment_length":tc_array_events["media_segment_length"],"media_episode_length":tc_array_events["media_episode_length"],"media_channel":tc_array_events["media_channel_name"],"media_is_geoblocked":tc_array_events["media_is_geoblocked"],"media_is_livestream":tc_array_events["media_is_livestream"],"media_full_length":tc_array_events["media_full_length"],"media_volume":tc_array_events["media_mute"],"media_mute":tc_array_events["media_mute"],"media_embedding_content_page_type":tc_array_events["media_embedding_content_page_type"],"media_embedding_referrer":tc_array_events["media_embedding_referrer"],"media_embedding_url":tC.internalvars.tc_url_embedded,"media_embedding_environment":tc_array_events["media_embedding_environment"],"media_language":tc_array_events["media_language"],"media_assigned_tags":tC.internalvars.media_assigned_tags_wo_seperator,"media_is_tvsvizzera":tc_array_events["media_is_tvsvizzera"],"media_subtitles_on":tc_array_events["media_subtitles_on"],"media_timeshift":tc_array_events["media_timeshift"],"media_camera_angle_name":tc_array_events["media_camera_angle_name"],"media_player_version":tc_array_events["media_player_version"],"media_quality":tc_array_events["media_streaming_quality"],"media_segment_id":tc_array_events["media_segment_id"],"media_episode_id":tc_array_events["media_episode_id"],"media_show_id":tc_array_events["media_show_id"],"media_channel_id":tc_array_events["media_channel_id"],"media_url":tc_array_events["media_url"],"media_thumbnail":tc_array_events["media_thumbnail"],"media_sub_set_id":tc_array_events["media_sub_set_id"],"media_topic_list":tc_array_events["media_topic_list"]};navigator.sendBeacon(endpointURL,JSON.stringify(ui_event));tC.log({tag:'UDP',event_name:tc_array_events["event_name"],player:tc_array_events["media_player_id"],data:ui_event});}}});tC.extend({executeTag509_3666_59:function(el,p){if(!el||!el.target){el={type:"no_event",target:{}}};if(typeof p=="undefined"){p={};}
-tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.container_3666_59.cact||window.cact;var cact_container=window.tC_3666_59;var cact_event=el||{};var cact_event_vars=Object.assign({},tc_array_events);var cact_event_attrs=cact_event.target||{};if(tc_array_events["event_name"]==="init"){tC.internalvars.pbwInitComscore();tC.internalvars.pbwInitMetaData(tc_array_events["media_player_id"]);tC.log({tag:'comscore',event_name:tc_array_events["event_name"],player:tc_array_events["media_player_id"]});}}});tC.extend({executeTag515_3666_59:function(el,p){if(!el||!el.target){el={type:"no_event",target:{}}};if(typeof p=="undefined"){p={};}
+tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.container_3666_59.cact||window.cact;var cact_container=window.tC_3666_59;var cact_event=el||{};var cact_event_vars=Object.assign({},tc_array_events);var cact_event_attrs=cact_event.target||{};if(tc_array_events["event_name"]==="init"){tC.internalvars.mediaPlayerInitComscore();tC.internalvars.mediaPlayerInitComscoreMetaData(tc_array_events["media_player_id"]);tC.log({tag:'comscore',event_name:tc_array_events["event_name"],player:tc_array_events["media_player_id"],playbackSessionId:media_player_comscore.sa[tc_array_events["media_player_id"]].getPlaybackSessionId(),stadardLabels:media_player_comscore.cm[tc_array_events["media_player_id"]].getStandardLabels()});}}});tC.extend({executeTag515_3666_59:function(el,p){if(!el||!el.target){el={type:"no_event",target:{}}};if(typeof p=="undefined"){p={};}
 tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.container_3666_59.cact||window.cact;var cact_container=window.tC_3666_59;var cact_event=el||{};var cact_event_vars=Object.assign({},tc_array_events);var cact_event_attrs=cact_event.target||{};if(tc_array_events["event_name"]==="play"&&pbw_comscore.sa[tc_array_events["media_player_id"]]){if(tc_array_events["media_is_dvr"]){pbw_comscore.sa[tc_array_events["media_player_id"]].setDvrWindowLength(tc_array_events["media_dvr_window_length"]);pbw_comscore.sa[tc_array_events["media_player_id"]].startFromDvrWindowOffset(tc_array_events["media_dvr_window_offset"]);}
 if(tc_array_events["media_is_live"]){pbw_comscore.sa[tc_array_events["media_player_id"]].notifyPlay();}else{pbw_comscore.sa[tc_array_events["media_player_id"]].startFromPosition(tc_array_events["media_position"]*1000);pbw_comscore.sa[tc_array_events["media_player_id"]].notifyPlay();}
 tC.log({tag:'comscore',event_name:tc_array_events["event_name"],player:tc_array_events["media_player_id"],data:tc_array_events});}}});tC.extend({executeTag516_3666_59:function(el,p){if(!el||!el.target){el={type:"no_event",target:{}}};if(typeof p=="undefined"){p={};}
@@ -2461,7 +2464,7 @@ tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.contain
 tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.container_3666_59.cact||window.cact;var cact_container=window.tC_3666_59;var cact_event=el||{};var cact_event_vars=Object.assign({},tc_array_events);var cact_event_attrs=cact_event.target||{};if(tc_array_events["event_name"]==="seek"&&pbw_comscore.sa[tc_array_events["media_player_id"]]){pbw_comscore.sa[tc_array_events["media_player_id"]].notifySeekStart();if(tc_array_events["media_is_dvr"]){pbw_comscore.sa[tc_array_events["media_player_id"]].setDvrWindowLength(tc_array_events["media_dvr_window_length"]);pbw_comscore.sa[tc_array_events["media_player_id"]].startFromDvrWindowOffset(tc_array_events["media_dvr_window_offset"]);}
 tC.log({tag:'comscore',event_name:tc_array_events["event_name"],player:tc_array_events["media_player_id"],data:tc_array_events});}}});tC.extend({executeTag521_3666_59:function(el,p){if(!el||!el.target){el={type:"no_event",target:{}}};if(typeof p=="undefined"){p={};}
 tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.container_3666_59.cact||window.cact;var cact_container=window.tC_3666_59;var cact_event=el||{};var cact_event_vars=Object.assign({},tc_array_events);var cact_event_attrs=cact_event.target||{};if(tc_array_events["event_name"]==="change_playback_rate"&&pbw_comscore.sa[tc_array_events["media_player_id"]]){pbw_comscore.sa[tc_array_events["media_player_id"]].notifyChangePlaybackRate(tc_array_events["media_playback_rate"]);tC.log({tag:'comscore',event_name:tc_array_events["event_name"],player:tc_array_events["media_player_id"],data:tc_array_events});}}});tC.extend({executeTag522_3666_59:function(el,p){if(!el||!el.target){el={type:"no_event",target:{}}};if(typeof p=="undefined"){p={};}
-tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.container_3666_59.cact||window.cact;var cact_container=window.tC_3666_59;var cact_event=el||{};var cact_event_vars=Object.assign({},tc_array_events);var cact_event_attrs=cact_event.target||{};if(["eof","stop"].includes(tc_array_events["event_name"])&&pbw_comscore.sa[tc_array_events["media_player_id"]]){pbw_comscore.sa[tc_array_events["media_player_id"]].notifyEnd();tC.internalvars.pbwInitMetaData(tc_array_events["media_player_id"]);tC.log({tag:'comscore',event_name:tc_array_events["event_name"],player:tc_array_events["media_player_id"],data:tc_array_events});}}});tC.extend({executeTag526_3666_59:function(el,p){if(!el||!el.target){el={type:"no_event",target:{}}};if(typeof p=="undefined"){p={};}
+tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.container_3666_59.cact||window.cact;var cact_container=window.tC_3666_59;var cact_event=el||{};var cact_event_vars=Object.assign({},tc_array_events);var cact_event_attrs=cact_event.target||{};if(["eof","stop"].includes(tc_array_events["event_name"])&&pbw_comscore.sa[tc_array_events["media_player_id"]]){pbw_comscore.sa[tc_array_events["media_player_id"]].notifyEnd();tC.internalvars.mediaPlayerInitComscoreMetaData(tc_array_events["media_player_id"]);tC.log({tag:'comscore',event_name:tc_array_events["event_name"],player:tc_array_events["media_player_id"],data:tc_array_events});}}});tC.extend({executeTag526_3666_59:function(el,p){if(!el||!el.target){el={type:"no_event",target:{}}};if(typeof p=="undefined"){p={};}
 tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.container_3666_59.cact||window.cact;var cact_container=window.tC_3666_59;var cact_event=el||{};var cact_event_vars=Object.assign({},tc_array_events);var cact_event_attrs=cact_event.target||{};if(tc_array_events["event_name"]==="play"){var ck38=tC.internalvars.languageFormat(tc_array_events["media_audio_track"]);var ck39=tC.internalvars.languageFormat(tc_array_events["media_subtitle_selection"]);var media_id=tc_array_events["media_urn"];var media_length=tc_array_events["media_episode_length"];var wt_fields={"mg1":tc_array_events["media_segment_id"],"mg2":tc_array_events["media_bu_owner"],"mg3":tc_array_events["media_segment_id"],"mg4":tc_array_events["media_special"],"mg5":tc_array_events["media_episode_id"],"mg6":tc_array_events["media_episode"],"mg7":tc_array_events["media_show_id"],"mg8":tc_array_events["media_show"],"mg9":tc_array_events["media_channel_id"],"mg10":tc_array_events["media_channel_name"],"mg11":tc_array_events["media_tv_id"],"mg12":tc_array_events["media_publication_datetime"],"mg13":tc_array_events["media_is_geoblocked"],"mg14":tc_array_events["media_url"],"mg15":tc_array_events["media_thumbnail"],"mg16":tc_array_events["media_type"],"mg17":tc_array_events["media_episode_length"],"mg18":tc_array_events["media_is_livestream"],"mg19":tc_array_events["media_segment_length"],"mg20":tc_array_events["media_full_length"],"mg21":tc_array_events["media_is_web_only"],"mg22":tc_array_events["media_joker1"],"mg23":tc_array_events["media_joker2"],"mg24":tc_array_events["media_joker3"],"mg25":tc_array_events["media_livestream_encoder"],"ck1":tc_array_events["media_episode"],"ck2":tc_array_events["media_show"],"ck3":tc_array_events["media_segment_id"],"ck4":tc_array_events["media_playback_rate"],"ck5":tc_array_events["media_chromecast_selected"],"ck6":tc_array_events["media_bu_owner"],"ck7":tc_array_events["media_content_group"],"ck8":tc_array_events["media_episode_id"],"ck11":tc_vars["navigation_app_site_name"],"ck12":tc_array_events["media_embedding_content_page_type"],"ck13":tc_array_events["media_embedding_referrer"],"ck14":tc_array_events["media_embedding_url"],"ck15":tc_array_events["media_embedding_environment"],"ck16":tc_array_events["media_language"],"ck17":tc_array_events["media_publication_datetime"],"ck18":tc_array_events["media_publication_time"],"ck19":tc_array_events["media_since_publication_d"],"ck20":tc_array_events["media_since_publication_h"],"ck21":tC.internalvars.media_assigned_tags_wo_seperator,"ck22":tc_array_events["media_is_tvsvizzera"],"ck23":tc_array_events["media_player_name"],"ck24":tc_array_events["media_subtitles_on"],"ck25":tc_array_events["media_timeshift"],"ck26":tc_array_events["media_camera_angle_name"],"ck28":tc_array_events["media_player_version"],"ck29":tc_array_events["media_player_display"],"ck30":tc_array_events["media_quality"],"ck34":tc_array_events["media_is_livestream"],"ck38":ck38,"ck39":ck39,"ck46":tc_array_events["media_signlanguage_on"],"ck47":tc_array_events["media_audiodescription_on"]};wt_sendinfo_media(tc_array_events["media_urn"],tc_array_events["event_name"],tc_array_events["media_position"],media_length,wt_fields,tc_array_events["media_bandwidth"],tc_array_events["media_volume"],tc_array_events["media_mute"]);tC.log({tag:'webtrekk',event_name:tc_array_events["event_name"],player:tc_array_events["media_player_id"],data:tc_array_events});}}});tC.extend({executeTag527_3666_59:function(el,p){if(!el||!el.target){el={type:"no_event",target:{}}};if(typeof p=="undefined"){p={};}
 tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.container_3666_59.cact||window.cact;var cact_container=window.tC_3666_59;var cact_event=el||{};var cact_event_vars=Object.assign({},tc_array_events);var cact_event_attrs=cact_event.target||{};var is_event_allowed=tC.inArray(tc_array_events["event_name"],["pause","seek","pos","uptime","stop","eof"])>-1;if(is_event_allowed){var wt_fields={"ck38":tC.internalvars.languageFormat(tc_array_events["media_audio_track"]),"ck39":tC.internalvars.languageFormat(tc_array_events["media_subtitle_selection"])};wt_sendinfo_media(tc_array_events["media_urn"],tc_array_events["event_name"],tc_array_events["media_position"],tc_array_events["media_episode_length"],wt_fields,tc_array_events["media_bandwidth"],tc_array_events["media_volume"],tc_array_events["media_mute"]);tC.log({tag:'webtrekk',event_name:tc_array_events["event_name"],player:tc_array_events["media_player_id"],data:tc_array_events});}}});tC.extend({executeTag532_3666_59:function(el,p){if(!el||!el.target){el={type:"no_event",target:{}}};if(typeof p=="undefined"){p={};}
 tc_array_events=tC.container_3666_59.init_tc_array_events(p);var cact=tC.container_3666_59.cact||window.cact;var cact_container=window.tC_3666_59;var cact_event=el||{};var cact_event_vars=Object.assign({},tc_array_events);var cact_event_attrs=cact_event.target||{};if(tc_array_events["event_name"]==="init"){var player=document.getElementById(tc_array_events["media_player_id"]).player
