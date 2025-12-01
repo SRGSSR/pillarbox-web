@@ -1,3 +1,15 @@
+## [1.26.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.25.0...v1.26.0) (2025-12-01)
+
+
+### New Features 🚀
+
+* fix some rumansh translations ([7d8d3f5](https://github.com/SRGSSR/pillarbox-web/commit/7d8d3f56fac10739dfe00cb3aaa9ceabbe9dc2a9))
+
+
+### Chore 🧹
+
+* restore prepare script ([fbcd829](https://github.com/SRGSSR/pillarbox-web/commit/fbcd8294b34d7dbab4ef4c6137dbb01b36dca57a)), closes [#346](https://github.com/SRGSSR/pillarbox-web/issues/346)
+
 ## [1.25.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.24.1...v1.25.0) (2025-11-21)
 
 
