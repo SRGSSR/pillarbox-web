@@ -1,6 +1,7 @@
 import { version } from '../package.json';
 import videojs from 'video.js';
 import './components/player.js';
+import './utils/log.js';
 
 /**
  * Pillarbox is an alias for the video.js namespace with additional options.
