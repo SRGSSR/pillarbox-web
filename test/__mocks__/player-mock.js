@@ -40,6 +40,7 @@ let playerMock = jest.fn(() => ({
   }),
   paused: jest.fn(),
   playbackRate: jest.fn().mockReturnValue(1),
+  playedRanges: jest.fn().mockReturnValue([]),
   on: jest.fn((evt, fn) => {
     if (!Array.isArray(evt)) {
       document.addEventListener(evt, fn);
