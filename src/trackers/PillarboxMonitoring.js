@@ -287,8 +287,13 @@ class PillarboxMonitoring {
 
     this.sendEvent('ERROR', {
       audio,
-      log: JSON
-        .stringify(error.metadata || pillarbox.log.history().slice(-15)),
+      log: JSON.stringify(
+        error.metadata ||
+        {
+          history: pillarbox.log.history().slice(-15),
+          playedRanges: this.player.playedRanges()
+        }
+      ),
       message: error.message,
       name: PillarboxMonitoring.errorKeyCode(error.code),
       ...playbackPosition,
@@ -794,6 +799,7 @@ class PillarboxMonitoring {
     const stream_type = isFinite(this.player.duration()) ? 'On-demand' : 'Live';
     const stall = this.stallInfo();
     const subtitles = this.currentTextTrack();
+    const log = JSON.stringify({ playedRanges: this.player.playedRanges() });
 
     const data = {
       audio,
@@ -801,6 +807,7 @@ class PillarboxMonitoring {
       bitrate,
       buffered_duration,
       frame_drops,
+      log,
       playback_duration,
       position,
       position_timestamp,
