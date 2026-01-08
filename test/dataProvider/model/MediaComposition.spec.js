@@ -497,7 +497,7 @@ describe('MediaComposition', () => {
 
   /**
    *****************************************************************************
-   * getMainValidDate **********************************************************
+   * getMainValidFromDate ******************************************************
    *****************************************************************************
    */
   describe('getMainValidFromDate', () => {
@@ -507,15 +507,40 @@ describe('MediaComposition', () => {
       );
     });
 
-    it('should return a currently valid date with empty mediaComposition', () => {
+    it('should return undefined if the mediaComposition does not contain a validFrom property', () => {
       expect(
-        mediaCompositionEmpty.getMainValidFromDate().getMilliseconds()
-      ).toBeLessThanOrEqual(new Date().getMilliseconds());
+        mediaCompositionUrnAnalyticsData.getMainValidFromDate()
+      ).toBeUndefined();
+    });
+
+    it('should return undefined if the mediaComposition is empty', () => {
+      expect(
+        mediaCompositionUrnEmptyChapters.getMainValidFromDate()
+      ).toBeUndefined();
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * getMainValidToDate ********************************************************
+   *****************************************************************************
+   */
+  describe('getMainValidToDate', () => {
+    it('should return a validTo date', () => {
+      expect(mediaCompositionUrnOneExternalSubtitle.getMainValidToDate()).toEqual(
+        new Date('2100-01-01T00:00:00+01:00')
+      );
     });
 
     it('should return undefined if the mediaComposition does not contain a validFrom property', () => {
       expect(
-        mediaCompositionUrnAnalyticsData.getMainValidFromDate()
+        mediaCompositionUrnAnalyticsData.getMainValidToDate()
+      ).toBeUndefined();
+    });
+
+    it('should return undefined if the mediaComposition is empty', () => {
+      expect(
+        mediaCompositionUrnEmptyChapters.getMainValidToDate()
       ).toBeUndefined();
     });
   });
