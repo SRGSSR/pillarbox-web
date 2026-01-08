@@ -1,3 +1,15 @@
+## [1.27.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.26.0...v1.27.0) (2026-01-08)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* reset tech before reloading source ([6330c24](https://github.com/SRGSSR/pillarbox-web/commit/6330c2468a5fd325be08c8279dac918c4d5caeda))
+
+
+### New Features 🚀
+
+* **media-composition:** add validFrom and validTo to main resources ([8d77d51](https://github.com/SRGSSR/pillarbox-web/commit/8d77d51e9b14058dc85451b148a56ba76fc02d74))
+
 ## [1.26.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.25.0...v1.26.0) (2025-12-01)
 
 
