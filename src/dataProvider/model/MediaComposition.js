@@ -251,6 +251,8 @@ class MediaComposition {
       tokenType: resource.tokenType,
       url: resource.url,
       urn: this.chapterUrn,
+      validFrom: this.getMainValidFromDate(),
+      validTo: this.getMainValidToDate(),
       vendor: this.getMainChapter().vendor,
     }));
   }
@@ -286,20 +288,31 @@ class MediaComposition {
   /**
    * Compute a date from which this content is valid. Always return a date object.
    *
-   * @returns {Date} date specified in media composition or EPOCH when no date present.
+   * @returns {Date} date specified in media composition or undefined.
    */
   getMainValidFromDate() {
-    const mainChapter = this.getMainChapter();
+    const {
+      validFrom
+    } = this.getMainChapter() || {};
 
-    if (!mainChapter) {
-      return new Date(0);
-    }
+    if (!validFrom) return;
 
-    const { validFrom } = mainChapter;
+    return new Date(validFrom);
+  }
 
-    if (validFrom) {
-      return new Date(validFrom);
-    }
+  /**
+   * Compute a date to which this content is valid. Always return a date object.
+   *
+   * @returns {Date} date specified in media composition or undefined.
+   */
+  getMainValidToDate() {
+    const {
+      validTo
+    } = this.getMainChapter() || {};
+
+    if (!validTo) return;
+
+    return new Date(validTo);
   }
 
   /**
