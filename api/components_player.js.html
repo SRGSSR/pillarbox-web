@@ -166,6 +166,25 @@ class Player extends vjsPlayer {
   }
 
   /**
+   * Overrides the default `src` behavior to ensure the underlying tech is fully
+   * reset before setting a new source.
+   *
+   * This is a workaround for a Video.js issue where, under certain failure cases the
+   * internal `src_` reload logic is not triggered. As a result, the previous media
+   * can continue playing in the background even though the new source failed.
+   *
+   * @see https://docs.videojs.com/player#src
+   */
+  src(source) {
+    if (source) {
+      this.poster(null);
+      this.techCall_('reset');
+    }
+
+    super.src(source);
+  }
+
+  /**
    * A getter/setter for the media's text track.
    * Activates the text track according to the language and kind properties.
    * Falls back on the first text track found if the kind property is not satisfied.
