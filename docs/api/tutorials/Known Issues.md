@@ -136,4 +136,30 @@ player.src({ src: 'urn:swi:video:48115940', type: 'srgssr/urn', disableTrackers:
    ```
    Again, in this scenario you MUST NOT re-enable the tracking for `trackedPlayer`.
 
+### Media keeps playing after an error occurs on loading a different source
+
+Under certain cases the internal call to `src_` reload logic is not triggered. As a result, the 
+previous media can continue playing in the background even though the new source failed to load.
+
+#### Issue Details
+
+- **Scenario:** An incompatible source error or a block reason when calling `player.src(...)` 
+- **Affected Browser:** All
+- **Symptoms:** Media keeps playing in the background.
+
+#### Solution
+
+To address this issue call instead `player.loadMedia(...)` when loading a different media. The 
+parameter is slightly different, please make sure you read the documentation: 
+[player.loadMedia][loadMedia], for example:
+
+```javascript
+// Use
+player.loadMedia({src:{src:'...', type:'...'}});
+
+// Instead of
+// player.src({src:'....', type:'...'});
+```
+
 [ios-bug]: https://bugs.webkit.org/show_bug.cgi?id=261512
+[loadMedia]: https://docs.videojs.com/player#loadMedia
