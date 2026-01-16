@@ -28,7 +28,7 @@ class SrgSsr {
    * @param {Player} player
    * @param {Array<Segment>} [segments=[]]
    */
-  static addBlockedSegments(player, segments = []) {
+  static async addBlockedSegments(player, segments = []) {
     const trackId = 'srgssr-blocked-segments';
     const removeTrack = player.textTracks().getTrackById(trackId);
 
@@ -36,18 +36,18 @@ class SrgSsr {
       player.textTracks().removeTrack(removeTrack);
     }
 
+    const segmentTrack = await SrgSsr.createTextTrack(player, trackId);
+
+    player.textTracks().addTrack(segmentTrack);
+
     if (!Array.isArray(segments) || !segments.length) return;
 
     const blockedSegments = segments.filter(segment => segment.blockReason);
 
     if (!blockedSegments.length) return;
 
-    SrgSsr.createTextTrack(player, trackId).then(segmentTrack => {
-      blockedSegments.forEach(segment => {
-        SrgSsr.addTextTrackCue(segmentTrack, segment);
-      });
-
-      player.textTracks().addTrack(segmentTrack);
+    blockedSegments.forEach(segment => {
+      SrgSsr.addTextTrackCue(segmentTrack, segment);
     });
   }
 
@@ -118,7 +118,7 @@ class SrgSsr {
    * @param {string} chapterUrn The URN of the main chapter.
    * @param {Array.<Chapter>} [chapters=[]]
    */
-  static addChapters(player, chapterUrn, chapters = []) {
+  static async addChapters(player, chapterUrn, chapters = []) {
     const trackId = 'srgssr-chapters';
     const removeTrack = player.textTracks().getTrackById(trackId);
 
@@ -126,16 +126,16 @@ class SrgSsr {
       player.textTracks().removeTrack(removeTrack);
     }
 
+    const chapterTrack = await SrgSsr.createTextTrack(player, trackId);
+
+    player.textTracks().addTrack(chapterTrack);
+
     if (!Array.isArray(chapters) || !chapters.length) return;
 
-    SrgSsr.createTextTrack(player, trackId).then(chapterTrack => {
-      chapters.forEach(chapter => {
-        if (chapterUrn !== chapter.fullLengthUrn) return;
+    chapters.forEach(chapter => {
+      if (chapterUrn !== chapter.fullLengthUrn) return;
 
-        SrgSsr.addTextTrackCue(chapterTrack, chapter);
-      });
-
-      player.textTracks().addTrack(chapterTrack);
+      SrgSsr.addTextTrackCue(chapterTrack, chapter);
     });
   }
 
@@ -145,7 +145,7 @@ class SrgSsr {
    * @param {Player} player
    * @param {Array.<TimeInterval>} [intervals=[]]
    */
-  static addIntervals(player, intervals = []) {
+  static async addIntervals(player, intervals = []) {
     const trackId = 'srgssr-intervals';
     const removeTrack = player.textTracks().getTrackById(trackId);
 
@@ -153,14 +153,14 @@ class SrgSsr {
       player.textTracks().removeTrack(removeTrack);
     }
 
+    const intervalTrack = await SrgSsr.createTextTrack(player, trackId);
+
+    player.textTracks().addTrack(intervalTrack);
+
     if (!Array.isArray(intervals) || !intervals.length) return;
 
-    SrgSsr.createTextTrack(player, trackId).then(intervalTrack => {
-      intervals.forEach(interval => {
-        SrgSsr.addTextTrackCue(intervalTrack, interval);
-      });
-
-      player.textTracks().addTrack(intervalTrack);
+    intervals.forEach(interval => {
+      SrgSsr.addTextTrackCue(intervalTrack, interval);
     });
   }
 
