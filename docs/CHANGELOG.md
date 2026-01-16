@@ -1,3 +1,10 @@
+## [1.28.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.27.0...v1.28.0) (2026-01-16)
+
+
+### New Features 🚀
+
+* **monitoring:** add played ranges to error and status events ([de840d2](https://github.com/SRGSSR/pillarbox-web/commit/de840d2a485566ea0a15c4df786f4a65c2ee1d5f)), closes [#317](https://github.com/SRGSSR/pillarbox-web/issues/317)
+
 ## [1.27.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.26.0...v1.27.0) (2026-01-08)
 
 
