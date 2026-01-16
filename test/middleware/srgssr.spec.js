@@ -61,21 +61,35 @@ describe('SrgSsr', () => {
     };
   });
 
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   /**
    *****************************************************************************
    * addBlockedSegments ********************************************************
    *****************************************************************************
    */
   describe('addBlockedSegments', () => {
-    it('should not create a blocked segments track if the segments parameter is not an array or if the array is empty', async () => {
-      const spyOnPillarboxTextTrack = jest.spyOn(Pillarbox, 'TextTrack');
+    it('should create track when blocked segments is missing or empty', async () => {
+      const spyOnAddTrack = jest.spyOn(player.textTracks(), 'addTrack');
 
-      SrgSsr.addBlockedSegments(player, true);
-      SrgSsr.addBlockedSegments(player, null);
-      SrgSsr.addBlockedSegments(player, '');
-      SrgSsr.addBlockedSegments(player, undefined);
+      await SrgSsr.addBlockedSegments(player, []);
 
-      expect(spyOnPillarboxTextTrack).not.toHaveBeenCalled();
+      expect(spyOnAddTrack).toHaveBeenCalledWith(
+        expect.any(Pillarbox.TextTrack)
+      );
+    });
+
+    it('should not call addTextTrackCue if the segments parameter is not an array or if the array is empty', async () => {
+      const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
+
+      await SrgSsr.addBlockedSegments(player, true);
+      await SrgSsr.addBlockedSegments(player, null);
+      await SrgSsr.addBlockedSegments(player, '');
+      await SrgSsr.addBlockedSegments(player, undefined);
+
+      expect(spyOnAddTextTrackCue).not.toHaveBeenCalled();
     });
 
     it('should remove blocked segments track if any', async () => {
@@ -143,15 +157,26 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('addChapters', () => {
-    it('should not call addChapters if the chapters parameter is not an array or if the array is empty', async () => {
-      const spyOnPillarboxTextTrack = jest.spyOn(Pillarbox, 'TextTrack');
+    it('should create track when chapters is missing or empty', async () => {
+      const spyOnAddTrack = jest.spyOn(player.textTracks(), 'addTrack');
+      const chapterUrn = 'urn:full:length';
 
-      SrgSsr.addChapters(player, true);
-      SrgSsr.addChapters(player, null);
-      SrgSsr.addChapters(player, '');
-      SrgSsr.addChapters(player, undefined);
+      await SrgSsr.addChapters(player, chapterUrn, []);
 
-      expect(spyOnPillarboxTextTrack).not.toHaveBeenCalled();
+      expect(spyOnAddTrack).toHaveBeenCalledWith(
+        expect.any(Pillarbox.TextTrack)
+      );
+    });
+
+    it('should not call addTextTrackCue if the chapters parameter is not an array or if the array is empty', async () => {
+      const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
+
+      await SrgSsr.addChapters(player, true);
+      await SrgSsr.addChapters(player, null);
+      await SrgSsr.addChapters(player, '');
+      await SrgSsr.addChapters(player, undefined);
+
+      expect(spyOnAddTextTrackCue).not.toHaveBeenCalled();
     });
 
     it('should remove chapters track if any', async () => {
@@ -224,15 +249,25 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('addIntervals', () => {
-    it('should not create an interval track if the intervals parameter is not an array or if the array is empty', async () => {
-      const spyOnPillarboxTextTrack = jest.spyOn(Pillarbox, 'TextTrack');
+    it('should create track when intervals is missing or empty', async () => {
+      const spyOnAddTrack = jest.spyOn(player.textTracks(), 'addTrack');
 
-      SrgSsr.addIntervals(player, true);
-      SrgSsr.addIntervals(player, null);
-      SrgSsr.addIntervals(player, '');
-      SrgSsr.addIntervals(player, undefined);
+      await SrgSsr.addIntervals(player, []);
 
-      expect(spyOnPillarboxTextTrack).not.toHaveBeenCalled();
+      expect(spyOnAddTrack).toHaveBeenCalledWith(
+        expect.any(Pillarbox.TextTrack)
+      );
+    });
+
+    it('should not call addTextTrackCue if the intervals parameter is not an array or if the array is empty', async () => {
+      const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
+
+      await SrgSsr.addIntervals(player, true);
+      await SrgSsr.addIntervals(player, null);
+      await SrgSsr.addIntervals(player, '');
+      await SrgSsr.addIntervals(player, undefined);
+
+      expect(spyOnAddTextTrackCue).not.toHaveBeenCalled();
     });
 
     it('should remove intervals track if any', async () => {
