@@ -30,15 +30,7 @@ class SrgSsr {
    */
   static async addBlockedSegments(player, segments = []) {
     const trackId = 'srgssr-blocked-segments';
-    const removeTrack = player.textTracks().getTrackById(trackId);
-
-    if (removeTrack) {
-      player.textTracks().removeTrack(removeTrack);
-    }
-
     const segmentTrack = await SrgSsr.createTextTrack(player, trackId);
-
-    player.textTracks().addTrack(segmentTrack);
 
     if (!Array.isArray(segments) || !segments.length) return;
 
@@ -120,15 +112,7 @@ class SrgSsr {
    */
   static async addChapters(player, chapterUrn, chapters = []) {
     const trackId = 'srgssr-chapters';
-    const removeTrack = player.textTracks().getTrackById(trackId);
-
-    if (removeTrack) {
-      player.textTracks().removeTrack(removeTrack);
-    }
-
     const chapterTrack = await SrgSsr.createTextTrack(player, trackId);
-
-    player.textTracks().addTrack(chapterTrack);
 
     if (!Array.isArray(chapters) || !chapters.length) return;
 
@@ -147,15 +131,7 @@ class SrgSsr {
    */
   static async addIntervals(player, intervals = []) {
     const trackId = 'srgssr-intervals';
-    const removeTrack = player.textTracks().getTrackById(trackId);
-
-    if (removeTrack) {
-      player.textTracks().removeTrack(removeTrack);
-    }
-
     const intervalTrack = await SrgSsr.createTextTrack(player, trackId);
-
-    player.textTracks().addTrack(intervalTrack);
 
     if (!Array.isArray(intervals) || !intervals.length) return;
 
@@ -275,16 +251,24 @@ class SrgSsr {
   }
 
   /**
-   * Create a new metadata text track.
+   * Create a new metadata text track and add it to the player.
+   *
+   * If a text track with the same trackId exists, it is deleted beforehand.
    *
    * @param {Player} player
    * @param {String} trackId Text track unique ID
    *
    * @returns {Promise<TextTrack>}
    */
-  static createTextTrack(player, trackId) {
+  static async createTextTrack(player, trackId) {
+    const removeTrack = player.textTracks().getTrackById(trackId);
+
+    if (removeTrack) {
+      player.textTracks().removeTrack(removeTrack);
+    }
+
     // See https://github.com/videojs/video.js/issues/8519
-    return new Promise((resolve) => {
+    const textTrack = await new Promise((resolve) => {
       setTimeout(() => {
         resolve(new Pillarbox.TextTrack({
           id: trackId,
@@ -294,6 +278,10 @@ class SrgSsr {
         }));
       }, 100);
     });
+
+    player.textTracks().addTrack(textTrack);
+
+    return textTrack;
   }
 
   /**

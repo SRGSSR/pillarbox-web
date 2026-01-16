@@ -119,8 +119,6 @@ describe('SrgSsr', () => {
     });
 
     it('Should add 2 blocked segments', async () => {
-      jest.useFakeTimers();
-
       const result = [];
 
       Pillarbox.TextTrack
@@ -128,7 +126,7 @@ describe('SrgSsr', () => {
         .addCue
         .mockImplementation((cue) => result.push(cue));
 
-      SrgSsr.addBlockedSegments(player, [{
+      await SrgSsr.addBlockedSegments(player, [{
         blockReason: 'GEOBLOCK',
         markIn: 10_0000,
         markOut: 25_0000
@@ -145,9 +143,7 @@ describe('SrgSsr', () => {
         markOut: 70_0000
       }]);
 
-      jest.advanceTimersByTime(100);
-
-      expect(await result).toHaveLength(2);
+      expect(result).toHaveLength(2);
     });
   });
 
@@ -210,8 +206,6 @@ describe('SrgSsr', () => {
     });
 
     it('should add all chapters that are not the main chapter', async () => {
-      jest.useFakeTimers();
-
       const chapterUrn = 'urn:full:length';
       const result = [];
 
@@ -220,7 +214,7 @@ describe('SrgSsr', () => {
         .addCue
         .mockImplementation((cue) => result.push(cue));
 
-      SrgSsr.addChapters(player, chapterUrn, [{
+      await SrgSsr.addChapters(player, chapterUrn, [{
         fullLengthMarkIn: 0,
         fullLengthMarkOut: 10000
       }, {
@@ -233,9 +227,7 @@ describe('SrgSsr', () => {
         fullLengthMarkOut: 9500
       }]);
 
-      jest.advanceTimersByTime(100);
-
-      expect(await result).toHaveLength(2);
+      expect(result).toHaveLength(2);
       expect(result[0].startTime).toBe(2.5);
       expect(result[0].endTime).toBe(5);
       expect(result[1].startTime).toBe(6);
@@ -280,8 +272,6 @@ describe('SrgSsr', () => {
     });
 
     it('should add intervals to the player', async () => {
-      jest.useFakeTimers();
-
       const result = [];
 
       Pillarbox.TextTrack
@@ -289,7 +279,7 @@ describe('SrgSsr', () => {
         .addCue
         .mockImplementation((cue) => result.push(cue));
 
-      SrgSsr.addIntervals(player, [{
+      await SrgSsr.addIntervals(player, [{
         markIn: 1_000,
         markOut: 2_000,
         type: 'OPENING_CREDITS'
@@ -299,9 +289,7 @@ describe('SrgSsr', () => {
         type: 'CLOSING_CREDITS'
       }]);
 
-      jest.advanceTimersByTime(100);
-
-      expect(await result).toHaveLength(2);
+      expect(result).toHaveLength(2);
       expect(JSON.parse(result[0].text).type).toBe('OPENING_CREDITS');
       expect(JSON.parse(result[1].text).type).toBe('CLOSING_CREDITS');
     });
