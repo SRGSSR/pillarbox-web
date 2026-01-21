@@ -1,3 +1,15 @@
+## [1.29.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.28.0...v1.29.0) (2026-01-21)
+
+
+### Refactor 🔩
+
+* **srgssr-middleware:** deduplicate text track logic ([adc955d](https://github.com/SRGSSR/pillarbox-web/commit/adc955dac79853d67d9ad54543523599dcad47c8))
+
+
+### New Features 🚀
+
+* **srgssr-middleware:** initialize srgssr metadata text tracks by default ([22a7e5d](https://github.com/SRGSSR/pillarbox-web/commit/22a7e5dc7e2947c2ddc92623236ce01220b71ca9))
+
 ## [1.28.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.27.0...v1.28.0) (2026-01-16)
 
 
