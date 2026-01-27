@@ -9,6 +9,7 @@ import srcMediaObj from '../__mocks__/srcMediaObj.json';
 import mainResource from '../__mocks__/mainResource.json';
 import Pillarbox from '../../src/pillarbox.js';
 import AkamaiTokenService from '../../src/utils/AkamaiTokenService.js';
+import pillarbox from '../../src/pillarbox.js';
 
 jest.mock('../../src/dataProvider/services/DataProvider.js');
 jest.mock('../../src/utils/Image.js');
@@ -351,6 +352,67 @@ describe('SrgSsr', () => {
 
   /**
    *****************************************************************************
+   * addTextTrackCues **********************************************************
+   *****************************************************************************
+   */
+
+  describe('addTextTrackCues', () => {
+    it('should not call try to add a cue if the cue parameter is not an array', async () => {
+      const result = [];
+
+      Pillarbox.TextTrack
+        .prototype
+        .addCue
+        .mockImplementation((cue) => result.push(cue));
+
+      const textTrack = new pillarbox.TextTrack();
+      const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
+
+      SrgSsr.addTextTrackCues(textTrack, null);
+      SrgSsr.addTextTrackCues(textTrack, undefined);
+      SrgSsr.addTextTrackCues(textTrack, 1);
+      SrgSsr.addTextTrackCues(textTrack, true);
+      SrgSsr.addTextTrackCues(textTrack, 'not-an-array');
+
+      expect(spyOnAddTextTrackCue).not.toHaveBeenCalled();
+      expect(result).toHaveLength(0);
+      spyOnAddTextTrackCue.mockRestore();
+      Pillarbox.TextTrack.prototype.addCue.mockRestore();
+    });
+
+    it('should add cues to the text track', async () => {
+      const result = [];
+
+      Pillarbox.TextTrack
+        .prototype
+        .addCue
+        .mockImplementation((cue) => result.push(cue));
+      const textTrack = new pillarbox.TextTrack();
+      const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
+      const cues = [
+        {
+          markIn: 0,
+          markOut: 2,
+          text: 'cue 1'
+        },
+        {
+          markIn: 4,
+          markOut: 6,
+          text: 'cue 2'
+        }
+      ];
+
+      SrgSsr.addTextTrackCues(textTrack, cues);
+
+      expect(spyOnAddTextTrackCue).toHaveBeenCalled();
+      expect(result).toHaveLength(2);
+      spyOnAddTextTrackCue.mockRestore();
+      Pillarbox.TextTrack.prototype.addCue.mockRestore();
+    });
+  });
+
+  /**
+   *****************************************************************************
    * blockingReason ************************************************************
    *****************************************************************************
    */
@@ -535,6 +597,80 @@ describe('SrgSsr', () => {
         disableTrackers: undefined,
         mediaData: expect.any(Object),
       });
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * createTextTrack ***********************************************************
+   *****************************************************************************
+   */
+  describe('createTextTrack', () => {
+    it('should not add cues when cues parameter is when omitted', async () => {
+      const result = [];
+
+      Pillarbox.TextTrack
+        .prototype
+        .addCue
+        .mockImplementation((cue) => result.push(cue));
+
+      const spy = jest.spyOn(SrgSsr, 'addTextTrackCue');
+
+      await SrgSsr.createTextTrack(player, 'trackId');
+
+      expect(spy).not.toHaveBeenCalled();
+      expect(result).toHaveLength(0);
+
+      spy.mockRestore();
+      Pillarbox.TextTrack.prototype.addCue.mockRestore();
+    });
+
+    it('should not add cues to the text track', async () => {
+      const result = [];
+
+      Pillarbox.TextTrack
+        .prototype
+        .addCue
+        .mockImplementation((cue) => result.push(cue));
+      const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
+
+      await SrgSsr.createTextTrack(player, 'trackId', null);
+
+      expect(spyOnAddTextTrackCue).not.toHaveBeenCalled();
+      expect(result).toHaveLength(0);
+
+      spyOnAddTextTrackCue.mockRestore();
+      Pillarbox.TextTrack.prototype.addCue.mockRestore();
+    });
+
+    it('should add cues to the text track', async () => {
+      const result = [];
+
+      Pillarbox.TextTrack
+        .prototype
+        .addCue
+        .mockImplementation((cue) => result.push(cue));
+      const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
+      const cues = [
+        {
+          markIn: 0,
+          markOut: 2,
+          text: 'cue 1'
+        },
+        {
+          markIn: 4,
+          markOut: 6,
+          text: 'cue 2'
+        }
+      ];
+
+      await SrgSsr.createTextTrack(player, 'trackId', cues);
+
+      expect(spyOnAddTextTrackCue).toHaveBeenCalled();
+      expect(result).toHaveLength(2);
+
+      spyOnAddTextTrackCue.mockRestore();
+      Pillarbox.TextTrack.prototype.addCue.mockRestore();
     });
   });
 
@@ -770,6 +906,90 @@ describe('SrgSsr', () => {
       });
 
       expect(SrgSsr.getBlockedSegmentByTime(player, currentTime).endTime).toBe(blockedSegmentCue.endTime);
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * getBlockedSegments ********************************************************
+   *****************************************************************************
+   */
+  describe('getBlockedSegments', () => {
+    it('should return an empty array when segments parameter is omitted', () => {
+      expect(SrgSsr.getBlockedSegments()).toHaveLength(0);
+    });
+
+    it('should filter out segments without blocking reason', () => {
+      const segments = [
+        {
+          id: 1,
+          blockReason: 'GEOBLOCK',
+        },
+        {
+          id: 2,
+        },
+        {
+          id: 1,
+          blockReason: 'LEGAL',
+        }
+      ];
+
+      expect(SrgSsr.getBlockedSegments(segments)).toHaveLength(2);
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * getChapters ***************************************************************
+   *****************************************************************************
+   */
+  describe('getChapters', () => {
+    it('should return an empty array when chapters parameter is omitted', () => {
+      expect(SrgSsr.getChapters('urn:xyz:420')).toHaveLength(0);
+    });
+
+    it('should filter out segments without blocking reason', () => {
+      const chapterUrn = 'urn:xyz:420';
+      const chapters = [
+        {
+          id: 1,
+          fullLengthUrn: chapterUrn,
+        },
+        {
+          id: 2,
+          fullLengthUrn: 'urn:something:else'
+        },
+        {
+          id: 1,
+          fullLengthUrn: chapterUrn,
+        }
+      ];
+
+      expect(SrgSsr.getChapters(chapterUrn, chapters)).toHaveLength(2);
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * getIntervals **************************************************************
+   *****************************************************************************
+   */
+  describe('getIntervals', () => {
+    it('should return an empty array when intervals parameter is omitted',  () => {
+      expect(SrgSsr.getIntervals()).toHaveLength(0);
+    });
+
+    it('should filter out intervals without blocking reason', () => {
+      const intervals = [
+        {
+          id: 1
+        },
+        {
+          id: 2
+        }
+      ];
+
+      expect(SrgSsr.getIntervals(intervals)).toHaveLength(2);
     });
   });
 
