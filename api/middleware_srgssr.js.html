@@ -32,17 +32,9 @@ class SrgSsr {
    */
   static async addBlockedSegments(player, segments = []) {
     const trackId = 'srgssr-blocked-segments';
-    const segmentTrack = await SrgSsr.createTextTrack(player, trackId);
+    const blockedSegmentsToAdd = SrgSsr.getBlockedSegments(segments);
 
-    if (!Array.isArray(segments) || !segments.length) return;
-
-    const blockedSegments = segments.filter(segment => segment.blockReason);
-
-    if (!blockedSegments.length) return;
-
-    blockedSegments.forEach(segment => {
-      SrgSsr.addTextTrackCue(segmentTrack, segment);
-    });
+    await SrgSsr.createTextTrack(player, trackId, blockedSegmentsToAdd);
   }
 
   /**
@@ -93,6 +85,24 @@ class SrgSsr {
   }
 
   /**
+   * Add a new cues to a text track with the given array.
+   *
+   * @param {TextTrack} textTrack
+   * @param {Array.&lt;
+   *   Segment |
+   *   Chapter |
+   *   TimeInterval>
+   * } cues SRG SSR's cues-like representation
+   */
+  static addTextTrackCues(textTrack, cues = []) {
+    if (!Array.isArray(cues)) return;
+
+    cues.forEach(cue => {
+      SrgSsr.addTextTrackCue(textTrack, cue);
+    });
+  }
+
+  /**
    * Add multiple text tracks to the player.
    *
    * @param {Player} player
@@ -114,15 +124,9 @@ class SrgSsr {
    */
   static async addChapters(player, chapterUrn, chapters = []) {
     const trackId = 'srgssr-chapters';
-    const chapterTrack = await SrgSsr.createTextTrack(player, trackId);
+    const chaptersToAdd = SrgSsr.getChapters(chapterUrn, chapters);
 
-    if (!Array.isArray(chapters) || !chapters.length) return;
-
-    chapters.forEach(chapter => {
-      if (chapterUrn !== chapter.fullLengthUrn) return;
-
-      SrgSsr.addTextTrackCue(chapterTrack, chapter);
-    });
+    await SrgSsr.createTextTrack(player, trackId, chaptersToAdd);
   }
 
   /**
@@ -133,13 +137,9 @@ class SrgSsr {
    */
   static async addIntervals(player, intervals = []) {
     const trackId = 'srgssr-intervals';
-    const intervalTrack = await SrgSsr.createTextTrack(player, trackId);
+    const instervalsToAdd = SrgSsr.getIntervals(intervals);
 
-    if (!Array.isArray(intervals) || !intervals.length) return;
-
-    intervals.forEach(interval => {
-      SrgSsr.addTextTrackCue(intervalTrack, interval);
-    });
+    await SrgSsr.createTextTrack(player, trackId, instervalsToAdd);
   }
 
   /**
@@ -259,10 +259,15 @@ class SrgSsr {
    *
    * @param {Player} player
    * @param {String} trackId Text track unique ID
+   * @param {Array.&lt;
+   *   Segment |
+   *   Chapter |
+   *   TimeInterval>
+   * } cues SRG SSR's cues-like representation
    *
    * @returns {Promise&lt;TextTrack>}
    */
-  static async createTextTrack(player, trackId) {
+  static async createTextTrack(player, trackId, cues = []) {
     const removeTrack = player.textTracks().getTrackById(trackId);
 
     if (removeTrack) {
@@ -280,6 +285,8 @@ class SrgSsr {
         }));
       }, 100);
     });
+
+    SrgSsr.addTextTrackCues(textTrack, cues);
 
     player.textTracks().addTrack(textTrack);
 
@@ -424,6 +431,47 @@ class SrgSsr {
       currentTime &lt; blockedSegment.endTime;
 
     return isBlocked ? blockedSegment : undefined;
+  }
+
+  /**
+   * Get blocked segments.
+   *
+   * @param {Player} player
+   * @param {Array&lt;Segment>} [segments=[]]
+   *
+   * @returns {Array&lt;Segment>}
+   */
+  static getBlockedSegments(segments = []) {
+    if (!Array.isArray(segments) || !segments.length) return [];
+
+    return segments.filter(segment => segment.blockReason);
+  }
+
+  /**
+   * Get chapters related to the main chapter.
+   *
+   * @param {string} chapterUrn The URN of the main chapter.
+   * @param {Array.&lt;Chapter>} [chapters=[]]
+   *
+   * @returns {Array.&lt;Chapter>}
+   */
+  static getChapters(chapterUrn, chapters = []) {
+    if (!Array.isArray(chapters) || !chapters.length) return [];
+
+    return chapters.filter(chapter => chapterUrn === chapter.fullLengthUrn);
+  }
+
+  /**
+   * Get intervals.
+   *
+   * @param {Array&lt;TimeInterval>} [segments=[]]
+   *
+   * @returns {Array&lt;TimeInterval>}
+   */
+  static getIntervals(intervals = []) {
+    if (!Array.isArray(intervals) || !intervals.length) return [];
+
+    return intervals;
   }
 
   /**
