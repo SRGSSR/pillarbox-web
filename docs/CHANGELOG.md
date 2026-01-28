@@ -1,3 +1,10 @@
+## [1.30.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.29.0...v1.30.0) (2026-01-28)
+
+
+### New Features 🚀
+
+* **srgssr-middleware:** add SRG SSR cues to text track as soon as possible ([a57ac95](https://github.com/SRGSSR/pillarbox-web/commit/a57ac95d5a12d2a64633a497df67a1fa32430d85))
+
 ## [1.29.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.28.0...v1.29.0) (2026-01-21)
 
 
