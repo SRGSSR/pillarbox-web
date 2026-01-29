@@ -352,6 +352,59 @@ describe('SrgSsr', () => {
 
   /**
    *****************************************************************************
+   * addTextTrackCue ***********************************************************
+   *****************************************************************************
+   */
+
+  describe('addTextTrackCue', () => {
+    it('should have and empty an ID if there is not URN', () => {
+      const data = {
+        markIn: 0,
+        markOut: 0,
+      };
+      const result = [];
+
+
+      Pillarbox.TextTrack
+        .prototype
+        .addCue
+        .mockImplementation((cue) => result.push(cue));
+
+      const textTrack = new Pillarbox.TextTrack();
+
+      SrgSsr.addTextTrackCue(textTrack, data);
+
+      expect(result).toHaveLength(1);
+      expect(result[0]).toHaveProperty('id');
+      expect(result[0].id).toBe('');
+    });
+
+    it('should contain an ID if there is an URN', () => {
+      const data = {
+        urn: 'urn:1',
+        markIn: 0,
+        markOut: 0,
+      };
+      const result = [];
+
+
+      Pillarbox.TextTrack
+        .prototype
+        .addCue
+        .mockImplementation((cue) => result.push(cue));
+
+      const textTrack = new Pillarbox.TextTrack();
+
+      SrgSsr.addTextTrackCue(textTrack, data);
+
+      expect(result).toHaveLength(1);
+      expect(result[0]).toHaveProperty('id');
+      expect(result[0].id).toBe(data.urn);
+    });
+  });
+
+  /**
+   *****************************************************************************
    * addTextTrackCues **********************************************************
    *****************************************************************************
    */
@@ -975,7 +1028,7 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('getIntervals', () => {
-    it('should return an empty array when intervals parameter is omitted',  () => {
+    it('should return an empty array when intervals parameter is omitted', () => {
       expect(SrgSsr.getIntervals()).toHaveLength(0);
     });
 

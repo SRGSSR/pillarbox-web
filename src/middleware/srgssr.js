@@ -74,12 +74,14 @@ class SrgSsr {
       ? data.markIn : data.fullLengthMarkIn) / 1_000;
     const endTime = (Number.isFinite(data.markOut)
       ? data.markOut : data.fullLengthMarkOut) / 1_000;
+    const text = JSON.stringify(data);
+    const cue = new VTTCue(startTime, endTime, text);
 
-    textTrack.addCue(new VTTCue(
-      startTime,
-      endTime,
-      JSON.stringify(data)
-    ));
+    if (data.urn) {
+      cue.id = data.urn;
+    }
+
+    textTrack.addCue(cue);
   }
 
   /**
