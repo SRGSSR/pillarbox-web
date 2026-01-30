@@ -1,3 +1,10 @@
+## [1.31.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.30.0...v1.31.0) (2026-01-30)
+
+
+### New Features 🚀
+
+* **srgssr-middleware:** set VTTCue id from data.urn when present ([bccbe18](https://github.com/SRGSSR/pillarbox-web/commit/bccbe18369ad5773b77f708d2aaceefe8d85e41f))
+
 ## [1.30.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.29.0...v1.30.0) (2026-01-28)
 
 
