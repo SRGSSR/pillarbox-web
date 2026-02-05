@@ -13,11 +13,10 @@ jobs:
 
     steps:
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
-          always-auth: true
       - run: |
           npm dist-tag add @srgssr/pillarbox-web@$(echo "${{github.ref_name}}" | cut -c 2-) latest
           exit 0
