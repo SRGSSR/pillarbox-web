@@ -157,6 +157,17 @@ If you want to enhance our demo application you can get involved
 here: https://github.com/SRGSSR/pillarbox-web-demo
 To contribute to the theme editor go to: https://github.com/SRGSSR/pillarbox-web-theme-editor
 
+### Using `nvm`
+
+This project includes an `.nvmrc` file that specifies the recommended Node.js version.
+
+If you use `nvm`, you can automatically switch to the correct Node version by running: `nvm use`
+If the required version is not installed yet, run: `nvm install`. This will install the Node.js
+version defined in `.nvmrc` and switch your shell to use it.
+
+For more details on installing and using the `.nvmrc` file see the official
+[`.nvmrc` documentation][nvmrc-doc].
+
 ## License
 
 See the [LICENSE](LICENSE) file for more information.
