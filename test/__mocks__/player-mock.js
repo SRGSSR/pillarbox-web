@@ -30,6 +30,7 @@ let playerMock = jest.fn(() => ({
   }),
   getVideoPlaybackQuality: jest.fn().mockReturnValue({}),
   hasStarted: jest.fn(),
+  id: jest.fn(),
   muted: jest.fn(),
   play: jest.fn(() => {
     document.dispatchEvent(new Event('play'));

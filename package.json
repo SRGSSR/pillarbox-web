@@ -37,7 +37,7 @@
     "build:typings": "npx -p typescript tsc",
     "eslint": "eslint --ext .js src",
     "generate:docs": "jsdoc --configure docs/api/jsdoc.json --verbose",
-    "github:page": "vite build && npm run generate:docs",
+    "github:page": "vite build && npm run generate:docs && cp -r commandersact dist/commandersact",
     "outdated": "npm outdated",
     "prebuild": "rimraf dist",
     "release:ci": "semantic-release",
