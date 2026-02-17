@@ -1,6 +1,7 @@
 import { version } from '../package.json';
 import videojs from 'video.js';
 import './components/player.js';
+import './components/audio-track-menu-item.js';
 
 /**
  * Pillarbox is an alias for the video.js namespace with additional options.
