@@ -69,3 +69,125 @@ export type SrgOptions = {
    */
   tagCommanderScriptURL: undefined | string;
 }
+
+/**
+ * The projection format for the video content.
+ */
+export type ViewportType = 'STANDARD' | 'MONOSCOPIC';
+
+/**
+ * The type of media stream.
+ */
+export type SourceType = 'ON-DEMAND' | 'LIVE' | 'DVR';
+
+/**
+ * Digital Rights Management (DRM) system identifiers.
+ */
+export type DrmKeySystem = 'WIDEVINE' | 'FAIRPLAY' | 'CLEAR_KEY' | 'PLAY_READY';
+
+/**
+ * The role or purpose of the text track.
+ */
+export type SubtitleKind = 'subtitles' | 'description' | 'captions' | 'chapters' | 'metadata' | string;
+
+/**
+ * The specific segment category within the timeline.
+ */
+export type TimeRangeType = 'BLOCKED' | 'OPENING_CREDITS' | 'CLOSING_CREDITS';
+
+/**
+ * Information about the media stream location and format.
+ */
+export interface MediaSource {
+  url: string;
+  type?: SourceType;
+  mimeType?: string;
+  videoFragmentFormat?: string;
+  audioFragmentsFormat?: string;
+}
+
+/**
+ * DRM configuration details for protected content.
+ */
+export interface DrmConfig {
+  /** The identifier of the DRM system to use. */
+  keySystem: DrmKeySystem;
+  /** The URL to the license server. */
+  licenseUrl: string;
+  /** The URL to the certificate server (mostly for FairPlay). */
+  certificateUrl?: string;
+  /** Whether the session should be kept alive for multiple requests. */
+  multisession?: boolean;
+}
+
+/**
+ * Configuration for an external subtitle or caption track.
+ */
+export interface Subtitle {
+  /** User-friendly label for selection. */
+  label: string;
+  /** The category of the track. */
+  kind: SubtitleKind;
+  /** BCP-47 language tag (e.g., "en-US"). */
+  language: string;
+  /** The URL of the subtitle file (VTT, SRT, etc.). */
+  url: string;
+}
+
+/**
+ * Information about a specific section or chapter in the video.
+ */
+export interface Chapter {
+  identifier?: string;
+  title: string;
+  posterUrl?: string;
+  /** Start time in milliseconds. */
+  startTime: number;
+  /** End time in milliseconds. */
+  endTime: number;
+}
+
+/**
+ * A labeled segment of time within the content, used for UI or playback restriction.
+ */
+export interface TimeRange {
+  /** Start time in milliseconds. */
+  startTime: number;
+  /** End time in milliseconds. */
+  endTime: number;
+  type: TimeRangeType;
+}
+
+/**
+ * Represents a set of options specific to the Standard Metadata Connector.
+ */
+export interface StandardMetadata {
+  /** Unique identifier for the asset. */
+  identifier?: string;
+  /** Main title of the content. */
+  title?: string;
+  /** Secondary title or subtitle. */
+  subtitle?: string;
+  /** Long form description of the content. */
+  description?: string;
+  /** URL for the thumbnail image or poster. */
+  posterUrl?: string;
+  /** Season number for TV shows. */
+  seasonNumber?: number;
+  /** Episode number for TV shows. */
+  episodeNumber?: number;
+  /** Video projection type. */
+  viewport?: ViewportType;
+  /** Stream source configuration. */
+  source?: MediaSource;
+  /** DRM configuration if the content is protected. */
+  drm?: DrmConfig;
+  /** List of available subtitle tracks. */
+  subtitles?: Subtitle[];
+  /** List of chapters for navigation. */
+  chapters?: Chapter[];
+  /** Specific time segments (e.g., skip credits). */
+  timeRanges?: TimeRange[];
+  /** Additional custom key-value pairs. */
+  customData?: Record<string, any>;
+}
