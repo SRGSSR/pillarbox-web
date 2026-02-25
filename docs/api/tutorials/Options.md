@@ -158,3 +158,20 @@ ensure proper media playback.
 
 > The absence of a conforming object from the server may lead to unexpected errors, affecting video
 > playback.
+
+### `srgOptions.analyticsEnvironment`
+
+***Specific to analytics of SRG SSR.***
+
+Specifies the environment use for SRG analytics/tracking. Is internally mapped to `navigation_environment` variable for the TagCommander data layer. If not set, `prod` is used.
+
+#### Usage
+
+```javascript
+const player = pillarbox('player', {
+  srgOptions: {
+    // Defines the analytics environment name
+    analyticsEnvironment: 'dev'
+  }
+});
+```

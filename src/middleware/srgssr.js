@@ -640,6 +640,7 @@ class SrgSsr {
     if (!player.options().trackers.srgAnalytics) {
       const srgAnalytics = new SRGAnalytics(player, {
         debug: player.debug(),
+        environment: player.options().srgOptions.analyticsEnvironment,
         playerVersion: Pillarbox.VERSION.pillarbox,
         tagCommanderScriptURL:
           player.options().srgOptions.tagCommanderScriptURL,
@@ -739,6 +740,7 @@ Pillarbox.options.srgOptions = {
   dataProvider: undefined,
   dataProviderHost: undefined,
   dataProviderUrlHandler: undefined,
+  analyticsEnvironment: undefined,
   tagCommanderScriptURL: undefined,
 };
 
