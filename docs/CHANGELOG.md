@@ -1,3 +1,15 @@
+## [1.32.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.31.0...v1.32.0) (2026-02-25)
+
+
+### New Features 🚀
+
+* **srg-analytics:** allow passing analytics env via SRG specific opts ([842134d](https://github.com/SRGSSR/pillarbox-web/commit/842134d66b7e0baa4f7a3fae5634b2af9e11cec1))
+
+
+### Chore 🧹
+
+* introduce .nvmrc file to specify the recommended node version ([80f3e42](https://github.com/SRGSSR/pillarbox-web/commit/80f3e42fe8fc3ba378a847d453a7adaf682cdb53))
+
 ## [1.31.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.30.0...v1.31.0) (2026-01-30)
 
 
