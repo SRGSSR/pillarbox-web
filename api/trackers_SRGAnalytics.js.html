@@ -442,7 +442,7 @@ class SRGAnalytics {
    * - pos should be sent when the media player is in "play mode".
    * - once the video is paused or stopped, the timer for sending these actions must be stopped.
    *
-   * @see https://confluence.srg.beecollaboration.com/display/INTFORSCHUNG/standard+streaming+events%3A+sequence+of+events+for+media+player+actions#standardstreamingevents:sequenceofeventsformediaplayeractions-mandatoryplayerevents
+   * @see https://srgssr-ch.atlassian.net/wiki/spaces/INTFORSCHUNG/pages/795904171/standard+streaming+events+sequence+of+events+for+media+player+actions#mandatory-player-events
    */
   heartBeat() {
     this.heartBeatIntervalId = setInterval(() => {
@@ -781,7 +781,7 @@ class SRGAnalytics {
    * Sent to ComScore when the playback rate changes.
    *
    * @see https://github.com/SRGSSR/srgletterbox-web/issues/761
-   * @see https://jira.srg.beecollaboration.com/browse/ADI-256
+   * @see https://srgssr-ch.atlassian.net/browse/ADI-256 
    */
   rateChange() {
     this.notify('change_playback_rate');
@@ -878,11 +878,11 @@ class SRGAnalytics {
    * It's expected notifyBufferStart() to be called when the player starts buffering
    * and a call to notifyBufferStop() when content resumes after buffering.
    *
-   * @see Item 2: https://jira.srg.beecollaboration.com/browse/PLAY-2628
+   * @see Item 2: https://srgssr-ch.atlassian.net/browse/PLAY-2628 
    *
    * After the issue PLAYRTS-321
-   * @see Fix: https://jira.srg.beecollaboration.com/browse/PLAYRTS-321?focusedCommentId=201023&amp;page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-201023
-   * @see Fix: https://jira.srg.beecollaboration.com/browse/PLAYRTS-3065
+   * @see Fix: https://srgssr-ch.atlassian.net/browse/PLAYRTS-321?focusedCommentId=201023&amp;page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-201023
+   * @see Fix: https://srgssr-ch.atlassian.net/browse/PLAYRTS-3065
    */
   waiting() {
     if (!this.initialized || this.isWaiting) {
