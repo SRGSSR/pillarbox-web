@@ -27,7 +27,7 @@ class Image {
    * @property {String} [image.format=jpg] is the format of the image, default value jpg.
    * @property {String} [imageServiceUrl] Url of the image service that needs to comply with the specification defined by the IL.
    *
-   * @see https://confluence.srg.beecollaboration.com/pages/viewpage.action?spaceKey=SRGPLAY&title=Project+-+Image+Service
+   * @see https://srgssr-ch.atlassian.net/wiki/spaces/SRGPLAY/pages/799082429/Project+-+Image+Service
    *
    * @returns {String|undefined} the image scaling URL.
    */
