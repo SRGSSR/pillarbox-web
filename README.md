@@ -176,3 +176,5 @@ See the [LICENSE](LICENSE) file for more information.
 [stackblitz-umd]: https://stackblitz.com/github/srgssr/pillarbox-web-demo/tree/main/samples/umd
 [esm-tutorial]: https://web.pillarbox.ch/api/tutorial-ESM%20and%20import%20maps.html
 [pillarbox-samples]: https://github.com/SRGSSR/pillarbox-web-demo/tree/main/samples
+[nvmrc-doc]: https://github.com/nvm-sh/nvm?tab=readme-ov-file#nvmrc
+
