@@ -1,11 +1,9 @@
 import videojs from 'video.js';
 
-/** @import VJSAudioTrackButton from 'video.js/dist/types/control-bar/audio-track-controls/audio-track-button' */
 /** @import MenuItem from 'video.js/dist/types/menu/menu-item' */
 
 /**
  * @ignore
- * @type {typeof VJSAudioTrackButton}
  */
 const VJSAudioTrackButton = videojs.getComponent('AudioTrackButton');
 
