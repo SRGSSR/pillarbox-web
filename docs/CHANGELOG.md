@@ -1,3 +1,16 @@
+## [1.32.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.32.0...v1.32.1) (2026-03-11)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **audio-tracks:** missing AD icon in Safari ([0ae2098](https://github.com/SRGSSR/pillarbox-web/commit/0ae2098b74da26156562ce2dfe846f7479a618f9))
+* run build to catch missing types when merging ([dd0a2cc](https://github.com/SRGSSR/pillarbox-web/commit/dd0a2cce3cd980c85f4d210c758757095be2214e)), closes [#375](https://github.com/SRGSSR/pillarbox-web/issues/375)
+
+
+### Docs 📖
+
+* fix link to .nvmrc documentation ([3c3eab2](https://github.com/SRGSSR/pillarbox-web/commit/3c3eab2367520e90d66f35bf47fe9f6a3b514b1b))
+
 ## [1.32.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.31.0...v1.32.0) (2026-02-25)
 
 
