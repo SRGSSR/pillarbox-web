@@ -1,3 +1,10 @@
+## [1.32.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.32.1...v1.32.2) (2026-03-13)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **github-actions:** nvmrc file does not exist ([7223ff7](https://github.com/SRGSSR/pillarbox-web/commit/7223ff7afeb70c55e3d5971782fdefb701d1cf5f))
+
 ## [1.32.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.32.0...v1.32.1) (2026-03-11)
 
 
