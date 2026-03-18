@@ -16,8 +16,20 @@ jobs:
       pull-requests: write
 
     steps:
+      - name: Generate Token
+        id: get_workflow_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.SEMANTIC_RELEASE_APP_ID }}
+          private-key: ${{ secrets.SEMANTIC_RELEASE_APP_PRIVATE_KEY }}
+
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          token: ${{ steps.get_workflow_token.outputs.token }}
+          persist-credentials: false
+          fetch-depth: 0
+
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v6
@@ -39,7 +51,7 @@ jobs:
         if: success()
         run: npm run release:ci
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Pre-release main tag failed 🫣
