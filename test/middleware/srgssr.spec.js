@@ -603,7 +603,8 @@ describe('SrgSsr', () => {
           keySystems: {
             'com.apple.fps.1_0': {
               certificateUri: 'https://certificate.url',
-              licenseUri: 'https://license.url',
+              getContentId: expect.any(Function),
+              getLicense: expect.any(Function),
             },
           },
         },
