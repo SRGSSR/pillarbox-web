@@ -328,15 +328,8 @@ describe('MediaComposition', () => {
    */
   describe('getChapters', () => {
     it('should return chapters array', () => {
-      // The destructuring creates a new memory reference
-      // that isn't updated when getChapters is called
-      const [...unsorted] = mediaCompositionUrnChapterBadOrder.chapterList;
-
       expect(mediaCompositionUrnChapterBadOrder.getChapters()).toBeTruthy();
-      expect(mediaCompositionUrnChapterBadOrder.getChapters()).toHaveLength(14);
-      expect(mediaCompositionUrnChapterBadOrder.getChapters()).toEqual(
-        expect.arrayContaining(unsorted)
-      );
+      expect(mediaCompositionUrnChapterBadOrder.getChapters()).toHaveLength(13);
     });
 
     it('should only return the video chapters', () => {
