@@ -91,7 +91,10 @@ class MediaComposition {
     if (this.getMainChapter().mediaType === AUDIO ||
     this.getMainChapter().type !== EPISODE) return [];
 
-    return this.chapterList.filter(({ mediaType }) => mediaType !== AUDIO);
+    return this.chapterList.filter(({ fullLengthUrn, mediaType }) => {
+      return this.getMainChapter().urn === fullLengthUrn
+        && this.getMainChapter().mediaType === mediaType;
+    });
   }
 
   /**
