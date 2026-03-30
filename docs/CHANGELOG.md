@@ -1,3 +1,10 @@
+## [1.33.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.33.0...v1.33.1) (2026-03-30)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **mediaComposition:** chapters inconsistent type ([af1be4b](https://github.com/SRGSSR/pillarbox-web/commit/af1be4bf5391916301e891b93adfd3844871dbd7))
+
 ## [1.33.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.32.2...v1.33.0) (2026-03-30)
 
 
