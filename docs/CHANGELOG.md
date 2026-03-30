@@ -1,3 +1,27 @@
+## [1.33.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.32.2...v1.33.0) (2026-03-30)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **npm:** update video.js ([13e9bc7](https://github.com/SRGSSR/pillarbox-web/commit/13e9bc73c8c3413e2bb7a7918dd863b75428fa88))
+
+
+### New Features 🚀
+
+* **drm:** update FairPlay license retrieval strategy ([8b6c7a6](https://github.com/SRGSSR/pillarbox-web/commit/8b6c7a60356e1ab03cf467aad7e930ae21facb09))
+
+
+### Chore 🧹
+
+* **vite:** configure vite server to allow custom host resolution ([dddac42](https://github.com/SRGSSR/pillarbox-web/commit/dddac424a08139e2c6870a3aad990615162a20d8))
+
+
+### CI 🔁
+
+* **crowdin:** fix base_path property in crowdin action ([35262c4](https://github.com/SRGSSR/pillarbox-web/commit/35262c4de9584d0e3b716dab4ce162c4ff5cd110))
+* implement GitHub App token for ruleset bypassing ([d52174b](https://github.com/SRGSSR/pillarbox-web/commit/d52174be14935dbbf825971a5e20b737ef18d843))
+* **preview:** restrict preview deployment to internal branches only ([bed3cf8](https://github.com/SRGSSR/pillarbox-web/commit/bed3cf812c08679de3070c379f131f7e85e16505))
+
 ## [1.32.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.32.1...v1.32.2) (2026-03-13)
 
 
