@@ -2,8 +2,9 @@ name: Upload translations to Crowdin
 
 on:
   push:
-    paths: ['srg/lang/**']
+    paths: ['src/lang/**']
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   crowdin-upload:
@@ -13,13 +14,13 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Crowdin push
-        uses: crowdin/github-action@v1
+        uses: crowdin/github-action@v2
         with:
           upload_sources: true
           upload_translations: true
           download_translations: false
 
-          base_path: 'pillarbox-web'
+          base_path: '.'
           source: 'src/lang/en.json'
           translation: 'src/lang/%locale%.%file_extension%'
         env:
