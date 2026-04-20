@@ -1,12 +1,5 @@
 import SRGAnalytics from '../../src/trackers/SRGAnalytics.js';
-import Pillarbox from '../../src/pillarbox.js';
-import playerMock from '../__mocks__/player-mock.js';
-
-jest.mock('../../src/pillarbox.js', () => ({
-  browser: {
-    IS_ANY_SAFARI: false,
-  },
-}));
+import * as mediaData from '../__mocks__/mediaData.json';
 
 const playbackSequences = (player, timeRanges = [[]]) => {
   timeRanges.forEach(([start, end], i) => {
@@ -17,38 +10,57 @@ const playbackSequences = (player, timeRanges = [[]]) => {
       const isSeeking = shouldSeek && currentTimeNextTick === start;
 
       if (isSeeking) {
-        player.seeking.mockReturnValue(true);
-        player.trigger('pause');
-        player.trigger('seeking');
+        jest.spyOn(player, 'seeking', 'get').mockReturnValue(true);
+
+        player.dispatchEvent(new Event('pause'));
+        player.dispatchEvent(new Event('seeking'));
       }
 
-      player.currentTime.mockReturnValue(currentTimeNextTick);
-      player.trigger('timeupdate');
+      jest.spyOn(player, 'currentTime', 'get').mockReturnValue(currentTimeNextTick);
+
+      player.dispatchEvent(new Event('timeupdate'));
 
       if (isSeeking) {
-        player.trigger('seeked');
-        player.seeking.mockReturnValue(false);
-        player.trigger('play');
-        player.trigger('playing');
+        player.dispatchEvent(new Event('seeked'));
+
+        jest.spyOn(player, 'seeking', 'get').mockReturnValue(false);
+
+        player.dispatchEvent(new Event('play'));
+        player.dispatchEvent(new Event('playing'));
       }
 
       jest.advanceTimersByTime(1_000);
     }
   });
 
-  if (player.duration() === player.currentTime()) {
-    player.ended.mockReturnValue(true);
-    player.trigger('ended');
+  if (player.duration === player.currentTime) {
+    jest.spyOn(player, 'ended', 'get').mockReturnValue(true);
+    player.dispatchEvent(new Event('ended'));
   }
 };
 
 describe('SRGAnalytics', () => {
   let player;
+  let playerContainer;
   let analytics;
 
   beforeEach(() => {
-    player = playerMock();
+    const container = document.createElement('div');
+    const video = document.createElement('video');
+
+    container.append(video);
+
+    // player = videoElementMock(); // playerMock();
+    player = video; // playerMock();
+    playerContainer = container;
     analytics = new SRGAnalytics(player);
+    analytics.setPlaybackData({
+      analyticsMetadata: mediaData.mediaData.analyticsMetadata,
+      audioTrack: jest.fn(),
+      debug: jest.fn(),
+      disableTrackers: undefined,
+      textTrack: jest.fn(),
+    });
   });
 
   it('should init the TC script and all listeners', () => {
@@ -70,15 +82,21 @@ describe('SRGAnalytics', () => {
   describe('standard streaming events: sequence of events for media player actions', () => {
     it('should pass: Story 1, AoD/VOD-basics', () => {
       jest.useFakeTimers();
+      jest.spyOn(player, 'play').mockImplementation(() => {
+        player.dispatchEvent(new Event('play'));
+        player.dispatchEvent(new Event('playing'));
+      });
 
       const spyNotify = jest.spyOn(analytics, 'notify');
 
-      player.trigger('loadstart');
-      player.trigger('loadeddata');
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loadeddata'));
 
-      player.duration.mockReturnValue(60);
+      jest.spyOn(player, 'duration', 'get').mockReturnValue(60);
+
       player.play();
-      player.paused.mockReturnValue(false);
+
+      jest.spyOn(player, 'paused', 'get').mockReturnValue(false);
 
       playbackSequences(player, [[0, 60]]);
 
@@ -93,22 +111,44 @@ describe('SRGAnalytics', () => {
 
     it('should pass: Story 2, livestream-basics', () => {
       jest.useFakeTimers();
+      jest.spyOn(player, 'play').mockImplementation(() => {
+        player.dispatchEvent(new Event('play'));
+        player.dispatchEvent(new Event('playing'));
+      });
+      jest.spyOn(player, 'pause').mockImplementation(() => {
+        player.dispatchEvent(new Event('pause'));
+      });
+
+      mediaData.mediaData.analyticsMetadata = {
+        ...mediaData.mediaData.analyticsMetadata,
+        media_is_dvr: true,
+        media_is_live: true,
+      };
+      analytics.setPlaybackData({
+        analyticsMetadata: mediaData.mediaData.analyticsMetadata,
+        audioTrack: jest.fn(),
+        debug: jest.fn(),
+        disableTrackers: undefined,
+        textTrack: jest.fn(),
+      });
 
       const spyNotify = jest.spyOn(analytics, 'notify');
 
-      player.trigger('loadstart');
-      player.trigger('loadeddata');
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loadeddata'));
 
-      player.liveTracker.liveWindow.mockReturnValue(7200);
-      player.currentTime.mockReturnValue(7200);
-      player.duration.mockReturnValue(Infinity);
+      jest.spyOn(player, 'duration', 'get').mockReturnValue(8420);
+      jest.spyOn(player, 'currentTime', 'get').mockReturnValue(7200);
+
       player.play();
-      player.paused.mockReturnValue(false);
+
+      jest.spyOn(player, 'paused', 'get').mockReturnValue(false);
 
       playbackSequences(player, [[7200, 7291]]);
 
       player.pause();
-      player.paused.mockReturnValue(true);
+
+      jest.spyOn(player, 'paused', 'get').mockReturnValue(false);
 
       expect(spyNotify).toHaveBeenNthCalledWith(1, 'buffer_start');
       expect(spyNotify).toHaveBeenNthCalledWith(2, 'init');
@@ -124,14 +164,32 @@ describe('SRGAnalytics', () => {
 
     it('should pass: Story 3, Seeking a VoD/AoD', () => {
       jest.useFakeTimers();
+      jest.spyOn(player, 'play').mockImplementation(() => {
+        player.dispatchEvent(new Event('play'));
+        player.dispatchEvent(new Event('playing'));
+      });
+
+      mediaData.mediaData.analyticsMetadata = {
+        ...mediaData.mediaData.analyticsMetadata,
+        media_is_dvr: false,
+        media_is_live: false,
+      };
+      analytics.setPlaybackData({
+        analyticsMetadata: mediaData.mediaData.analyticsMetadata,
+        audioTrack: jest.fn(),
+        debug: jest.fn(),
+        disableTrackers: undefined,
+        textTrack: jest.fn(),
+      });
 
       const spyNotify = jest.spyOn(analytics, 'notify');
 
-      player.trigger('loadstart');
-      player.trigger('loadeddata');
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loadeddata'));
 
-      player.duration.mockReturnValue(720);
-      player.paused.mockReturnValue(false);
+      jest.spyOn(player, 'duration', 'get').mockReturnValue(720);
+      jest.spyOn(player, 'paused', 'get').mockReturnValue(false);
+
       player.play();
 
       playbackSequences(player, [
@@ -154,15 +212,34 @@ describe('SRGAnalytics', () => {
 
     it('should pass: Story 4, Seeking a livestream', () => {
       jest.useFakeTimers();
+      jest.spyOn(player, 'play').mockImplementation(() => {
+        player.dispatchEvent(new Event('play'));
+        player.dispatchEvent(new Event('playing'));
+      });
+
+      mediaData.mediaData.analyticsMetadata = {
+        ...mediaData.mediaData.analyticsMetadata,
+        media_is_dvr: true,
+        media_is_live: true,
+      };
+      analytics.setPlaybackData({
+        analyticsMetadata: mediaData.mediaData.analyticsMetadata,
+        audioTrack: jest.fn(),
+        debug: jest.fn(),
+        disableTrackers: undefined,
+        textTrack: jest.fn(),
+      });
 
       const spyNotify = jest.spyOn(analytics, 'notify');
 
-      player.trigger('loadstart');
-      player.trigger('loadeddata');
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loadeddata'));
 
-      player.duration.mockReturnValue(Infinity);
+      jest.spyOn(player, 'duration', 'get').mockReturnValue(420);
+
       player.play();
-      player.paused.mockReturnValue(false);
+
+      jest.spyOn(player, 'paused', 'get').mockReturnValue(false);
 
       playbackSequences(player, [
         [0, 10],
@@ -189,8 +266,8 @@ describe('SRGAnalytics', () => {
     it('should notify stop', () => {
       const spyNotify = jest.spyOn(analytics, 'notify');
 
-      player.trigger('loadstart');
-      player.trigger('dispose');
+      player.dispatchEvent(new Event('loadstart'));
+      window.dispatchEvent(new Event('beforeunload'));
 
       expect(spyNotify).toHaveBeenCalledWith('stop');
     });
@@ -206,11 +283,13 @@ describe('SRGAnalytics', () => {
       const clearInterval = jest.spyOn(window, 'clearInterval');
       const clearTimeout = jest.spyOn(window, 'clearTimeout');
 
-      player.trigger('loadstart');
+      window.tc_vars = undefined;
+      player.dispatchEvent(new Event('emptied'));
 
       expect(clearInterval).toHaveBeenCalledWith(analytics.heartBeatIntervalId);
       expect(clearInterval).toHaveBeenCalledWith(analytics.uptimeIntervalId);
       expect(clearTimeout).toHaveBeenCalledWith(analytics.uptimeTimeoutId);
+      expect(window.tc_vars).toBeDefined();
     });
   });
 
@@ -220,17 +299,17 @@ describe('SRGAnalytics', () => {
    *****************************************************************************
    */
   describe('dispose', () => {
-    it('should clear everything and remove all listeners', () => {
+    it('should clear everything and remove all listeners', async () => {
       const spyBeforeUnload = jest.spyOn(analytics, 'beforeunload');
       const spyClearTimers = jest.spyOn(analytics, 'clearTimers');
       const spyWindowRemoveEventListener = jest.spyOn(
         window,
         'removeEventListener'
       );
-      const spyPlayerOff = jest.spyOn(player, 'off');
+      const spyPlayerOff = jest.spyOn(player, 'removeEventListener');
 
-      player.trigger('loadstart');
-      player.trigger('dispose');
+      player.dispatchEvent(new Event('loadstart'));
+      await playerContainer.removeChild(player);
 
       expect(spyBeforeUnload).toHaveBeenCalled();
       expect(spyClearTimers).toHaveBeenCalled();
@@ -245,13 +324,21 @@ describe('SRGAnalytics', () => {
    *****************************************************************************
    */
   describe('emptied', () => {
-    it('should notify stop', () => {
+    it('should notify stop when the source is changed', () => {
       const spyNotify = jest.spyOn(analytics, 'notify');
 
-      player.trigger('loadstart');
-      player.trigger('loaddata');
+      jest.spyOn(player, 'play').mockImplementation(() => {
+        player.dispatchEvent(new Event('play'));
+        player.dispatchEvent(new Event('playing'));
+      });
+      jest.spyOn(player, 'src', 'set').mockImplementation(() => {
+        player.dispatchEvent(new Event('emptied'));
+      });
+
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loaddata'));
       player.play();
-      player.src();
+      player.src = '';
 
       expect(spyNotify).toHaveBeenLastCalledWith('stop');
     });
@@ -285,8 +372,8 @@ describe('SRGAnalytics', () => {
     });
 
     it('should be able to flush pending events when tc_events_11 becomes available', () => {
-      player.trigger('loadstart');
-      player.trigger('loadeddata');
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loadeddata'));
 
       analytics.flush();
 
@@ -311,23 +398,19 @@ describe('SRGAnalytics', () => {
     });
 
     it('should return an upper case string representing the audio language', () => {
-      player.audioTracks = jest.fn(() => ({
-        0: {
+      analytics.setPlaybackData({
+        analyticsMetadata: mediaData.mediaData.analyticsMetadata,
+        audioTrack: jest.fn(() => ({
           enabled: true,
           id: 'whatever',
           kind: 'audio',
           label: 'we-dont-care',
           language: 'fr',
-        },
-        1: {
-          enabled: false,
-          id: 'whatever2',
-          kind: 'audio',
-          label: 'we-dont-care-2',
-          language: 'en',
-        },
-        length: 2,
-      }));
+        })),
+        debug: jest.fn(),
+        disableTrackers: undefined,
+        textTrack: jest.fn(),
+      });
 
       expect(analytics.getCurrentAudioTrack()).toBe('FR');
     });
@@ -344,11 +427,17 @@ describe('SRGAnalytics', () => {
     });
 
     it('should return an upper case string representing the text language', () => {
-      player.textTrack.mockReturnValueOnce({
-        kind: 'subtitle',
-        language: 'fr',
-        label: 'Français',
-        mode: 'showing',
+      analytics.setPlaybackData({
+        analyticsMetadata: mediaData.mediaData.analyticsMetadata,
+        audioTrack: jest.fn(),
+        debug: jest.fn(),
+        disableTrackers: undefined,
+        textTrack: jest.fn(() => ({
+          kind: 'subtitle',
+          language: 'fr',
+          label: 'Français',
+          mode: 'showing',
+        })),
       });
 
       expect(analytics.getCurrentTextTrack()).toBe('FR');
@@ -362,31 +451,35 @@ describe('SRGAnalytics', () => {
    */
   describe('isTrackerDisabled', () => {
     it('should return false for all non-array, non-Boolean values', () => {
-      player.trigger('loadstart');
+      player.dispatchEvent(new Event('loadstart'));
 
       expect(analytics.isTrackerDisabled()).toBe(false);
     });
 
     it('should return true if disableTrackers is set to true', () => {
-      const src = {
-        ...player.currentSource(),
+      analytics.setPlaybackData({
+        analyticsMetadata: mediaData.mediaData.analyticsMetadata,
+        audioTrack: jest.fn(),
+        debug: jest.fn(),
         disableTrackers: true,
-      };
+        textTrack: jest.fn(),
+      });
 
-      player.currentSource.mockReturnValueOnce(src);
-      player.trigger('loadstart');
+      player.dispatchEvent(new Event('loadstart'));
 
       expect(analytics.isTrackerDisabled()).toBe(true);
     });
 
     it('should return true if disableTrackers contains SRGAnalytics', () => {
-      const src = {
-        ...player.currentSource(),
+      analytics.setPlaybackData({
+        analyticsMetadata: mediaData.mediaData.analyticsMetadata,
+        audioTrack: jest.fn(),
+        debug: jest.fn(),
         disableTrackers: ['SRGAnalytics'],
-      };
+        textTrack: jest.fn(),
+      });
 
-      player.currentSource.mockReturnValueOnce(src);
-      player.trigger('loadstart');
+      player.dispatchEvent(new Event('loadstart'));
 
       expect(analytics.isTrackerDisabled()).toBe(true);
     });
@@ -437,12 +530,15 @@ describe('SRGAnalytics', () => {
    */
   describe('log', () => {
     it('should call console.log when debug is set to true', () => {
-      const spyConsole = jest.spyOn(console, 'log');
+      const spyConsole = jest.spyOn(console, 'log').mockImplementation(); // mockImplementation() avoid printing a log in the console
 
-      spyConsole.mockImplementation();
+      jest.spyOn(player, 'play').mockImplementation(() => {
+        player.dispatchEvent(new Event('play'));
+        player.dispatchEvent(new Event('playing'));
+      });
 
-      player.trigger('loadstart');
-      player.trigger('loadeddata');
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loadeddata'));
 
       analytics.debug(true);
       player.play();
@@ -463,8 +559,13 @@ describe('SRGAnalytics', () => {
       const spyFlush = jest.spyOn(analytics, 'flush');
       const spyNotify = jest.spyOn(analytics, 'notify');
 
-      player.trigger('loadstart');
-      player.trigger('loadeddata');
+      jest.spyOn(player, 'play').mockImplementation(() => {
+        player.dispatchEvent(new Event('play'));
+        player.dispatchEvent(new Event('playing'));
+      });
+
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loadeddata'));
 
       spyFlush.mockImplementationOnce(() => {
         throw new Error('Mock Error');
@@ -478,10 +579,15 @@ describe('SRGAnalytics', () => {
     it('should catch any errors that may occur in the tag manager', () => {
       const spyNotify = jest.spyOn(analytics, 'notify');
 
+      jest.spyOn(player, 'play').mockImplementation(() => {
+        player.dispatchEvent(new Event('play'));
+        player.dispatchEvent(new Event('playing'));
+      });
+
       window.tc_events_11 = jest.fn();
 
-      player.trigger('loadstart');
-      player.trigger('loadeddata');
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loadeddata'));
 
       window.tc_events_11.mockImplementationOnce((..._args) => {
         throw new Error('Mock Error');
@@ -501,9 +607,9 @@ describe('SRGAnalytics', () => {
     it('should notify change_playback_rate each time playback rate change', () => {
       const spyNotify = jest.spyOn(analytics, 'notify');
 
-      player.trigger('loadstart');
-      player.trigger('loadeddata');
-      player.trigger('ratechange');
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loadeddata'));
+      player.dispatchEvent(new Event('ratechange'));
 
       expect(spyNotify).toHaveBeenNthCalledWith(1, 'buffer_start');
       expect(spyNotify).toHaveBeenNthCalledWith(2, 'init');
@@ -521,9 +627,9 @@ describe('SRGAnalytics', () => {
     it('should not call isMediaLive if playback has not started', () => {
       const spyIsMediaLive = jest.spyOn(analytics, 'isMediaLive');
 
-      player.trigger('loadstart');
-      player.trigger('loadeddata');
-      player.trigger('timeupdate');
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loadeddata'));
+      player.dispatchEvent(new Event('timeupdate'));
 
       expect(analytics.hasStarted).toBe(false);
       expect(spyIsMediaLive).not.toHaveBeenCalled();
@@ -532,13 +638,13 @@ describe('SRGAnalytics', () => {
 
   /**
    *****************************************************************************
-   * updateSrcMediaData ********************************************************
+   * setPlaybackData ***********************************************************
    *****************************************************************************
    */
-  describe('updateSrcMediaData', () => {
-    it('should set the srcMediaData', () => {
-      analytics.updateSrcMediaData(player.currentSource());
-      expect(analytics.srcMediaData).toBe(player.currentSource());
+  describe('setPlaybackData', () => {
+    it('should set the playbackData', () => {
+      analytics.setPlaybackData(mediaData.mediaData);
+      expect(analytics.playbackData).toBe(mediaData.mediaData);
     });
   });
 
@@ -551,24 +657,34 @@ describe('SRGAnalytics', () => {
     it('should not call notify the initialization has not been done', () => {
       const spyNotify = jest.spyOn(analytics, 'notify');
 
-      player.trigger('waiting');
+      player.dispatchEvent(new Event('waiting'));
 
       expect(analytics.isWaiting).toBe(false);
       expect(analytics.initialized).toBe(false);
       expect(spyNotify).not.toHaveBeenCalled();
     });
 
-    it('should send buffer_start when the player starts buffering and buffer_stop when the playback resumes based on a playing event', () => {
+    it('should send buffer_start when the player starts buffering and buffer_stop when the playback\n\t\t\t\tresumes based on a playing event if the browser is not Safari', () => {
       const spyNotify = jest.spyOn(analytics, 'notify');
 
-      player.trigger('loadstart');
-      player.trigger('loadeddata');
+      jest.spyOn(player, 'play').mockImplementation(() => {
+        player.dispatchEvent(new Event('play'));
+        player.dispatchEvent(new Event('playing'));
+      });
+
+      analytics.playbackData.browser = {
+        IS_ANY_SAFARI: false
+      };
+
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loadeddata'));
+
       player.play();
 
       expect(analytics.isWaiting).toBe(false);
       expect(analytics.initialized).toBe(true);
 
-      player.trigger('waiting');
+      player.dispatchEvent(new Event('waiting'));
 
       expect(analytics.isWaiting).toBe(true);
       expect(spyNotify).toHaveBeenLastCalledWith('buffer_start');
@@ -578,29 +694,34 @@ describe('SRGAnalytics', () => {
       expect(spyNotify).toHaveBeenLastCalledWith('buffer_stop');
     });
 
-    it('should send buffer_start when the player starts buffering and buffer_stop when the playback resumes based on a timeupdate event', () => {
-      const mockIsAnySafari = jest.replaceProperty(Pillarbox, 'browser', {
-        IS_ANY_SAFARI: true,
-      });
+    it('should send buffer_start when the player starts buffering and buffer_stop when the playback resumes based on a timeupdate event if the browser is Safari', () => {
       const spyNotify = jest.spyOn(analytics, 'notify');
 
-      player.trigger('loadstart');
-      player.trigger('loadeddata');
+      jest.spyOn(player, 'play').mockImplementation(() => {
+        player.dispatchEvent(new Event('play'));
+        player.dispatchEvent(new Event('playing'));
+      });
+
+      analytics.playbackData.browser = {
+        IS_ANY_SAFARI: true
+      };
+
+      player.dispatchEvent(new Event('loadstart'));
+      player.dispatchEvent(new Event('loadeddata'));
+
       player.play();
 
       expect(analytics.isWaiting).toBe(false);
       expect(analytics.initialized).toBe(true);
 
-      player.trigger('waiting');
+      player.dispatchEvent(new Event('waiting'));
 
       expect(analytics.isWaiting).toBe(true);
       expect(spyNotify).toHaveBeenLastCalledWith('buffer_start');
 
-      player.trigger('timeupdate');
+      player.dispatchEvent(new Event('timeupdate'));
 
       expect(spyNotify).toHaveBeenLastCalledWith('buffer_stop');
-
-      mockIsAnySafari.restore();
     });
   });
 });
