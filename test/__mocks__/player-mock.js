@@ -64,7 +64,7 @@ let playerMock = jest.fn(() => ({
   seekable: jest.fn(),
   seeking: jest.fn(),
   tech: jest.fn().mockReturnValue({
-    isCasting: undefined,
+    name: jest.fn(),
   }),
   textTrack: jest.fn().mockReturnValue(undefined),
   textTracks: jest.fn().mockReturnValue({}),
