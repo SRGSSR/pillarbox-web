@@ -418,7 +418,7 @@ class SRGAnalytics {
   getInternalLabels() {
     const data = {
       media_bu_distributer: this.srcMediaData.mediaData.vendor,
-      media_chromecast_selected: Boolean(this.player.tech(true).isCasting),
+      media_google_cast: this.player.tech(true).name() === 'PillarboxReceiver',
       media_embedding_url: document.referrer,
       media_player_display: 'default', // TODO implement if it still relevant
       media_player_name: 'pillarbox-web', // TODO add a property playerName in the constructor with a default value ?
@@ -779,7 +779,7 @@ class SRGAnalytics {
    * Sent to ComScore when the playback rate changes.
    *
    * @see https://github.com/SRGSSR/srgletterbox-web/issues/761
-   * @see https://srgssr-ch.atlassian.net/browse/ADI-256 
+   * @see https://srgssr-ch.atlassian.net/browse/ADI-256
    */
   rateChange() {
     this.notify('change_playback_rate');
@@ -876,7 +876,7 @@ class SRGAnalytics {
    * It's expected notifyBufferStart() to be called when the player starts buffering
    * and a call to notifyBufferStop() when content resumes after buffering.
    *
-   * @see Item 2: https://srgssr-ch.atlassian.net/browse/PLAY-2628 
+   * @see Item 2: https://srgssr-ch.atlassian.net/browse/PLAY-2628
    *
    * After the issue PLAYRTS-321
    * @see Fix: https://srgssr-ch.atlassian.net/browse/PLAYRTS-321?focusedCommentId=201023&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-201023
