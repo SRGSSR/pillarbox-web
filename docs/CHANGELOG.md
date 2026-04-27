@@ -1,3 +1,16 @@
+## [1.34.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.33.1...v1.34.0) (2026-04-27)
+
+
+### New Features 🚀
+
+* **srg-analytics:** add Google Cast receiver tracking ([9e0d8e6](https://github.com/SRGSSR/pillarbox-web/commit/9e0d8e66d7dacb9a496297a2ade3973632f8ec9f))
+
+
+### CI 🔁
+
+* **crowdin:** add content write permission to allow workflow to make changes ([b9585e3](https://github.com/SRGSSR/pillarbox-web/commit/b9585e3ae19c253fa3a7f8d6db4305d52a2dd376))
+* **crowdin:** fix base_path property in upload crowding workflow ([912fa77](https://github.com/SRGSSR/pillarbox-web/commit/912fa77cb0b65ae5382b343022d2bcb4bcdda986))
+
 ## [1.33.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.33.0...v1.33.1) (2026-03-30)
 
 
