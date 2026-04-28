@@ -1,3 +1,10 @@
+## [1.34.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.34.0...v1.34.1) (2026-04-28)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **srg-analytics:** media_google_cast wrong value type ([37cf256](https://github.com/SRGSSR/pillarbox-web/commit/37cf256446544505eaf32e6e8d36dab8dc06b736))
+
 ## [1.34.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.33.1...v1.34.0) (2026-04-27)
 
 
