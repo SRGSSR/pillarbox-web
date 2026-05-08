@@ -377,7 +377,6 @@ class SRGAnalytics {
       // TODO use media_is_dvr, media_is_live to define peach media_stream_type
       media_subtitles_on: this.isTextTrackEnabled(),
       media_volume: (this.player.volume() * 100).toFixed(0),
-      navigation_environment: this.environment,
     };
 
     if (this.isAudioTrackEnabled()) {
@@ -424,6 +423,7 @@ class SRGAnalytics {
       media_player_name: 'pillarbox-web', // TODO add a property playerName in the constructor with a default value ?
       media_player_version: this.playerVersion,
       media_url: this.srcMediaData.src,
+      navigation_environment: this.environment,
     };
     const analyticsMetadata =
       this.srcMediaData.mediaData.analyticsMetadata || {};
