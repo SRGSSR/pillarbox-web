@@ -21,9 +21,9 @@ describe('Pillarbox', () => {
       expect(pillarbox.options.enableSmoothSeeking).toBe(true);
     });
 
-    it('should set useForcedSubtitles to true in VHS configuration', () => {
+    it('should set useForcedSubtitles and overrideNative to true in VHS configuration', () => {
       expect(pillarbox.options.html5).toEqual({
-        vhs: { useForcedSubtitles: true }
+        vhs: { useForcedSubtitles: true, overrideNative: true }
       });
     });
 
