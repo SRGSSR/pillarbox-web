@@ -1,3 +1,10 @@
+## [1.34.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.34.1...v1.34.2) (2026-05-11)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **srg-analytics:** navigation_environment property not correctly initialized ([1f712ea](https://github.com/SRGSSR/pillarbox-web/commit/1f712ea8df1a549a3b083d03bf3aa4daed038957))
+
 ## [1.34.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.34.0...v1.34.1) (2026-04-28)
 
 
