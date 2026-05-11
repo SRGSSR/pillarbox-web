@@ -39,15 +39,21 @@ pillarbox.options.fill = true;
  * Configuration options for HTML5 settings in Pillarbox.
  *
  * @see [VHS useForcedSubtitles Option]{@link https://github.com/videojs/http-streaming/blob/main/README.md#useforcedsubtitles}
+ * @see [VHS overrideNative Option]{@link https://github.com/videojs/http-streaming#overridenative}
  * @type {Object}
  * @property {Object} vhs - Configuration for the Video.js HTTP Streaming.
  * @property {boolean} useForcedSubtitles - Enables the player to display forced subtitles by default.
  * Forced subtitles are pieces of information intended for display when no other text representation
  * is selected. They are used to clarify dialogue, provide alternate languages, display texted graphics,
  * or present location/person IDs that are not otherwise covered in the dubbed/localized audio.
+ * @property {boolean} overrideNative - Try to use videojs-http-streaming even on platforms that
+ * provide some level of HLS support natively
  */
 pillarbox.options.html5 = {
-  vhs: { useForcedSubtitles: true }
+  vhs: {
+    useForcedSubtitles: true,
+    overrideNative: !pillarbox.browser.IS_SAFARI
+  }
 };
 /**
  * Configuration for the live tracker.
