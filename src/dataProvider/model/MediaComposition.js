@@ -189,10 +189,6 @@ class MediaComposition {
       this.mainChapter = this.findChapterByUrn(this.chapterUrn);
     }
 
-    if (!this.mainChapter && this.chapterList && this.chapterList.length > 0) {
-      [this.mainChapter] = this.chapterList;
-    }
-
     return this.mainChapter;
   }
 

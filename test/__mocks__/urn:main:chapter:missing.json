@@ -1,0 +1,164 @@
+{
+  "chapterUrn": "urn:srf:video:7d96040b-28ca-47f9-b1bd-6222e7923e54",
+  "episode": {
+    "imageUrl": "https://download-media.srf.ch/world/image/audio/2020/12/917e4ef8986a460d94f3bd9e7139e6a9.jpg",
+    "imageTitle": "Tagesschau vom 03.05.2026: Hauptausgabe (löschen)",
+    "publishedDate": "2026-05-03T19:30:00+02:00",
+    "id": "2946dddd-1281-4099-ac63-336fb9712cb9",
+    "title": "Tagesschau vom 03.05.2026: Hauptausgabe (löschen)"
+  },
+  "show": {
+    "id": "ff969c14-c5a7-44ab-ab72-14d4c9e427a9",
+    "vendor": "SRF",
+    "transmission": "TV",
+    "urn": "urn:srf:show:tv:ff969c14-c5a7-44ab-ab72-14d4c9e427a9",
+    "title": "Tagesschau",
+    "lead": "Nationale und internationale Nachrichten vom Tag.",
+    "description": "Die «Tagesschau» berichtet über Themen aus Politik, Wirtschaft, Kultur, Sport, Gesellschaft und Wissenschaft aus dem In- und Ausland. ",
+    "imageUrl": "https://download-media.srf.ch/world/image/audio/2020/12/917e4ef8986a460d94f3bd9e7139e6a9.jpg",
+    "imageTitle": "Tagesschau",
+    "bannerImageUrl": "https://download-media.srf.ch/world/image/audio/2020/12/917e4ef8986a460d94f3bd9e7139e6a9.jpg",
+    "posterImageUrl": "https://download-media.srf.ch/world/image/audio/2023/04/96e8a418e34a466c861ef6cefd19defd.jpg",
+    "posterImageIsFallbackUrl": false,
+    "podcastImageUrl": "https://il.srgssr.ch/image-service/dynamic/f8a856c.jpg",
+    "podcastImageIsFallbackUrl": true,
+    "podcastFeedSdUrl": "https://www.srf.ch/feed/podcast/sd/ff969c14-c5a7-44ab-ab72-14d4c9e427a9.xml",
+    "podcastFeedHdUrl": "https://www.srf.ch/feed/podcast/hd/ff969c14-c5a7-44ab-ab72-14d4c9e427a9.xml",
+    "links": [
+      {
+        "link": "https://www.srf.ch/play/tv/sendung/tagesschau-spezial?id=c4b213cd-9790-0001-3063-e4001037ebe0",
+        "title": "Tagesschau Spezial"
+      }
+    ],
+    "primaryChannelId": "23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "primaryChannelUrn": "urn:srf:channel:tv:23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "numberOfEpisodes": 20246,
+    "topicList": [
+      {
+        "id": "a709c610-b275-4c0c-a496-cba304c36712",
+        "vendor": "SRF",
+        "transmission": "TV",
+        "urn": "urn:srf:topic:tv:a709c610-b275-4c0c-a496-cba304c36712",
+        "title": "News & Hintergründe",
+        "lead": "Hier finden Sie alle Sendungen von SRF zum Themenbereich News & Hintergründe: aktuell, informativ und tiefgründig.",
+        "description": "Tagesschau, Meteo, 10vor10, Schweiz aktuell, Börse, Kinder News, Forward, Arena, SRF Börse und viele mehr - die News- und Hintergrund-Sendungen von SRF stehen für seriös recherchierte Berichterstattung und kompetente Hintergrundberichterstattung.",
+        "imageUrl": "https://download-media.srf.ch/world/image/default/2025/08/blob-4",
+        "imageTitle": "News & Hintergründe"
+      }
+    ],
+    "allowIndexing": true
+  },
+  "channel": {
+    "id": "23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "vendor": "SRF",
+    "urn": "urn:srf:channel:tv:23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "title": "SRF 1",
+    "imageUrl": "https://download-media.srf.ch/world/image/audio/2015/07/74e9378315a24db285b8cf2e80b3d902.png",
+    "imageUrlRaw": "https://il.srgssr.ch/image-service/dynamic/536ef7.svg",
+    "imageTitle": "Logo",
+    "transmission": "TV"
+  },
+  "chapterList": [
+    {
+      "id": "f62365fa-17d1-49c7-8398-050dbe165bf6",
+      "mediaType": "VIDEO",
+      "vendor": "SRF",
+      "urn": "urn:srf:video:f62365fa-17d1-49c7-8398-050dbe165bf6",
+      "title": "Tagesschau vom 03.05.2026: Hauptausgabe (löschen)",
+      "lead": "FC Thun ist Schweizer Meister, Landsgemeinde Glarus: keine Redezeit-Beschränkung, Whatsapp-Konkurrent «Max»: Wanze zum Kreml, Shakira begeistert Millionen-Publikum an Copacabana",
+      "imageUrl": "https://download-media.srf.ch/world/image/video/2026/05/f62365fa-17d1-49c7-8398-050dbe165bf6-94s0ms.png",
+      "imageTitle": "Tagesschau vom 03.05.2026: Hauptausgabe (löschen)",
+      "blockReason": "LEGAL",
+      "type": "EPISODE",
+      "date": "2026-05-03T19:30:00+02:00",
+      "duration": 1376520,
+      "podcastSdUrl": "https://download-media.srf.ch/world/video/ts20/2026/05/ts20_20260503_201709_16852118_v_podcast_h264_q30.mp4",
+      "podcastHdUrl": "https://download-media.srf.ch/world/video/ts20/2026/05/ts20_20260503_201709_16852118_v_podcast_h264_q30.mp4",
+      "validFrom": "2026-05-03T19:30:00+02:00",
+      "playableAbroad": true,
+      "displayable": false,
+      "position": -1,
+      "noEmbed": false,
+      "analyticsData": {
+        "ns_st_ep": "Tagesschau vom 03.05.2026: Hauptausgabe (löschen)",
+        "ns_st_ci": "f62365fa-17d1-49c7-8398-050dbe165bf6",
+        "ns_st_cl": "1376520",
+        "ns_st_ct": "vc12"
+      },
+      "analyticsMetadata": {
+        "media_urn": "urn:srf:video:f62365fa-17d1-49c7-8398-050dbe165bf6",
+        "media_segment_length": "1377",
+        "media_episode_length": "1377",
+        "media_segment_id": "f62365fa-17d1-49c7-8398-050dbe165bf6",
+        "media_type": "Video",
+        "media_duration_category": "long",
+        "media_segment": "Tagesschau vom 03.05.2026: Hauptausgabe (löschen)",
+        "media_is_geoblocked": "false",
+        "media_joker1": "News & Hintergründe",
+        "media_sub_set_id": "EPISODE",
+        "media_topic_list": "urn:srf:topic:tv:a709c610-b275-4c0c-a496-cba304c36712",
+        "media_signlanguage_on": "false"
+      },
+      "aspectRatio": "16:9",
+      "spriteSheet": {
+        "urn": "urn:srf:video:f62365fa-17d1-49c7-8398-050dbe165bf6",
+        "rows": 23,
+        "columns": 20,
+        "thumbnailHeight": 84,
+        "thumbnailWidth": 150,
+        "interval": 3000,
+        "url": "https://il.srgssr.ch/spritesheet/urn/srf/video/f62365fa-17d1-49c7-8398-050dbe165bf6/sprite-f62365fa-17d1-49c7-8398-050dbe165bf6.jpeg"
+      },
+      "bannerImageUrl": "https://download-media.srf.ch/world/image/video/2026/05/f62365fa-17d1-49c7-8398-050dbe165bf6-94s0ms.png",
+      "bannerImageTitle": "Tagesschau vom 03.05.2026: Hauptausgabe (löschen)"
+    }
+  ],
+  "topicList": [
+    {
+      "id": "a709c610-b275-4c0c-a496-cba304c36712",
+      "vendor": "SRF",
+      "transmission": "TV",
+      "urn": "urn:srf:topic:tv:a709c610-b275-4c0c-a496-cba304c36712",
+      "title": "News & Hintergründe",
+      "lead": "Hier finden Sie alle Sendungen von SRF zum Themenbereich News & Hintergründe: aktuell, informativ und tiefgründig.",
+      "description": "Tagesschau, Meteo, 10vor10, Schweiz aktuell, Börse, Kinder News, Forward, Arena, SRF Börse und viele mehr - die News- und Hintergrund-Sendungen von SRF stehen für seriös recherchierte Berichterstattung und kompetente Hintergrundberichterstattung.",
+      "imageUrl": "https://download-media.srf.ch/world/image/default/2025/08/blob-4",
+      "imageTitle": "News & Hintergründe"
+    }
+  ],
+  "analyticsData": {
+    "ns_st_pr": "Tagesschau vom 03.05.2026",
+    "ns_st_ddt": "2026-05-03",
+    "ns_st_tdt": "2026-05-03",
+    "ns_st_tm": "19:30",
+    "ns_st_tep": "3869173499582",
+    "ns_st_stc": "0866",
+    "ns_st_st": "SRF Online",
+    "ns_st_tpr": "ff969c14-c5a7-44ab-ab72-14d4c9e427a9"
+  },
+  "analyticsMetadata": {
+    "media_episode_id": "2946dddd-1281-4099-ac63-336fb9712cb9",
+    "media_tv_id": "3869173499582",
+    "media_show_id": "ff969c14-c5a7-44ab-ab72-14d4c9e427a9",
+    "media_show": "Tagesschau",
+    "media_episode": "Tagesschau vom 03.05.2026",
+    "media_is_livestream": "false",
+    "media_full_length": "partial",
+    "media_enterprise_units": "SRF",
+    "media_content_group": "News & Hintergründe",
+    "media_channel_id": "23FFBE1B-65CE-4188-ADD2-C724186C2C9F",
+    "media_channel_name": "SRF 1",
+    "media_since_publication_d": "3",
+    "media_since_publication_h": "87",
+    "media_thumbnail": "https://download-media.srf.ch/world/image/video/2026/05/7d96040b-28ca-47f9-b1bd-6222e7923e54-140s44ms.png",
+    "media_publication_date": "2026-05-03",
+    "media_publication_time": "19:30:00",
+    "media_publication_datetime": "2026-05-03T19:30:00+02:00",
+    "media_channel_cs": "0866",
+    "media_tv_date": "2026-05-03",
+    "media_tv_time": "19:30:00",
+    "media_is_web_only": "false",
+    "media_joker1": "News & Hintergründe",
+    "media_signlanguage_on": "false"
+  }
+}
