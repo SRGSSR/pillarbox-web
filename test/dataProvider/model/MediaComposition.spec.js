@@ -26,6 +26,7 @@ import * as urnTimeIntervalList from '../../__mocks__/urn:rts:video:10313496-cre
 import * as urnForumVideoWithAnAudioChapter from '../../__mocks__/forum:video:with:an:audio:chapter.json';
 import * as urnForumAudioWithAVideoChapter from '../../__mocks__/forum:audio:with:an:video:chapter.json';
 import * as urnScheduleLiveStreamChapters from '../../__mocks__/urn:schedule:live:stream:chapters';
+import * as urnMainChapterMissing from '../../__mocks__/urn:main:chapter:missing.json';
 
 
 describe('MediaComposition', () => {
@@ -175,6 +176,11 @@ describe('MediaComposition', () => {
     urnScheduleLiveStreamChapters
   );
 
+  const mediaCompositionUrnMainChapterMissing = Object.assign(
+    new MediaComposition(),
+    urnMainChapterMissing
+  );
+
   const DRMLIST = {
     drmList: [
       {
@@ -294,35 +300,6 @@ describe('MediaComposition', () => {
 
   /**
    *****************************************************************************
-   * getChapterImageUrl ********************************************************
-   *****************************************************************************
-   */
-  describe('getChapterImageUrl', () => {
-    it('should return the main chapter\'s image URL', () => {
-      expect(
-        mediaCompositionUrnChapterBadOrder.getMainChapterImageUrl()
-      ).toBeTruthy();
-      expect(
-        mediaCompositionUrnChapterBadOrder.getMainChapterImageUrl()
-      ).toEqual(
-        expect.stringContaining(
-          'https://www.rts.ch/2019/03/08/12/59/10272381.image/16x9'
-        )
-      );
-    });
-
-    it('should return undefined when the main chapter doesn\'t contain an image URL', () => {
-      expect(
-        mediaCompositionUrnMainChapterNoImageUrl.getMainChapterImageUrl()
-      ).toBeFalsy();
-      expect(
-        mediaCompositionUrnMainChapterNoImageUrl.getMainChapterImageUrl()
-      ).toBeUndefined();
-    });
-  });
-
-  /**
-   *****************************************************************************
    * getChapters ***************************************************************
    *****************************************************************************
    */
@@ -429,6 +406,10 @@ describe('MediaComposition', () => {
     it('should return undefined with empty mediacomposition', () => {
       expect(mediaCompositionEmpty.getMainChapter()).toBe(undefined);
     });
+
+    it('should return undefined when mediaComposition is missing its main chapter', () => {
+      expect(mediaCompositionUrnMainChapterMissing.getMainChapter()).toBe(undefined);
+    });
   });
 
   /**
@@ -437,15 +418,39 @@ describe('MediaComposition', () => {
    *****************************************************************************
    */
   describe('getMainChapterImageUrl', () => {
-    it('should return a the image url', () => {
+    it('should return undefined if the mediaComposition does not have a main chapter', () => {
       const imageUrl =
-        mediaCompositionUrnOnlyOneChapter.getMainChapterImageUrl();
+        mediaCompositionUrnMainChapterMissing.getMainChapterImageUrl();
 
-      expect(imageUrl).toBe('http://image.url/image');
+      expect(imageUrl).toBe(undefined);
     });
 
     it('should return undefined with empty mediacomposition', () => {
       expect(mediaCompositionEmpty.getMainChapterImageUrl()).toBe(undefined);
+    });
+
+    it('should return undefined when the main chapter doesn\'t contain an image URL', () => {
+      expect(
+        mediaCompositionUrnMainChapterNoImageUrl.getMainChapterImageUrl()
+      ).toBeFalsy();
+
+      expect(
+        mediaCompositionUrnMainChapterNoImageUrl.getMainChapterImageUrl()
+      ).toBeUndefined();
+    });
+
+    it('should return the main chapter\'s image URL', () => {
+      expect(
+        mediaCompositionUrnChapterBadOrder.getMainChapterImageUrl()
+      ).toBeTruthy();
+
+      expect(
+        mediaCompositionUrnChapterBadOrder.getMainChapterImageUrl()
+      ).toEqual(
+        expect.stringContaining(
+          'https://www.rts.ch/2019/03/08/12/59/10272381.image/16x9'
+        )
+      );
     });
   });
 
