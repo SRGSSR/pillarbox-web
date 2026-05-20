@@ -1,3 +1,16 @@
+## [1.35.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.34.2...v1.35.0) (2026-05-20)
+
+
+### Enhancements and Bug Fixes 🐛
+
+* **mediaComposition:** empty main chapter fallback ([927cdcf](https://github.com/SRGSSR/pillarbox-web/commit/927cdcf7bfcb628b50c285f6630f2b72860dfba1)), closes [#397](https://github.com/SRGSSR/pillarbox-web/issues/397)
+* **pillarbox:** remove ghost audio track on Chrome Linux ([90b0333](https://github.com/SRGSSR/pillarbox-web/commit/90b0333fc3a96d96afdf3ad46b377b0a6a9479e3))
+
+
+### New Features 🚀
+
+* **image:** export utility class ([de09f50](https://github.com/SRGSSR/pillarbox-web/commit/de09f506e213e442aba66172a608eae0c5b61daa))
+
 ## [1.34.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.34.1...v1.34.2) (2026-05-11)
 
 
