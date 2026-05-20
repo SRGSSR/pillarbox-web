@@ -8,12 +8,14 @@ on:
 jobs:
   publish-dist-tag:
     runs-on: ubuntu-latest
+    environment: npmjs
 
     permissions:
       packages: write
       issues: write
       contents: write
       pull-requests: write
+      id-token: write
 
     steps:
       - name: Generate Token
@@ -52,7 +54,7 @@ jobs:
         run: npm run release:ci
         env:
           GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
 
       - name: Pre-release main tag failed 🫣
         if: failure()
