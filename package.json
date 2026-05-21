@@ -71,7 +71,7 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^ 9.2.5",
-    "@semantic-release/npm": "^11.0.2",
+    "@semantic-release/npm": "^13.1.5",
     "@types/jest": "^29.5.12",
     "babel-jest": "^29.5.0",
     "better-docs": "^2.7.3",
