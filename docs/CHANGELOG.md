@@ -1,3 +1,13 @@
+## 1.35.0 (2026-05-22)
+
+* fix(mediaComposition): empty main chapter fallback ([927cdcf](https://github.com/SRGSSR/pillarbox-web/commit/927cdcf)), closes [#397](https://github.com/SRGSSR/pillarbox-web/issues/397)
+* fix(npm): pre-release action ([77980ad](https://github.com/SRGSSR/pillarbox-web/commit/77980ad))
+* fix(npm): semantic-release package version ([f0a6ced](https://github.com/SRGSSR/pillarbox-web/commit/f0a6ced)), closes [#401](https://github.com/SRGSSR/pillarbox-web/issues/401)
+* fix(pillarbox): remove ghost audio track on Chrome Linux ([90b0333](https://github.com/SRGSSR/pillarbox-web/commit/90b0333))
+* chore: re-run release ([6475e97](https://github.com/SRGSSR/pillarbox-web/commit/6475e97))
+* chore(release): 1.35.0 [skip ci] ([fb1d77b](https://github.com/SRGSSR/pillarbox-web/commit/fb1d77b))
+* feat(image): export utility class ([de09f50](https://github.com/SRGSSR/pillarbox-web/commit/de09f50))
+
 ## [1.35.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.34.2...v1.35.0) (2026-05-20)
 
 
