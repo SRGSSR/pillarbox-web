@@ -86,7 +86,7 @@
     "jsdoc-tsimport-plugin": "^1.0.5",
     "rimraf": "^5.0.5",
     "sass": "^1.70.0",
-    "semantic-release": "^23.0.0",
+    "semantic-release": "^25.0.3",
     "stylelint": "^16.2.1",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-order": "^6.0.4",
