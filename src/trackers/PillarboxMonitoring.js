@@ -489,7 +489,7 @@ class PillarboxMonitoring {
 
     // Calculate the position timestamp from the start date on Safari
     if (pillarbox.browser.IS_ANY_SAFARI) {
-      const startDate = Date.parse(this.player.$('video').getStartDate());
+      const startDate = Date.parse(this.player.tech(true).el().getStartDate());
 
       position_timestamp = !isNaN(startDate) ?
         (startDate + position) : undefined;
