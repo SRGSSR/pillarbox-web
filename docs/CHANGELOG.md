@@ -1,3 +1,7 @@
+## <small>1.35.1 (2026-05-28)</small>
+
+* fix(monitoring): player null reference ([f65282f](https://github.com/SRGSSR/pillarbox-web/commit/f65282f))
+
 ## 1.35.0 (2026-05-22)
 
 * fix(mediaComposition): empty main chapter fallback ([927cdcf](https://github.com/SRGSSR/pillarbox-web/commit/927cdcf)), closes [#397](https://github.com/SRGSSR/pillarbox-web/issues/397)
