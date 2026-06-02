@@ -41,7 +41,7 @@ class PictureInPictureToggle extends VJSPictureInPictureToggle {
     // Does not allow to display the pictureInPictureToggle in browsers that do not support the Picture-in-Picture or DocumentPictureInPicture API.
     if (
       typeof document.exitPictureInPicture !== 'function' &amp;&amp;
-      !('documentPictureInPicture' in window)
+      !(this.player_.options_.enableDocumentPictureInPicture &amp;&amp; 'documentPictureInPicture' in window)
     ) {
       return;
     }
