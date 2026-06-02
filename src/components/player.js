@@ -98,6 +98,81 @@ class Player extends vjsPlayer {
   }
 
   /**
+   * Create a floating video window always on top of other windows so that users may
+   * continue consuming media while they interact with other content sites, or
+   * applications on their device.
+   *
+   * This can use document picture-in-picture or element picture in picture
+   *
+   * Set `enableDocumentPictureInPicture` to `true` to use docPiP on a supported browser
+   * Else set `disablePictureInPicture` to `false` to disable elPiP on a supported browser
+   *
+   *
+   * @see [Spec]{@link https://w3c.github.io/picture-in-picture/}
+   * @see [Spec]{@link https://wicg.github.io/document-picture-in-picture/}
+   *
+   * @fires Player#enterpictureinpicture
+   *
+   * @return {Promise}
+   *         A promise with a Picture-in-Picture window.
+   */
+  /* eslint-disable */
+  requestPictureInPicture() {
+    if (this.options_.enableDocumentPictureInPicture && window.documentPictureInPicture) {
+      const pipContainer = document.createElement(this.el().tagName);
+
+      pipContainer.classList = this.el().classList;
+      pipContainer.classList.add('vjs-pip-container');
+      if (this.posterImage) {
+        pipContainer.appendChild(this.posterImage.el().cloneNode(true));
+      }
+      if (this.titleBar) {
+        pipContainer.appendChild(this.titleBar.el().cloneNode(true));
+      }
+      pipContainer.appendChild(videojs.dom.createEl('p', { className: 'vjs-pip-text' }, {}, this.localize('Playing in picture-in-picture')));
+
+      return window.documentPictureInPicture.requestWindow({
+        // The aspect ratio won't be correct, Chrome bug https://crbug.com/1407629
+        width: this.videoWidth(),
+        height: this.videoHeight()
+      }).then(pipWindow => {
+        videojs.dom.copyStyleSheetsToWindow(pipWindow);
+        this.el_.parentNode.insertBefore(pipContainer, this.el_);
+
+        pipWindow.document.body.appendChild(this.el_);
+        pipWindow.document.body.classList.add('vjs-pip-window');
+
+        this.player_.isInPictureInPicture(true);
+        this.player_.trigger({ type: 'enterpictureinpicture', pipWindow });
+
+        // Listen for the PiP closing event to move the video back.
+        pipWindow.addEventListener('pagehide', (event) => {
+          console.log(event.target);
+          const pipVideo = event.target.querySelector('.vjs-v8');
+
+          pipContainer.parentNode.replaceChild(pipVideo, pipContainer);
+          this.player_.isInPictureInPicture(false);
+          this.player_.trigger('leavepictureinpicture');
+        });
+
+        return pipWindow;
+      });
+    }
+    if ('pictureInPictureEnabled' in document && this.disablePictureInPicture() === false) {
+      /**
+       * This event fires when the player enters picture in picture mode
+       *
+       * @event Player#enterpictureinpicture
+       * @type {Event}
+       */
+      return this.techGet_('requestPictureInPicture');
+    }
+
+    return Promise.reject('No PiP mode is available');
+  }
+  /* eslint-enable */
+
+  /**
    * Get the percent (as a decimal) of the media that's been played.
    * This method is not a part of the native HTML video API.
    *
