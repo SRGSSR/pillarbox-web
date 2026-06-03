@@ -1,3 +1,7 @@
+## 1.36.0 (2026-06-03)
+
+* feat(docPiP): add firefox Document Picture-in-Picture support ([5c6c7db](https://github.com/SRGSSR/pillarbox-web/commit/5c6c7db))
+
 ## <small>1.35.1 (2026-05-28)</small>
 
 * fix(monitoring): player null reference ([f65282f](https://github.com/SRGSSR/pillarbox-web/commit/f65282f))
