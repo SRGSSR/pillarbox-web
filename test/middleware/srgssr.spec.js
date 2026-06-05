@@ -43,7 +43,27 @@ describe('SrgSsr', () => {
     Image.scale = jest.fn(({ url }) => `https://mock-scale.ch/${url}`);
 
     player = {
-      addRemoteTextTrack: jest.fn(),
+      addRemoteTextTrack: jest.fn().mockImplementation((options, _) => {
+        const { kind, label, id, src, srcLang = '' } = options;
+        const cues = [];
+
+        return {
+          kind,
+          label,
+          src,
+          srcLang,
+          track: {
+            kind,
+            label,
+            id,
+            mode: 'disabled',
+            cues,
+            addCue: jest.fn((cue) => {
+              cues.push(cue);
+            })
+          }
+        };
+      }),
       currentTime: jest.fn(),
       debug: jest.fn(),
       error: jest.fn(),
@@ -52,6 +72,8 @@ describe('SrgSsr', () => {
       one: jest.fn(),
       options: jest.fn().mockReturnValue({ srgOptions: {}, trackers: {}}),
       poster: (url) => url,
+      remoteTextTracks: jest.fn().mockReturnValue({ getTrackById: jest.fn() }),
+      removeRemoteTextTrack: jest.fn(),
       src: jest.fn(),
       tech: jest.fn(),
       textTracks: jest.fn().mockReturnValue({ getTrackById: jest.fn(), removeTrack: jest.fn(), addTrack: jest.fn(), on: jest.fn() }),
@@ -73,61 +95,59 @@ describe('SrgSsr', () => {
    */
   describe('addBlockedSegments', () => {
     it('should create track when blocked segments is missing or empty', async () => {
-      const spyOnAddTrack = jest.spyOn(player.textTracks(), 'addTrack');
+      const spyOnAddRemoteTextTrack = jest.spyOn(player, 'addRemoteTextTrack');
+      const trackType = 'srgssr-blocked-segments';
 
       await SrgSsr.addBlockedSegments(player, []);
 
-      expect(spyOnAddTrack).toHaveBeenCalledWith(
-        expect.any(Pillarbox.TextTrack)
+      expect(spyOnAddRemoteTextTrack).toHaveBeenCalledWith(
+        expect.objectContaining({
+          id: trackType,
+          kind: 'metadata',
+          label: trackType,
+        })
       );
     });
 
     it('should not call addTextTrackCue if the segments parameter is not an array or if the array is empty', async () => {
+      jest.useFakeTimers();
       const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
 
-      await SrgSsr.addBlockedSegments(player, true);
-      await SrgSsr.addBlockedSegments(player, null);
-      await SrgSsr.addBlockedSegments(player, '');
-      await SrgSsr.addBlockedSegments(player, undefined);
+      SrgSsr.addBlockedSegments(player, true);
+      SrgSsr.addBlockedSegments(player, null);
+      SrgSsr.addBlockedSegments(player, '');
+      SrgSsr.addBlockedSegments(player, undefined);
 
-      expect(spyOnAddTextTrackCue).not.toHaveBeenCalled();
+      jest.advanceTimersByTime(100);
+
+      expect(await spyOnAddTextTrackCue).not.toHaveBeenCalled();
     });
 
     it('should remove blocked segments track if any', async () => {
-      const spyOnRemoveTrack = jest.spyOn(player.textTracks(), 'removeTrack');
+      const spyOnRemoveRemoteTextTrack = jest.spyOn(player, 'removeRemoteTextTrack');
 
-      player.textTracks().getTrackById.mockReturnValueOnce({});
+      player.remoteTextTracks().getTrackById.mockReturnValueOnce({});
       SrgSsr.addBlockedSegments(player);
 
-      expect(spyOnRemoveTrack).toHaveBeenCalled();
+      expect(spyOnRemoveRemoteTextTrack).toHaveBeenCalled();
     });
 
     it('Should not add blocked segments if none exist', async () => {
       jest.useFakeTimers();
-
-      const result = [];
-
-      Pillarbox.TextTrack
-        .prototype
-        .addCue
-        .mockImplementation((cue) => result.push(cue));
+      const spyOnAddRemoteTextTrack = jest.spyOn(player, 'addRemoteTextTrack');
 
       SrgSsr.addBlockedSegments(player, [{}, {}]);
 
       jest.advanceTimersByTime(100);
 
-      expect(await result).toHaveLength(0);
+      expect(await spyOnAddRemoteTextTrack.mock.results[0].value.track.addCue).not.toHaveBeenCalled();
     });
 
     it('Should add 2 blocked segments', async () => {
-      const result = [];
+      jest.useFakeTimers();
+      const spyOnAddRemoteTextTrack = jest.spyOn(player, 'addRemoteTextTrack');
 
-      Pillarbox.TextTrack
-        .prototype
-        .addCue
-        .mockImplementation((cue) => result.push(cue));
-
-      await SrgSsr.addBlockedSegments(player, [{
+      SrgSsr.addBlockedSegments(player, [{
         blockReason: 'GEOBLOCK',
         markIn: 10_0000,
         markOut: 25_0000
@@ -144,7 +164,9 @@ describe('SrgSsr', () => {
         markOut: 70_0000
       }]);
 
-      expect(result).toHaveLength(2);
+      jest.advanceTimersByTime(100);
+
+      expect(await spyOnAddRemoteTextTrack.mock.results[0].value.track.addCue).toHaveBeenCalledTimes(2);
     });
   });
 
@@ -155,46 +177,49 @@ describe('SrgSsr', () => {
    */
   describe('addChapters', () => {
     it('should create track when chapters is missing or empty', async () => {
-      const spyOnAddTrack = jest.spyOn(player.textTracks(), 'addTrack');
+      const spyOnAddRemoteTextTrack = jest.spyOn(player, 'addRemoteTextTrack');
       const chapterUrn = 'urn:full:length';
+      const trackType = 'srgssr-chapters';
 
       await SrgSsr.addChapters(player, chapterUrn, []);
 
-      expect(spyOnAddTrack).toHaveBeenCalledWith(
-        expect.any(Pillarbox.TextTrack)
+      expect(spyOnAddRemoteTextTrack).toHaveBeenCalledWith(
+        expect.objectContaining({
+          id: trackType,
+          kind: 'metadata',
+          label: trackType,
+        })
       );
     });
 
     it('should not call addTextTrackCue if the chapters parameter is not an array or if the array is empty', async () => {
+      jest.useFakeTimers();
       const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
 
-      await SrgSsr.addChapters(player, true);
-      await SrgSsr.addChapters(player, null);
-      await SrgSsr.addChapters(player, '');
-      await SrgSsr.addChapters(player, undefined);
+      SrgSsr.addChapters(player, true);
+      SrgSsr.addChapters(player, null);
+      SrgSsr.addChapters(player, '');
+      SrgSsr.addChapters(player, undefined);
 
-      expect(spyOnAddTextTrackCue).not.toHaveBeenCalled();
+      jest.advanceTimersByTime(100);
+
+      expect(await spyOnAddTextTrackCue).not.toHaveBeenCalled();
     });
 
     it('should remove chapters track if any', async () => {
-      const spyOnRemoveTrack = jest.spyOn(player.textTracks(), 'removeTrack');
+      const spyOnRemoveRemoteTextTrack = jest.spyOn(player, 'removeRemoteTextTrack');
 
-      player.textTracks().getTrackById.mockReturnValueOnce({});
+      player.remoteTextTracks().getTrackById.mockReturnValueOnce({});
       SrgSsr.addChapters(player);
 
-      expect(spyOnRemoveTrack).toHaveBeenCalled();
+      expect(spyOnRemoveRemoteTextTrack).toHaveBeenCalled();
     });
 
     it('should not add the chapter if the only available chapter is the main chapter', async () => {
       jest.useFakeTimers();
+      const spyOnAddRemoteTextTrack = jest.spyOn(player, 'addRemoteTextTrack');
 
       const chapterUrn = 'urn:full:length';
-      const result = [];
-
-      Pillarbox.TextTrack
-        .prototype
-        .addCue
-        .mockImplementation((cue) => result.push(cue));
 
       SrgSsr.addChapters(player, chapterUrn, [{
         fullLengthMarkIn: 0,
@@ -203,19 +228,16 @@ describe('SrgSsr', () => {
 
       jest.advanceTimersByTime(100);
 
-      expect(await result).toHaveLength(0);
+      expect(await spyOnAddRemoteTextTrack.mock.results[0].value.track.addCue).not.toHaveBeenCalled();
     });
 
     it('should add all chapters that are not the main chapter', async () => {
+      jest.useFakeTimers();
+
+      const spyOnAddRemoteTextTrack = jest.spyOn(player, 'addRemoteTextTrack');
       const chapterUrn = 'urn:full:length';
-      const result = [];
 
-      Pillarbox.TextTrack
-        .prototype
-        .addCue
-        .mockImplementation((cue) => result.push(cue));
-
-      await SrgSsr.addChapters(player, chapterUrn, [{
+      SrgSsr.addChapters(player, chapterUrn, [{
         fullLengthMarkIn: 0,
         fullLengthMarkOut: 10000
       }, {
@@ -228,11 +250,16 @@ describe('SrgSsr', () => {
         fullLengthMarkOut: 9500
       }]);
 
-      expect(result).toHaveLength(2);
-      expect(result[0].startTime).toBe(2.5);
-      expect(result[0].endTime).toBe(5);
-      expect(result[1].startTime).toBe(6);
-      expect(result[1].endTime).toBe(9.5);
+      jest.advanceTimersByTime(100);
+
+      const spyOnTrack = await spyOnAddRemoteTextTrack.mock.results[0].value.track;
+
+      expect(spyOnTrack.addCue).toHaveBeenCalledTimes(2);
+      expect(spyOnTrack.cues).toHaveLength(2);
+      expect(spyOnTrack.cues[0].startTime).toBe(2.5);
+      expect(spyOnTrack.cues[0].endTime).toBe(5);
+      expect(spyOnTrack.cues[1].startTime).toBe(6);
+      expect(spyOnTrack.cues[1].endTime).toBe(9.5);
     });
   });
 
@@ -243,44 +270,54 @@ describe('SrgSsr', () => {
    */
   describe('addIntervals', () => {
     it('should create track when intervals is missing or empty', async () => {
-      const spyOnAddTrack = jest.spyOn(player.textTracks(), 'addTrack');
+      jest.useFakeTimers();
 
-      await SrgSsr.addIntervals(player, []);
+      const spyOnAddRemoteTextTrack = jest.spyOn(player, 'addRemoteTextTrack');
+      const trackType = 'srgssr-intervals';
 
-      expect(spyOnAddTrack).toHaveBeenCalledWith(
-        expect.any(Pillarbox.TextTrack)
+      SrgSsr.addIntervals(player, []);
+
+      jest.advanceTimersByTime(100);
+
+      expect(await spyOnAddRemoteTextTrack).toHaveBeenCalledWith(
+        expect.objectContaining({
+          id: trackType,
+          kind: 'metadata',
+          label: trackType,
+        })
       );
     });
 
     it('should not call addTextTrackCue if the intervals parameter is not an array or if the array is empty', async () => {
+      jest.useFakeTimers();
+
       const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
 
-      await SrgSsr.addIntervals(player, true);
-      await SrgSsr.addIntervals(player, null);
-      await SrgSsr.addIntervals(player, '');
-      await SrgSsr.addIntervals(player, undefined);
+      SrgSsr.addIntervals(player, true);
+      SrgSsr.addIntervals(player, null);
+      SrgSsr.addIntervals(player, '');
+      SrgSsr.addIntervals(player, undefined);
 
-      expect(spyOnAddTextTrackCue).not.toHaveBeenCalled();
+      jest.advanceTimersByTime(100);
+
+      expect(await spyOnAddTextTrackCue).not.toHaveBeenCalled();
     });
 
     it('should remove intervals track if any', async () => {
-      const spyOnRemoveTrack = jest.spyOn(player.textTracks(), 'removeTrack');
+      const spyOnRemoveRemoteTextTrack = jest.spyOn(player, 'removeRemoteTextTrack');
 
-      player.textTracks().getTrackById.mockReturnValueOnce({});
+      player.remoteTextTracks().getTrackById.mockReturnValueOnce({});
       SrgSsr.addIntervals(player);
 
-      expect(spyOnRemoveTrack).toHaveBeenCalled();
+      expect(spyOnRemoveRemoteTextTrack).toHaveBeenCalled();
     });
 
     it('should add intervals to the player', async () => {
-      const result = [];
+      jest.useFakeTimers();
 
-      Pillarbox.TextTrack
-        .prototype
-        .addCue
-        .mockImplementation((cue) => result.push(cue));
+      const spyOnAddRemoteTextTrack = jest.spyOn(player, 'addRemoteTextTrack');
 
-      await SrgSsr.addIntervals(player, [{
+      SrgSsr.addIntervals(player, [{
         markIn: 1_000,
         markOut: 2_000,
         type: 'OPENING_CREDITS'
@@ -290,9 +327,14 @@ describe('SrgSsr', () => {
         type: 'CLOSING_CREDITS'
       }]);
 
-      expect(result).toHaveLength(2);
-      expect(JSON.parse(result[0].text).type).toBe('OPENING_CREDITS');
-      expect(JSON.parse(result[1].text).type).toBe('CLOSING_CREDITS');
+      jest.advanceTimersByTime(100);
+
+      const spyOnTrack = await spyOnAddRemoteTextTrack.mock.results[0].value.track;
+
+      expect(spyOnTrack.addCue).toHaveBeenCalledTimes(2);
+      expect(spyOnTrack.cues).toHaveLength(2);
+      expect(JSON.parse(spyOnTrack.cues[0].text).type).toBe('OPENING_CREDITS');
+      expect(JSON.parse(spyOnTrack.cues[1].text).type).toBe('CLOSING_CREDITS');
     });
   });
 
@@ -661,50 +703,36 @@ describe('SrgSsr', () => {
    */
   describe('createTextTrack', () => {
     it('should not add cues when cues parameter is when omitted', async () => {
-      const result = [];
+      jest.useFakeTimers();
+      const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
 
-      Pillarbox.TextTrack
-        .prototype
-        .addCue
-        .mockImplementation((cue) => result.push(cue));
+      SrgSsr.createTextTrack(player, 'trackId');
 
-      const spy = jest.spyOn(SrgSsr, 'addTextTrackCue');
+      jest.advanceTimersByTime(100);
 
-      await SrgSsr.createTextTrack(player, 'trackId');
+      expect(await spyOnAddTextTrackCue).not.toHaveBeenCalled();
 
-      expect(spy).not.toHaveBeenCalled();
-      expect(result).toHaveLength(0);
-
-      spy.mockRestore();
-      Pillarbox.TextTrack.prototype.addCue.mockRestore();
+      spyOnAddTextTrackCue.mockRestore();
     });
 
     it('should not add cues to the text track', async () => {
-      const result = [];
+      jest.useFakeTimers();
 
-      Pillarbox.TextTrack
-        .prototype
-        .addCue
-        .mockImplementation((cue) => result.push(cue));
       const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
 
-      await SrgSsr.createTextTrack(player, 'trackId', null);
+      SrgSsr.createTextTrack(player, 'trackId', null);
 
-      expect(spyOnAddTextTrackCue).not.toHaveBeenCalled();
-      expect(result).toHaveLength(0);
+      jest.advanceTimersByTime(100);
+
+      expect(await spyOnAddTextTrackCue).not.toHaveBeenCalled();
 
       spyOnAddTextTrackCue.mockRestore();
-      Pillarbox.TextTrack.prototype.addCue.mockRestore();
     });
 
     it('should add cues to the text track', async () => {
-      const result = [];
+      jest.useFakeTimers();
 
-      Pillarbox.TextTrack
-        .prototype
-        .addCue
-        .mockImplementation((cue) => result.push(cue));
-      const spyOnAddTextTrackCue = jest.spyOn(SrgSsr, 'addTextTrackCue');
+      const spyOnAddRemoteTextTrack = jest.spyOn(player, 'addRemoteTextTrack');
       const cues = [
         {
           markIn: 0,
@@ -718,13 +746,15 @@ describe('SrgSsr', () => {
         }
       ];
 
-      await SrgSsr.createTextTrack(player, 'trackId', cues);
+      SrgSsr.createTextTrack(player, 'trackId', cues);
 
-      expect(spyOnAddTextTrackCue).toHaveBeenCalled();
-      expect(result).toHaveLength(2);
+      jest.advanceTimersByTime(100);
 
-      spyOnAddTextTrackCue.mockRestore();
-      Pillarbox.TextTrack.prototype.addCue.mockRestore();
+      const spyOnTrack = await spyOnAddRemoteTextTrack.mock.results[0].value.track;
+
+      expect(spyOnAddRemoteTextTrack).toHaveBeenCalled();
+      expect(spyOnTrack.addCue).toHaveBeenCalledTimes(2);
+      expect(spyOnTrack.cues).toHaveLength(2);
     });
   });
 
@@ -758,13 +788,13 @@ describe('SrgSsr', () => {
       const metadataTrack = {
         id: 'metadata',
         activeCues: [metadataCue],
-        on: jest.fn(),
+        addEventListener: jest.fn(),
       };
       const addTrackCallback = player.textTracks().on.mock.calls[0][1];
 
       addTrackCallback({ track: metadataTrack });
 
-      expect(metadataTrack.on).not.toHaveBeenCalled();
+      expect(metadataTrack.addEventListener).not.toHaveBeenCalled();
     });
 
     it('should trigger a srgssr/chapter event when cue changes', () => {
@@ -778,13 +808,13 @@ describe('SrgSsr', () => {
       const chaptersTrack = {
         id: 'srgssr-chapters',
         activeCues: [chapterCue],
-        on: jest.fn(),
+        addEventListener: jest.fn(),
       };
       const addTrack = player.textTracks().on.mock.calls[0][1];
 
       addTrack({ track: chaptersTrack });
 
-      const cueChange = chaptersTrack.on.mock.calls[0][1];
+      const cueChange = chaptersTrack.addEventListener.mock.calls[0][1];
 
       cueChange();
 
@@ -805,13 +835,13 @@ describe('SrgSsr', () => {
       const intervalsTrack = {
         id: 'srgssr-intervals',
         activeCues: [intervalCue],
-        on: jest.fn(),
+        addEventListener: jest.fn(),
       };
       const addTrack = player.textTracks().on.mock.calls[0][1];
 
       addTrack({ track: intervalsTrack });
 
-      const cueChange = intervalsTrack.on.mock.calls[0][1];
+      const cueChange = intervalsTrack.addEventListener.mock.calls[0][1];
 
       cueChange();
 

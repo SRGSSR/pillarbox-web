@@ -268,29 +268,27 @@ class SrgSsr {
    * @returns {Promise<TextTrack>}
    */
   static async createTextTrack(player, trackId, cues = []) {
-    const removeTrack = player.textTracks().getTrackById(trackId);
+    const removeTrack = player.remoteTextTracks().getTrackById(trackId);
 
     if (removeTrack) {
-      player.textTracks().removeTrack(removeTrack);
+      player.removeRemoteTextTrack(removeTrack);
     }
 
-    // See https://github.com/videojs/video.js/issues/8519
-    const textTrack = await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(new Pillarbox.TextTrack({
-          id: trackId,
-          kind: 'metadata',
-          label: trackId,
-          tech: player.tech(true),
-        }));
-      }, 100);
+    const textTrack = player.addRemoteTextTrack({
+      id: trackId,
+      kind: 'metadata',
+      label: trackId,
     });
 
-    SrgSsr.addTextTrackCues(textTrack, cues);
+    // Safari
+    textTrack.track.mode = 'hidden';
 
-    player.textTracks().addTrack(textTrack);
+    // See https://github.com/videojs/video.js/issues/8519
+    await new Promise(resolve => setTimeout(resolve, 100));
 
-    return textTrack;
+    SrgSsr.addTextTrackCues(textTrack.track, cues);
+
+    return textTrack.track;
   }
 
   /**
@@ -299,11 +297,11 @@ class SrgSsr {
    * @param {Player} player
    */
   static cuechangeEventProxy(player) {
-    player.textTracks().on('addtrack', ({ track }) => {
+    player.textTracks().on('addtrack', /** @param {{ track: TextTrack }} */({ track }) => {
       if (!['srgssr-chapters', 'srgssr-intervals'].includes(track.id)) return;
 
-      track.on('cuechange', () => {
-        const [cue] = Array.from(track.activeCues);
+      track.addEventListener('cuechange', () => {
+        const [cue] = Array.from(track.activeCues || []);
         const type = track.id.includes('srgssr-chapters') ? 'srgssr/chapter' : 'srgssr/interval';
 
         player.trigger({ type, data: cue });
@@ -409,7 +407,7 @@ class SrgSsr {
     if (!blockedSegmentsTrack) return;
 
     /** @type {VTTCue} */
-    const [blockedCue] = Array.from(blockedSegmentsTrack.activeCues);
+    const [blockedCue] = Array.from(blockedSegmentsTrack.activeCues || []);
 
     return blockedCue;
   }
