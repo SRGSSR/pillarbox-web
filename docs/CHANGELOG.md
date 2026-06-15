@@ -1,3 +1,7 @@
+## <small>1.36.1 (2026-06-15)</small>
+
+* fix(middleware): safari metadata text track ([444d152](https://github.com/SRGSSR/pillarbox-web/commit/444d152)), closes [#404](https://github.com/SRGSSR/pillarbox-web/issues/404)
+
 ## 1.36.0 (2026-06-03)
 
 * feat(docPiP): add firefox Document Picture-in-Picture support ([5c6c7db](https://github.com/SRGSSR/pillarbox-web/commit/5c6c7db))
