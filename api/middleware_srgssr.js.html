@@ -32,9 +32,9 @@ class SrgSsr {
    */
   static async addBlockedSegments(player, segments = []) {
     const trackId = 'srgssr-blocked-segments';
-    const blockedSegmentsToAdd = SrgSsr.getBlockedSegments(segments);
+    const blockedSegmentsToAdd = this.getBlockedSegments(segments);
 
-    await SrgSsr.createTextTrack(player, trackId, blockedSegmentsToAdd);
+    await this.createTextTrack(player, trackId, blockedSegmentsToAdd);
   }
 
   /**
@@ -100,7 +100,7 @@ class SrgSsr {
     if (!Array.isArray(cues)) return;
 
     cues.forEach(cue => {
-      SrgSsr.addTextTrackCue(textTrack, cue);
+      this.addTextTrackCue(textTrack, cue);
     });
   }
 
@@ -111,10 +111,10 @@ class SrgSsr {
    * @param {ComposedSrcMediaData} srcMediaObj
    */
   static addTextTracks(player, { mediaData }) {
-    SrgSsr.addRemoteTextTracks(player, mediaData.subtitles);
-    SrgSsr.addChapters(player, mediaData.urn, mediaData.chapters);
-    SrgSsr.addBlockedSegments(player, mediaData.blockedSegments);
-    SrgSsr.addIntervals(player, mediaData.intervals);
+    this.addRemoteTextTracks(player, mediaData.subtitles);
+    this.addChapters(player, mediaData.urn, mediaData.chapters);
+    this.addBlockedSegments(player, mediaData.blockedSegments);
+    this.addIntervals(player, mediaData.intervals);
   }
 
   /**
@@ -126,9 +126,9 @@ class SrgSsr {
    */
   static async addChapters(player, chapterUrn, chapters = []) {
     const trackId = 'srgssr-chapters';
-    const chaptersToAdd = SrgSsr.getChapters(chapterUrn, chapters);
+    const chaptersToAdd = this.getChapters(chapterUrn, chapters);
 
-    await SrgSsr.createTextTrack(player, trackId, chaptersToAdd);
+    await this.createTextTrack(player, trackId, chaptersToAdd);
   }
 
   /**
@@ -139,9 +139,9 @@ class SrgSsr {
    */
   static async addIntervals(player, intervals = []) {
     const trackId = 'srgssr-intervals';
-    const instervalsToAdd = SrgSsr.getIntervals(intervals);
+    const instervalsToAdd = this.getIntervals(intervals);
 
-    await SrgSsr.createTextTrack(player, trackId, instervalsToAdd);
+    await this.createTextTrack(player, trackId, instervalsToAdd);
   }
 
   /**
@@ -158,7 +158,7 @@ class SrgSsr {
 
     const message = player.localize(srcMediaObj.mediaData.blockReason);
 
-    SrgSsr.error(player, {
+    this.error(player, {
       code: MediaError.MEDIA_ERR_ABORTED,
       message,
       metadata: {
@@ -216,9 +216,9 @@ class SrgSsr {
    * @returns {Promise&lt;Array.&lt;MainResourceWithKeySystems>>}
    */
   static composeMainResources(mediaComposition) {
-    return SrgSsr.composeAkamaiResources(
-      SrgSsr.composeKeySystemsResources(
-        SrgSsr.filterIncompatibleResources(mediaComposition.getMainResources())
+    return this.composeAkamaiResources(
+      this.composeKeySystemsResources(
+        this.filterIncompatibleResources(mediaComposition.getMainResources())
       )
     );
   }
@@ -288,7 +288,7 @@ class SrgSsr {
     // See https://github.com/videojs/video.js/issues/8519
     await new Promise(resolve => setTimeout(resolve, 100));
 
-    SrgSsr.addTextTrackCues(textTrack.track, cues);
+    this.addTextTrackCues(textTrack.track, cues);
 
     return textTrack.track;
   }
@@ -351,7 +351,7 @@ class SrgSsr {
 
     const statusText = error.statusText ? error.statusText : error.message;
 
-    SrgSsr.error(player, {
+    this.error(player, {
       code: 0,
       message: player.localize('UNKNOWN'),
       metadata: {
@@ -423,7 +423,7 @@ class SrgSsr {
    * @returns {VTTCue|undefined} The VTT cue of a blocked segment, or undefined
    */
   static getBlockedSegmentByTime(player, currentTime) {
-    const blockedSegment = SrgSsr.getBlockedSegment(player);
+    const blockedSegment = this.getBlockedSegment(player);
 
     if (!blockedSegment) return;
 
@@ -516,19 +516,19 @@ class SrgSsr {
    * @returns {Promise&lt;ComposedSrcMediaData>} - The composed source media data.
    */
   static async getSrcMediaObj(player, srcObj) {
-    if (SrgSsr.pillarboxMonitoring(player)) {
-      SrgSsr.pillarboxMonitoring(player).sessionStart();
+    if (this.pillarboxMonitoring(player)) {
+      this.pillarboxMonitoring(player).sessionStart();
     }
 
     const { src: urn, ...srcOptions } = srcObj;
-    const mediaComposition = await SrgSsr.getMediaComposition(
+    const mediaComposition = await this.getMediaComposition(
       urn,
-      SrgSsr.dataProvider(player)
+      this.dataProvider(player)
     );
-    const mainResources = await SrgSsr.composeMainResources(
+    const mainResources = await this.composeMainResources(
       mediaComposition
     );
-    let mediaData = SrgSsr.getMediaData(mainResources);
+    let mediaData = this.getMediaData(mainResources);
 
     if (!mediaData) {
       mediaData = {
@@ -537,7 +537,7 @@ class SrgSsr {
       };
     }
 
-    return SrgSsr.composeSrcMediaData(srcOptions, mediaData);
+    return this.composeSrcMediaData(srcOptions, mediaData);
   }
 
   /**
@@ -611,19 +611,19 @@ class SrgSsr {
    */
   static async handleSetSource(player, srcObj, next) {
     try {
-      const srcMediaObj = await SrgSsr.getSrcMediaObj(player, srcObj);
+      const srcMediaObj = await this.getSrcMediaObj(player, srcObj);
 
-      SrgSsr.srgAnalytics(player);
-      SrgSsr.updateTitleBar(player, srcMediaObj);
-      SrgSsr.updatePoster(player, srcMediaObj);
+      this.srgAnalytics(player);
+      this.updateTitleBar(player, srcMediaObj);
+      this.updatePoster(player, srcMediaObj);
 
-      if (SrgSsr.blockingReason(player, srcMediaObj)) return;
+      if (this.blockingReason(player, srcMediaObj)) return;
 
-      SrgSsr.addTextTracks(player, srcMediaObj);
+      this.addTextTracks(player, srcMediaObj);
 
       return next(null, srcMediaObj);
     } catch (error) {
-      if (SrgSsr.dataProviderError(player, error)) return;
+      if (this.dataProviderError(player, error)) return;
 
       return next(error);
     }
@@ -719,21 +719,21 @@ class SrgSsr {
    * @returns {Object}
    */
   static middleware(player) {
-    SrgSsr.pillarboxMonitoring(player);
-    SrgSsr.cuechangeEventProxy(player);
+    this.pillarboxMonitoring(player);
+    this.cuechangeEventProxy(player);
 
     return {
       currentTime: (currentTime) =>
-        SrgSsr.handleCurrentTime(player, currentTime),
+        this.handleCurrentTime(player, currentTime),
       setCurrentTime: (currentTime) =>
-        SrgSsr.handleSetCurrentTime(player, currentTime),
+        this.handleSetCurrentTime(player, currentTime),
       setSource: async (srcObj, next) =>
-        SrgSsr.handleSetSource(player, srcObj, next),
+        this.handleSetSource(player, srcObj, next),
     };
   }
 }
 
-Pillarbox.use('srgssr/urn', SrgSsr.middleware);
+Pillarbox.use('srgssr/urn', (player) => SrgSsr.middleware(player));
 
 // Add Middleware specific options
 Pillarbox.options.srgOptions = {
