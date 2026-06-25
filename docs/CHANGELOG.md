@@ -1,3 +1,7 @@
+## <small>1.36.2 (2026-06-25)</small>
+
+* fix(middleware): execution context ([3cc483d](https://github.com/SRGSSR/pillarbox-web/commit/3cc483d))
+
 ## <small>1.36.1 (2026-06-15)</small>
 
 * fix(middleware): safari metadata text track ([444d152](https://github.com/SRGSSR/pillarbox-web/commit/444d152)), closes [#404](https://github.com/SRGSSR/pillarbox-web/issues/404)
