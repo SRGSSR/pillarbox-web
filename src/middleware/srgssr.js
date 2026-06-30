@@ -280,6 +280,9 @@ class SrgSsr {
       label: trackId,
     });
 
+    // See https://github.com/videojs/video.js/issues/8519
+    await new Promise(resolve => setTimeout(resolve, 100));
+
     // Safari
     textTrack.track.mode = 'hidden';
 
