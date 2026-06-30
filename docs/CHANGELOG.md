@@ -1,3 +1,7 @@
+## <small>1.36.3 (2026-06-30)</small>
+
+* fix(middleware): media playback blocked by Safari track mode switch ([9e946b6](https://github.com/SRGSSR/pillarbox-web/commit/9e946b6))
+
 ## <small>1.36.2 (2026-06-25)</small>
 
 * fix(middleware): execution context ([3cc483d](https://github.com/SRGSSR/pillarbox-web/commit/3cc483d))
