@@ -118,7 +118,7 @@ describe('SrgSsr', () => {
       SrgSsr.addBlockedSegments(player, '');
       SrgSsr.addBlockedSegments(player, undefined);
 
-      jest.advanceTimersByTime(100);
+      await jest.runAllTimersAsync();
 
       expect(await spyOnAddTextTrackCue).not.toHaveBeenCalled();
     });
@@ -138,7 +138,7 @@ describe('SrgSsr', () => {
 
       SrgSsr.addBlockedSegments(player, [{}, {}]);
 
-      jest.advanceTimersByTime(100);
+      await jest.runAllTimersAsync();
 
       expect(await spyOnAddRemoteTextTrack.mock.results[0].value.track.addCue).not.toHaveBeenCalled();
     });
@@ -164,7 +164,7 @@ describe('SrgSsr', () => {
         markOut: 70_0000
       }]);
 
-      jest.advanceTimersByTime(100);
+      await jest.runAllTimersAsync();
 
       expect(await spyOnAddRemoteTextTrack.mock.results[0].value.track.addCue).toHaveBeenCalledTimes(2);
     });
@@ -201,7 +201,7 @@ describe('SrgSsr', () => {
       SrgSsr.addChapters(player, '');
       SrgSsr.addChapters(player, undefined);
 
-      jest.advanceTimersByTime(100);
+      await jest.runAllTimersAsync();
 
       expect(await spyOnAddTextTrackCue).not.toHaveBeenCalled();
     });
@@ -226,7 +226,7 @@ describe('SrgSsr', () => {
         fullLengthMarkOut: 10000
       }]);
 
-      jest.advanceTimersByTime(100);
+      await jest.runAllTimersAsync();
 
       expect(await spyOnAddRemoteTextTrack.mock.results[0].value.track.addCue).not.toHaveBeenCalled();
     });
@@ -250,7 +250,7 @@ describe('SrgSsr', () => {
         fullLengthMarkOut: 9500
       }]);
 
-      jest.advanceTimersByTime(100);
+      await jest.runAllTimersAsync();
 
       const spyOnTrack = await spyOnAddRemoteTextTrack.mock.results[0].value.track;
 
@@ -277,7 +277,7 @@ describe('SrgSsr', () => {
 
       SrgSsr.addIntervals(player, []);
 
-      jest.advanceTimersByTime(100);
+      await jest.runAllTimersAsync();
 
       expect(await spyOnAddRemoteTextTrack).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -298,7 +298,7 @@ describe('SrgSsr', () => {
       SrgSsr.addIntervals(player, '');
       SrgSsr.addIntervals(player, undefined);
 
-      jest.advanceTimersByTime(100);
+      await jest.runAllTimersAsync();
 
       expect(await spyOnAddTextTrackCue).not.toHaveBeenCalled();
     });
@@ -327,7 +327,7 @@ describe('SrgSsr', () => {
         type: 'CLOSING_CREDITS'
       }]);
 
-      jest.advanceTimersByTime(100);
+      await jest.runAllTimersAsync();
 
       const spyOnTrack = await spyOnAddRemoteTextTrack.mock.results[0].value.track;
 
@@ -708,7 +708,7 @@ describe('SrgSsr', () => {
 
       SrgSsr.createTextTrack(player, 'trackId');
 
-      jest.advanceTimersByTime(100);
+      await jest.runAllTimersAsync();
 
       expect(await spyOnAddTextTrackCue).not.toHaveBeenCalled();
 
@@ -722,7 +722,7 @@ describe('SrgSsr', () => {
 
       SrgSsr.createTextTrack(player, 'trackId', null);
 
-      jest.advanceTimersByTime(100);
+      await jest.runAllTimersAsync();
 
       expect(await spyOnAddTextTrackCue).not.toHaveBeenCalled();
 
@@ -748,7 +748,7 @@ describe('SrgSsr', () => {
 
       SrgSsr.createTextTrack(player, 'trackId', cues);
 
-      jest.advanceTimersByTime(100);
+      await jest.runAllTimersAsync();
 
       const spyOnTrack = await spyOnAddRemoteTextTrack.mock.results[0].value.track;
 
