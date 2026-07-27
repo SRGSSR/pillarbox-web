@@ -5,6 +5,7 @@ import videojs from 'video.js';
 import './components/player.js';
 import './components/audio-track-menu-item.js';
 import './components/picture-in-picture-toggle.js';
+import './components/drm-support.js';
 
 /**
  * Pillarbox is an alias for the video.js namespace with additional options.
@@ -22,6 +23,15 @@ pillarbox.VERSION = {
   eme: videojs.getPlugin('eme').VERSION,
 };
 
+/**
+ * Enable DrmSupport component by default.
+ *
+ * A component that provides DRM support detection.
+ *
+ * @type {boolean}
+ * @default true
+ */
+pillarbox.options.drmSupport = true;
 /**
  * Enable smooth seeking for Pillarbox.
  *
