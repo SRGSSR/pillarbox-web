@@ -7,7 +7,7 @@ describe('PillarboxMonitoring', () => {
   let monitoring;
 
   global.navigator.sendBeacon = jest.fn();
-  global.window.MediaError = jest.fn().mockReturnValue({  });
+  global.window.MediaError = jest.fn().mockReturnValue({});
 
   beforeEach(() => {
     player = playerMock();
@@ -79,6 +79,34 @@ describe('PillarboxMonitoring', () => {
       player.buffered.mockReturnValue(pillarbox.time.createTimeRanges([[1, 70]]));
 
       expect(monitoring.bufferDuration()).toBe(69000);
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * capabilities **************************************************************
+   *****************************************************************************
+   */
+  describe('capabilities', () => {
+    it('should return undefined if drmSupport is not available', async () => {
+      player.drmSupport = undefined;
+      await expect(monitoring.capabilities()).resolves.toBeUndefined();
+    });
+
+    it('should return the drm capabilities', async () => {
+      player.drmSupport = {
+        check: jest.fn().mockResolvedValue({
+          widevine: { level: 'L3', hdcp: null },
+          playReady: null,
+          clearKey: {}
+        })
+      };
+
+      await expect(monitoring.capabilities()).resolves.toEqual({
+        widevine: {
+          level: 'L3', hdcp: null
+        }
+      });
     });
   });
 
@@ -201,7 +229,7 @@ describe('PillarboxMonitoring', () => {
    *****************************************************************************
    */
   describe('error', () => {
-    it('should send an error and reset the session', () => {
+    it('should send an error and reset the session', async () => {
       global.performance.getEntriesByType = jest.fn().mockReturnValue([]);
       player.error.mockReturnValueOnce({
         metadata: { hasSomething: true },
@@ -223,7 +251,7 @@ describe('PillarboxMonitoring', () => {
       const spyOnSendEvent = jest.spyOn(monitoring, 'sendEvent');
       const spyOnReset = jest.spyOn(monitoring, 'reset');
 
-      monitoring.error();
+      await monitoring.error();
 
       expect(spyOnSendEvent).toHaveBeenCalledWith('ERROR', expect.any(Object));
       expect(spyOnReset).toHaveBeenCalled();
@@ -356,7 +384,7 @@ describe('PillarboxMonitoring', () => {
    *****************************************************************************
    */
   describe('heartbeat', () => {
-    it('should send an HEARTBEAT when the time interval timeout has been reached', () => {
+    it('should send an HEARTBEAT when the time interval timeout has been reached', async () => {
       jest.useFakeTimers();
 
       const spyOnSendEvent = jest.spyOn(monitoring, 'sendEvent');
@@ -377,7 +405,7 @@ describe('PillarboxMonitoring', () => {
    *****************************************************************************
    */
   describe('loadedData', () => {
-    it('should send a START immediately followed by an HEARTBEAT', () => {
+    it('should send a START immediately followed by an HEARTBEAT', async () => {
       player.currentSource.mockReturnValue({
         mediaData: {}
       });
@@ -386,7 +414,7 @@ describe('PillarboxMonitoring', () => {
       const spyOnSendEvent = jest.spyOn(monitoring, 'sendEvent');
       const spyOnRandomUUID = jest.spyOn(PillarboxMonitoring, 'randomUUID').mockReturnValue(true);
 
-      monitoring.loadedData();
+      await monitoring.loadedData();
 
       expect(spyOnSendEvent).toHaveBeenCalledTimes(2);
       expect(spyOnSendEvent).toHaveBeenNthCalledWith(1, 'START', expect.any(Object));
@@ -548,7 +576,7 @@ describe('PillarboxMonitoring', () => {
    *****************************************************************************
    */
   describe('sendEvent', () => {
-    it('should send a POST request using sendBeacon', () => {
+    it('should send a POST request using sendBeacon', async () => {
       global.performance.getEntriesByType = jest.fn().mockReturnValue([]);
 
       const spyOnSendBeacon = jest.spyOn(navigator, 'sendBeacon');

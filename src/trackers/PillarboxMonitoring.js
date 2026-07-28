@@ -184,6 +184,26 @@ class PillarboxMonitoring {
   }
 
   /**
+   * Asynchronously retrieves the DRM capabilities of the player.
+   *
+   * ClearKey is filtered because we don't use it.
+   *
+   * @async
+   *
+   * @returns {Promise<Object|undefined>} a promise that resolves to an object
+   *                                      containing the supported DRM capabilities
+   */
+  async capabilities() {
+    if (!this.player.drmSupport) return;
+
+    const result = await this.player.drmSupport.check();
+
+    return Object.fromEntries(Object.entries(result)
+      .filter(([key, value]) => value !== null && key !== 'clearKey')
+      .map(([key, value]) => [key, value]));
+  }
+
+  /**
    * Gets the language of the current audio track.
    *
    * @returns {string|undefined} The language of the current audio track, or undefined if no audio track is available or if the language is not set.
@@ -271,8 +291,10 @@ class PillarboxMonitoring {
 
   /**
    * Handles player errors by sending an `ERROR` event, then resets the session.
+   *
+   * @async
    */
-  error() {
+  async error() {
     const audio = this.currentAudioTrack();
     const error = this.player.error();
     const playbackPosition = this.playbackPosition();
@@ -282,7 +304,7 @@ class PillarboxMonitoring {
     const subtitles = this.currentTextTrack();
 
     if (!this.player.hasStarted()) {
-      this.sendEvent('START', this.startEventData());
+      this.sendEvent('START', await this.startEventData());
     }
 
     this.sendEvent('ERROR', {
@@ -402,9 +424,11 @@ class PillarboxMonitoring {
   /**
    * Handles the session start by sending a `START` event immediately followed
    * by a `HEARTBEAT` when the `loadeddata` event is triggered.
+   *
+   * @async
    */
-  loadedData() {
-    this.sendEvent('START', this.startEventData());
+  async loadedData() {
+    this.sendEvent('START', await this.startEventData());
     this.sendEvent('HEARTBEAT', this.statusEventData());
     // starts the heartbeat interval
     this.heartbeat();
@@ -664,8 +688,10 @@ class PillarboxMonitoring {
    * @param {string} eventName Either START, STOP, ERROR, HEARTBEAT
    * @param {Object} [data={}] The payload object to be sent. Defaults to an
    *                           empty object if not provided
+   *
+   * @async
    */
-  sendEvent(eventName, data = {}) {
+  async sendEvent(eventName, data = {}) {
     // If the tracker is disabled for the current session, and there has been no
     // previous session, no event is sent. However, if a session was already
     // active, we still want to send the STOP event so that it is properly
@@ -836,9 +862,11 @@ class PillarboxMonitoring {
    * @property {PlayerCurrentDimensions} screen The current dimensions of the
    *                                            player.
    *
+   * @async
+   *
    * @returns {StartEventData} An object containing the start event data.
    */
-  startEventData() {
+  async startEventData() {
     const timestamp = PillarboxMonitoring.timestamp();
     // This avoids false subtraction results when loadStartTimestamp is not
     // initialized.
@@ -862,6 +890,7 @@ class PillarboxMonitoring {
 
     return {
       browser: PillarboxMonitoring.userAgent(),
+      capabilities: await this.capabilities(),
       device: { id: PillarboxMonitoring.deviceId() },
       media: this.mediaInfo(),
       player: this.playerInfo(),
