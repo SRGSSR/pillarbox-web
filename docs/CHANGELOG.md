@@ -1,3 +1,7 @@
+## 1.37.0 (2026-07-28)
+
+* feat: add DRM and HDCP detection support ([d29be75](https://github.com/SRGSSR/pillarbox-web/commit/d29be75)), closes [#410](https://github.com/SRGSSR/pillarbox-web/issues/410)
+
 ## <small>1.36.3 (2026-06-30)</small>
 
 * fix(middleware): media playback blocked by Safari track mode switch ([9e946b6](https://github.com/SRGSSR/pillarbox-web/commit/9e946b6))
