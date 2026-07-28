@@ -101,8 +101,12 @@ class DrmSupport extends Component {
         const hdcp = await this.findMaxHdcp(mediaKeys);
 
         return { level: label, hdcp };
-        /* eslint-disable-next-line no-empty */
-      } catch {
+      } catch (e) {
+        videojs.log.warn(
+          'DrmSupport',
+          `checkVendor failed (vendor=${vendor}, level=${label}, contentType=${contentType}, robustness=${robustness})`,
+          e
+        );
       }
     }
 
