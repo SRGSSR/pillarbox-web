@@ -8,8 +8,6 @@ describe('DrmSupport', () => {
   let videoEl;
   let player;
 
-  pillarbox.log.warn = jest.fn().mockReturnValue({});
-
   beforeAll(() => {
     videoEl = document.createElement('video');
     videoEl.id = 'player';
