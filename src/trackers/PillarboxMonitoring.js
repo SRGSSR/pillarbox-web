@@ -536,6 +536,7 @@ class PillarboxMonitoring {
    * Information about the player.
    *
    * @typedef {Object} PlayerInfo
+   * @property {string} language The language code of the player
    * @property {string} name The name of the player
    * @property {string} version The version of the player
    * @property {string} platform The platform on which the player is running
@@ -544,9 +545,10 @@ class PillarboxMonitoring {
    */
   playerInfo() {
     return {
+      language: this.player.language(),
       name: this.playerName,
+      platform: this.platform,
       version: this.playerVersion,
-      platform: this.platform
     };
   }
 
