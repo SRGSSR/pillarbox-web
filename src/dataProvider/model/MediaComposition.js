@@ -225,6 +225,7 @@ class MediaComposition {
       analyticsMetadata: this.getMergedAnalyticsMetadata(
         resource.analyticsMetadata
       ),
+      aspectRatio: this.getMainChapter().aspectRatio,
       blockReason: this.getMainChapter().blockReason,
       blockedSegments: this.getMainBlockedSegments(),
       imageUrl: this.getMainChapterImageUrl(),
