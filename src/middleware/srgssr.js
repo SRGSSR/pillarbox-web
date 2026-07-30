@@ -216,7 +216,7 @@ class SrgSsr {
   static composeMainResources(mediaComposition) {
     return this.composeAkamaiResources(
       this.composeKeySystemsResources(
-        this.filterIncompatibleResources(mediaComposition.getMainResources())
+        mediaComposition.getMainResources()
       )
     );
   }
@@ -381,19 +381,6 @@ class SrgSsr {
       message,
       metadata,
     });
-  }
-
-  /**
-   * Filter out incompatible resources such as `RTMP` and `HDS`.
-   *
-   * @param {Array.<MainResource>} resources Resources to filter
-   *
-   * @returns {Array.<MainResource>} The filtered resources
-   */
-  static filterIncompatibleResources(resources = []) {
-    return resources.filter(
-      (resource) => !['RTMP', 'HDS'].includes(resource.streaming)
-    );
   }
 
   /**

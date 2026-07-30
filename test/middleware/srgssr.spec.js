@@ -1220,37 +1220,6 @@ describe('SrgSsr', () => {
 
   /**
    *****************************************************************************
-   * filterIncompatibleResources ***********************************************
-   *****************************************************************************
-   */
-
-  describe('filterIncompatibleResources', () => {
-    it('should filter incompatible resources', async () => {
-      const resources = urnRtsAudio.chapterList[0].resourceList;
-      const filteredResources = SrgSsr.filterIncompatibleResources(resources);
-
-      expect(filteredResources).toHaveLength(2);
-    });
-
-    it('should return an empty array if no source is compatible', async () => {
-      const incompatibleResources = [
-        { streaming: 'HDS' },
-        { streaming: 'RTMP' }
-      ];
-      const filteredResources = SrgSsr.filterIncompatibleResources(
-        incompatibleResources
-      );
-
-      expect(filteredResources).toHaveLength(0);
-    });
-
-    it('should return an empty array the resource is undefined', async () => {
-      expect(SrgSsr.filterIncompatibleResources()).toHaveLength(0);
-    });
-  });
-
-  /**
-   *****************************************************************************
    * srgAnalytics **************************************************************
    *****************************************************************************
    */
