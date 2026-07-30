@@ -1,3 +1,11 @@
+## 1.38.0 (2026-07-30)
+
+* feat(media-composition): expose the aspectRatio property ([1d99973](https://github.com/SRGSSR/pillarbox-web/commit/1d99973)), closes [#415](https://github.com/SRGSSR/pillarbox-web/issues/415)
+* feat(middleware): remove incompatible source filter ([5695b0f](https://github.com/SRGSSR/pillarbox-web/commit/5695b0f)), closes [#414](https://github.com/SRGSSR/pillarbox-web/issues/414)
+* feat(monitoring): add DRM info to START event ([00e2110](https://github.com/SRGSSR/pillarbox-web/commit/00e2110)), closes [#413](https://github.com/SRGSSR/pillarbox-web/issues/413)
+* feat(monitoring): add player language code ([81f7cb6](https://github.com/SRGSSR/pillarbox-web/commit/81f7cb6)), closes [#396](https://github.com/SRGSSR/pillarbox-web/issues/396)
+* fix(drm-support): reduce console noise from DRM check errors ([d531c76](https://github.com/SRGSSR/pillarbox-web/commit/d531c76))
+
 ## 1.37.0 (2026-07-28)
 
 * feat: add DRM and HDCP detection support ([d29be75](https://github.com/SRGSSR/pillarbox-web/commit/d29be75)), closes [#410](https://github.com/SRGSSR/pillarbox-web/issues/410)
