@@ -12,6 +12,7 @@ let playerMock = jest.fn(() => ({
   }),
   debug: jest.fn().mockReturnValue(false),
   duration: jest.fn().mockReturnValue(0),
+  language: jest.fn(),
   liveTracker: {
     atLiveEdge: jest.fn(),
     liveCurrentTime: jest.fn(),
