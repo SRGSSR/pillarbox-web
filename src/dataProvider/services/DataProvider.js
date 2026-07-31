@@ -29,13 +29,16 @@ class DataProvider {
    * This provides unified error handling, regardless of the urlHandler used.
    *
    * @param {Function} urlHandler A function that constructs the URL
+   * @param {Object<string, string>|Headers} headers An object containing HTTP headers to be sent with the request
    *
    * @returns {Promise<MediaComposition>} A promise with the fetched data
    */
-  handleRequest(urlHandler) {
+  handleRequest(urlHandler, headers) {
     return async (urn) => {
       const url = typeof urlHandler === 'function' ? urlHandler(urn) : this.mediaCompositionUrlHandler(urn);
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers
+      });
 
       if (!response.ok) {
         throw response;

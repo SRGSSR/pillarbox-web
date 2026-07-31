@@ -109,6 +109,69 @@ ensure proper media playback.
 
 > The absence of a conforming object may lead to unexpected errors, affecting video playback.
 
+### `srgOptions.dataProviderHeaders`
+
+***Specific to media content from SRG SSR.***
+
+Specifies custom HTTP headers to be sent with every request made by the data provider. This is useful for providing additional context to the server.
+
+#### Usage
+
+You can provide headers as a plain JavaScript object or as a `Headers` object.
+
+##### Using a plain object
+
+When using a plain object, Pillarbox creates a copy of it. If you need to modify the headers after initialization, you must update the player's options.
+
+```javascript
+const headersObj = {
+  'Accept-Language': 'de',
+};
+
+const player = pillarbox('player', {
+  srgOptions: {
+    // Defines custom headers for the data provider
+    dataProviderHeaders: headersObj,
+  }
+});
+
+// The data provider will use 'Accept-Language: de'
+player.src({ src: 'urn:rts:video:9883196', type: 'srgssr/urn' });
+
+// To update the headers, modify the object and re-apply the options
+headersObj['Accept-Language'] = 'it';
+player.options({
+  srgOptions: {
+    dataProviderHeaders: headersObj,
+  },
+});
+
+// The data provider will now use 'Accept-Language: it'
+player.src({ src: 'urn:rts:video:9883196', type: 'srgssr/urn' });
+```
+
+##### Using a Headers object
+
+When using a `Headers` object, Pillarbox uses the reference to the object. Any modifications to the `Headers` object will be automatically reflected in subsequent data provider requests.
+
+```javascript
+const headers = new Headers({ 'Accept-Language': 'fr' });
+const player = pillarbox('player', {
+  srgOptions: {
+    dataProviderHeaders: headers,
+  },
+});
+
+// The data provider will use 'Accept-Language: fr'
+player.src({ src: 'urn:rts:video:9883196', type: 'srgssr/urn' });
+
+// Update the header
+headers.set('Accept-Language', 'rm');
+
+// The data provider will now automatically use 'Accept-Language: rm'
+player.src({ src: 'urn:rts:video:9883196', type: 'srgssr/urn' });
+```
+
 ### `srgOptions.dataProviderHost`
 
 ***Specific to media content from SRG SSR.***

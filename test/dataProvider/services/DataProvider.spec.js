@@ -47,5 +47,17 @@ describe('DataProvider', () => {
 
       await expect(requestHandler(urnNotFound)).rejects.not.toBeNull();
     });
+
+    it('should use headers when provided', async () => {
+      const headers = { 'Accept-Language': 'jp' };
+      const requestHandler = dataproviderService.handleRequest(
+        undefined,
+        headers
+      );
+
+      await requestHandler(urn10272382);
+
+      expect(fetch).toHaveBeenCalledWith(expect.any(String), { headers });
+    });
   });
 });
