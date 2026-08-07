@@ -1,3 +1,7 @@
+## 1.39.0 (2026-08-07)
+
+* feat(middleware): add data provider http headers property options ([e4baea8](https://github.com/SRGSSR/pillarbox-web/commit/e4baea8)), closes [#421](https://github.com/SRGSSR/pillarbox-web/issues/421)
+
 ## 1.38.0 (2026-07-30)
 
 * feat(media-composition): expose the aspectRatio property ([1d99973](https://github.com/SRGSSR/pillarbox-web/commit/1d99973)), closes [#415](https://github.com/SRGSSR/pillarbox-web/issues/415)
