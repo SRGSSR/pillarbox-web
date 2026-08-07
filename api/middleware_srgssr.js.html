@@ -324,12 +324,13 @@ class SrgSsr {
   static dataProvider(player) {
     if (!player.options().srgOptions.dataProvider) {
       const {
+        dataProviderHeaders,
         dataProviderHost,
         dataProviderUrlHandler
       } = player.options().srgOptions;
       const dataProvider = new DataProvider(dataProviderHost);
       const requestHandler = dataProvider
-        .handleRequest(dataProviderUrlHandler);
+        .handleRequest(dataProviderUrlHandler, dataProviderHeaders);
 
       player.options({
         srgOptions: {

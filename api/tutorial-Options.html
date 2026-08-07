@@ -14,7 +14,46 @@ const mediaCompositionStringifiedObject = JSON.stringify({
 
 // Load the source with type 'srgssr/urn'
 player.src({ src: mediaCompositionStringifiedObject, type: 'srgssr/urn' });
-</code></pre><p>The returned object must conform to the <a href="./MediaComposition.html">Media Composition</a> structure to ensure proper media playback.</p><blockquote><p>The absence of a conforming object may lead to unexpected errors, affecting video playback.</p></blockquote><h3 id="srgoptions.dataproviderhost"><code>srgOptions.dataProviderHost</code></h3><p><em><strong>Specific to media content from SRG SSR.</strong></em></p><p>Specifies the host URL for the SRG SSR media content data provider. It is used to define a base URL for fetching media content metadata.</p><h4 id="usage-1">Usage</h4><pre class="prettyprint source lang-javascript"><code>const player = pillarbox('player', {
+</code></pre><p>The returned object must conform to the <a href="./MediaComposition.html">Media Composition</a> structure to ensure proper media playback.</p><blockquote><p>The absence of a conforming object may lead to unexpected errors, affecting video playback.</p></blockquote><h3 id="srgoptions.dataproviderheaders"><code>srgOptions.dataProviderHeaders</code></h3><p><em><strong>Specific to media content from SRG SSR.</strong></em></p><p>Specifies custom HTTP headers to be sent with every request made by the data provider. This is useful for providing additional context to the server.</p><h4 id="usage-1">Usage</h4><p>You can provide headers as a plain JavaScript object or as a <code>Headers</code> object.</p><h5 id="using-a-plain-object">Using a plain object</h5><p>When using a plain object, Pillarbox creates a copy of it. If you need to modify the headers after initialization, you must update the player's options.</p><pre class="prettyprint source lang-javascript"><code>const headersObj = {
+  'Accept-Language': 'de',
+};
+
+const player = pillarbox('player', {
+  srgOptions: {
+    // Defines custom headers for the data provider
+    dataProviderHeaders: headersObj,
+  }
+});
+
+// The data provider will use 'Accept-Language: de'
+player.src({ src: 'urn:rts:video:9883196', type: 'srgssr/urn' });
+
+// To update the headers, modify the object and re-apply the options
+headersObj['Accept-Language'] = 'it';
+player.options({
+  srgOptions: {
+    dataProviderHeaders: headersObj,
+  },
+});
+
+// The data provider will now use 'Accept-Language: it'
+player.src({ src: 'urn:rts:video:9883196', type: 'srgssr/urn' });
+</code></pre><h5 id="using-a-headers-object">Using a Headers object</h5><p>When using a <code>Headers</code> object, Pillarbox uses the reference to the object. Any modifications to the <code>Headers</code> object will be automatically reflected in subsequent data provider requests.</p><pre class="prettyprint source lang-javascript"><code>const headers = new Headers({ 'Accept-Language': 'fr' });
+const player = pillarbox('player', {
+  srgOptions: {
+    dataProviderHeaders: headers,
+  },
+});
+
+// The data provider will use 'Accept-Language: fr'
+player.src({ src: 'urn:rts:video:9883196', type: 'srgssr/urn' });
+
+// Update the header
+headers.set('Accept-Language', 'rm');
+
+// The data provider will now automatically use 'Accept-Language: rm'
+player.src({ src: 'urn:rts:video:9883196', type: 'srgssr/urn' });
+</code></pre><h3 id="srgoptions.dataproviderhost"><code>srgOptions.dataProviderHost</code></h3><p><em><strong>Specific to media content from SRG SSR.</strong></em></p><p>Specifies the host URL for the SRG SSR media content data provider. It is used to define a base URL for fetching media content metadata.</p><h4 id="usage-2">Usage</h4><pre class="prettyprint source lang-javascript"><code>const player = pillarbox('player', {
   srgOptions: {
     // Defines the alternative host
     dataProviderHost: 'il-stage.srgssr.ch'
@@ -23,7 +62,7 @@ player.src({ src: mediaCompositionStringifiedObject, type: 'srgssr/urn' });
 
 // Load the source with type 'srgssr/urn'
 player.src({ src: 'my-content-id', type: 'srgssr/urn' });
-</code></pre><h3 id="srgoptions.dataproviderurlhandler"><code>srgOptions.dataProviderUrlHandler</code></h3><p><em><strong>Specific to media content from SRG SSR.</strong></em></p><p>Specifies a custom function to generate URLs for SRG SSR media content queries. The function accepts a content identifier and returns a string URL to query the back-end. It enables custom integration with various back-end systems while using SRG SSR's media playing capabilities.</p><h4 id="usage-2">Usage</h4><pre class="prettyprint source lang-javascript"><code>const player = pillarbox('player', {
+</code></pre><h3 id="srgoptions.dataproviderurlhandler"><code>srgOptions.dataProviderUrlHandler</code></h3><p><em><strong>Specific to media content from SRG SSR.</strong></em></p><p>Specifies a custom function to generate URLs for SRG SSR media content queries. The function accepts a content identifier and returns a string URL to query the back-end. It enables custom integration with various back-end systems while using SRG SSR's media playing capabilities.</p><h4 id="usage-3">Usage</h4><pre class="prettyprint source lang-javascript"><code>const player = pillarbox('player', {
   srgOptions: {
     // Defines the custom URL handler
     dataProviderUrlHandler: (id) => `https://my-domain.com/content/${id}`
@@ -32,7 +71,7 @@ player.src({ src: 'my-content-id', type: 'srgssr/urn' });
 
 // Load the source with type 'srgssr/urn'
 player.src({ src: 'my-content-id', type: 'srgssr/urn' });
-</code></pre><p>The custom URL handler constructs request URLs based on a content identifier. The returned URL must lead to a response conforming to the <a href="./MediaComposition.html">Media Composition</a> structure to ensure proper media playback.</p><blockquote><p>The absence of a conforming object from the server may lead to unexpected errors, affecting video playback.</p></blockquote><h3 id="srgoptions.analyticsenvironment"><code>srgOptions.analyticsEnvironment</code></h3><p><em><strong>Specific to analytics of SRG SSR.</strong></em></p><p>Specifies the environment use for SRG analytics/tracking. Is internally mapped to <code>navigation_environment</code> variable for the TagCommander data layer. If not set, <code>prod</code> is used.</p><h4 id="usage-3">Usage</h4><pre class="prettyprint source lang-javascript"><code>const player = pillarbox('player', {
+</code></pre><p>The custom URL handler constructs request URLs based on a content identifier. The returned URL must lead to a response conforming to the <a href="./MediaComposition.html">Media Composition</a> structure to ensure proper media playback.</p><blockquote><p>The absence of a conforming object from the server may lead to unexpected errors, affecting video playback.</p></blockquote><h3 id="srgoptions.analyticsenvironment"><code>srgOptions.analyticsEnvironment</code></h3><p><em><strong>Specific to analytics of SRG SSR.</strong></em></p><p>Specifies the environment use for SRG analytics/tracking. Is internally mapped to <code>navigation_environment</code> variable for the TagCommander data layer. If not set, <code>prod</code> is used.</p><h4 id="usage-4">Usage</h4><pre class="prettyprint source lang-javascript"><code>const player = pillarbox('player', {
   srgOptions: {
     // Defines the analytics environment name
     analyticsEnvironment: 'dev'
