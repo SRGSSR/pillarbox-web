@@ -31,7 +31,7 @@ class DataProvider {
    * @param {Function} urlHandler A function that constructs the URL
    * @param {Object<string, string>|Headers} headers An object containing HTTP headers to be sent with the request
    *
-   * @returns {Promise<MediaComposition>} A promise with the fetched data
+   * @returns {Promise<{mediaComposition: MediaComposition, headers:Headers}>} A promise with the fetched data
    */
   handleRequest(urlHandler, headers) {
     return async (urn) => {
@@ -45,9 +45,9 @@ class DataProvider {
       }
 
       /** @type {MediaComposition} */
-      const data = await response.json();
+      const mediaComposition = await response.json();
 
-      return data;
+      return { mediaComposition, headers: response.headers };
     };
   }
 

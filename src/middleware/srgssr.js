@@ -475,9 +475,12 @@ class SrgSsr {
     urn,
     handleRequest = new DataProvider().handleRequest()
   ) {
-    const data = await handleRequest(urn);
+    const { mediaComposition, headers } = await handleRequest(urn);
 
-    return Object.assign(new MediaComposition(), data);
+    return {
+      mediaComposition: Object.assign(new MediaComposition(), mediaComposition),
+      headers
+    };
   }
 
   /**
@@ -510,7 +513,7 @@ class SrgSsr {
     }
 
     const { src: urn, ...srcOptions } = srcObj;
-    const mediaComposition = await this.getMediaComposition(
+    const { mediaComposition, headers } = await this.getMediaComposition(
       urn,
       this.dataProvider(player)
     );
@@ -518,6 +521,8 @@ class SrgSsr {
       mediaComposition
     );
     let mediaData = this.getMediaData(mainResources);
+
+    this.pillarboxMonitoring(player).mediaCompositionHeaders = headers;
 
     if (!mediaData) {
       mediaData = {
