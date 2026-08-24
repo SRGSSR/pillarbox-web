@@ -3,7 +3,6 @@ import DataProvider from '../../src/dataProvider/services/DataProvider.js';
 import Image from '../../src/utils/Image.js';
 import MediaComposition from '../../src/dataProvider/model/MediaComposition.js';
 import urnCredits from '../__mocks__/urn:rts:video:10313496-credits.json';
-import urnRtsAudio from '../__mocks__/urn:rts:audio:3262320.json';
 import urnGeoblockAndUndefinedResourceList from '../__mocks__/urn:geoblock:and:undefined:resourcelist.json';
 import srcMediaObj from '../__mocks__/srcMediaObj.json';
 import mainResource from '../__mocks__/mainResource.json';
@@ -66,6 +65,9 @@ describe('SrgSsr', () => {
       }),
       currentTime: jest.fn(),
       debug: jest.fn(),
+      drmSupport: {
+        check: jest.fn().mockResolvedValue({}),
+      },
       error: jest.fn(),
       localize: jest.fn(),
       on: jest.fn(),
@@ -665,6 +667,37 @@ describe('SrgSsr', () => {
 
   /**
    *****************************************************************************
+   * composeMainResources ******************************************************
+   *****************************************************************************
+   */
+  describe('composeMainResources', () => {
+    it('should return the composed main resources for a mediaComposition', async () => {
+      const mediaComposition = Object.assign(
+        new MediaComposition(),
+        urnCredits
+      );
+      const resources = await SrgSsr.composeMainResources(mediaComposition);
+
+      expect(resources).toEqual(expect.any(Array));
+      expect(resources[0]).toMatchObject({
+        streaming: 'HLS',
+        tokenType: 'NONE',
+      });
+    });
+
+    it('should return an empty array when the mediaComposition does not contain resources', async () => {
+      const mediaComposition = Object.assign(
+        new MediaComposition(),
+        urnGeoblockAndUndefinedResourceList
+      );
+      const resources = await SrgSsr.composeMainResources(mediaComposition);
+
+      expect(resources).toEqual([]);
+    });
+  });
+
+  /**
+   *****************************************************************************
    * composeSrcMediaData *******************************************************
    *****************************************************************************
    */
@@ -875,6 +908,23 @@ describe('SrgSsr', () => {
 
       expect(DataProvider).toHaveBeenCalledTimes(1);
     });
+
+    it('should pass drmCapability to handleRequest when instantiating the dataProvider', () => {
+      const drmCapability = { drmPlayerCapabilities: 'com.widevine.alpha;L1' };
+      const mockHandleRequest = jest.fn();
+
+      DataProvider.mockImplementationOnce(() => ({
+        handleRequest: mockHandleRequest,
+      }));
+
+      SrgSsr.dataProvider(player, drmCapability);
+
+      expect(mockHandleRequest).toHaveBeenCalledWith(
+        undefined,
+        undefined,
+        drmCapability
+      );
+    });
   });
 
   /**
@@ -901,6 +951,66 @@ describe('SrgSsr', () => {
         })
       ).toBe(true);
       expect(spyOnError).toHaveBeenCalledWith(player, expect.any(Object));
+    });
+  });
+
+  /**
+   *****************************************************************************
+   * drmCapability *************************************************************
+   *****************************************************************************
+   */
+  describe('drmCapability', () => {
+    it('should return undefined if drmSupport is not available on player', async () => {
+      expect(await SrgSsr.drmCapability({})).toBeUndefined();
+    });
+
+    it('should return undefined if no supported DRM vendor is found', async () => {
+      const fakePlayer = {
+        drmSupport: {
+          check: jest.fn().mockResolvedValue({
+            widevine: null,
+            fairplay: null,
+            playready: null,
+            clearKey: { level: 'Supported', hdcp: null },
+          }),
+        },
+      };
+
+      expect(await SrgSsr.drmCapability(fakePlayer)).toBeUndefined();
+    });
+
+    it('should return the DRM capability for a single supported vendor', async () => {
+      const fakePlayer = {
+        drmSupport: {
+          check: jest.fn().mockResolvedValue({
+            widevine: { level: 'L1', hdcp: '2.2' },
+            playready: null,
+            fairplay: null,
+          }),
+        },
+      };
+
+      expect(await SrgSsr.drmCapability(fakePlayer)).toEqual({
+        drmPlayerCapabilities: 'com.widevine.alpha;L1',
+      });
+    });
+
+    it('should return DRM capabilities separated by a comma when multiple vendors are supported', async () => {
+      const fakePlayer = {
+        drmSupport: {
+          check: jest.fn().mockResolvedValue({
+            widevine: { level: 'L1', hdcp: '2.2' },
+            playready: { level: 'SL3000', hdcp: '2.2' },
+            fairplay: null,
+            clearKey: { level: 'Supported', hdcp: null },
+          }),
+        },
+      };
+
+      expect(await SrgSsr.drmCapability(fakePlayer)).toEqual({
+        drmPlayerCapabilities:
+          'com.widevine.alpha;L1,com.microsoft.playready;SL3000',
+      });
     });
   });
 
@@ -1111,51 +1221,28 @@ describe('SrgSsr', () => {
    *****************************************************************************
    */
   describe('getMediaData', () => {
-    it('should return the first resource when there is a tokenType', () => {
-      const resources = [
-        { streaming: 'HLS', tokenType: 'AKAMAI', isFirst: true },
-        { streaming: 'HLS', tokenType: 'AKAMAI', isFirst: false }
-      ];
-      const resource = SrgSsr.getMediaData(resources);
+    it('should return the first composed main resource from a mediaComposition', async () => {
+      const mediaComposition = Object.assign(new MediaComposition(), urnCredits);
+      const resource = await SrgSsr.getMediaData(mediaComposition);
 
       expect(resource).toMatchObject({
         streaming: 'HLS',
-        tokenType: 'AKAMAI',
-        isFirst: true,
+        tokenType: 'NONE',
       });
     });
 
-    it('should return an HLS resource if available for any Safari browser', () => {
-      const mockIsAnySafari = jest.replaceProperty(Pillarbox, 'browser', {
-        IS_ANY_SAFARI: true,
+    it('should return a fallback mediaData containing a blocking reason when the mediaComposition does not contain resources', async () => {
+      const mediaComposition = Object.assign(new MediaComposition(), urnGeoblockAndUndefinedResourceList);
+      const resource = await SrgSsr.getMediaData(mediaComposition);
+
+      expect(resource).toEqual({
+        blockReason: 'GEOBLOCK',
+        imageUrl: 'https://img.rts.ch/medias/2023/image/y2zvzo-26927888.image/16x9',
       });
-      const resources = [{ streaming: 'DASH' }, { streaming: 'HLS' }];
-      const resource = SrgSsr.getMediaData(resources);
-
-      expect(resource).toMatchObject({ streaming: 'HLS' });
-      mockIsAnySafari.restore();
     });
 
-    it('should return a DASH resource if available for any browser other than Safari', () => {
-      const resources = [{ streaming: 'HLS' }, { streaming: 'DASH' }];
-      const resource = SrgSsr.getMediaData(resources);
-
-      expect(resource).toMatchObject({ streaming: 'DASH' });
-    });
-
-    it('should default to the first available resource if no better resource is available', () => {
-      const resources = [
-        { streaming: 'HLS', isFirst: true },
-        { streaming: 'HLS', isFirst: false }
-      ];
-      const resource = SrgSsr.getMediaData(resources);
-
-      expect(resource).toMatchObject({ streaming: 'HLS', isFirst: true });
-    });
-
-    it('should return undefined if the resources are not defined or if the array is empty', () => {
-      expect(SrgSsr.getMediaData([])).toBeUndefined();
-      expect(SrgSsr.getMediaData()).toBeUndefined();
+    it('should return undefined if mediaComposition is undefined', async () => {
+      expect(await SrgSsr.getMediaData()).toBeUndefined();
     });
   });
 

@@ -18,6 +18,7 @@ const urns = {
 
 const fetch = jest.fn((url, onlyChapters) => {
   const urn = url
+    .toString()
     .split('/')
     .pop()
     .split('?')[0];

@@ -319,7 +319,7 @@ class SrgSsr {
    *
    * @returns {DataProvider}
    */
-  static dataProvider(player) {
+  static dataProvider(player, drmCapability) {
     if (!player.options().srgOptions.dataProvider) {
       const {
         dataProviderHeaders,
@@ -328,7 +328,11 @@ class SrgSsr {
       } = player.options().srgOptions;
       const dataProvider = new DataProvider(dataProviderHost);
       const requestHandler = dataProvider
-        .handleRequest(dataProviderUrlHandler, dataProviderHeaders);
+        .handleRequest(
+          dataProviderUrlHandler,
+          dataProviderHeaders,
+          drmCapability
+        );
 
       player.options({
         srgOptions: {
@@ -366,6 +370,26 @@ class SrgSsr {
     });
 
     return true;
+  }
+
+  /**
+   * Checks the player's DRM support and returns the supported vendors
+   * with their security levels.
+   *
+   * @param {Object} player the player instance
+   *
+   * @returns {Promise<Object<string, string>|undefined>} DRM capability with format { drmPlayerCapabilities: "{vendor};{level},..." }, or undefined
+   */
+  static async drmCapability(player) {
+    if (!player.drmSupport) return undefined;
+
+    const capabilities = Object
+      .entries(await player.drmSupport.check())
+      .filter(([key, value]) => Drm.vendors[key.toUpperCase()] && value)
+      .map(([key, value]) => `${Drm.vendors[key.toUpperCase()]};${value.level}`)
+      .join(',');
+
+    return capabilities ? { drmPlayerCapabilities: capabilities } : undefined;
   }
 
   /**
@@ -481,19 +505,26 @@ class SrgSsr {
   }
 
   /**
-   * Get the mediaData most likely to be compatible depending on the browser.
+   * Get the mediaData from a mediaComposition.
    *
-   * @param {Array.<MainResourceWithKeySystems>} resources
+   * @param {MediaComposition} mediaComposition
    *
-   * @returns {MainResourceWithKeySystems} By default, the first entry is used if none is compatible.
+   * @returns {Promise<MainResourceWithKeySystems|MainResource|undefined>}
    */
-  static getMediaData(resources = []) {
-    if (AkamaiTokenService.hasToken(resources)) return resources[0];
+  static async getMediaData(mediaComposition) {
+    if (!mediaComposition) return undefined;
 
-    const type = Pillarbox.browser.IS_ANY_SAFARI ? 'HLS' : 'DASH';
-    const resource = resources.find(({ streaming }) => streaming === type);
+    const [mediaData] =
+      (await this.composeMainResources(mediaComposition)) || [];
 
-    return resource || resources[0];
+    if (!mediaData) {
+      return {
+        blockReason: mediaComposition.getMainChapter().blockReason,
+        imageUrl: mediaComposition.getMainChapterImageUrl(),
+      };
+    }
+
+    return mediaData;
   }
 
   /**
@@ -510,21 +541,12 @@ class SrgSsr {
     }
 
     const { src: urn, ...srcOptions } = srcObj;
+    const drmCapability = await this.drmCapability(player);
     const mediaComposition = await this.getMediaComposition(
       urn,
-      this.dataProvider(player)
+      await this.dataProvider(player, drmCapability)
     );
-    const mainResources = await this.composeMainResources(
-      mediaComposition
-    );
-    let mediaData = this.getMediaData(mainResources);
-
-    if (!mediaData) {
-      mediaData = {
-        blockReason: mediaComposition.getMainChapter().blockReason,
-        imageUrl: mediaComposition.getMainChapterImageUrl(),
-      };
-    }
+    const mediaData = await this.getMediaData(mediaComposition);
 
     return this.composeSrcMediaData(srcOptions, mediaData);
   }

@@ -28,14 +28,15 @@ class DataProvider {
    *
    * This provides unified error handling, regardless of the urlHandler used.
    *
-   * @param {Function} urlHandler A function that constructs the URL
+   * @param {function(string, Object): string} urlHandler A function that constructs the URL
    * @param {Object<string, string>|Headers} headers An object containing HTTP headers to be sent with the request
+   * @param {Object<string, string>} queryParams The query params to be passed to the request URL
    *
    * @returns {Promise<MediaComposition>} A promise with the fetched data
    */
-  handleRequest(urlHandler, headers) {
+  handleRequest(urlHandler, headers, queryParams) {
     return async (urn) => {
-      const url = typeof urlHandler === 'function' ? urlHandler(urn) : this.mediaCompositionUrlHandler(urn);
+      const url = typeof urlHandler === 'function' ? urlHandler(urn, queryParams) : this.mediaCompositionUrlHandler(urn, queryParams);
       const response = await fetch(url, {
         headers
       });
@@ -55,11 +56,23 @@ class DataProvider {
    * Gets the media composition URL by URN.
    *
    * @param {string} urn The URN for the media composition
+   * @param {Object<string, string>} [queryParams] The query params to be passed to the request URL
    *
-   * @returns {string} The constructed URL
+   * @returns {URL} The constructed URL
    */
-  mediaCompositionUrlHandler(urn) {
-    return `https://${this.baseUrl}mediaComposition/byUrn/${urn}?onlyChapters=true&vector=portalplay`;
+  mediaCompositionUrlHandler(urn, queryParams) {
+    const url = new URL(`https://${this.baseUrl}mediaComposition/byUrn/${urn}`);
+
+    if (queryParams) {
+      Object
+        .entries(queryParams)
+        .forEach(([key, value]) => url.searchParams.set(key, value));
+    }
+
+    url.searchParams.set('onlyChapters', 'true');
+    url.searchParams.set('vector', 'portalplay');
+
+    return url;
   }
 }
 
