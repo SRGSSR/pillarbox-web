@@ -1,3 +1,10 @@
+## [1.39.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.39.0...v1.39.1) (2026-08-24)
+
+
+### Bug Fixes
+
+* **release:** use default relese note generator preset ([2625640](https://github.com/SRGSSR/pillarbox-web/commit/26256402bd66313f7a6fc74083f914760a043880))
+
 ## 1.39.0 (2026-08-07)
 
 * feat(middleware): add data provider http headers property options ([e4baea8](https://github.com/SRGSSR/pillarbox-web/commit/e4baea8)), closes [#421](https://github.com/SRGSSR/pillarbox-web/issues/421)
