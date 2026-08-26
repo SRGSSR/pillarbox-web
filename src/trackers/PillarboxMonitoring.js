@@ -90,6 +90,14 @@ class PillarboxMonitoring {
      */
     this.lastStallDuration = 0;
     /**
+     * @type {Array}
+     */
+    this.lastSegmentRequests = [];
+    /**
+     * @type {Object}
+     */
+    this.mediaCompositionHeaders = {};
+    /**
      * @type {Number}
      */
     this.loadStartTimestamp = undefined;
@@ -162,6 +170,7 @@ class PillarboxMonitoring {
     this.playbackStop = this.playbackStop.bind(this);
     this.stalled = this.stalled.bind(this);
     this.sessionStop = this.sessionStop.bind(this);
+    this.vhsResponse = this.vhsResponse.bind(this);
   }
 
   /**
@@ -302,6 +311,9 @@ class PillarboxMonitoring {
     const url = representation ?
       representation.uri : this.player.currentSource().src;
     const subtitles = this.currentTextTrack();
+    const { headers } = this.lastSegmentRequests.find(
+      request => request.url === url
+    ) || [];
 
     if (!this.player.hasStarted()) {
       this.sendEvent('START', await this.startEventData());
@@ -309,6 +321,7 @@ class PillarboxMonitoring {
 
     this.sendEvent('ERROR', {
       audio,
+      headers,
       log: JSON.stringify(
         error.metadata ||
         {
@@ -449,6 +462,7 @@ class PillarboxMonitoring {
       this.sessionStartTimestamp = PillarboxMonitoring.timestamp();
     }
 
+    this.vhsSetupListener();
     this.loadStartTimestamp = PillarboxMonitoring.timestamp();
   }
 
@@ -464,10 +478,34 @@ class PillarboxMonitoring {
    * @returns {MediaInfo} An object container the media information
    */
   mediaInfo() {
+    const headersToCapture = [
+      'akamai-grn',
+      'x-akamai-debug-key',
+      'x-akamai-debug-origin',
+      'x-amz-cf-id',
+      'x-amz-cf-pop',
+      'x-location-info',
+      'x-mediapackage-request-id',
+      'x-tracing-id',
+      'x-proxy-detection-info'
+    ];
+    const metadata_headers = headersToCapture.reduce((acc, headerName) => {
+      let value;
+
+      if (this.mediaCompositionHeaders && this.mediaCompositionHeaders.get) {
+        value = this.mediaCompositionHeaders.get(headerName);
+      }
+
+      if (value) acc[headerName] = value;
+
+      return acc;
+    }, {});
+
     return {
       asset_url: this.mediaAssetUrl,
       id: this.mediaId,
       metadata_url: this.mediaMetadataUrl,
+      metadata_headers,
       origin: this.mediaOrigin,
     };
   }
@@ -631,6 +669,12 @@ class PillarboxMonitoring {
     this.player.off(['playerreset', 'dispose', 'ended'], this.sessionStop);
     this.player.off(['waiting', 'stalled'], this.stalled);
 
+    const vhs = this.player.tech(true).vhs;
+
+    if (vhs) {
+      vhs.xhr.offResponse(this.vhsResponse);
+    }
+
     window.removeEventListener('beforeunload', this.sessionStop);
   }
 
@@ -668,6 +712,8 @@ class PillarboxMonitoring {
     this.lastPlaybackStartTimestamp = 0;
     this.lastStallCount = 0;
     this.lastStallDuration = 0;
+    this.lastSegmentRequests = [];
+    this.mediaCompositionHeaders = {};
     this.loadStartTimestamp = 0;
     this.metadataRequestTime = 0;
     this.mediaAssetUrl = undefined;
@@ -828,9 +874,14 @@ class PillarboxMonitoring {
     const stall = this.stallInfo();
     const subtitles = this.currentTextTrack();
     const log = JSON.stringify({ playedRanges: this.player.playedRanges() });
+    const { headers } = this.lastSegmentRequests.find(
+      request => request.url === url
+    ) || [];
 
+    console.log('the headers', headers);
     const data = {
       audio,
+      headers,
       bandwidth,
       bitrate,
       buffered_duration,
@@ -900,6 +951,53 @@ class PillarboxMonitoring {
       qos_timings: this.qosTimings(timeToLoadedData),
       screen: this.playerCurrentDimensions()
     };
+  }
+
+  /**
+   * Handles VHS responses to capture HTTP headers.
+   *
+   * @param {Object} response The VHS response event
+   */
+  vhsResponse(_request, _error, response) {
+    const headersToCapture = [
+      'akamai-grn',
+      'x-akamai-debug-key',
+      'x-akamai-debug-origin',
+      'x-amz-cf-id',
+      'x-amz-cf-pop',
+      'x-amzn-requestid',
+      'x-location-info',
+      'x-mediapackage-request-id',
+      'x-tracing-id',
+      'x-proxy-detection-info'
+    ];
+    const headers = headersToCapture.reduce((acc, headerName) => {
+      const value = response.headers[headerName];
+
+      if (value) acc[headerName] = value;
+
+      return acc;
+    }, {});
+
+
+
+    this.lastSegmentRequests = this.lastSegmentRequests.slice(-99);
+    this.lastSegmentRequests.push({
+      url: response.url,
+      headers
+    });
+  }
+
+  /**
+   * Sets up VHS response listener.
+   */
+  vhsSetupListener() {
+    const vhs = this.player.tech(true).vhs;
+
+    if (!vhs) return;
+
+    vhs.xhr.offResponse(this.vhsResponse);
+    vhs.xhr.onResponse(this.vhsResponse);
   }
 
   /**
