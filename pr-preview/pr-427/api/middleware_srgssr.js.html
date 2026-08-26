@@ -506,16 +506,26 @@ class SrgSsr {
   }
 
   /**
-   * Get the mediaData most likely to be compatible depending on the browser.
+   * Get the mediaData from a mediaComposition.
    *
-   * @param {Array.&lt;MainResourceWithKeySystems>} resources
+   * @param {MediaComposition} mediaComposition
    *
-   * @returns {MainResourceWithKeySystems} By default, the first entry is used if none is compatible.
+   * @returns {Promise&lt;MainResourceWithKeySystems|MainResource|undefined>}
    */
-  static getMediaData(resources = []) {
-    if (AkamaiTokenService.hasToken(resources)) return resources[0];
+  static async getMediaData(mediaComposition) {
+    if (!mediaComposition) return undefined;
 
-    return resources[0];
+    const [mediaData] =
+      (await this.composeMainResources(mediaComposition)) || [];
+
+    if (!mediaData) {
+      return {
+        blockReason: mediaComposition.getMainChapter().blockReason,
+        imageUrl: mediaComposition.getMainChapterImageUrl(),
+      };
+    }
+
+    return mediaData;
   }
 
   /**
@@ -537,17 +547,7 @@ class SrgSsr {
       urn,
       await this.dataProvider(player, drmCapability)
     );
-    const mainResources = await this.composeMainResources(
-      mediaComposition
-    );
-    let mediaData = this.getMediaData(mainResources);
-
-    if (!mediaData) {
-      mediaData = {
-        blockReason: mediaComposition.getMainChapter().blockReason,
-        imageUrl: mediaComposition.getMainChapterImageUrl(),
-      };
-    }
+    const mediaData = await this.getMediaData(mediaComposition);
 
     return this.composeSrcMediaData(srcOptions, mediaData);
   }
