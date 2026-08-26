@@ -375,22 +375,23 @@ class SrgSsr {
   }
 
   /**
-   * Checks the player's DRM support and returns the first supported vendor
-   * with its security level.
+   * Checks the player's DRM support and returns the supported vendors
+   * with their security levels.
    *
    * @param {Object} player the player instance
    *
-   * @returns {Promise&lt;Object&lt;string, string>|undefined>} DRM capability with format { drmPlayerCapabilities: "{vendor};{level}" }, or undefined
+   * @returns {Promise&lt;Object&lt;string, string>|undefined>} DRM capability with format { drmPlayerCapabilities: "{vendor};{level},..." }, or undefined
    */
   static async drmCapability(player) {
     if (!player.drmSupport) return undefined;
 
-    const [drmPlayerCapability] = Object
+    const capabilities = Object
       .entries(await player.drmSupport.check())
       .filter(([key, value]) => Drm.vendors[key.toUpperCase()] &amp;&amp; value)
-      .map(([key, value]) => ({ 'drmPlayerCapabilities': (`${[Drm.vendors[key.toUpperCase()]]};${value.level}`) })) || [];
+      .map(([key, value]) => `${Drm.vendors[key.toUpperCase()]};${value.level}`)
+      .join(',');
 
-    return drmPlayerCapability;
+    return capabilities ? { drmPlayerCapabilities: capabilities } : undefined;
   }
 
   /**
