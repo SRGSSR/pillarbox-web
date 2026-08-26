@@ -1,3 +1,10 @@
+# [1.40.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.39.1...v1.40.0) (2026-08-26)
+
+
+### Features
+
+* **data-provider:** drm resource selection ([287f73d](https://github.com/SRGSSR/pillarbox-web/commit/287f73d3ae16d8ed5eac37a790e2312fc6dc06b2)), closes [#412](https://github.com/SRGSSR/pillarbox-web/issues/412)
+
 ## [1.39.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.39.0...v1.39.1) (2026-08-24)
 
 
