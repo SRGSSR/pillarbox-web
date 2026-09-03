@@ -12,17 +12,18 @@ class Drm {
    * Build the keySystems object according to the DRM vendor.
    *
    * @param {Array.<import('../dataProvider/model/typedef').DrmMetadata>} drmList The DRM list from the media composition.
+   * @param {boolean} [isLegacyFairplay=false] whether legacy FairPlay is used
    *
    * @returns {import('./typedef').KeySystems} The resulting keySystems.
    */
-  static buildKeySystems(drmList = []) {
+  static buildKeySystems(drmList = [], isLegacyFairplay = false) {
     const keySystems = {};
 
     drmList.forEach((drmVendor) => {
       const type = Drm.vendors[drmVendor.type];
 
       if (Drm.vendors.FAIRPLAY === type) {
-        keySystems[type] = Drm.buildFairplayConfig(drmVendor);
+        keySystems[type] = Drm.buildFairplayConfig(drmVendor, isLegacyFairplay);
       } else {
         keySystems[type] = drmVendor.licenseUrl;
       }
@@ -37,10 +38,11 @@ class Drm {
    * Builds the configuration for Apple FairPlay.
    *
    * @param {import('../dataProvider/model/typedef').DrmMetadata} drmVendor the DRM metadata for FairPlay
+   * @param {boolean} [isLegacyFairplay=false] whether legacy FairPlay is used
    *
    * @returns {import('./typedef').KeySystemConfiguration} the FairPlay configuration
    */
-  static buildFairplayConfig(drmVendor) {
+  static buildFairplayConfig(drmVendor, isLegacyFairplay = false) {
     const { certificateUrl: certificateUri } = drmVendor;
 
     return {
@@ -49,7 +51,11 @@ class Drm {
         return contentId.replace('skd:', 'https:');
       },
       getLicense: function (emeOptions, licenseUri, keyMessage, callback) {
-        Drm.requestLicense(licenseUri, keyMessage, callback);
+        const uri = isLegacyFairplay
+          ? licenseUri.slice(licenseUri.indexOf('https:'))
+          : licenseUri;
+
+        Drm.requestLicense(uri, keyMessage, callback);
       }
     };
   }

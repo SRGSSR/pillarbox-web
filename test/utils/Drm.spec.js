@@ -64,6 +64,51 @@ describe('Drm', () => {
 
       expect(config.getContentId(null, 'skd://my-license-url')).toBe('https://my-license-url');
     });
+
+    it('should remove any chars before https: in licenseUri when isLegacyFairplay is true', () => {
+      const spyOnRequestLicense = jest.spyOn(Drm, 'requestLicense')
+        .mockImplementation();
+      const config = Drm.buildFairplayConfig(
+        { certificateUrl: 'https://ze.cert.url' },
+        true
+      );
+      const callback = jest.fn();
+
+      config.getLicense(
+        null,
+        'anyCharshttps://ze.license.url',
+        'keyMessage',
+        callback
+      );
+
+      expect(spyOnRequestLicense).toHaveBeenCalledWith(
+        'https://ze.license.url',
+        'keyMessage',
+        callback
+      );
+
+      spyOnRequestLicense.mockRestore();
+    });
+
+    it('should pass licenseUri as-is when isLegacyFairplay is false', () => {
+      const spyOnRequestLicense = jest.spyOn(Drm, 'requestLicense')
+        .mockImplementation();
+      const buildFairplayConfig = Drm.buildFairplayConfig(
+        { certificateUrl: 'https://ze.cert.url' },
+        false
+      );
+      const callback = jest.fn();
+
+      buildFairplayConfig.getLicense(null, 'Ãhttps://ze.license.url', 'keyMessage', callback);
+
+      expect(spyOnRequestLicense).toHaveBeenCalledWith(
+        'Ãhttps://ze.license.url',
+        'keyMessage',
+        callback
+      );
+
+      spyOnRequestLicense.mockRestore();
+    });
   });
 
   /**

@@ -191,15 +191,22 @@ class SrgSsr {
    * if at least one of them has DRM.
    *
    * @param {Array.<MainResource>} resources
+   * @param {Player} player the player instance
    *
    * @returns {Array.<MainResourceWithKeySystems>}
    */
-  static composeKeySystemsResources(resources = []) {
+  static composeKeySystemsResources(resources = [], player) {
     if (!Drm.hasDrm(resources)) return resources;
+
+    const isLegacyFairplay = Boolean(
+      player &&
+      player.eme &&
+      player.eme.legacyFairplayIsUsed
+    );
 
     const resourcesWithKeySystems = resources.map((resource) => ({
       ...resource,
-      ...Drm.buildKeySystems(resource.drmList),
+      ...Drm.buildKeySystems(resource.drmList, isLegacyFairplay),
     }));
 
     return resourcesWithKeySystems;
@@ -210,13 +217,15 @@ class SrgSsr {
    * May add an Akamai token or key systems if required by the resource.
    *
    * @param {MediaComposition} mediaComposition
+   * @param {Player} player the player instance
    *
    * @returns {Promise<Array.<MainResourceWithKeySystems>>}
    */
-  static composeMainResources(mediaComposition) {
+  static composeMainResources(mediaComposition, player) {
     return this.composeAkamaiResources(
       this.composeKeySystemsResources(
-        mediaComposition.getMainResources()
+        mediaComposition.getMainResources(),
+        player
       )
     );
   }
@@ -508,14 +517,15 @@ class SrgSsr {
    * Get the mediaData from a mediaComposition.
    *
    * @param {MediaComposition} mediaComposition
+   * @param {Player} player the player instance
    *
    * @returns {Promise<MainResourceWithKeySystems|MainResource|undefined>}
    */
-  static async getMediaData(mediaComposition) {
+  static async getMediaData(mediaComposition, player) {
     if (!mediaComposition) return undefined;
 
     const [mediaData] =
-      (await this.composeMainResources(mediaComposition)) || [];
+      (await this.composeMainResources(mediaComposition, player)) || [];
 
     if (!mediaData) {
       return {
@@ -546,7 +556,7 @@ class SrgSsr {
       urn,
       await this.dataProvider(player, drmCapability)
     );
-    const mediaData = await this.getMediaData(mediaComposition);
+    const mediaData = await this.getMediaData(mediaComposition, player);
 
     return this.composeSrcMediaData(srcOptions, mediaData);
   }

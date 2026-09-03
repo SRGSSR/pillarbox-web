@@ -8,6 +8,7 @@ import srcMediaObj from '../__mocks__/srcMediaObj.json';
 import mainResource from '../__mocks__/mainResource.json';
 import Pillarbox from '../../src/pillarbox.js';
 import AkamaiTokenService from '../../src/utils/AkamaiTokenService.js';
+import Drm from '../../src/utils/Drm.js';
 import pillarbox from '../../src/pillarbox.js';
 
 jest.mock('../../src/dataProvider/services/DataProvider.js');
@@ -67,6 +68,9 @@ describe('SrgSsr', () => {
       debug: jest.fn(),
       drmSupport: {
         check: jest.fn().mockResolvedValue({}),
+      },
+      eme: {
+        legacyFairplayIsUsed : false
       },
       error: jest.fn(),
       localize: jest.fn(),
@@ -662,6 +666,28 @@ describe('SrgSsr', () => {
         SrgSsr.composeKeySystemsResources(resources);
 
       expect(resourcesWithKeySystems).toMatchObject(expectedResources);
+    });
+
+    it('should handle legacy FairPlay when player.eme.legacyFairplayIsUsed is true', () => {
+      const spyOnBuildKeySystems = jest.spyOn(Drm, 'buildKeySystems');
+      const drmList = [
+        {
+          type: 'FAIRPLAY',
+          licenseUrl: 'https://ze.license.url',
+          certificateUrl: 'https://ze.certificate.url',
+        }
+      ];
+      const resources = [{ streaming: 'HLS', drmList }];
+
+      // update default value
+      player.eme.legacyFairplayIsUsed = true;
+
+      SrgSsr.composeKeySystemsResources(resources, player);
+
+      expect(spyOnBuildKeySystems).toHaveBeenCalledWith(drmList, true);
+
+      // restore default value
+      player.eme.legacyFairplayIsUsed = false;
     });
   });
 
