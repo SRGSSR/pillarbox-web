@@ -41,7 +41,7 @@
     "outdated": "npm outdated",
     "prebuild": "rimraf dist",
     "release:ci": "semantic-release",
-    "start": "vite --port 6969 --open",
+    "start": "vite --host --port 6969 --open",
     "stylelint": "stylelint **/*.scss --custom-syntax --allow-empty-input",
     "stylelint:fix": "stylelint **/*.scss --fix",
     "test": "jest --verbose",
