@@ -1,3 +1,10 @@
+## [1.40.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.40.0...v1.40.1) (2026-09-03)
+
+
+### Bug Fixes
+
+* **middleware:** handle legacy FairPlay license URI ([c90a6d6](https://github.com/SRGSSR/pillarbox-web/commit/c90a6d6230bb804f44e03edd3069dbd24602c3af))
+
 # [1.40.0](https://github.com/SRGSSR/pillarbox-web/compare/v1.39.1...v1.40.0) (2026-08-26)
 
 
