@@ -99,5 +99,25 @@
   },
   "peerDependencies": {
     "video.js": "^8.0.0"
+  },
+  "overrides": {
+    "@videojs/http-streaming": {
+      "@xmldom/xmldom": "0.9.12"
+    },
+    "@xmldom/xmldom": {
+      "@xmldom/xmldom": "0.9.12"
+    },
+    "mpd-parser": {
+      "@xmldom/xmldom": "0.9.12"
+    },
+    "video.js": {
+      "@xmldom/xmldom": "0.9.12"
+    },
+    "videojs-contrib-eme": {
+      "@xmldom/xmldom": "0.9.12"
+    },
+    "videojs-contrib-quality-levels": {
+      "@xmldom/xmldom": "0.9.12"
+    }
   }
 }
