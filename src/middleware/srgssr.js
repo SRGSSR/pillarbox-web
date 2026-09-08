@@ -634,6 +634,8 @@ class SrgSsr {
     try {
       const srcMediaObj = await this.getSrcMediaObj(player, srcObj);
 
+      if (player.isDisposed()) return;
+
       this.srgAnalytics(player);
       this.updateTitleBar(player, srcMediaObj);
       this.updatePoster(player, srcMediaObj);
@@ -644,10 +646,28 @@ class SrgSsr {
 
       return next(null, srcMediaObj);
     } catch (error) {
-      if (this.dataProviderError(player, error)) return;
-
-      return next(error);
+      return this.handleSetSourceError(player, error, next);
     }
+  }
+
+  /**
+   * Handles an error thrown while the middleware's setSource function was
+   * resolving a source.
+   *
+   * Nothing can nor should be done with a player that was disposed in the
+   * meantime, not even reporting the error: its reference to the player is
+   * released by `Component#dispose`.
+   *
+   * @param {Player} player
+   * @param {Object} error
+   * @param {function} next
+   *
+   * @returns {any}
+   */
+  static handleSetSourceError(player, error, next) {
+    if (player.isDisposed() || this.dataProviderError(player, error)) return;
+
+    return next(error);
   }
 
   /**
