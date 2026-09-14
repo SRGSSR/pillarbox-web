@@ -73,6 +73,7 @@ describe('SrgSsr', () => {
         legacyFairplayIsUsed : false
       },
       error: jest.fn(),
+      isDisposed: jest.fn().mockReturnValue(false),
       localize: jest.fn(),
       on: jest.fn(),
       one: jest.fn(),
@@ -1674,16 +1675,67 @@ describe('SrgSsr', () => {
           url: 'http://mock.url.ch',
         });
 
+        const next = jest.fn().mockResolvedValue(true);
+
         const result = await SrgSsr.middleware(player).setSource(
           { src: 'urn:fake' },
-          jest.fn().mockResolvedValue(true)
+          next
         );
 
         expect(result).toBeUndefined();
         expect(spyOnDataProviderError.mock.results[0].value).toBe(true);
         expect(spyOnError).toHaveBeenCalledWith(player, expect.any(Object));
+        expect(next).not.toHaveBeenCalled();
 
         spyOnDataProvider.mockReset();
+      });
+
+      it('Should do nothing if the player is disposed while the source is resolved', async () => {
+        jest.spyOn(SrgSsr, 'getSrcMediaObj').mockResolvedValueOnce(srcMediaObj);
+
+        const spyOnSrgAnalytics = jest.spyOn(SrgSsr, 'srgAnalytics');
+        const spyOnUpdateTitleBar = jest.spyOn(SrgSsr, 'updateTitleBar');
+        const spyOnAddTextTracks = jest.spyOn(SrgSsr, 'addTextTracks');
+        const next = jest.fn();
+
+        player.isDisposed.mockReturnValueOnce(true);
+
+        const result = await SrgSsr.middleware(player).setSource(
+          { src: 'urn:fake' },
+          next
+        );
+
+        expect(result).toBeUndefined();
+        expect(spyOnSrgAnalytics).not.toHaveBeenCalled();
+        expect(spyOnUpdateTitleBar).not.toHaveBeenCalled();
+        expect(spyOnAddTextTracks).not.toHaveBeenCalled();
+        expect(next).not.toHaveBeenCalled();
+      });
+
+      it('Should do nothing if the player is disposed while the source fails to resolve', async () => {
+        jest
+          .spyOn(SrgSsr, 'getSrcMediaObj')
+          .mockRejectedValueOnce({
+            status: '404',
+            statusText: 'Not Found',
+            url: 'http://mock.url.ch',
+          });
+
+        const spyOnDataProviderError = jest.spyOn(SrgSsr, 'dataProviderError');
+        const spyOnError = jest.spyOn(SrgSsr, 'error');
+        const next = jest.fn();
+
+        player.isDisposed.mockReturnValueOnce(true);
+
+        const result = await SrgSsr.middleware(player).setSource(
+          { src: 'urn:fake' },
+          next
+        );
+
+        expect(result).toBeUndefined();
+        expect(spyOnDataProviderError).not.toHaveBeenCalled();
+        expect(spyOnError).not.toHaveBeenCalled();
+        expect(next).not.toHaveBeenCalled();
       });
     });
   });
