@@ -220,12 +220,14 @@ class MediaComposition {
       return undefined;
     }
 
+    // eslint-disable-next-line max-lines-per-function
     return resourceList.map((resource) => ({
       analyticsData: this.getMergedAnalyticsData(resource.analyticsData),
       analyticsMetadata: this.getMergedAnalyticsMetadata(
         resource.analyticsMetadata
       ),
       aspectRatio: this.getMainChapter().aspectRatio,
+      audioTrackList: resource.audioTrackList,
       blockReason: this.getMainChapter().blockReason,
       blockedSegments: this.getMainBlockedSegments(),
       imageUrl: this.getMainChapterImageUrl(),
@@ -246,6 +248,7 @@ class MediaComposition {
       spriteSheet: this.getMainChapter().spriteSheet,
       streaming: resource.streaming,
       streamOffset: resource.streamOffset,
+      subtitleInformationList: resource.subtitleInformationList,
       subtitles: this.getFilteredExternalSubtitles(),
       title: this.getMainChapter().title,
       tokenType: resource.tokenType,
