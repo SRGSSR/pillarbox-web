@@ -573,6 +573,14 @@ export type DrmMetadata = {
  */
 export type AudioTrack = {
   /**
+   * Indicates if the audio track is an audio description.
+   */
+  isAudioDescription: boolean;
+  /**
+   * Indicates if the audio track is the original version.
+   */
+  isOriginalVersion: boolean;
+  /**
    * Locale information for the audio track.
    */
   locale: string;
@@ -1400,6 +1408,10 @@ export interface MainResource {
     [x: string]: string;
   };
   /**
+   * List of audio tracks associated with the resource.
+   */
+  audioTrackList: Array<AudioTrack>;
+  /**
    * Block reason from the main chapter.
    */
   blockReason: BlockReason;
@@ -1467,6 +1479,10 @@ export interface MainResource {
    * Stream offset from the resource.
    */
   streamOffset: number;
+  /**
+   * List of subtitle information associated with the resource.
+   */
+  subtitleInformationList: Array<SubtitleInformation>;
   /**
    * Filtered external subtitles.
    */
