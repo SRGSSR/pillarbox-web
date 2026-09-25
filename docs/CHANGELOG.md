@@ -1,3 +1,10 @@
+## [1.40.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.40.1...v1.40.2) (2026-09-25)
+
+
+### Bug Fixes
+
+* guard source loading against a disposed player ([155d95c](https://github.com/SRGSSR/pillarbox-web/commit/155d95c23e6711ab4addba43bb37a5da897ae6b3)), closes [#422](https://github.com/SRGSSR/pillarbox-web/issues/422)
+
 ## [1.40.1](https://github.com/SRGSSR/pillarbox-web/compare/v1.40.0...v1.40.1) (2026-09-03)
 
 
