@@ -1,0 +1,16 @@
+.sidebar .sidebar-items-container {
+  margin-top: 1rem;
+}
+
+footer .wrapper, footer .wrapper a, .sidebar-title-anchor {
+  display: flex;
+  align-items: center;
+}
+
+.main-wrapper article ul {
+  list-style: inherit;
+}
+
+.main-wrapper .tag-see ul {
+  display: block;
+}
