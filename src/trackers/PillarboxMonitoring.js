@@ -197,10 +197,16 @@ class PillarboxMonitoring {
     if (!this.player.drmSupport) return;
 
     const result = await this.player.drmSupport.check();
+    const supportedDrmVendors = Object.entries(result)
+      .reduce((object, [key, value]) => {
+        if (value !== null && key !== 'clearKey') {
+          object[key] = value;
+        }
 
-    return Object.fromEntries(Object.entries(result)
-      .filter(([key, value]) => value !== null && key !== 'clearKey')
-      .map(([key, value]) => [key, value]));
+        return object;
+      }, {});
+
+    return supportedDrmVendors;
   }
 
   /**
