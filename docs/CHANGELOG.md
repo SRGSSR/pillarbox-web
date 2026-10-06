@@ -1,3 +1,10 @@
+## [1.40.3](https://github.com/SRGSSR/pillarbox-web/compare/v1.40.2...v1.40.3) (2026-10-06)
+
+
+### Bug Fixes
+
+* **pillarbox-monitoring:** detect DRM capabilities on older browsers ([26ccdbc](https://github.com/SRGSSR/pillarbox-web/commit/26ccdbca503f3ab408a3ed06e5afb464b678659a))
+
 ## [1.40.2](https://github.com/SRGSSR/pillarbox-web/compare/v1.40.1...v1.40.2) (2026-09-25)
 
 
