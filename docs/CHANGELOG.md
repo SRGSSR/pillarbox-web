@@ -1,3 +1,10 @@
+## [1.40.4](https://github.com/SRGSSR/pillarbox-web/compare/v1.40.3...v1.40.4) (2026-10-22)
+
+
+### Bug Fixes
+
+* **pillarbox-monitoring:** format DRM capability keys in snake_case ([a98c69b](https://github.com/SRGSSR/pillarbox-web/commit/a98c69bb26ae1a47f18b3976c12ef80ac4ba735a)), closes [SRGSSR/pillarbox-documentation#204](https://github.com/SRGSSR/pillarbox-documentation/issues/204)
+
 ## [1.40.3](https://github.com/SRGSSR/pillarbox-web/compare/v1.40.2...v1.40.3) (2026-10-06)
 
 
