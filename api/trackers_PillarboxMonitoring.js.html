@@ -198,11 +198,21 @@ class PillarboxMonitoring {
   async capabilities() {
     if (!this.player.drmSupport) return;
 
+    const strToSnakeCase = str => {
+      return str
+        .split('')
+        .map((letter, index) => {
+          if (letter.toUpperCase() !== letter) return letter;
+
+          return `${index !== 0 ? '_' : ''}${letter.toLowerCase()}`;
+        })
+        .join('');
+    };
     const result = await this.player.drmSupport.check();
     const supportedDrmVendors = Object.entries(result)
       .reduce((object, [key, value]) => {
         if (value !== null &amp;&amp; key !== 'clearKey') {
-          object[key] = value;
+          object[strToSnakeCase(key)] = value;
         }
 
         return object;
