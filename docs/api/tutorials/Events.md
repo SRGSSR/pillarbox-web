@@ -16,11 +16,8 @@ allowing for appropriate responses such as user notifications.
 
 ```javascript
 player.on('srgssr/blocked-segment', function ({ data }) {
-  // Parsing metadata of the blocked segment
-  const metadata = JSON.parse(data.text);
-
   // Log or handle the skipped segment information
-  console.log(`Skipped blocked segment from ${data.startTime} to ${data.endTime}`, metadata);
+  console.log(`Skipped blocked segment from ${data.startTime} to ${data.endTime}`, data);
 });
 ```
 
@@ -41,11 +38,8 @@ player.on('srgssr/chapter', function ({ data }) {
     return;
   }
 
-  // Parsing metadata of the chapter
-  const metadata = JSON.parse(data.text);
-
   // Log or handle the chapter information
-  console.log(`Entering chapter from ${data.startTime} to ${data.endTime}`, metadata);
+  console.log(`Entering chapter from ${data.startTime} to ${data.endTime}`, data);
 });
 ```
 
@@ -66,11 +60,8 @@ player.on('srgssr/interval', function ({ data }) {
     return;
   }
 
-  // Parsing metadata of the skippable interval
-  const metadata = JSON.parse(data.text);
-
   // Log or handle the skippable interval information
-  console.log(`Entering a skippable section from ${data.startTime} to ${data.endTime}`, metadata);
+  console.log(`Entering a skippable section from ${data.startTime} to ${data.endTime}`, data);
 });
 ```
 

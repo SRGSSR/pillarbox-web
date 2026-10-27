@@ -123,12 +123,10 @@
 
       if (!data) return;
 
-      const cueContent = JSON.parse(data.text);
-
       // Blocked segment
       if ('srgssr/blocked-segment' === type) {
 
-        console.log('%cBlock reason', 'background-color: red', cueContent.blockReason);
+        console.log('%cBlock reason', 'background-color: red', data.blockReason);
         return;
       }
 
@@ -136,16 +134,16 @@
       if ('srgssr/chapter' === type) {
         // Update the title bar with the current chapter
         player.titleBar.update({
-          title: cueContent.title,
-          description: cueContent.description
+          title: data.title,
+          description: data.description
         });
 
-        console.log('%cChapter', 'background-color: blue', cueContent.title);
+        console.log('%cChapter', 'background-color: blue', data.title);
         return;
       }
 
       // Interval
-      console.log('%cInterval', 'background-color: green', cueContent.type);
+      console.log('%cInterval', 'background-color: green', data.type);
     });
 
     player.src({

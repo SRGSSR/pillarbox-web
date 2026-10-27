@@ -70,7 +70,7 @@ describe('SrgSsr', () => {
         check: jest.fn().mockResolvedValue({}),
       },
       eme: {
-        legacyFairplayIsUsed : false
+        legacyFairplayIsUsed: false
       },
       error: jest.fn(),
       isDisposed: jest.fn().mockReturnValue(false),
@@ -860,10 +860,16 @@ describe('SrgSsr', () => {
     it('should trigger a srgssr/chapter event when cue changes', () => {
       SrgSsr.cuechangeEventProxy(player);
 
+      const chapter = { title: 'chapter 1' };
       const chapterCue = {
         startTime: 10,
         endTime: 20,
-        text: 'chapter 1',
+        text: JSON.stringify(chapter),
+      };
+      const data = {
+        startTime: 10,
+        endTime: 20,
+        ...chapter
       };
       const chaptersTrack = {
         id: 'srgssr-chapters',
@@ -880,17 +886,23 @@ describe('SrgSsr', () => {
 
       expect(player.trigger).toHaveBeenCalledWith({
         type: 'srgssr/chapter',
-        data: chapterCue,
+        data
       });
     });
 
     it('should trigger a srgssr-intervals event when cue changes', () => {
       SrgSsr.cuechangeEventProxy(player);
 
+      const interval = { type: 'OPENING_CREDITS' };
       const intervalCue = {
         startTime: 10,
         endTime: 20,
-        text: 'interval 1',
+        text: JSON.stringify(interval),
+      };
+      const data = {
+        startTime: 10,
+        endTime: 20,
+        ...interval
       };
       const intervalsTrack = {
         id: 'srgssr-intervals',
@@ -907,7 +919,7 @@ describe('SrgSsr', () => {
 
       expect(player.trigger).toHaveBeenCalledWith({
         type: 'srgssr/interval',
-        data: intervalCue,
+        data,
       });
     });
   });
@@ -1522,12 +1534,20 @@ describe('SrgSsr', () => {
         const spyOnPlayerTrigger = jest.spyOn(player, 'trigger');
         const middleware = SrgSsr.middleware(player);
         const currentTime = 13;
+        const blockedSegment = {
+          blockReason: 'LEGAL'
+        };
         const blockedSegmentCue = {
           startTime: 10,
           endTime: 20,
-          text: JSON.stringify('data')
+          text: JSON.stringify(blockedSegment)
         };
         const endTimeWithTolerance = blockedSegmentCue.endTime + 0.1;
+        const data = {
+          startTime: 10,
+          endTime: endTimeWithTolerance,
+          ...blockedSegment
+        };
 
         player.textTracks().getTrackById.mockReturnValueOnce({
           activeCues: [blockedSegmentCue]
@@ -1535,7 +1555,8 @@ describe('SrgSsr', () => {
 
         expect(middleware.currentTime(currentTime)).toBe(endTimeWithTolerance);
         expect(spyOnPlayerCurrentTime).toHaveBeenCalledWith(endTimeWithTolerance);
-        expect(spyOnPlayerTrigger).toHaveBeenCalledWith({ 'data': blockedSegmentCue, 'type': 'srgssr/blocked-segment' });
+        expect(spyOnPlayerTrigger)
+          .toHaveBeenCalledWith({ 'type': 'srgssr/blocked-segment', data });
       });
     });
 
