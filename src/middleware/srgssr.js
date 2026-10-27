@@ -316,7 +316,20 @@ class SrgSsr {
         const [cue] = Array.from(track.activeCues || []);
         const type = track.id.includes('srgssr-chapters') ? 'srgssr/chapter' : 'srgssr/interval';
 
-        player.trigger({ type, data: cue });
+        let data = undefined;
+
+        if (cue) {
+          data = {
+            startTime: cue.startTime,
+            endTime: cue.endTime,
+            ...JSON.parse(cue.text || null)
+          };
+        }
+
+        player.trigger({
+          type,
+          data
+        });
       });
     });
   }
@@ -585,9 +598,14 @@ class SrgSsr {
     // as a workaround, add 0.1 seconds to avoid getting stuck on endTime on
     // some safaris.
     const endTimeWithTolerance = blockedSegment.endTime + 0.1;
+    const data = {
+      startTime: blockedSegment.startTime,
+      endTime: endTimeWithTolerance,
+      ...JSON.parse(blockedSegment.text || null)
+    };
 
     // proxy for handling cuechange events at the player level
-    player.trigger({ type: 'srgssr/blocked-segment', data: blockedSegment });
+    player.trigger({ type: 'srgssr/blocked-segment', data });
     player.currentTime(endTimeWithTolerance);
 
     return endTimeWithTolerance;
